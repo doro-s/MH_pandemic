@@ -1,3 +1,5 @@
+# describes how each step in your analysis should be run
+
 version: '3.0'
 
 expectations:
@@ -10,3 +12,13 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/input.csv
+    ## note: when running studies for real it is recommended to add the option --output-format='csv.gz' to the run command, 
+    ## and add '.gz' to the output file path, to produce the output in compressed form to reduce file size.
+
+# new action: describe
+  describe:
+    run: python:latest python analysis/report.py
+    needs: [generate_study_population]
+    outputs:
+      moderately_sensitive:
+        cohort: output/descriptive.png

@@ -8,6 +8,7 @@ from codelists import *
 study = StudyDefinition(
     default_expectations={
         # apply to all subsequently defined variables; override in return_expectations in var extractor function when necessary
+        # another change
         # yet more comment
         "date": {"earliest": "1900-01-01", "latest": "today"},
         "rate": "uniform",

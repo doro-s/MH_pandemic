@@ -6,21 +6,12 @@ expectations:
   population_size: 1000
 
 actions:
-  # generate_study_population:
-  #   run: cohortextractor:latest generate_cohort --study-definition study_definition
-  #   outputs:
-  #     highly_sensitive:
-  #       cohort: output/input.csv
-        
-   generate_study_population:
+  generate_study_population:
      run: cohortextractor:latest generate_cohort --study-definition study_definition_cis_vl
      outputs:
        highly_sensitive:
          cohort: output/input_cis_vl.csv
-
-#   describe:
-#     run: python:latest python analysis/report.py
-#     needs: [generate_study_population]
-#     outputs:
-#       moderately_sensitive:
-#         cohort: output/descriptive.png
+    run: cohortextractor:latest generate_cohort --study-definition study_definition
+    outputs:
+      highly_sensitive:
+        cohort: output/input.csv

@@ -1,3 +1,22 @@
 {
-  "files": {}
+  "files": {
+    "opensafely-covid-identification.csv": {
+      "id": "opensafely/covid-identification/2020-06-03",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification/2020-06-03/",
+      "downloaded_at": "2022-05-27 14:13:21.010611Z",
+      "sha": "124db6929439379b7dacd55ba26ae4f2ed9370bc"
+    },
+    "primis-covid19-vacc-uptake-sev_obesity.csv": {
+      "id": "primis-covid19-vacc-uptake/sev_obesity/v1.2",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/sev_obesity/v1.2/",
+      "downloaded_at": "2022-05-27 14:13:21.329856Z",
+      "sha": "dfe3662bed703c590d1449e604e892cdd7a360c1"
+    },
+    "opensafely-hazardous-alcohol-drinking.csv": {
+      "id": "opensafely/hazardous-alcohol-drinking/6364474b",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/hazardous-alcohol-drinking/6364474b/",
+      "downloaded_at": "2022-05-27 14:13:21.692988Z",
+      "sha": "db9ef41fd8bbd00b01c2669a69812dbb884adea6"
+    }
+  }
 }

@@ -26,12 +26,11 @@ def cis_visit_level(name, start_date, n):
                 date_filter_column='visit_date')
             }
     
-    variables = var_signature(f"{name}_1_date", start_date)
-    
+    variables = var_signature(f"{name}_1", start_date)
     for i in range(2, n+1):
         variables.update(var_signature(
-          f"{name}_{i}_date", 
-          f"{name}_{i-1}_date + 1 days"))
+          f"{name}_{i}",
+          f"{name}_{i-1} + 1 days"))
     
     return variables
     
@@ -41,13 +40,13 @@ study = StudyDefinition(
     population=patients.all(),
 
     default_expectations={
-        "date": {"earliest": "1900-01-01", "latest": "today"},
+        "date": {"earliest": start_date, "latest": end_date},
         "rate": "uniform",
         "incidence": 1
     },
 
     # Return visit level CIS data
-    **cis_visit_level('cis_visit_date', '2020-01-24', 5)
+    **cis_visit_level('cis_visit_date', start_date, n_visits)
     
 
 )

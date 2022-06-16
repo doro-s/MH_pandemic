@@ -1,0 +1,554 @@
+code,term
+13B1.,Diabetic diet
+42WZ.,Hb. A1C - diabetic control NOS
+44V3.,Glucose tol. test diabetic
+66A3.,Diabetic on diet only
+66A4.,Diabetic on oral treatment
+66A5.,Diabetic on insulin
+66A8.,Has seen dietitian - diabetes
+66A9.,Understands diet - diabetes
+66AA.,Injection sites (& diabetic)
+66AG.,Diabetic drug side effects
+66AH.,Diabetic treatment changed
+66AH0,Conversion to insulin
+66AI.,Diabetic - good control
+66AJ.,Diabetic - poor control (& unstable)
+66AJ0,Chronic hyperglycaemia
+66AJ1,[Brittle] and/or [labile diabetes]
+66AJ2,Loss of hypoglycaemic warning
+66AJ3,Recurrent severe hypos
+66AJz,Diabetic - poor control NOS
+66AK.,Diabetic - cooperative patient
+66AL.,Diabetic-uncooperative patient
+66AM.,Diabetic - follow-up default
+66AN.,Date diabetic treatment start
+66AP.,Diabetes: practice programme
+66AQ.,Diabetes: shared care programme
+66AR.,Diabetes management plan given
+66AS.,Diabetic annual review
+66AT.,Annual diabetic blood test
+7L100,Continuous subcutaneous infusion of insulin
+8A12.,Diabetic crisis monitoring
+8A13.,Diabetic stabilisation
+8CA41,Patient advised about diabetic diet
+8H2J.,Admit diabetic emergency
+8H3O.,Non-urgent diabetic admission
+8H7C.,"Refer, diabetic liaison nurse"
+8HKE.,Diabetology domiciliary visit requested
+8HLE.,Diabetology D.V. done
+8HME.,Listed for Diabetology admissn
+9NM0.,Attending diabetes clinic
+9OL..,Diabetes administration: [monitoring] or [clinic]
+9OL1.,Attends diabetes monitoring
+9OL2.,Refuses diabetes monitoring
+9OL3.,Diabetes monitoring default
+9OL4.,Diabetes monitoring first letter
+9OL5.,Diabetes monitoring second letter
+9OL6.,Diabetes monitoring third letter
+9OL7.,Diabetes monitoring verbal invite
+9OL8.,Diabetes monitoring telephone invite
+9OL9.,Diabetes monitoring deleted
+9OLA.,Diabetes monitored (& check done)
+9OLZ.,Diabetes monitoring admin.NOS
+C10..,Diabetes mellitus
+C100.,Diabetes mellitus with no mention of complication
+C1000,"Diabetes mellit: [juv type, no mention compl] or [insul dep]"
+C1001,"Diab mell: [adult ons, no ment comp][mat onset][non-ins dep]"
+C100z,Diabetes mellitus NOS with no mention of complication
+C101.,Diabetic ketoacidosis
+C1010,Type 1 diabetes mellitus with ketoacidosis
+C1011,Type 2 diabetes mellitus with ketoacidosis
+C101y,Other specified diabetes mellitus with ketoacidosis
+C101z,Diabetes mellitus NOS with ketoacidosis
+C102.,Diabetes mellitus with hyperosmolar coma
+C1020,"Diabetes mellitus, juvenile type, with hyperosmolar coma"
+C1021,"Diabetes mellitus, adult onset, with hyperosmolar coma"
+C102z,Diabetes mellitus NOS with hyperosmolar coma
+C103.,Diabetes mellitus with ketoacidotic coma
+C1030,Type 1 diabetes mellitus with ketoacidotic coma
+C1031,Type II diabetes mellitus with ketoacidotic coma
+C103y,Other specified diabetes mellitus with coma
+C103z,Diabetes mellitus NOS with ketoacidotic coma
+C104.,Diabetes mellitus: [with renal manifestatn] or [nephropathy]
+C1040,"Diabetes mellitus, juvenile type, with renal manifestation"
+C1041,"Diabetes mellitus, adult onset, with renal manifestation"
+C104y,Other specified diabetes mellitus with renal complications
+C104z,Diabetes mellitus with nephropathy NOS
+C105.,Diabetes mellitus with ophthalmic manifestation
+C1050,"Diabetes mellitus, juvenile type, + ophthalmic manifestation"
+C1051,"Diabetes mellitus, adult onset, + ophthalmic manifestation"
+C105y,Other specified diabetes mellitus with ophthalmic complicatn
+C105z,Diabetes mellitus NOS with ophthalmic manifestation
+C106.,Diab mell + neuro manif: (& [amyotroph][neurop][polyneurop])
+C1060,"Diabetes mellitus, juvenile, + neurological manifestation"
+C1061,"Diabetes mellitus, adult onset, + neurological manifestation"
+C106y,Other specified diabetes mellitus with neurological comps
+C106z,Diabetes mellitus NOS with neurological manifestation
+C107.,Diabetes mellitus with: [gangrene] or [periph circul disord]
+C1070,"Diabetes mellitus, juvenile +peripheral circulatory disorder"
+C1071,"Diabetes mellitus, adult, + peripheral circulatory disorder"
+C1072,"Diabetes mellitus, adult with gangrene"
+C1073,IDDM with peripheral circulatory disorder
+C1074,NIDDM with peripheral circulatory disorder
+C107y,Other specified diabetes mellitus with periph circ comps
+C107z,Diabetes mellitus NOS with peripheral circulatory disorder
+C1080,Type I diabetes mellitus with renal complications
+C1081,Type I diabetes mellitus with ophthalmic complications
+C1082,Type I diabetes mellitus with neurological complications
+C1083,Type I diabetes mellitus with multiple complications
+C1085,Type I diabetes mellitus with ulcer
+C1086,Type I diabetes mellitus with gangrene
+C1087,Type I diabetes mellitus with retinopathy
+C1088,Type I diabetes mellitus - poor control
+C1089,Type I diabetes mellitus maturity onset
+C108y,Other specified diabetes mellitus with multiple comps
+C108z,Unspecified diabetes mellitus with multiple complications
+C109.,Type II diabetes mellitus
+C1090,Type II diabetes mellitus with renal complications
+C1091,Type II diabetes mellitus with ophthalmic complications
+C1092,Type II diabetes mellitus with neurological complications
+C1093,Type II diabetes mellitus with multiple complications
+C1094,Type II diabetes mellitus with ulcer
+C1095,Type II diabetes mellitus with gangrene
+C1096,Type II diabetes mellitus with retinopathy
+C1097,Type II diabetes mellitus - poor control
+C10y.,Diabetes mellitus with other specified manifestation
+C10y0,"Diabetes mellitus, juvenile, + other specified manifestation"
+C10y1,"Diabetes mellitus, adult, + other specified manifestation"
+C10yy,Other specified diabetes mellitus with other spec comps
+C10yz,Diabetes mellitus NOS with other specified manifestation
+C10z.,Diabetes mellitus with unspecified complication
+C10z0,"Diabetes mellitus, juvenile type, + unspecified complication"
+C10z1,"Diabetes mellitus, adult onset, + unspecified complication"
+C10zy,Other specified diabetes mellitus with unspecified comps
+C10zz,Diabetes mellitus NOS with unspecified complication
+C110.,Coma: [hypoglycaemic] or [insulin]
+C110z,Hypoglycaemic coma NOS
+Cyu20,[X]Other specified diabetes mellitus
+Cyu21,[X]Malnutrit-relat diabetes mellitus with other spec comps
+Cyu22,[X]Malnutrit-related diabetes mellitus with unspec complics
+Cyu23,[X]Unspecified diabetes mellitus with renal complications
+F1711,Diabetic autonomic neuropathy
+F3450,Diabetic mononeuritis multiplex
+F35z0,Diabetic mononeuritis NOS
+F372.,Diabetic neuropathy &/or diabetic polyneuropathy
+F3720,Acute painful diabetic neuropathy
+F3721,Chronic painful diabetic neuropathy
+F3722,Asymptomatic diabetic neuropathy
+F3813,(Myasth syndr due to diab amyotroph) or (diab amyotroph)
+F3y0.,Diabetic mononeuropathy
+F420.,Diabetic retinopathy
+F4200,Background diabetic retinopathy
+F4201,Proliferative diabetic retinopathy
+F4202,Preproliferative diabetic retinopathy
+F4203,Advanced diabetic maculopathy
+F420z,Diabetic retinopathy NOS
+F4407,Diabetic iritis
+F4640,Diabetic cataract
+G73y0,Diabetic peripheral angiopathy
+K01x1,Nephrotic syndrome in diabetes mellitus
+Kyu03,[X]Glomerular disorders in diabetes mellitus
+Lyu29,"[X]Pre-existing diabetes mellitus, unspecified"
+M0372,Cellulitis in diabetic foot
+M2710,Ischaemic ulcer diabetic foot
+M2711,Neuropathic diabetic ulcer - foot
+M2712,Mixed diabetic ulcer - foot
+N0300,Diabetic hand syndrome
+N0301,Diabetic neuropathic arthropathy
+Q441.,Neonatal diabetes mellitus
+R0542,[D]Gangrene of toe in diabetic
+R0543,[D]Widespread diabetic foot gangrene
+X00Ag,Diabetic neuropathy
+X00Ah,Diabetic distal sensorimotor polyneuropathy
+X00Ai,Diabetic acute painful polyneuropathy
+X00Aj,Diabetic chronic painful polyneuropathy
+X00Ak,Diabetic asymmetric polyneuropathy
+X00Al,Diabetic mononeuropathy
+X00Am,Diabetic truncal radiculopathy
+X00An,Diabetic thoracic radiculopathy
+X00dF,Visually threatening diabetic retinopathy
+X00dG,Diabetic maculopathy
+X00dH,Proliferative diabetic retinopathy new vessels on disc
+X00dI,Proliferative diabet retinop new vessel elsewhere than disc
+X00dJ,Diabetic traction retinal detachment
+X30Kk,Diabetic nephropathy
+X30Kl,Microalbuminuric diabetic nephropathy
+X30Km,Proteinuric diabetic nephropathy
+X40J4,Type I diabetes mellitus
+X40J5,Type II diabetes mellitus
+X40J6,Insulin treated Type 2 diabetes mellitus
+X40JG,Genetic syndromes of diabetes mellitus
+X40JI,Diabetes mellitus autosomal dominant
+X40JJ,Diabetes mellitus autosomal dominant type 2
+X40JV,"Hypogonadism,diab mell,alopec,ment retar electro abnorm"
+X40JW,"Megaloblastic anaemia,diab mell and sensorineural deafness"
+X40JX,"Pineal hyperplasia,ins res diab mell and somatic abnorm"
+X40JY,Insulin-dependent diabetes mellitus secretory diarrhoea synd
+X40JZ,Diabetes-deafness syndrome maternally transmitted
+X40Ja,Abnormal metabolic state in diabetes mellitus
+X40Jb,Diabetic severe hyperglycaemia
+X40Jc,Poor glycaemic control
+X40Je,Acute hyperglycaemia
+X40Jj,Pregnancy and insulin-dependent diabetes mellitus
+X40Jk,Pregnancy and non-insulin-dependent diabetes mellitus
+X40Jo,Insulin coma
+X40Jq,Hypoglycaemic event in diabetes
+X40Jr,Hypoglycaemic state in diabetes
+X40Js,Somogyi phenomenon
+X40Jt,Nocturnal hypoglycaemia
+X40KG,Insulin resistance in diabetes
+X50E7,Insulin lipohypertrophy
+X50GO,Soft tissue complication of diabetes mellitus
+X50GP,Diabetic dermopathy
+X50GQ,Diabetic bulla
+X50GR,Diabetic thick skin syndrome
+X50GT,Diabetic rubeosis
+X74WS,Diabetic monitoring status
+XE10E,"Diabetes mellitus, juvenile type, no mention of complication"
+XE10F,"Diabetes mellitus, adult onset, no mention of complication"
+XE10G,Diabetes mellitus with renal manifestation
+XE10H,Diabetes mellitus with neurological manifestation
+XE10I,Diabetes mellitus with peripheral circulatory disorder
+XE10J,Hypoglycaemic coma
+XE128,Diabetes mellitus (& [ketoacidosis])
+XE12A,Diabetes mellitus: [adult onset] or [noninsulin dependent]
+XE12C,Diabetes mellitus: [juvenile] or [insulin dependent]
+XE12E,Diabetes + nephropathy (& [Kimmelstiel-Wilson syndrome])
+XE12G,Diabetes + eye manifestation (& [cataract] or [retinopathy])
+XE12I,Diabetes + neuropathy (& [amyotrophy])
+XE12K,Diabetes: [peripheral circulatory disease] or [gangrene]
+XE12M,Diabetes with other complications
+XE12Q,Hypoglycaemic coma (& [insulin])
+XE15k,Diabetic polyneuropathy
+XE15n,Myasthenic syndrome due to diabetic amyotrophy
+XE18r,(Secondary cataract) or (diabetic cataract)
+XE1T2,Diabetic monitoring - injection sites
+XE1T3,Diabetic - poor control
+XE1V0,Diabetic treatment changed (& [date])
+XE1V2,Diabetic - poor control (& [unstable])
+XE24t,Hb. A1C - diabetic control
+XE2Nd,Diabetes monitoring admin.
+XE2Ne,Diabetes monitoring check done
+XM0cY,Diabetes treatment satisfaction questionnaire
+XM0cZ,Diabetes wellbeing questionnaire
+XM0q4,Diabetic coma
+XM19i,[EDTA]Diabetes Type I associated with renal failure
+XM19j,[EDTA] Diabetes Type II associated with renal failure
+XM1Qx,Diabetes mellitus with gangrene
+XM1Rs,Diabetes clinic administration
+XM1Xk,Unstable diabetes
+XSETH,Maturity onset diabetes mellitus in young
+XSETp,Diabetes mellitus due to insulin receptor antibodies
+Xa0lK,Diabetic (femoral mononeuropathy) & (Diabetic amyotrophy)
+Xa1J5,Diabetic foot
+Xa2h7,Dietary advice for diabetes mellitus
+Xa2h9,Dietary advice for type I diabetes
+Xa2hA,Dietary advice for type II diabetes
+Xa3ee,Diabetes with ketoacidosis - no coma
+Xa4g7,Unstable type I diabetes mellitus
+XaA6b,Perceived control of insulin-dependent diabetes
+XaBLf,O/E - Right diabetic foot at risk
+XaBLg,O/E - Left diabetic foot at risk
+XaBTC,Referral to diabetic liaison nurse
+XaBU8,Diabetes monitoring call
+XaBU9,Diabetes monitoring status
+XaBZQ,Subcutaneous injection of insulin
+XaBuj,Education score - diabetes
+XaBul,Retinal abnormality - diabetes-related
+XaBun,Foot abnormality - diabetes-related
+XaCES,HbA1 - diabetic control
+XaCET,HbA1 less than 7% - good control
+XaCEU,HbA1 7-10% - borderline control
+XaCEV,HbA1 greater than 10% - bad control
+XaCGh,Diabetes monitoring invitation
+XaCJ2,Diabetic hyperosmolar non-ketotic state
+XaD2T,Advanced diabetic retinal disease
+XaE46,Referral to diabetes nurse
+XaE4q,Attending diabetes clinic
+XaE5T,Mild non proliferative diabetic retinopathy
+XaE5U,Moderate non proliferative diabetic retinopathy
+XaE5V,Severe non proliferative diabetic retinopathy
+XaE5W,Proliferative diabetic retinopathy - non high risk
+XaE5X,Proliferative diabetic retinopathy - high risk
+XaE5Y,Proliferative diabetic retinopathy - quiescent
+XaE5Z,Proliferative diabetic retinopathy - iris neovascularisation
+XaE5a,Diabetic vitreous haemorrhage
+XaE5c,Diabetic macular oedema
+XaEHw,[V]Admitted for conversion to insulin
+XaEHx,[V]Admitted for commencement of insulin
+XaEJQ,Seen in diabetic eye clinic
+XaELP,Type I diabetes mellitus without complication
+XaELQ,Type II diabetes mellitus without complication
+XaEVO,Diffuse diabetic maculopathy
+XaEVP,Focal diabetic maculopathy
+XaEVS,Ischaemic diabetic maculopathy
+XaEVT,Mixed diabetic maculopathy
+XaEgI,Diabetic on insulin and oral treatment
+XaEnn,Type I diabetes mellitus with mononeuropathy
+XaEno,Type I diabetes mellitus with polyneuropathy
+XaEnp,Type II diabetes mellitus with mononeuropathy
+XaEnq,Type II diabetes mellitus with polyneuropathy
+XaF04,Type I diabetes mellitus with nephropathy
+XaF05,Type II diabetes mellitus with nephropathy
+XaFWG,Type I diabetes mellitus with hypoglycaemic coma
+XaFWI,Type II diabetes mellitus with hypoglycaemic coma
+XaFm8,Type I diabetes mellitus with diabetic cataract
+XaFmA,Type II diabetes mellitus with diabetic cataract
+XaFmK,Type I diabetes mellitus with peripheral angiopathy
+XaFmL,Type I diabetes mellitus with arthropathy
+XaFmM,Type I diabetes mellitus with neuropathic arthropathy
+XaFn7,Type II diabetes mellitus with peripheral angiopathy
+XaFn8,Type II diabetes mellitus with arthropathy
+XaFn9,Type II diabetes mellitus with neuropathic arthropathy
+XaFvj,Diabetic lipid lowering diet
+XaFvk,Diabetic weight reducing diet
+XaFx7,Diab mellit insulin-glucose infus acute myocardial infarct
+XaIIe,Diabetes care by hospital only
+XaIIj,Diabetic retinopathy screening
+XaIP5,Non proliferative diabetic retinopathy
+XaIPk,O/E - diabetic maculopathy present both eyes
+XaIQS,Refer to diabetic foot screener
+XaIW8,High risk non proliferative diabetic retinopathy
+XaIeH,O/E - Right diabetic foot at low risk
+XaIeI,O/E - Right diabetic foot at high risk
+XaIeJ,O/E - Right diabetic foot - ulcerated
+XaIeK,O/E - Left diabetic foot - ulcerated
+XaIeL,O/E - Left diabetic foot at low risk
+XaIeM,O/E - Left diabetic foot at high risk
+XaIeR,O/E - Left diabetic foot at moderate risk
+XaIeS,O/E - Right diabetic foot at moderate risk
+XaIeT,Diabetic foot risk assessment
+XaIeU,Diabetic pre-pregnancy counselling
+XaIeo,Diabetes: shared care in pregnancy - diabetol and obstet
+XaIfG,Type II diabetes on insulin
+XaIfI,Type II diabetes on diet only
+XaIfM,Diabetes medication review
+XaIok,Diabetic monitoring not required
+XaIrL,Diabetic diet - good compliance
+XaIrM,Diabetic diet - poor compliance
+XaIrf,Hyperosmolar non-ketotic state in type II diabetes mellitus
+XaIuE,Diabetic foot examination
+XaIyt,Diabetic peripheral neuropathy screening
+XaIyu,Hypoglycaemic attack requiring 3rd party assistance
+XaIyz,Diabetes mellitus with persistent microalbuminuria
+XaIz0,Diabetes mellitus with persistent proteinuria
+XaIzM,Type 1 diabetes mellitus with persistent proteinuria
+XaIzN,Type 1 diabetes mellitus with persistent microalbuminuria
+XaIzQ,Type II diabetes mellitus with persistent proteinuria
+XaIzR,Type II diabetes mellitus with persistent microalbuminuria
+XaJ4Q,Exception reporting: diabetes quality indicators
+XaJ4h,Excepted from diabetes qual indicators: Patient unsuitable
+XaJ4i,Excepted from diabetes quality indicators: Informed dissent
+XaJ5j,Patient on maximal tolerated therapy for diabetes
+XaJEN,Seen in diabetic foot clinic
+XaJLa,Diabetic retinopathy 12 month review
+XaJLb,Diabetic retinopathy 6 month review
+XaJO3,Under care of diabetologist
+XaJO4,Under care of diabetes specialist nurse
+XaJO9,Under care of diabetic foot screener
+XaJOD,Diabetic retinopathy screening not indicated
+XaJOE,Diabetic foot examination not indicated
+XaJOO,Patient held diabetic record issued
+XaJOg,O/E - right eye background diabetic retinopathy
+XaJOh,O/E - left eye background diabetic retinopathy
+XaJOi,O/E - right eye preproliferative diabetic retinopathy
+XaJOj,O/E - left eye preproliferative diabetic retinopathy
+XaJOk,O/E - right eye proliferative diabetic retinopathy
+XaJOl,O/E - left eye proliferative diabetic retinopathy
+XaJOn,O/E - right eye diabetic maculopathy
+XaJOo,O/E - left eye diabetic maculopathy
+XaJQp,Type II diabetes mellitus with exudative maculopathy
+XaJSr,Type 1 diabetes mellitus with exudative maculopathy
+XaJYg,Diabetes clinical management plan
+XaJix,Diabetic foot examination declined
+XaJkQ,Diabetic retinopathy screening refused
+XaJlI,Pan retinal photocoagulation for diabetes
+XaKDG,O/E - right eye stable treated prolif diabetic retinopathy
+XaKDH,O/E - left eye stable treated prolif diabetic retinopathy
+XaKGs,Patient diabetes education review
+XaKGy,Referral to diabetes structured education programme
+XaKH0,Attended diabetes structured education programme
+XaKHD,Transition of diabetes care options discussed
+XaKHh,O/E - right chronic diabetic foot ulcer
+XaKHi,O/E - left chronic diabetic foot ulcer
+XaKOF,Patient held diabetic record declined
+XaKSn,Diabetes care plan agreed
+XaKSp,Patient offered diabetes structured education programme
+XaKT5,Diabetic patient unsuitable for digital retinal photography
+XaKaW,Diabetic retinopathy screening offered
+XaKbu,Discharged from care of diabetes specialist nurse
+XaKcS,O/E - sight threatening diabetic retinopathy
+XaKjW,Diabetic monitoring - injection site check declined
+XaKjX,Diabetic monitoring - injection site not checked
+XaKjY,Hypoglycaemic warning impaired
+XaKjZ,Hypoglycaemic warning good
+XaKtr,Insulin therapy declined
+XaKvV,Insulin needles changed daily
+XaKvW,Insulin needles changed for each injection
+XaKwQ,Diabetic 6 month review
+XaKyW,Type 1 diabetes mellitus with gastroparesis
+XaKyX,Type II diabetes mellitus with gastroparesis
+XaKzO,Referral to multidisciplinary diabetic clinic
+XaL1R,Insulin needles changed less than once a day
+XaL1S,Did not attend diabetic retinopathy clinic
+XaL2E,Diabetic monitoring - lower risk albumin excretion
+XaL2F,Diabetic monitoring - higher risk albumin excretion
+XaLMa,Referral to diabetic register
+XaLMy,Patient consent given for addition to diabetic register
+XaLP3,Referral to diabetic eye clinic
+XaLSk,Diabetic - adequate control
+XaLsL,Diabetic digital retinopathy screening offered
+XaMFF,Referral for diabetic retinopathy screening
+XaMdq,Insulin dose changed
+XaMhJ,Diabetes type 1 review
+XaMhK,Diabetes type II review
+XaMhQ,Referral to community diabetes specialist nurse
+XaN1z,Attend diabetes educ self manage ongo new diagn struct prog
+XaNHW,Di struc educ prog co ([Di struc ed prog co] SNO map type)
+XaNT8,Attended XPERT diabetes structured education programme
+XaNTA,Attended DAFNE diabetes structured education programme
+XaNTB,DAFNE diabetes structured education programme completed
+XaNTC,DESMOND structured programme completed
+XaNTD,XPERT diabetes structured education programme completed
+XaNTH,Diabetes structured education programme declined
+XaNTQ,Referral to DAFNE diabetes structured education programme
+XaNTS,Referral to DESMOND diabetes structured programme
+XaNTT,Referral to XPERT diabetes structured education programme
+XaNTa,Did not attend diabetes structured education programme
+XaNTd,Did not complete diabetes structured education programme
+XaNTe,Did not complete DAFNE diabetes structured education program
+XaNTf,Did not complete DESMOND structured programme
+XaNTg,Did not complet XPERT diabetes structured education programm
+XaNU1,Did not attend DAFNE diabetes structured education programme
+XaNU2,Did not attend DESMOND structured programme
+XaNU3,Did not attend XPERT diabetes structured education programme
+XaON1,Referral to diabetes special interest general practitioner
+XaOPt,Maternally inherited diabetes mellitus
+XaOPu,Latent autoimmune diabetes mellitus in adult
+XaP4P,Referral to children's diabetes nurse specialist
+XaP5E,Insulin initiation enhanced services administration
+XaP63,Insulin treatment initiated
+XaPQH,Diabetic foot screen
+XaPaa,Eligible for diabetic retinopathy screening
+XaPab,Ineligible for diabetic retinopathy screening
+XaPac,Eligibility temporarily inactive for diabetic retinop screen
+XaPad,Eligibility permanently inactive for diabetic retinop screen
+XaPbv,Does rotate site of insulin injection
+XaPem,Diabetic retinopathy screening administrative status
+XaPen,Impaired vision due to diabetic retinopathy
+XaPjH,Excluded from diabetic retinopathy screening as moved away
+XaPjI,Excluded from diabetic retinopathy screening as deceased
+XaPjJ,Excluded diabetc retinop screen as under care ophthalmolgist
+XaPjK,Excluded from diabetic retinopathy screening as blind
+XaPjL,Excluded from diabetic retinop screen as no longer diabetic
+XaPjM,Declined diabetic retinopathy screening
+XaPjN,Excluded frm diab retinop screen as no currnt contct details
+XaPjO,Excluded frm diabetic retinopathy screen as terminal illness
+XaPjP,Excluded from diabetic retinopthy screen as learn disability
+XaPjQ,Excluded from diabetic retinopathy screen physical disorder
+XaPjR,Excluded from diabetic retinopathy screening
+XaPmW,Diabetic femoral mononeuropathy
+XaPmX,Diabetic amyotrophy
+XaQGH,Discharged from diabetes shared care programme
+XaQdT,Diabetes self management plan
+XaQjs,Unsuitable for diabetes year of care programme
+XaR8L,Education in self management of diabetes
+XaRGt,Diabetic on subcutaneous treatment
+XaX0F,Excepted from diabetes qual indicators: service unavailable
+XaX1n,Diabetes monitor invitation by SMS (short message service)
+XaX3o,Diabetic dietary review
+XaX3p,Type I diabetic dietary review
+XaX3q,Type II diabetic dietary review
+XaX3r,Diabetic dietary review declined
+XaX49,Referral to type I diabetes structured education programme
+XaX5D,Diabetes structured education programme completed
+XaX6J,O/E - Right diabetic foot at increased risk
+XaX6K,O/E - Left diabetic foot at increased risk
+XaX8e,Advised ([?AND/OR advice ?AND/OR eductn]) diabetes driving
+XaXH5,Diabetic monitoring - injection sites normal
+XaXH6,Diabetic monitoring - injection sites abnormal
+XaXHD,Did not attend diabetes foot screening
+XaXOw,Incretin mimetic dose changed
+XaXbW,Symptomatic diabetic peripheral neuropathy
+XaXfs,Diabetic retinopathy detected by national screening program
+XaXgv,Diabetic erectile dysfunction review
+XaXhE,Diabetic assessment of erectile dysfunction
+XaXkZ,Referral to DESMOND structured programme declined
+XaXoT,No evidence of diabetic nephropathy
+XaXv9,Diabetes care plan declined
+XaYWU,Referral to diabetic clinic
+XaYZP,Diabetes self-management plan review
+XaYaB,Referral to community diabetes service
+XaYbB,Diabetes self-management plan agreed
+XaZCO,Provision of diabetes clinical summary
+XaZKr,Insulin administration education
+XaZMQ,Diabetes quality of life questionnaire
+XaZNW,Referral to community diabetes specialist nurse declined
+XaZRZ,Referral to community diabetes clinic
+XaZS6,Date insulin pump therapy started
+XaZig,Diabetes clinical pathway
+XaZlw,Does monitor blood glucose level before driving
+XaZpJ,Provision of written information about diabetes and driving
+XaZuQ,Referral to DAFNE diabetes structured educn prog declined
+XaZw5,Diabetic foot screening invitation
+XaZw7,Diabetic foot screening invitation first letter
+XaZw8,Diabetic foot screening invitation second letter
+XaZyM,Diabetic foot screening invitation third letter
+Xaa8r,Erectile dysfunction due to diabetes mellitus
+XaaCR,In-house diabetic foot screening
+XaaCS,In-house diabetic foot screening first appointment
+XaaCU,In-house diabetic foot screening follow-up appointment
+XaaJJ,Conversion to insulin in secondary care
+XaaJK,Conversion to insulin by diabetes specialist nurse
+XaaNP,Insulin passport not checked
+XaaaR,Education about diabetes and driving
+XaadP,Diabetes structured education programme not available
+XaaeP,Non-diabetic hyperglycaemia
+Xaag1,Diabetes Year of Care annual review
+Xaaq3,Hypoglycaemic warning absent
+XabAX,Diabetes Distress Scale 17 item
+XabQM,Conversion to non-insulin injectable medication
+XabZd,Diabetic foot care education
+Xabhn,Discharge from secondary care diabetes service
+XabjM,Enquiry about diabetic erectile dysfunction declined
+Xac0x,Diabetic peripheral neuropathic pain
+XacIu,Joint consultn pracse nurse & comm diabetes specialist nurse
+XacXh,Diabetic on non-insulin injectable medication
+XacXr,Provision of diabetes identity card
+XacY8,Has diabetes identity card
+XaccX,Diabetic injection administration education
+XaceC,Not suitable for DESMOND programme
+XacoB,Maturity onset diabetes of the young type 5
+XacsX,Diabetic on oral treatment and glucagon-like peptide 1
+XacsY,Diabetic on insulin and glucagon-like peptide 1
+Xacu2,Recommendation self-refer for diabetes structured education
+Xad5D,Diabetic carbohydrate counting diet
+XaeBz,Under care of hospital-based diabetes specialist nurse
+XaeC0,Under care of community-based diabetes specialist nurse
+XaeWH,X-PERT First Steps diabetes self-management programme complt
+Xaes7,Hypoglycaemic attack - attendance by ambulance crew
+Xaffg,Type 2 diabetes mellitus risk assessment invitation
+Xaffh,Type 2 diabetes mellitus risk assessment inv first letter
+Xaffi,Type 2 diabetes mellitus risk assessment inv second letter
+Xaffj,Type 2 diabetes mellitus risk assessment inv third letter
+Xaffk,Type 2 diabetes mellitus risk assessment verbal invitation
+Xaffl,Type 2 diabetes mellitus risk assessment telephone inv
+Xaffm,Type 2 diabetes mellitus risk assessment inv SMS text msg
+Xafj0,Diabetes monitoring short msg service text msg 1st invitaton
+Xafj1,Diabetes monitoring short msg service text msg 2nd invitaton
+Xafj2,Diabetes monitoring short msg service text msg 3rd invitaton
+XafjT,Eating disorder co-occurrent with diabetes mellitus type 1
+XagLc,Diabetes monitoring invitation email
+Xagk3,Skin ulcer associated with diabetes mellitus
+Y0022,Age Diabetes Diagnosed
+Y0502,No Diabetic Retinopathy
+Y0505,Advanced Artificial Eye Disease
+Y0c48,Diabetic foot examined left
+Y0c49,Diabetic foot examined right
+Y1f9a,Quality and Outcomes Framework diabetes mellitus quality indicator-related care invitation (procedure)
+Y204f,Remote diabetes structured education and support programme commenced
+Y205a,Remote diabetes structured education and support programme completed
+Y205b,Did not commence remote structured diabetes education and support programme
+Y20bf,Change in insulin dose
+Y9993,Unspecified diabetes mellitus
+YX128,Attending Diabetes satellite clinic

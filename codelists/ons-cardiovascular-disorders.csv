@@ -1,0 +1,1820 @@
+code,term
+14A7.,H/O: CVA &/or stroke
+2466.,O/E - BP reading raised
+2467.,O/E - BP reading very high
+323..,ECG: myocardial infarction
+3232.,ECG: old myocardial infarction
+3233.,ECG: anteroseptal infarction
+3234.,ECG:posterior/inferior infarct
+3235.,ECG: subendocardial infarct
+3236.,ECG: lateral infarction
+323Z.,ECG: myocardial infarct NOS
+32B..,Q wave
+32B2.,ECG: Q wave abnormal
+32B3.,Pathological Q wave
+32BZ.,ECG: Q wave NOS
+5593.,Femoral arteriogram abnormal
+55A2.,Lower limb arteriogram abnorm.
+662..,Cardiac disease monitoring (& [hypertension])
+6627.,Good hypertension control
+6628.,Poor hypertension control
+6629.,Hypertension:follow-up default
+662F.,Hypertension treatm. started
+662G.,Hypertensive treatm.changed
+662H.,Hypertension treatm.stopped
+662K.,Angina control
+662K0,Angina control - good
+662K1,Angina control - poor
+662K2,Angina control - improving
+662K3,Angina control - worsening
+662Kz,Angina control NOS
+662M.,Stroke monitoring
+662O.,On treatment for hypertension
+662P.,Hypertension monitoring
+7900.,Heart and lung transplant
+79000,Allotransplant of heart and lung
+79001,Revision of transplantation of heart and lung
+7900y,Other specified transplantation of heart and lung
+7900z,Transplantation of heart and lung NOS
+7901.,Other transplantation of heart
+79010,Allotransplantation of heart NEC
+79011,Xenotransplant of heart
+79012,Implantation of prosthetic heart
+79013,Heterotopic allotransplant of heart
+79014,Revision of implantation of prosthetic heart
+79015,Revision of transplantation of heart NEC
+7901y,Other specified other transplantation of heart
+7901z,Other transplantation of heart NOS
+7902.,Repair of tetralogy of Fallot
+79020,Correct Fallot tetralogy valved right ventr outflow conduit
+79021,Correct Fallot tetralogy- right ventric outflow conduit NEC
+79022,Correct Fallot tetralogy- right ventricular outflow patch
+79023,Revision of correction of tetralogy of Fallot
+7902y,Other specified correction of tetralogy of Fallot
+7902z,Correction of tetralogy of Fallot NOS
+79030,Atrial inversion operation with patch
+79031,Atrial inversion operation using atrial wall
+7903y,Atrial inversion op for transposition of great vessels OS
+7903z,Atrial inversion op for transposition of great vessels NOS
+7904.,Other correction of transposition of great vessels
+79040,Arterial switch operation
+7904y,Other correction of transposition of great vessels OS
+7904z,Other correction of transposition of great vessels NOS
+7905.,Repair of total anomalous pulmonary venous connection
+79050,Correct total anomal pulm venous connect to supracard vessel
+79051,Correct total anomal pulm venous connect to coronary sinus
+79052,Correct total anomal pulm venous connect to infradiaph vess
+7905y,Correction of total anomalous pulmonary venous connection OS
+7905z,Correction total anomalous pulmonary venous connection NOS
+790H3,Revascularisation of wall of heart
+792..,Coronary artery operations (& bypass)
+7920.,Saphenous vein graft bypass of coronary artery
+79200,Saphenous vein graft replacement of one coronary artery
+79201,Saphenous vein graft replacement of two coronary arteries
+79202,Saphenous vein graft replacement of three coronary arteries
+79203,Saphenous vein graft replacement of four+ coronary arteries
+7920y,Saphenous vein graft replacement of coronary artery OS
+7920z,Saphenous vein graft replacement coronary artery NOS
+7921.,Other autograft replacement of coronary artery
+79210,Autograft replacement of one coronary artery NEC
+79211,Autograft replacement of two coronary arteries NEC
+79212,Autograft replacement of three coronary arteries NEC
+79213,Autograft replacement of four of more coronary arteries NEC
+7921y,Other autograft replacement of coronary artery OS
+7921z,Other autograft replacement of coronary artery NOS
+7922.,Allograft bypass of coronary artery
+79220,Allograft replacement of one coronary artery
+79221,Allograft replacement of two coronary arteries
+79222,Allograft replacement of three coronary arteries
+79223,Allograft replacement of four or more coronary arteries
+7922y,Other specified allograft replacement of coronary artery
+7922z,Allograft replacement of coronary artery NOS
+7923.,Prosthetic bypass of coronary artery
+79230,Prosthetic replacement of one coronary artery
+79231,Prosthetic replacement of two coronary arteries
+79232,Prosthetic replacement of three coronary arteries
+79233,Prosthetic replacement of four or more coronary arteries
+7923y,Other specified prosthetic replacement of coronary artery
+7923z,Prosthetic replacement of coronary artery NOS
+7924.,Revision of bypass for coronary artery
+79240,Revision of bypass for one coronary artery
+79241,Revision of bypass for two coronary arteries
+79242,Revision of bypass for three coronary arteries
+79243,Revision of bypass for four or more coronary arteries
+79244,Revision of connection of thoracic artery to coronary artery
+79245,Revision of implantation of thoracic artery into heart
+7924y,Other specified revision of bypass for coronary artery
+7924z,Revision of bypass for coronary artery NOS
+7925.,Connection of mammary artery to coronary artery
+79250,Mamm to coron art anast: [double] or [LIMA seq]/[RIMA seq]
+79251,Double implant of mammary arteries into coronary arteries
+79252,Single anast mammary art to left ant descend coronary art
+79253,Single mammary-coronary art anast: [NEC] or [LIMA] or [RIMA]
+79254,Single implantation of mammary artery into coronary artery
+7925y,Connection of mammary artery to coronary artery OS
+7925z,Connection of mammary artery to coronary artery NOS
+7926.,Connection of other thoracic artery to coronary artery
+79260,Double anastom thoracic arteries to coronary arteries NEC
+79261,Double implant thoracic arteries into coronary arteries NEC
+79262,Single anastomosis of thoracic artery to coronary artery NEC
+79263,Single implantation thoracic artery into coronary artery NEC
+7926y,Connection of other thoracic artery to coronary artery OS
+7926z,Connection of other thoracic artery to coronary artery NOS
+7927.,Other open operations on coronary artery
+79270,Repair of arteriovenous fistula of coronary artery
+79271,Repair of coronary artery aneurysm
+79272,Transection of coronary artery muscle bridge
+79273,Transposition of coronary artery NEC
+79275,Open angioplasty of coronary artery
+7927y,Other specified other open operation on coronary artery
+7927z,Other open operation on coronary artery NOS
+7928.,Percutaneous balloon angioplasty of coronary artery
+79280,Percut transluminal balloon angioplasty one coronary artery
+79281,Percut translum balloon angioplasty mult coronary arteries
+79282,Percut translum balloon angioplasty bypass graft coronary a
+7928y,Transluminal balloon angioplasty of coronary artery OS
+7928z,Transluminal balloon angioplasty of coronary artery NOS
+7929.,Other therapeutic transluminal operations on coronary artery
+79290,Percutaneous transluminal laser coronary angioplasty
+79291,Percut transluminal coronary thrombolysis with streptokinase
+79292,Percut translum inject therap subst to coronary artery NEC
+79293,Percutaneous rotational coronary endarterectomy
+7929y,Other therapeutic transluminal op on coronary artery OS
+7929z,Other therapeutic transluminal op on coronary artery NOS
+792A.,Diagnostic transluminal operations on coronary artery
+792A0,Percutaneous transluminal angioscopy
+792Ay,Diagnostic transluminal operation on coronary artery OS
+792Az,Diagnostic transluminal operation on coronary artery NOS
+792B.,Repair of coronary artery NEC
+792B0,Endarterectomy of coronary artery NEC
+792By,Other specified repair of coronary artery
+792Bz,Repair of coronary artery NOS
+792C.,Other replacement of coronary artery
+792C0,Replacement of coronary arteries using multiple methods
+792Cy,Other specified replacement of coronary artery
+792Cz,Replacement of coronary artery NOS
+792D.,Other bypass of coronary artery
+792Dy,Other specified other bypass of coronary artery
+792Dz,Other bypass of coronary artery NOS
+792y.,Other specified operations on coronary artery
+792z.,Coronary artery operations NOS
+79332,Transluminal maintenance of heart assist system
+7A100,Emerg aortic bypass by anastomosis axillary to femoral art
+7A101,Bypass aorta by anastomosis axillary to femoral artery NEC
+7A103,Axillo-unifemoral PTFE bypass graft
+7A11.,Repair of aortic aneurysm using bifurcation graft
+7A110,Emerg repl aneurysm bifurc aorta by anast aorta to fem art
+7A111,Replace aneurysm bifurc aorta by anast aorta to femoral art
+7A112,Emergency Y graft abdominal Aortic aneurysm (& aortoiliac)
+7A113,Y graft abdominal Aortic aneurysm (& aortoiliac)
+7A11y,Replacement of aneurysmal bifurcation of aorta OS
+7A11z,Replacement of aneurysmal bifurcation of aorta NOS
+7A12.,Other bypass of bifurcation of aorta
+7A120,Emerg bypass bifurc aorta by anast aorta to femoral artery
+7A121,Aortobifemoral bypass (& [NEC] or [dacron Y])
+7A122,Emerg bypass bifurc aorta by anastom aorta to iliac artery
+7A123,Aorto bi-iliac graft (& Dacron)
+7A12y,Other specified other bypass of bifurcation of aorta
+7A12z,Other bypass of bifurcation of aorta NOS
+7A41.,Other bypass iliac artery (& by anastomosis)
+7A410,Emerg bypass iliac art by iliac/femoral art anastomosis NEC
+7A411,Bypass iliac artery by iliac/femoral artery anastomosis NEC
+7A414,Emerg bypass comm iliac art by aorta/com iliac art anast NEC
+7A415,Emerg bypass iliac artery by aorta/ext iliac art anast NEC
+7A416,Emerg bypass leg artery by aorta/com fem art anastomosis NEC
+7A418,Emerg bypass iliac artery by iliac/iliac art anastomosis NEC
+7A419,Bypass common iliac artery by aorta/com iliac art anast NEC
+7A41A,Bypass iliac artery by aorta/ext iliac art anastomosis NEC
+7A41B,Bypass leg artery by aorta/com femoral art anastomosis NEC
+7A41C,Bypass leg artery by aorta/deep femoral art anastomosis NEC
+7A41D,Bypass iliac artery by iliac/iliac artery anastomosis NEC
+7A41E,Emergency bypass of iliac artery by unspecified anastomosis
+7A41F,Iliofemoral prosthetic crossover graft
+7A41y,Other specified other bypass of iliac artery
+7A41z,Other bypass of iliac artery NOS
+7A42.,Reconstruction of iliac artery (& common)
+7A420,Iliac endarterectomy and patch repair (& common iliac)
+7A42y,Other specified reconstruction of iliac artery
+7A42z,Reconstruction of iliac artery NOS
+7A43.,Other open operations on iliac artery (& common)
+7A430,Repair of iliac artery NEC (& common)
+7A432,Operation on aneurysm of iliac artery NEC
+7A43y,Other specified other open operation on iliac artery
+7A43z,Other open operation on iliac artery NOS
+7A440,Percutaneous transluminal angioplasty of iliac artery
+7A443,Insertion of iliac artery stent
+7A44y,Other specified transluminal operation on iliac artery
+7A44z,Transluminal operation on iliac artery NOS
+7A47.,Oth em bypass art: [fem (& brs)]/[pop]/[fem/pop anastomosis]
+7A470,Emerg bypass femoral art by fem/pop art anast c prosth NEC
+7A471,Emerg bypass popliteal art by pop/pop art anast c prosth NEC
+7A472,Emerg bypass femoral art by fem/pop a anast c vein graft NEC
+7A473,Emerg bypass pop art by pop/pop art anast c vein graft NEC
+7A474,Emerg bypass femoral art by fem/tib art anast c prosth NEC
+7A476,Emerg bypass femoral art by fem/tib a anast c vein graft NEC
+7A477,Emerg bypass pop art by pop/tib art anast c vein graft NEC
+7A47B,Emerg bypass pop art by pop/peron art anast c vein graft NEC
+7A47C,Emerg bypass femoral artery by fem/fem art anastomosis NEC
+7A47D,Emerg bypass popliteal artery by pop/fem art anastomosis NEC
+7A47y,Other emergency bypass of femoral or popliteal artery OS
+7A47z,Other emergency bypass of femoral or popliteal artery NOS
+7A48.,Oth bypass art: [fem (& brs)]/[pop]/[fem/pop by anastomosis]
+7A480,Bypass femoral artery by fem/pop art anast c prosthesis NEC
+7A481,Bypass popliteal artery by pop/pop a anast c prosthesis NEC
+7A482,Bypass femoral artery by fem/pop art anast c vein graft NEC
+7A483,Bypass popliteal artery by pop/pop a anast c vein graft NEC
+7A484,Bypass femoral artery by fem/tib art anast c prosthesis NEC
+7A485,Bypass popliteal artery by pop/tib a anast c prosthesis NEC
+7A486,Bypass femoral artery by fem/tib art anast c vein graft NEC
+7A487,Bypass popliteal artery by pop/tib a anast c vein graft NEC
+7A488,Bypass femoral artery by fem/peron a anast c prosthesis NEC
+7A48A,Bypass femoral artery by fem/peron a anast c vein graft NEC
+7A48B,Bypass popliteal art by pop/peron art anast c vein graft NEC
+7A48C,Bypass femoral artery by femoral/femoral art anastomosis NEC
+7A48D,Bypass popliteal artery by pop/fem artery anastomosis NEC
+7A48E,Femorofemoral prosthetic crossover graft
+7A48y,Other bypass of femoral artery or popliteal artery OS
+7A48z,Other bypass of femoral artery or popliteal artery NOS
+7A49.,Reconstruction artery: [femoral (& branches)] or [popliteal]
+7A490,Endarterectomy and patch repair of femoral artery
+7A491,Endarterectomy and patch repair of popliteal artery
+7A492,Endarterectomy of femoral artery NEC
+7A493,Endarterectomy of popliteal artery NEC
+7A494,Profundoplasty femoral artery & patch repair deep fem artery
+7A495,Profundoplasty and patch repair of popliteal artery
+7A496,Profundoplasty of femoral artery NEC
+7A497,Profundoplasty of popliteal artery NEC
+7A498,Reconstruction of femoral artery with vein graft
+7A499,Reconstruction of popliteal artery with vein graft
+7A49y,Reconstruction of femoral or popliteal artery OS
+7A49z,Reconstruction of femoral or popliteal artery NOS
+7A4A.,Oth open art operatn: [femoral (& branches)] or [popliteal]
+7A4A0,Repair of femoral artery NEC
+7A4A1,Repair of popliteal artery NEC
+7A4A5,Operation on aneurysm of femoral artery NEC
+7A4A6,Operation on popliteal artery NEC
+7A4A7,Repair of femoral artery with temporary silastic shunt
+7A4A8,Repair of popliteal artery with temporary silastic shunt
+7A4Ay,Other open operation on femoral or popliteal artery OS
+7A4Az,Other open operation on femoral or popliteal artery NOS
+7A4B0,Percutaneous transluminal angioplasty of femoral artery
+7A4B1,Percutaneous angioplasty of popliteal artery
+7A4B4,Percutaneous transluminal embolisation of femoral artery
+7A4B5,Percutaneous transluminal embolisation of popliteal artery
+7A501,Revision of reconstruction involving iliac artery
+7A502,Revision of reconstruction involving femoral artery
+7A503,Revision of reconstruction of popliteal artery
+8HT5.,Referral to hypertension clinic
+9N03.,Seen in hypertension clinic
+9N1y2,Seen in hypertension clinic
+9OI..,Hypertension admin: [monitoring] or [clinic]
+9OI1.,Attends hypertension monitoring
+9OI3.,Hypertension monitoring offer default
+9OI4.,Hypertension monitoring first letter
+9OI5.,Hypertension monitoring second letter
+9OI6.,Hypertension monitoring third letter
+9OI7.,Hypertension monitoring verbal invite
+9OI8.,Hypertension monitoring telephone invite
+9OIA.,Hypertension monitor (& check done)
+9OIZ.,Hypertens.monitoring admin.NOS
+A3A0F,Gas gangrene-foot
+A94y6,Rupture of syphilitic cerebral aneurysm
+C1070,"Diabetes mellitus, juvenile +peripheral circulatory disorder"
+C1071,"Diabetes mellitus, adult, + peripheral circulatory disorder"
+C1072,"Diabetes mellitus, adult with gangrene"
+C1073,IDDM with peripheral circulatory disorder
+C1074,NIDDM with peripheral circulatory disorder
+C107y,Other specified diabetes mellitus with periph circ comps
+C107z,Diabetes mellitus NOS with peripheral circulatory disorder
+C3733,Familial amyloid cardiomyopathy
+D4102,Polycythaemia due to cyanotic heart disease
+F4211,Hypertensive retinopathy
+F4K7.,Retrobulbar haemorrhage
+Fyu56,[X]Other lacunar syndromes
+Fyu57,[X]Other vascular syndroms/brain in cerebrovasculr diseases
+G1...,Chronic rheumatic heart disease
+G10..,Chronic rheumatic pericarditis
+G100.,Adherent rheumatic pericardium
+G101.,Chronic rheumatic mediastinopericarditis
+G102.,Chronic rheumatic myopericarditis
+G10z.,Chronic rheumatic pericarditis NOS
+G14..,Other chronic rheumatic endocardial disease
+G1y..,Other specified chronic rheumatic heart disease
+G1yz.,Other and unspecified rheumatic heart disease
+G1yz0,Rheumatic heart disease unspecified
+G1yz1,Rheumatic left ventricular failure
+G1yzz,Other rheumatic heart disease NOS
+G1z..,Chronic rheumatic heart disease NOS
+G2...,Hypertensive disease
+G20..,High blood pressure (& [essential hypertension])
+G200.,Malignant essential hypertension
+G201.,Benign essential hypertension
+G202.,Systolic hypertension
+G20z.,Hypertension NOS (& [essential])
+G21..,Hypertensive heart disease
+G210.,Malignant hypertensive heart disease
+G2100,Malignant hypertensive heart disease without CCF
+G2101,Malignant hypertensive heart disease with CCF
+G210z,Malignant hypertensive heart disease NOS
+G211.,Benign hypertensive heart disease
+G2110,Benign hypertensive heart disease without CCF
+G2111,Benign hypertensive heart disease with CCF
+G211z,Benign hypertensive heart disease NOS
+G21z.,Hypertensive heart disease NOS
+G21z0,"Hypertensiv:[cardiomeg][heart dis NOS, no congest card fail]"
+G21z1,Hypertensive heart disease NOS with CCF
+G22..,Hypertensive renal disease (& [nephrosclerosis])
+G220.,Malignant hypertensive renal disease
+G221.,Benign hypertensive renal disease
+G222.,Hypertensive renal disease with renal failure
+G22z.,(Renal hypertension) or (hypertensive renal disease NOS)
+G23..,Hypertensive heart and renal disease
+G230.,Malignant hypertensive heart and renal disease
+G231.,Benign hypertensive heart and renal disease
+G232.,Hypertensive heart&renal dis wth (congestive) heart failure
+G233.,Hypertensive heart and renal disease with renal failure
+G234.,Hyperten heart&renal dis+both(congestv)heart and renal fail
+G23z.,Hypertensive heart and renal disease NOS
+G24..,Secondary hypertension
+G240.,Malignant secondary hypertension
+G2400,Secondary malignant renovascular hypertension
+G240z,Secondary malignant hypertension NOS
+G241.,Secondary benign hypertension
+G2410,Secondary benign renovascular hypertension
+G241z,Secondary benign hypertension NOS
+G244.,Hypertension secondary to endocrine disorders
+G24z.,Secondary hypertension NOS
+G24z0,Secondary renovascular hypertension NOS
+G24zz,Secondary hypertension NOS
+G2y..,Other specified hypertensive disease
+G2z..,Hypertensive disease NOS
+G3...,Ischaemic heart disease (& [arteriosclerotic])
+G30..,(Myocard inf (& [ac][silent][card rupt])) or (coron thromb)
+G300.,Acute anterolateral myocardial infarction
+G301.,Other specified anterior myocardial infarction
+G3010,Acute anteroapical infarction
+G3011,Acute anteroseptal myocardial infarction
+G301z,Anterior myocardial infarction NOS
+G302.,Acute inferolateral myocardial infarction
+G303.,Acute inferoposterior infarction
+G304.,Posterior myocardial infarction NOS
+G305.,Lateral myocardial infarction NOS
+G306.,True posterior myocardial infarction
+G307.,Acute subendocardial infarction
+G308.,Inferior myocardial infarction NOS
+G30y.,Other acute myocardial infarction
+G30y0,Acute atrial infarction
+G30y1,Acute papillary muscle infarction
+G30y2,Acute septal infarction
+G30yz,Other acute myocardial infarction NOS
+G30z.,Acute myocardial infarction NOS
+G31..,Other acute and subacute ischaemic heart disease
+G310.,Post-myocardial infarction syndrome
+G311.,(Angina:[cresc][unstabl][at rest])(preinfar syn)(imp infarc)
+G3110,Aborted myocardial infarction
+G311z,Preinfarction syndrome NOS
+G312.,Coronary thrombosis not resulting in myocardial infarction
+G31y1,Microinfarction of heart
+G31y2,Subendocardial ischaemia
+G31yz,Other acute and subacute ischaemic heart disease NOS
+G33..,Angina
+G330.,Angina decubitus
+G3300,Nocturnal angina
+G330z,Angina decubitus NOS
+G331.,Prinzmetal's angina
+G33z.,Angina pectoris NOS
+G33z0,Status anginosus
+G33z1,Stenocardia
+G33z2,Syncope anginosa
+G33z3,Exercise-induced angina
+G33zz,Angina pectoris NOS
+G34..,Other chronic ischaemic heart disease
+G340.,Coronary (atheroscl or artery dis) or triple vess dis heart
+G3400,Single coronary vessel disease
+G3401,Double coronary vessel disease
+G341.,Aneurysm of heart
+G3410,Ventricular cardiac aneurysm
+G3411,Mural cardiac aneurysm (& [other])
+G3412,Coronary artery aneurysm
+G3413,Acquired atrioventricular fistula of heart
+G341z,Aneurysm of heart NOS
+G34y.,Other specified chronic ischaemic heart disease
+G34y0,Chronic myocardial ischaemia
+G34y1,Chronic myocardial ischaemia
+G34yz,Other specified chronic ischaemic heart disease NOS
+G34z.,Other chronic ischaemic heart disease NOS
+G35..,Subsequent myocardial infarction
+G350.,Subsequent myocardial infarction of anterior wall
+G351.,Subsequent myocardial infarction of inferior wall
+G353.,Subsequent myocardial infarction of other sites
+G36..,Certain current complication follow acute myocardial infarct
+G360.,Haemopericardium/current comp folow acut myocard infarct
+G361.,Atrial septal defect/curr comp folow acut myocardal infarct
+G363.,Ruptur cardiac wall w'out haemopericard/cur comp fol ac MI
+G364.,Ruptur chordae tendinae/curr comp fol acute myocard infarct
+G365.,Rupture papillary muscle/curr comp fol acute myocard infarct
+G366.,"Thrombosis atrium,auric append&vent/curr comp foll acute MI"
+G3y..,Other specified ischaemic heart disease
+G3z..,Ischaemic heart disease NOS
+G400.,Acute cor pulmonale
+G41..,Chronic pulmonary heart disease
+G41y.,Other chronic pulmonary heart disease
+G41yz,Other chronic pulmonary heart disease NOS
+G41z.,Chronic cor pulmonale (& [NOS])
+G5102,Chronic bacterial endocarditis
+G54z2,Chronic cardiac valvulitis NOS
+G55..,Cardiomyopathy
+G550.,Restrictive cardiomyopathy with endomyocardial fibrosis
+G551.,Hypertrophic obstructive cardiomyopathy
+G552.,(Becker's disease) or (obscure African cardiomyopathy)
+G554.,Other primary cardiomyopathies
+G5540,(Congestive obstructive) or (congestive cardiomyopathy)
+G5541,Restrictive cardiomyopathy
+G5542,Familial cardiomyopathy
+G5543,Hypertrophic cardiomyopathy without obstruction
+G5544,Primary dilated cardiomyopathy
+G554z,Other primary cardiomyopathy NOS
+G555.,Alcohol-induced heart muscle disease
+G557.,Nutritional and metabolic cardiomyopathies
+G5572,Cardiac glycogenosis
+G5574,Mucopolysaccharidosis cardiomyopathy
+G557z,(Heart:[fat infil][fat degen]) or (nutr/met cardmyopath NOS)
+G558.,Cardiomyopathy in disease EC
+G5580,Cardiomyopathy in Friedreich's ataxia
+G5581,Cardiomyopathy in myotonic dystrophy
+G5582,Dystrophic cardiomyopathy
+G558z,"Cardiomyopathy in diseases EC, NOS"
+G55y.,Secondary cardiomyopathy: [dilated] or [NOS]
+G55y0,Cardiomyopathy due to drugs and other external agents
+G55z.,Cardiomyopathy NOS
+G573.,Atrial fibrillation and flutter
+G5730,Atrial fibrillation
+G5731,Atrial flutter
+G573z,Atrial fibrillation and flutter NOS
+G58..,Heart failure
+G580.,Heart failure: [right] or [congestive]
+G5800,Acute congestive heart failure
+G5801,Chronic congestive heart failure
+G5802,Decompensated cardiac failure
+G5803,Compensated cardiac failure
+G581.,(L ventric:[fail][imp func]) or (card asth) or (ac pulm oed)
+G5810,Acute left ventricular failure
+G582.,Acute heart failure
+G58z.,Heart: [weak] or [failure NOS]
+G5y1.,Myocardial degeneration
+G5y2.,Cardiovascular arteriosclerosis unspecified
+G5y4.,Post cardiac operation functional disturbance
+G5y40,Postcardiotomy syndrome
+G5y4z,Post cardiac operation heart failure NOS
+G5yy6,Atrial thrombosis
+G6...,Cerebrovascular disease
+G600.,Ruptured berry aneurysm
+G601.,Subarachnoid haemorrhage from carotid siphon and bifurcation
+G606.,Subarachnoid haemorrhage from vertebral artery
+G60z.,Subarachnoid haemorrhage NOS
+G61..,Intracerebral haemorrhage (& [cerebrovasc accident due to])
+G610.,Cortical haemorrhage
+G611.,Internal capsule haemorrhage
+G612.,Basal ganglia haemorrhage
+G613.,Cerebellar haemorrhage
+G614.,Pontine haemorrhage
+G615.,Bulbar haemorrhage
+G616.,External capsule haemorrhage
+G617.,"Intracerebral haemorrhage, intraventricular"
+G618.,"Intracerebral haemorrhage, multiple localised"
+G61z.,Intracerebral haemorrhage NOS
+G62..,Other and unspecified intracranial haemorrhage
+G62z.,Intracranial haemorrhage NOS
+G63..,Precerebral: [arterial occlusion][arterial stenos][infarct]
+G630.,Basilar artery occlusion
+G632.,Vertebral artery occlusion
+G633.,Multiple and bilateral precerebral arterial occlusion
+G63y.,Other precerebral artery occlusion
+G63y0,Cerebral infarct due to thrombosis of precerebral arteries
+G63y1,Cerebral infarction due to embolism of precerebral arteries
+G63z.,Precerebral artery occlusion NOS
+G64..,Cereb art occl (& [cerebvasc acc][stroke]) or (cereb infarc)
+G640.,Cerebral thrombosis
+G6400,Cerebral infarction due to thrombosis of cerebral arteries
+G641.,Cerebral embolus
+G6410,Cerebral infarction due to embolism of cerebral arteries
+G64z.,Infarct (& [cerebell] or [cerebral NOS] or [brainstem NOS])
+G64z1,Wallenberg syndrome
+G650.,Basilar artery syndrome
+G651.,Vertebral artery syndrome
+G6510,Vertebrobasilar artery syndrome
+G653.,Carotid artery syndrome hemispheric
+G654.,Multiple and bilateral precerebral artery syndromes
+G66..,CVA - cerebrovascular accident (& unspecified [& stroke])
+G660.,Middle cerebral artery syndrome
+G661.,Anterior cerebral artery syndrome
+G662.,Posterior cerebral artery syndrome
+G663.,Brainstem stroke syndrome
+G664.,Cerebellar stroke syndrome
+G667.,Left sided cerebral hemisphere cerebrovascular accident
+G668.,Right sided cerebral hemisphere cerebrovascular accident
+G672.,Hypertensive: [encephalopathy] or [crisis]
+G6760,"Cereb infarct due cerebral venous thrombosis, non-pyogenic"
+G677.,Occlusion/stenosis cerebral arts not result cerebral infarct
+G6770,Occlusion and stenosis of middle cerebral artery
+G6771,Occlusion and stenosis of anterior cerebral artery
+G6772,Occlusion and stenosis of posterior cerebral artery
+G6773,Occlusion and stenosis of cerebellar arteries
+G6774,Occlusion+stenosis of multiple and bilat cerebral arteries
+G680.,Sequelae of subarachnoid haemorrhage
+G681.,Sequelae of intracerebral haemorrhage
+G682.,Sequelae of other non-traumatic intracranial haemorrhage
+G683.,Sequelae of cerebral infarction
+G6X..,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs
+G700.,(Aortic atherosclerosis) or (aorto-iliac disease)
+G702.,Extremity artery atheroma
+G702z,Extremity artery atheroma NOS
+G73..,(Peri vasc dis (& [isch][oth])) or (isch leg) or (peri isch)
+G7310,Thromboangiitis obliterans
+G731z,Thromboangiitis obliterans NOS
+G732.,Peripheral gangrene
+G7320,Gangrene of toe
+G7321,Gangrene of foot
+G73y.,Other specified peripheral vascular disease
+G73y0,Diabetic peripheral angiopathy
+G73y1,Peripheral angiopathic disease EC NOS
+G73yz,Other specified peripheral vascular disease NOS
+G73z.,Peripheral vascular disease NOS
+G73zz,Peripheral vascular disease NOS
+G742z,Peripheral arterial embolism and thrombosis NOS
+G76A.,Arterial insufficiency
+Gyu14,[X]Other specified rheumatic heart diseases
+Gyu2.,[X]Hypertensive diseases
+Gyu20,[X]Other secondary hypertension
+Gyu21,[X]Hypertension secondary to other renal disorders
+Gyu30,[X]Other forms of angina pectoris
+Gyu31,[X]Other current complicatns following acute myocard infarct
+Gyu32,[X]Other forms of acute ischaemic heart disease
+Gyu33,[X]Other forms of chronic ischaemic heart disease
+Gyu34,[X]Acute transmural myocardial infarction of unspecif site
+Gyu35,[X]Subsequent myocardial infarction of other sites
+Gyu36,[X]Subsequent myocardial infarction of unspecified site
+Gyu5M,[X]Other hypertrophic cardiomyopathy
+Gyu5N,[X]Other restrictive cardiomyopathy
+Gyu5P,[X]Other cardiomyopathies
+Gyu5Q,[X]Cardiomyopathy in infectious+parasitic diseases CE
+Gyu5R,[X]Cardiomyopathy in metabolic diseases classified elsewhere
+Gyu5S,[X]Cardiomyopathy in nutritional diseases CE
+Gyu5T,[X]Cardiomyopathy in other diseases classified elsewhere
+Gyu60,[X]Subarachnoid haemorrhage from other intracranial arteries
+Gyu61,[X]Other subarachnoid haemorrhage
+Gyu62,[X]Other intracerebral haemorrhage
+Gyu63,[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs
+Gyu64,[X]Other cerebral infarction
+Gyu65,[X]Occlusion and stenosis of other precerebral arteries
+Gyu66,[X]Occlusion and stenosis of other cerebral arteries
+Gyu6C,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction"
+Gyu6E,"[X]Subarachnoid haemorrh from intracranial artery, unspecif"
+Gyu6F,"[X]Intracerebral haemorrhage in hemisphere, unspecified"
+Gyu6G,[X]Cereb infarct due unsp occlus/stenos precerebr arteries
+Gyu74,[X]Other specified peripheral vascular diseases
+Gyu7A,[X]Peripheral angiopathy in diseases classified elsewhere
+H541z,Pulmonary oedema NOS
+H584.,Acute pulmonary oedema unspecified
+H584z,Acute pulmonary oedema NOS
+L09y1,Cardiac arrest following abortive pregnancy
+L122.,Other pre-existing hypertension in preg/childbirth/puerp
+L1220,Other pre-existing hypertension in preg/childb/puerp unspec
+L1221,Other pre-existing hypertension in preg/childb/puerp - deliv
+L1222,Oth pre-exist hypert in preg/childb/puerp -del with p/n comp
+L1223,Other pre-exist hypertension in preg/childb/puerp-not deliv
+L1224,Other pre-exist hypertension in preg/childb/puerp + p/n comp
+L122z,Other pre-existing hypertension in preg/childb/puerp NOS
+L127.,Pre-eclampsia or eclampsia with pre-existing hypertension
+L127z,Pre-eclampsia or eclampsia + pre-existing hypertension NOS
+L128.,Pre-exist hypertension compl preg childbirth and puerperium
+L1280,Pre-exist hyperten heart dis compl preg childbth+puerperium
+L1281,Pre-exist hyperten heart renal dis comp preg chldbirth/puerp
+L1282,Pre-exist 2ndry hypertens comp preg childbth and puerprum
+L440.,Cerebrovasc disord in puerperium (& [CVA - cerebrovasc acc])
+L4400,Puerperal cerebrovascular disorder unspecified
+L4401,Puerperal cerebrovascular disorder - delivered
+L4402,Puerperal cerebrovascular disorder - delivered with p/n comp
+L4403,Puerperal cerebrovascular disorder with antenatal comp
+L4404,Puerperal cerebrovascular disorder with postnatal comp
+L440z,Puerperal cerebrovascular disorder NOS
+M2710,Ischaemic ulcer diabetic foot
+M2712,Mixed diabetic ulcer - foot
+P50..,Aortopulmonary septal anomaly (& [common trunk] or [defect])
+P50z.,Common aortopulmonary trunk NOS
+P51..,Discordant ventriculoarterial connection
+P510.,Total great vessel transposition
+P511.,Double outlet right ventricle
+P5110,"Double outlet right ventricle, unspecified"
+P5111,Dextratransposition of aorta
+P5112,Incomplete great vessel transposition
+P5113,Double outlet rt ventricle + subpulm ventriculr septl defect
+P511z,Double outlet right ventricle NOS
+P512.,Congenitally corrected transposition of great arteries
+P51y.,(Oth spec transposit great vessels) or (transposit of aorta)
+P51z.,(Great vessel transpos NOS) or (transpos arterial trunk NEC)
+P52..,Tetralogy of Fallot
+P520.,Tetralog Fallot: [unsp][ventric sept def][dextraposit aorta]
+P521.,Pentalogy of Fallot
+P52z.,Tetralogy of Fallot NOS
+P53..,[Common] and [ventricle]
+P54..,Ventricular septal defect
+P540.,"Ventricular septal defect, unspecified"
+P541.,Interventricular septal defect
+P542.,Right sided atrium connecting to left ventricle
+P543.,Eisenmenger's complex
+P544.,Vent septal defect between left ventricle and right atrium
+P545.,Small ventricular septal defect
+P54y.,Other specified ventricular septal defect
+P54z.,Ventricular septal defect NOS
+P550.,Septal def: [interaur][atrial NOS][auric NOS][interatr NEC]
+P553.,Lutembacher's syndrome
+P56..,Endocardial cushion defects
+P560.,"Endocardial cushion defects, unspecified"
+P56y.,Other specified endocardial cushion defects
+P56z.,Endocardial cushion defects NOS
+P56z2,Common atrioventricular-type ventricular septal defect
+P57..,Cor biloculare
+P5y..,Other heart bulb and septal closure defect
+P5z..,Heart bulb or septal closure defects NOS
+P6...,Other congenital heart anomalies
+P60..,Congenital pulmonary valve abnormality
+P600.,"Pulmonary valve anomaly, unspecified"
+P601.,Congenital atresia of the pulmonary valve
+P6010,Hypoplasia of pulmonary valve
+P601z,Congenital atresia of pulmonary valve NOS
+P602.,Congenital pulmonary valve stenosis
+P6020,Congenital fusion of pulmonic cusps
+P6021,Congenital fusion of pulmonary valve segment
+P602z,Congenital pulmonary stenosis NOS
+P603.,(Right hypoplastic heart synd) or (pseudotruncus arteriosus)
+P60z.,Other pulmonary valve anomalies
+P60z0,Congenital insufficiency of the pulmonary valve
+P60z1,Fallot's trilogy
+P60z2,Supernumerary pulmonary valve cusps
+P60zz,Other pulmonary valve anomaly NOS
+P61..,Congenital tricuspid atresia and stenosis
+P610.,Tricuspid atresia
+P611.,Congenital tricuspid stenosis
+P61z.,Congenital tricuspid atresia or stenosis NOS
+P62..,Ebstein's anomaly of tricuspid valve
+P63..,Congenital aortic valve stenosis
+P64..,Congenital aortic valve insufficiency
+P640.,"Congenital aortic valve insufficiency, unspecified"
+P641.,Bicuspid aortic valve
+P64z.,Congenital aortic valve insufficiency NOS
+P65..,Congenital mitral stenosis
+P650.,"Congenital mitral stenosis, unspecified"
+P651.,Fused commissure of the mitral valve
+P652.,Parachute malformation of mitral valve
+P653.,Supernumerary cusps of the mitral valve
+P65z.,Congenital mitral stenosis NOS
+P66..,Congenital mitral regurgitation
+P67..,Hypoplastic left heart syndrome
+P6y..,Other specified heart anomalies
+P6y0.,Subaortic stenosis
+P6y1.,Cor triatriatum
+P6y2.,Pulmonary infundibular stenosis
+P6y3.,Obstructive heart anomaly NEC
+P6y30,Paper thin right ventricle
+P6y3z,Obstructive heart anomaly NEC NOS
+P6y4.,Coronary artery abnormality
+P6y40,Congenital absence of coronary artery
+P6y41,Single coronary artery
+P6y42,Coronary artery from aorta
+P6y43,Anomalous origin of coronary artery from pulmonary trunk
+P6y44,Anomalous congen coronary communication (& arteriovenous)
+P6y45,Congenital coronary aneurysm
+P6y46,Congenital stricture of coronary artery
+P6y4z,Coronary artery anomaly NOS
+P6y60,Heart predominantly in right hemithorax
+P6y62,Mesocardia
+P6y63,Extrathoracic heart
+P6y64,Abdominal heart
+P6y6z,Heart or cardiac apex malposition NOS
+P6yy.,(Specif heart anom ([vars]) or (hypoplast aort orif/valve)
+P6yy0,Atresia of cardiac vein
+P6yy1,Hypoplasia of cardiac vein
+P6yy2,Congenital cardiomegaly
+P6yy3,Congenital left ventricular diverticulum
+P6yy5,Congenital anomaly of myocardium
+P6yy6,Congenital aneurysm of heart
+P6yy7,Atresia of heart valve NEC
+P6yy8,Cor triloculare
+P6yy9,Congenital epicardial cyst
+P6yyA,Hemicardia
+P6yyB,Supernumerary heart valve cusps NEC
+P6yyD,Fusion of heart valve cusps NEC (& [tricuspid])
+P6yyz,Other specified heart anomalies NOS
+P6z..,(Congenital heart anomaly NOS) or (Chiari's malformation)
+P6z0.,Unspecified anomaly of heart valve
+P6z2.,Acyanotic congenital heart disease NOS
+P6zz.,Congenital heart anomaly NOS
+P71..,Aortic coarctation
+P710.,"Hypoplasia of aortic arch, unspecified"
+P713.,Interrupted aortic arch
+P71z.,Coarctation of aorta NOS
+P72..,(Other anomalies aorta) or (anomalies aorta excl coarction)
+P720.,"Anomaly of aorta, unspecified"
+P7210,Anomalous origin of the aortic arch
+P7211,Aorta [dextraposition] or [overriding]
+P7212,(Double aortic arch) or (vascular ring)
+P7214,Persistent aortic arch convolutions
+P7215,Persistent right aortic arch
+P7216,"Vascular ring, aorta"
+P7217,Overriding aorta
+P721z,Aortic arch anomalies NOS
+P722.,Atresia and stenosis of aorta
+P7220,Congenital absence of aorta
+P7221,Aplasia of aorta
+P7224,Aortic stenosis: [supra-valvula] or [congenital ascending]
+P7225,Atresia of aorta
+P722z,Atresia or stenosis of aorta NOS
+P72z.,Other anomalies of aorta NOS
+P72z0,Sinus of Valsalva aneurysm
+P73..,Pulmonary artery abnormality
+P730.,"Pulmonary artery anomaly, unspecified"
+P731.,Pulmonary artery absent
+P732.,Pulmonary artery atresia
+P733.,Coarctation of the pulmonary artery
+P734.,Pulmonary artery hypoplasia
+P735.,Pulmonary artery: [stenosis] or [congenital stricture]
+P738.,Atresia of pulmonary artery with septal defect
+P73y.,Other specified anomaly of pulmonary artery
+P73z.,Pulmonary artery anomaly NOS
+P74..,Anomalies of great veins
+P740.,"Anomaly of great veins, unspecified"
+P7400,"Anomaly of the pulmonary veins, unspecified"
+P7401,"Anomaly of the vena cava, unspecified"
+P740z,"Unspecified anomaly of the great veins, NOS"
+P741.,Total anomalous pulmonary venous connection
+P7410,Subdiaphragmatic total anomalous pulmonary venous return
+P7411,Supradiaphragmatic total anomalous pulmonary venous return
+P741z,Total anomalous pulmonary venous return NOS
+P74z0,Absence of inferior vena cava
+P74z1,Absence of superior vena cava
+P74z2,Congenital inferior vena cava stenosis
+P74z3,Congenital superior vena cava stenosis
+P74z4,Persistent left posterior cardinal vein
+P74z5,Persistent left superior vena cava
+P74z6,Scimitar syndrome
+P74z7,Transposition of pulmonary veins
+P74z8,Pulmonary vein atresia
+P74zz,Other great vein anomaly NOS
+PK34.,Situs inversus with levocardia
+PK35.,Kartageners syndrome
+PKy71,Holt-Oram syndrome
+PKyz1,Acardia
+Pyu20,[X]Other cong malformatn of cardiac chambers & connections
+Pyu21,[X]Other congenital malformations of cardiac septa
+Pyu22,[X]Other congenital malformations of pulmonary valve
+Pyu23,[X]Other congenital malformations of tricuspid valve
+Pyu24,[X]Other congenital malformations of aortic & mitral valves
+Pyu25,[X]Other specified congenital malformations of the heart
+Pyu26,[X]Other congenital malformations of aorta
+Pyu27,[X]Other congenital malformations of pulmonary artery
+Pyu28,[X]Other congenital malformations of great arteries
+Pyu29,[X]Other congenital malformations of great veins
+Pyu2G,"[X]Congenital malformation of tricuspid valve, unspecified"
+Pyu2H,[X]Congenital malformation of aortic and mitral valves unsp
+Pyu2J,"[X]Congenital malformation of great arteries, unspecified"
+Q200.,Subdural and cerebral haemorrhage due to birth trauma
+Q411.,Perinatal intraventricular haemorrhage
+Q412.,Perinatal subarachnoid haemorrhage
+Q4120,Subarachnoid haemorrhage due to birth injury
+Q48y1,Congenital cardiac failure
+R0542,[D]Gangrene of toe in diabetic
+R0543,[D]Widespread diabetic foot gangrene
+R0550,[D]Failure of peripheral circulation
+S62..,(Haemor foll inj: [named variants]) or (traum cerebral haem)
+S620.,Haemorrh: [closed traum subarach] or [mid mening follow inj]
+S6200,Subarachnoid h'ge inj no open intracran wound + unspec consc
+S6201,Subarachnoid h'ge inj no open intracran wnd+no loss consc
+S6202,Subarachnoid h'ge inj no open intracran wnd+<1hr loss consc
+S6203,Subarachnoid h'ge inj no open intracran wound + 1-24hr LOC
+S6204,Subarachnoid h'ge inj no open intracran wnd+>24 LOC+recovery
+S6205,Subarach h'ge inj no open intracran wnd+>24hrs LOC-restored
+S6206,Subarach h'ge inj no open intracran wnd+LOC unspec duration
+S620z,Subarach h'ge inj no open intracran wnd + concussion unspec
+S621.,Open traumatic subarachnoid haemorrhage
+S6210,Subarachnoid h'ge inj + open intracran wound + unspec consc
+S6211,Subarachnoid h'ge inj + open intracranial wound + no LOC
+S6212,Subarachnoid h'ge inj + open intracran wound+<1hr loss consc
+S6213,Subarachnoid h'ge inj + open intracran wnd+1-24hr loss consc
+S6214,Subarach h'ge inj + open intracran wnd +>24hr LOC + recovery
+S6215,Subarach h'ge inj + open intracran wnd+>24hr LOC -restored
+S6216,Subarach h'ge inj + open intracran wnd+LOC unspec duration
+S621z,Subarachnoid h'ge inj + open intracran wnd+concussion unspec
+S62z.,Cerebral haemorrhage following injury NOS
+S63..,Other cerebral haemorrhage following injury
+S6300,Oth cerebral h'ge inj no open intracran wnd+unspec consc
+S6301,Oth cerebral h'ge inj no open intracranial wnd+no loss consc
+S6302,Oth cerebral h'ge inj no open intracran wnd+<1hr loss consc
+S6303,Oth cerebral h'ge inj no open intracran wnd+1-24hr LOC
+S6304,Oth cereb h'ge inj no open intracran wnd+>24hr LOC +recovery
+S6305,Oth cereb h'ge inj no open intracran wnd+>24hr LOC -restored
+S6306,Oth cereb h'ge inj no open intracran wnd+LOC unspec duration
+S630z,Oth cereb h'ge inj no open intracran wnd+concussion unspec
+S631.,Other cerebral h'ge after injury + open intracranial wound
+S6310,Oth cerebral h'ge inj + open intracran wnd + unspec consc
+S6311,Oth cerebral h'ge inj + open intracranial wnd+no loss consc
+S6312,Oth cerebral h'ge inj + open intracran wnd+<1hr loss consc
+S6313,Oth cerebral h'ge inj + open intracran wnd+1-24hr loss consc
+S6314,Oth cereb h'ge inj + open intracran wnd+>24hr LOC + recovery
+S6315,Oth cereb h'ge inj + open intracran wnd+>24hr LOC -restored
+S6316,Oth cereb h'ge inj + open intracran wnd+LOC unspec duration
+S631z,Oth cereb h'ge inj + open intracran wnd+concussion unspec
+S63z.,Other cerebral haemorrhage following injury NOS
+SP003,Mechanical complication of coronary bypass
+SP100,Anoxic brain damage complication
+SP111,[Cardiac insuffic] or [heart fail] as a complication of care
+SP2y1,Postcardiotomy syndrome
+TB000,"Heart transplant with complication, without blame"
+Ua1eH,Ischaemic chest pain
+X00D1,Cerebrovascular accident
+X00D3,CVA - cerebral artery occlusion
+X00D4,Infarction - precerebral
+X00D5,Anterior cerebral circulation infarction
+X00D6,Total anterior cerebral circulation infarction
+X00D7,Partial anterior cerebral circulation infarction
+X00D8,Posterior cerebral circulation infarction
+X00D9,Brainstem infarction NOS
+X00DA,Lacunar infarction
+X00DB,Pure motor lacunar infarction
+X00DC,Pure sensory lacunar infarction
+X00DD,Pure sensorimotor lacunar infarction
+X00DE,Lacunar ataxic hemiparesis
+X00DF,Dysarthria-clumsy hand syndrome
+X00DG,Multi-infarct state
+X00DI,Haemorrhagic cerebral infarction
+X00DJ,Anterior cerebral circulation haemorrhagic infarction
+X00DK,Posterior cerebral circulation haemorrhagic infarction
+X00DL,Massive supratentorial cerebral haemorrhage
+X00DM,Lobar cerebral haemorrhage
+X00DN,Subcortical cerebral haemorrhage
+X00DO,Thalamic haemorrhage
+X00DP,Lacunar haemorrhage
+X00DQ,Brainstem haemorrhage
+X00DR,Stroke of uncertain pathology
+X00DS,Anterior circulation stroke of uncertain pathology
+X00DT,Posterior circulation stroke of uncertain pathology
+X00Df,Subarachnoid haemorrhage from rupt arteriovenous malformat
+X00Dg,Subarachnoid haemorrhage due to ruptured aneurysm
+X00Ds,Heredit cerebral haemorrhage with amyloidosis - Dutch type
+X00tE,Coronary artery bypass grafting
+X00tG,Coronary artery bypass graft x 1
+X00tH,Coronary artery bypass grafts x 2
+X00tI,Coronary artery bypass grafts x 3
+X00tJ,Coronary artery bypass grafts x 4
+X00tK,Coronary artery bypass grafts x 5
+X00tL,Coronary artery bypass grafts greater than 5
+X00tM,Endarterectomy of coronary artery
+X00tN,Open coronary artery endarterectomy
+X00tO,Percutaneous endarterectomy of coronary artery
+X00tP,Percutaneous directional coronary atherectomy
+X00tQ,Percutaneous low speed rotational coronary atherectomy
+X00tR,Percutaneous high speed rotational coronary atherectomy
+X00tS,Angioplasty of coronary artery
+X00tT,Percutaneous thrombolysis of coronary artery
+X00tU,Insertion of coronary artery stent
+X00tX,Angioscopy of coronary artery
+X00tY,Patch repair of coronary artery
+X00tZ,Operation for coronary artery fistula
+X00ta,Open operation for coronary artery fistula
+X00tb,Embolisation of coronary artery fistula
+X00tc,Ligation of coronary artery
+X00td,Reimplantation of coronary artery
+X00te,Removal of foreign body from coronary artery
+X010U,Repair of Fallot-type double outlet right ventricle
+X010l,Repair of double outlet right ventricle
+X010m,Rastelli operation
+X010n,Rev operation
+X0111,Take down of total cavopulmonary connection
+X015H,Reconstruction of common iliac artery
+X015R,Other bypass of superficial femoral artery
+X015S,Other bypass of popliteal artery
+X015T,Other bypass of femoral artery
+X015U,Other bypass of deep femoral artery
+X015V,Other bypass of common femoral artery
+X015W,Other bypass of femoral or popliteal artery by anastomosis
+X015X,Other emergency bypass of femoral artery
+X015Y,Other emergency bypass of superficial femoral artery
+X015Z,Other emergency bypass of popliteal artery
+X015a,Other emergency bypass of deep femoral artery
+X015b,Other emergency bypass of common femoral artery
+X015c,Other emerg bypass femoral or popliteal art by anastomosis
+X015h,Other bypass of iliac artery by anastomosis
+X0160,Axillofemoral bypass graft
+X016n,Insertion common iliac artery stent
+X016o,Insertion of external iliac artery stent
+X102X,Acute pulmonary oedema
+X102Y,Acute cardiac pulmonary oedema
+X2006,Triple vessel disease of the heart
+X2007,Angina at rest
+X2008,Stable angina
+X2009,Unstable angina
+X200A,New onset angina
+X200B,Coronary spasm
+X200C,Myocardial ischaemia
+X200D,Silent myocardial ischaemia
+X200E,Myocardial infarction
+X200G,Acute Q wave infarction - anteroseptal
+X200H,Acute non-Q wave infarction - anteroseptal
+X200I,Acute Q wave infarction - anterolateral
+X200J,Acute non-Q wave infarction - anterolateral
+X200K,Acute inferior myocardial infarction
+X200L,Acute Q wave infarction - inferior
+X200M,Acute non-Q wave infarction - inferior
+X200N,Acute Q wave infarction - inferolateral
+X200O,Acute non-Q wave infarction - inferolateral
+X200P,Acute lateral myocardial infarction
+X200Q,Acute Q wave infarction - lateral
+X200R,Acute non-Q wave infarction - lateral
+X200S,Acute widespread myocardial infarction
+X200T,Acute Q wave infarction - widespread
+X200U,Acute non-Q wave infarction - widespread
+X200V,Acute posterior myocardial infarction
+X200W,Old anterior myocardial infarction
+X200X,Old inferior myocardial infarction
+X200Y,Old lateral myocardial infarction
+X200Z,Old posterior myocardial infarction
+X200a,Silent myocardial infarction
+X200b,Accelerated coronary artery disease in transplanted heart
+X200c,Cardiac syndrome X
+X200d,Post-infarction ventricular septal defect
+X200e,Cardiac rupture after acute myocardial infarction
+X200v,Familial mitral valve prolapse
+X200x,Post-infarction mitral papillary muscle rupture
+X2010,Congenital mitral valve abnormality
+X2018,Congenital aortic regurgitation
+X201B,Congenital aortic valve abnormality
+X201F,Congenital tricuspid regurgitation
+X201H,Congenital tricuspid valve abnormality
+X201M,Congenital pulmonary regurgitation
+X201W,Congestive obstructive cardiomyopathy
+X201X,Fatty degeneration heart
+X201Y,Hypertrophic cardiomyopathy
+X201Z,Secondary dilated cardiomyopathy
+X201a,Post-myocarditic cardiomyopathy
+X201b,Cardiomyopathy in the puerperium
+X201c,Familial dilated cardiomyopathy
+X201d,Restrictive cardiomyopathy without endomyocardial fibrosis
+X201e,Familial restrictive cardiomyopathy
+X201f,Specific heart muscle disorder
+X201g,Chronic myocardial disorder due to chemical/external agent
+X201h,Drug-induced specific heart muscle disorder
+X201u,Post-infarction pericarditis
+X202R,Lone atrial fibrillation
+X202S,Non-rheumatic atrial fibrillation
+X202k,Heart failure as a complication of care
+X202l,Right ventricular failure
+X202q,Mural thrombus
+X202r,Post-infarction mural thrombus
+X202s,Intracardiac thrombosis in low output state
+X203E,Chronic cor pulmonale
+X203H,Eisenmenger's syndrome
+X203L,Aortoiliac atherosclerosis
+X203Q,Peripheral ischaemia
+X203T,Lower limb ischaemia
+X203U,Critical lower limb ischaemia
+X203k,Coronary embolus
+X203v,Coronary artery thrombosis
+X204F,Ruptured cerebral aneurysm
+X204f,Coronary artery dissection
+X204q,Coronary artery rupture
+X204x,Coronary artery perforation
+X205P,Coronary steal syndrome
+X207c,Congenital abnormality of great veins and coronary sinus
+X40AV,Congenital heart disease in pregnancy
+X50Be,Mixed arteriovenous leg ulcer
+X50Bf,Ischaemic leg ulcer
+X50Bg,Ischaemic foot ulcer
+X50Bk,Neuroischaemic foot ulcer
+X708p,Severe scapuloperoneal muscular dystrophy wth cardiomyopathy
+X70MZ,Syphilitic coronary artery disease
+X776w,Right ventricular fibromuscular infundibular stenosis
+X776x,Right ventricular muscular infundibular stenosis
+X777h,Bicuspid doming of aortic cusp
+X778Q,Coronary artery occluded
+X778W,Coronary graft stenosis
+X778X,Coronary graft occluded
+X778j,Aortic root congenital abnormality
+X77Cr,Q wave height
+X77Cs,Q wave height increased
+X77Ct,Q wave height decreased
+X77DK,Q wave shape
+X77Ut,Claudication distance
+X77tW,Congenital heart disease
+X77tX,Fusion of tricuspid valve cusps NEC
+X77tY,Congenital insufficiency of heart valve NEC
+X77tZ,Hypoplasia of heart NOS
+X77ta,"Congenital heart disease, septal and bulbar anomalies"
+X77td,Congenital cardiac rotation
+X77th,Congenital abnormality of relationship of cardiac component
+X77ti,Abnormal relationship of right ventricle to left ventricle
+X77tj,Criss-cross heart
+X77tk,Abnormal relationship of aortic orifice to pulmonary orifice
+X77tl,Mirror-imaged heart
+X77tm,Congenital abnormality of cardiac connection
+X77to,Abnormal atrioventricular connection
+X77tp,Abnormal atrioventricular connection - biventricular
+X77tq,Cor triloculare biventriculare
+X77tr,Discordant atrioventricular connection
+X77tt,Ambiguous atrioventricular connection
+X77tu,Absent atrioventricular connection with straddling valve
+X77tv,Abnormal atrioventricular connection - univentricular
+X77tw,Double inlet ventricle
+X77tx,Double inlet right ventricle
+X77ty,Double inlet left ventricle
+X77tz,Double inlet to ventricle of indeterminate morphology
+X77u0,Absent right sided atrioventricular connection
+X77u1,Left sided atrium connecting to left ventricle
+X77u2,Left sided atrium connecting to right ventricle
+X77u3,Left sided atrium connecting to both ventricles
+X77u4,Lt side atrium connecting ventricle indeterminate morphology
+X77u5,Absent left sided atrioventricular connection
+X77u6,Right sided atrium connecting to right ventricle
+X77u7,Right sided atrium connecting to both ventricles
+X77u8,Rt sided atrium connectng ventricle indeterminate morphology
+X77u9,Abnormal ventriculoarterial connection
+X77uB,Transposition of aorta
+X77uC,Discordt ventric/arterial connct + concordt atriovent connct
+X77uE,Double outlet rt ventricle + subaort ventriculr septl defect
+X77uF,Double outlet rt vent + noncommitted ventriculr septl defect
+X77uG,Double outlet rt vent + doubly commit ventric septal defect
+X77uH,Double outlet left ventricle
+X77uI,Double outlet from ventricle of indeterminate morphology
+X77uJ,Single outlet ventriculoarterial connection
+X77uL,Solitary aortic trunk with pulmonary atresia
+X77uM,Solitary pulmonary trunk with aortic atresia
+X77uN,Solitary arterial trunk
+X77uV,Anomalous insertion right superior vena cava to left atrium
+X77uX,Laevoatrial cardinal vein
+X77uY,Absent bridging vein
+X77uf,Inferior vena cava connecting to morphological left atrium
+X77ug,Inferior vena cava connecting to coronary sinus
+X77uj,Pulmonary vein abnormality
+X77uk,Anomalous termination of right pulmonary vein
+X77ul,Anomalous pulmonary venous connection
+X77um,Obstructed pulmonary venous connection
+X77un,Congenital pulmonary vein stenosis
+X77uo,Coronary sinus abnormality
+X77up,Coronary sinus defect in left atrium
+X77uq,Absent coronary sinus
+X77ur,Coronary sinus orifice atresia
+X77us,Congenital coronary sinus stenosis
+X77ut,Coronary sinus to left ventricle fistula
+X77uu,Congenital aneurysm of coronary sinus
+X77uv,Ductus venosus abnormality
+X77uw,Patent ductus venosus
+X77uy,Abnormal connection of hepatic vein to atrium
+X77uz,Congenital abnormality of atria and atrial septum
+X77v0,Isomerism of atrial appendages
+X77v1,Isomerism of right appendage
+X77v2,Isomerism of left appendage
+X77v3,Mirror imaged atria
+X77v6,Obstructive Eustachian valve
+X77v7,Prolapse of Eustachian valve
+X77v8,Anomalous valve of coronary sinus
+X77v9,Filigreed network of venous valves
+X77vB,Right atrial appendage absent
+X77vC,Right atrial appendage - left - juxtaposition
+X77vE,Right atrial endocardial fibroelastosis
+X77vF,Right atrial hypoplasia
+X77vK,Divided left atrium
+X77vL,Supramitral left atrial ring
+X77vN,Left atrial appendage absent
+X77vO,Left atrial appendage - right - juxtaposition
+X77vQ,Left atrial endocardial fibroelastosis
+X77vR,Left atrial hypoplasia
+X77vW,Premature closure of foramen ovale
+X77vX,Foramen ovale valvar aneurysm
+X77va,Interauricular septal defect
+X77vc,Auricular septal defect NOS
+X77vd,Sinus venosus defect
+X77ve,Sinus venosus defect with overriding superior vena cava
+X77vf,Sinus venosus defect with overriding inferior vena cava
+X77vi,Atrioventricular septal defect - isolated atrial component
+X77vj,Cong abnorm atrioventricular valves & av septal defect
+X77vn,Tricuspid leaflet dysplasia
+X77vo,Tricuspid annulus hypoplasia
+X77vp,Dilatation of tricuspid annulus
+X77vr,Overriding tricuspid valve
+X77vs,Straddling tricuspid valve
+X77vu,Absent tricuspid leaflet
+X77vv,Double orifice of tricuspid valve
+X77vx,True cleft of tricuspid leaflet
+X77vz,Accessory tissue on tricuspid leaflet
+X77w1,Arcade abnormality of tricuspid chordae tendinae
+X77w2,Tricuspid chordae tendinae too short
+X77w3,Tricuspid chordae tendinae too long
+X77w4,Tricuspid chordae tendinae to outlet septum
+X77w6,Parachute malformation of tricuspid valve
+X77w7,Absent tricuspid papillary muscle
+X77w8,Fused tricuspid papillary muscle
+X77w9,Hypoplastic tricuspid papillary muscle
+X77wB,Mitral atresia
+X77wD,Mitral valve dysplasia
+X77wE,Mitral leaflet dysplasia
+X77wF,Mitral valve hypoplasia
+X77wH,Overriding mitral valve
+X77wJ,Straddling mitral valve
+X77wM,Absent mitral leaflets
+X77wN,Double orifice of mitral valve
+X77wO,Ebstein-like downward displacement of mitral valve
+X77wQ,True cleft of mitral leaflet
+X77wS,Anterior leaflet of mitral valve attached to septum
+X77wT,Accessory tissue on mitral leaflet
+X77wV,Arcade abnormality of mitral chordae tendinae
+X77wZ,Absent mitral papillary muscle
+X77wa,Fused mitral papillary muscles
+X77wb,Hypoplastic mitral papillary muscle
+X77wc,Atrioventricular septal defect & common atriovent junction
+X77we,Atrioventricular septal defect: isol ventricular component
+X77wf,Atrioventriculr sept defect: atrial & ventricular components
+X77wg,Atrioventricular septal defect - ventricular component
+X77wh,Atriovent sept def - vent comp under sup bridging leaflet
+X77wi,Atrioventricular septal defect - Rastelli A
+X77wj,Atrioventricular septal defect - Rastelli B
+X77wk,Atrioventricular septal defect - Rastelli C
+X77wl,Atriovent sept def - vent comp under inf bridging leaflet
+X77wm,Malaligned atrial septum
+X77wn,Double outlet right atrium
+X77wo,Double outlet left atrium
+X77wr,Atresia of common atrioventricular valve
+X77ws,Imperforate common atrioventricular valve
+X77wt,Hypoplasia of common atrioventricular valve
+X77wu,Dysplasia of common atrioventricular valve
+X77ww,Common atrioventricular valve limited to one ventricle
+X77wx,Dilatation of common atrioventricular valve annulus
+X77wy,Common atrioventricular valve stenosis
+X77wz,Common atrioventricular valve leaflet abnormality
+X77x0,Common atrioventricular valve prolapse
+X77x1,True cleft of common atrioventricular valve leaflet
+X77x2,Accessory tissue on common atrioventricular valve leaflet
+X77x3,Double orifice of common atrioventricular valve
+X77x4,Triple orifice lt vent component com av valve
+X77x5,Ebstein's anomaly of common atrioventricular valve
+X77x7,Common atrioventricular valve chordae too short
+X77x8,Common atrioventricular valve chordae too long
+X77x9,Common atrioventricular valve chordae to outlet septum
+X77xA,Arcade abnormality of common atrioventricular valve chordae
+X77xC,Parachute malformation of common atrioventricular valve
+X77xD,Absent common atrioventricular valve papillary muscle
+X77xE,Fused common atrioventricular valve papillary muscle
+X77xF,Hypoplastic common atrioventricular valve papillary muscle
+X77xH,Right atrioventricular valve atresia
+X77xI,Imperforate right atrioventricular valve
+X77xJ,Right atrioventricular valve dysplasia
+X77xK,Right atrioventricular valve hypoplasia
+X77xM,Overriding right atrioventricular valve
+X77xP,Straddling right atrioventricular valve
+X77xR,Absent right atrioventricular valve leaflets
+X77xS,Double orifice of right atrioventricular valve
+X77xT,Ebstein's anomaly of right atrioventricular valve
+X77xV,True cleft of right atrioventricular valve leaflet
+X77xW,Accessory tissue on right atrioventricular valve leaflet
+X77xX,Right atrioventricular valve leaflet dysplasia
+X77xb,Right atrioventricular valve chordae to outlet septum
+X77xc,Arcade abnormality of right atrioventricular valve chordae
+X77xe,Parachute malformation of right atrioventricular valve
+X77xf,Absent right atrioventricular valve papillary muscle
+X77xg,Fused right atrioventricular valve papillary muscles
+X77xh,Hypoplastic right atrioventricular valve papillary muscle
+X77xj,Left atrioventricular valve atresia
+X77xk,Imperforate left atrioventricular valve
+X77xl,Left atrioventricular valve dysplasia
+X77xm,Left atrioventricular valve hypoplasia
+X77xo,Overriding left atrioventricular valve
+X77xr,Straddling left atrioventricular valve
+X77xt,Absent left atrioventricular valve leaflets
+X77xu,Double orifice of left atrioventricular valve
+X77xv,Ebstein's anomaly of left atrioventricular valve
+X77xx,True cleft of left atrioventricular valve leaflet
+X77xy,Accessory tissue on left atrioventricular valve leaflet
+X77xz,Left atrioventricular valve leaflet dysplasia
+X77y3,Left atrioventricular valve chordae to outlet septum
+X77y4,Arcade abnormality of left atrioventricular valve chordae
+X77y6,Parachute malformation of left atrioventricular valve
+X77y7,Absent left atrioventricular valve papillary muscle
+X77y8,Fused left atrioventricular valve papillary muscles
+X77y9,Hypoplastic left atrioventricular valve papillary muscle
+X77yA,Congenital abnormality of ventricles and ventricular septum
+X77yB,Tetralogy of Fallot with pulmonary stenosis
+X77yC,Tetralogy of Fallot with pulmonary atresia
+X77yD,Dextraposition of aorta in Fallot's tetralogy
+X77yE,Ventricular septal defect in Fallot's tetralogy
+X77yG,Right ventricular hypoplasia
+X77yH,Diffuse hypoplasia of right ventricle
+X77yI,Hyoplasia of right ventricular inflow tract
+X77yJ,Hypoplasia of right ventricular outflow tract
+X77yK,Hypoplasia rt vent outflow tract and trabecular area
+X77yN,Primary right ventricular endocardial fibroelastosis
+X77yO,Two chambered right ventricle
+X77yP,Congenital right ventricular diverticulum
+X77yQ,Congenital right ventricular aneurysm
+X77yR,Arrythmogenic right ventricular dysplasia
+X77yS,Right ventricular outflow tract abnormality
+X77yT,Right ventricular outflow tract obstruction
+X77yU,Right ventricular outflow obstruction - localised
+X77yV,Right ventricular outflow obstruction - tubular
+X77yW,Right ventricular outflow tract atresia
+X77yX,Right ventricular outflow tract absent
+X77yZ,Left ventricular hypoplasia
+X77ya,Diffuse hypoplasia of left ventricle
+X77yb,Hyoplasia of left ventricular inflow tract
+X77yc,Hypoplasia of left ventricular outflow tract
+X77yd,Hypoplasia lt ventricular outflow tract and trabecular area
+X77yg,Abnormal left ventricular muscle band
+X77yh,Primary left ventricular endocardial fibroelastosis
+X77yi,Congenital left ventricular aneurysm
+X77yj,Left ventricular outflow tract abnormality
+X77yk,Left ventricular outflow tract obstruction
+X77yl,Left ventricular outflow tract atresia
+X77ym,Indeterminate ventricular outflow tract obstruction
+X77yo,Multiple ventricular septal defects
+X77yp,Restrictive ventricular septal defect
+X77yq,Perimembranous ventricular septal defect
+X77yr,Perimembr vent sept def extension to rt ventricular inlet
+X77ys,Perimemb vent sep def - extens rt vent trabecular component
+X77yt,Perimembr vent sept def - extension rt ventricular outlet
+X77yu,Perimembr vent sept def - extens to all rt vent components
+X77yv,Vent septal defect with malaligned outlet septum to right
+X77yw,Vent sept def malalign outlet septum to rt overrid aort valv
+X77yx,Vsd with malalign outlt septm to rt overrid pulmonary valve
+X77yy,Ventr septal defect with malaligned outlet septum to left
+X77yz,Vent sept def malalign outlt septm lt overrid aortic valve
+X77z0,Vent sep def with malalign outlt septm lt overrid pulm valve
+X77z1,Vent sept def malalign outlt septm & overrid truncal valve
+X77z2,Muscular ventricular septal defect
+X77z3,Muscular ventricular septal defect in inlet septum
+X77z4,Muscular ventriculr septal defect central trabecular septum
+X77z5,Musculr ventriculr septal defect in apical trabecular septum
+X77z6,Muscular ventricular septal defect in marginal septum
+X77z7,Muscular ventricular septal defect in outlet septum
+X77z8,Multiple trabecular ventricular septal defect
+X77z9,Doubly committed subarterial ventricular septal defect
+X77zA,Doubl commit subart vent sept def - membranous septum exten
+X77zB,Doubl commit subartl vent sept deft with musc post inf rim
+X77zC,Giant ventricular septal defect
+X77zD,Abnormal infundibular morphology
+X77zE,Subpulmonary infundibulum
+X77zF,Subaortic infundibulum
+X77zG,Bilateral muscular infundibula
+X77zH,Bilateral deficient infundibula
+X77zK,Congenital abnormality of arterial valves
+X77zL,Truncal valve abnormality
+X77zM,Truncal valve dysplasia
+X77zN,Truncal valve stenosis
+X77zO,Truncal valve regurgitation
+X77zP,Truncal valve prolapse
+X77zQ,Accessory tissue on truncal valve cusp
+X77zR,Pulmonary valve cusp hypoplasia
+X77zS,Pulmonary valve ring hypoplasia
+X77zT,Commissural fusion of pulmonary valve
+X77zU,Pulmonary valve dysplasia
+X77zV,Pulmonary valve atresia
+X77zX,Pulmonary atresia with intact ventricular septum
+X77zY,Pulmonary atresia with ventricular septal defect
+X77zZ,Pulmonary valve atresia without ventricular outflow tract
+X77za,Imperforate pulmonary valve
+X77zc,Muscular pulmonary atresia
+X77zf,Absent pulmonary valve
+X77zg,Absent pulmonary valve syndrome
+X77zh,Accessory tissue on pulmonary valve cusp
+X77zi,Unicuspid pulmonary valve
+X77zj,Bicuspid pulmonary valve
+X77zk,Quadricuspid pulmonary valve
+X77zm,Aortic valve ring hypoplasia
+X77zn,Commissural fusion of aortic valve
+X77zo,Eccentric opening of aortic valve
+X77zr,Aortic valve atresia
+X77zs,Imperforate aortic valve
+X77zu,Aortic valve absent
+X77zw,Hypoplasia of aortic valve cusp
+X77zx,Accessory tissue on aortic valve cusp
+X77zy,Abnormal number of aortic valve cusps
+X77zz,Unicuspid aortic valve
+X7800,Quadricuspid aortic valve
+X7802,Congenital dilatation of aorta
+X7803,Tubular hypoplasia of aorta
+X7804,Anomalies of the aorta excluding coarction
+X7807,Type I common arterial trunk
+X7808,Type II common arterial trunk
+X7809,Type III common arterial trunk
+X780A,Aortopulmonary window
+X780C,Pulmonary trunk stenosis
+X780D,Pulmonary trunk hypoplasia
+X780E,Pulmonary trunk atresia
+X780F,Pulmonary atresia with confluent pulmonary arteries
+X780G,Pulmonary atresia with absent pulmonary artery
+X780H,Pulmonary trunk absent
+X780I,Pulmonary trunk absent with confluent pulmonary arteries
+X780J,Pulmonary trunk absent with non-confluent pulmonary arteries
+X780K,Pulmonary trunk absent with absent pulmonary artery
+X780N,Peripheral pulmonary artery stenosis
+X780O,Pulmonary artery dilatation
+X780P,Abnormal origin of pulmonary artery
+X780Q,Abnormal origin of right pulmonary artery
+X780R,Origin of right pulmonary artery from ductus arteriosus
+X780S,Origin of right pulmonary artery from ascending aorta
+X780T,Abnormal origin of left pulmonary artery
+X780U,Origin of left pulmonary artery from ductus arteriosus
+X780V,Origin of left pulmonary artery from ascending aorta
+X780W,Origin of left pulmonary artery from right pulmonary artery
+X780a,Diffuse supravalvar aortic stenosis
+X780b,Ascending aortic hypoplasia
+X780c,Ascending aortic atresia
+X780d,Ascending aorta absent
+X780f,Congenital aneurysm of ascending aorta
+X780i,Aortic tunnel
+X780j,Aorta to left ventricle tunnel
+X780k,Aorta to right ventricle tunnel
+X780m,Right descending aorta
+X780n,Left aortic arch and right descending aorta
+X780o,Right aortic arch and right descending aorta
+X780q,Right aortic arch and left descending aorta
+X780r,Aortic arch centrally descending
+X780s,Cervical aortic arch
+X780t,Persisting fifth aortic arch
+X780u,Vascular ring - disorder
+X780v,Double aortic arch with both patent
+X780w,Double aortic arch with unilateral hypoplasia
+X780x,Double aortic arch with unilateral atresia
+X780y,Vascular ring with left aortic arch
+X780z,Vascular ring with right aortic arch
+X7810,Vascular ring components
+X7812,Aberrant subclavian artery
+X7813,Aberrant retro-oesophageal subclavian artery
+X7814,Isolation of subclavian artery
+X7817,Retro-oesophageal right descending aorta
+X781C,Preductal aortic stenosis
+X781D,Preductal interruption of aorta
+X781E,Preductal hypoplasia of aorta
+X781F,Juxtaductal aortic coarctation
+X781G,Postductal aortic stenosis
+X781H,Postductal interruption of aorta
+X781I,Thoracic aortic coarctation
+X781K,Kinking of descending aorta
+X781L,Tubular aortic arch hypoplasia
+X781M,Postductal hypoplasia of aorta
+X781N,Aortic arch atresia
+X781O,Interrupted aortic arch distal to left subclavian artery
+X781P,Interrup aort arch betw lt subclavian & lt comm carotid art
+X781Q,Interr aort arch betw lt com carotid & brachiocephal artery
+X781b,Collaterals to pulmonary arteries
+X781c,Major aortopulmonary collateral artery
+X781d,Systemic to pulmonary collateral artery
+X781e,Stenosis of systemic to pulmonary artery collateral artery
+X781o,Anomalous coronary artery origin
+X781p,Variant coronary origin from aortic sinus
+X781q,Variant coronary origin from left sinus
+X781r,Variant coronary origin from right sinus
+X781s,Coronary artery origin from non-facing sinus
+X781t,Anom origin lt ant descending from right coronary artery
+X781u,Anomalous origin coronary art from pulmonary arterial tree
+X781v,Anomal origin coron artery from right pulmonary artery
+X781w,Anomal origin coronary artery from left pulmonary artery
+X781x,Abnormal coronary orifice
+X781y,Coronary orifice abnormally high
+X781z,Coronary orifice asymmetrical
+X7820,Dual coronary orifice
+X7821,Coronary orifice stenosis
+X7822,Coronary orifice atresia
+X7823,Abnormal coronary artery course
+X7824,Intramural coronary artery course
+X7825,Lt ant descending runs across rt ventricular outflow tract
+X7826,Coronary artery runs between aorta and pulmonary trunk
+X7827,Circumflex runs posterior to pulmonary trunk
+X7828,Circumflex runs posterior to aorta
+X7829,Coronary artery fistula
+X782A,Congenital coronary arteriovenous fistula
+X782B,Single coronary artery fistula
+X782C,Multiple coronary artery fistulae
+X782D,Coronary fistulae from right ventricle
+X782E,Coronary fistulae from left ventricle
+X782F,Congenital coronary artery calcification
+X782M,Totally absent pericardium
+X79u6,Directional atherectomy
+X90Qa,Open intracoronary repair of coronary artery fistula
+X90WS,Coronary inclusion technique
+X90WT,Coronary interposition technique
+XA0Ae,Transection of coronary artery
+XA0B9,Middle meningeal haemorrhage following injury
+XA0BG,Traumatic intracerebral haemorrhage
+XC0I6,Malaligned outlet septum
+XC0MC,Common ventricle
+XC0bX,Aneurysm of membranous septum
+XE0Em,Coronary artery operation
+XE0En,Double anastomosis of mammary arteries to coronary arteries
+XE0Ey,Emerg repl aneurysm bifurc aorta by anast aorta to iliac a
+XE0Ez,Replace aneurysm bifurc aorta by anast aorta to iliac artery
+XE0F0,Bypass bifurc aorta by anastom aorta to femoral artery NEC
+XE0F1,Bypass bifurcation aorta by anastom aorta to iliac artery
+XE0FK,Other bypass of iliac artery
+XE0FL,Emerg bypass iliac artery by femoral/femoral art anast NEC
+XE0FM,Bypass iliac artery by femoral/femoral art anastomosis NEC
+XE0FN,Reconstruction of iliac artery
+XE0FO,Endarterectomy and patch repair of iliac artery
+XE0FP,Endarterectomy of iliac artery NEC
+XE0FQ,Other open operations on iliac artery
+XE0FR,Repair of iliac artery NEC
+XE0FX,Other emergency bypass of femoral artery or popliteal artery
+XE0FY,Other bypass of femoral artery or popliteal artery
+XE0FZ,Reconstruction of femoral artery or popliteal artery
+XE0Fa,Other open operations on femoral artery or popliteal artery
+XE0Ub,Hypertension
+XE0Uc,Essential hypertension
+XE0Ud,Essential hypertension NOS
+XE0Ue,Hypertensive heart disease NOS without CCF
+XE0Uf,Hypertensive renal disease
+XE0Uh,Acute myocardial infarction
+XE0Ui,Worsening angina
+XE0Uk,Other cardiac wall aneurysm
+XE0Uy,Obscure African cardiomyopathy
+XE0Uz,Congestive cardiomyopathy
+XE0V0,Nutritional and metabolic cardiomyopathy NOS
+XE0V1,Secondary cardiomyopathy NOS
+XE0V8,Biventricular failure
+XE0V9,Heart failure NOS
+XE0VF,Cerebral parenchymal haemorrhage
+XE0VI,Cerebral arterial occlusion
+XE0VJ,Cerebral infarction NOS
+XE0VM,Hypertensive encephalopathy
+XE0VP,Other peripheral vascular disease
+XE0VR,Intermittent claudication
+XE0Vo,Rheumatic heart disease: [chronic] or [valvular]
+XE0Vq,Rheumatic mitral valve disease (& [chronic])
+XE0Vu,Rheumatic aortic valve disease (& [chronic])
+XE0Vw,Other chronic rheumatic heart
+XE0W8,(Hypertensive disease) or (hypertension)
+XE0WA,Myocardial infarction (& [acute]) or coronary thrombosis
+XE0WC,Acute/subacute ischaemic heart disease NOS
+XE0WE,Heart disease: [arteriosclerotic] or [chronic ischaemic NOS]
+XE0WG,Chronic ischaemic heart disease NOS
+XE0WM,(Chronic cor pulmonale) or (pulmonary heart disease NOS)
+XE0Wa,Cardmyopath (& [conges obst][hyper obst]) or endmyocard fibr
+XE0Wo,(Conges card fail)(dropsy)(card insuf)(R hrt fail)(LV fail)
+XE0Wy,Cerebral haemorrhage NOS
+XE0X2,(Cereb infarc)(cerebrovas acc)(undef stroke/CVA)(stroke NOS)
+XE0XC,Peripheral vascular disease (& [NOS])
+XE0xu,Pregnancy with hypertension (& [pre-existing])
+XE10I,Diabetes mellitus with peripheral circulatory disorder
+XE12K,Diabetes: [peripheral circulatory disease] or [gangrene]
+XE1KA,Bulbus cordis and cardiac septal closure anomalies
+XE1KB,Other specified transposition of great vessels
+XE1KC,Great vessel transposition NOS
+XE1KD,"Tetralogy of Fallot, unspecified"
+XE1KG,Right hypoplastic heart syndrome
+XE1KH,Congenital abnormality of cardiac position
+XE1KJ,Fusion of heart valve cusps NEC
+XE1KK,Cyanotic congenital heart disease NOS
+XE1KL,Other anomalies of aorta
+XE1KM,Double aortic arch
+XE1KN,Hypoplasia of aorta
+XE1KO,Supravalvar aortic stenosis
+XE1KP,Congenital aneurysm of aorta
+XE1KQ,Pulmonary artery stenosis
+XE1KS,Partial anomalous pulmonary venous connection
+XE1KT,Other great vein anomalies
+XE1NA,(Congen anom CVS) or (congen heart dis) or (cong def heart)
+XE1NE,(Bulbus/septum anom NOS) or (transposition of great vessels)
+XE1NG,Congenital heart: [anomaly NOS][valve][valvular heart dis]
+XE1m2,Traumatic intracranial haemorrhage
+XE1p9,Cardiac insufficiency as a complication of care
+XE1tl,(Post-operative problem NOS) or (postcardiotomy syndrome)
+XE2NY,Hypertension monitoring admin.
+XE2NZ,Hypertension monitoring check done
+XE2Px,Single anastomosis of mammary artery to coronary artery NEC
+XE2QG,Left ventricular failure
+XE2Qh,Aortopulmonary septal anomaly
+XE2Qi,Anomalous coronary artery communication
+XE2Rv,(Ventricular septal defect) or (Eisenmenger defect)
+XE2aA,Old myocardial infarction
+XE2aB,Stroke and cerebrovascular accident unspecified
+XE2bF,Spontaneous subarachnoid haemorrhage
+XE2r7,Coronary A by-pass anastam NOS
+XE2te,H/O: CVA/stroke
+XE2uV,Ischaemic heart disease
+XE2uq,Aortic septal defect
+XE2ur,Dextraposition of aorta
+XE2vv,Preductal aortic coarctation
+XE2vw,Postductal aortic coarctation
+XE2vz,Common atrium
+XM00Q,Cong abnormality of thoracic aorta and pulmonary arteries
+XM0rN,Coronary atherosclerosis
+XM0rV,Cerebral haemorrhage
+XM0v4,Congenital heart valve abnormality
+XM1GB,Divided right atrium
+XM1Ib,Y graft abdominal Aortic aneurysm
+XM1Ic,Dacron aortofemoral Y graft
+XM1Id,Dacron aortoiliac Y graft
+XM1Ie,Emergency femorofemoral prosthetic crossover graft
+XM1If,Endarterectomy and patch repair of common iliac artery
+XM1Ig,Endarterectomy of common iliac artery NEC
+XM1Ih,Other open operations on common iliac artery
+XM1Ii,Repair of common iliac artery NEC
+XM1Ip,Reconstruction of popliteal artery
+XM1Iq,Reconstruction of deep femoral artery
+XM1Ir,Reconstruction of common femoral artery
+XM1Is,Reconstruction of femoral artery
+XM1It,Other open operations on superficial femoral artery
+XM1Iu,Other open operations on popliteal artery
+XM1Iv,Other open operations on deep femoral artery
+XM1Iw,Other open operations on common femoral artery
+XM1KK,Reconstruction of superficial femoral artery
+XM1LR,LIMA single anastomosis
+XM1LS,RIMA single anastomosis
+XM1Le,Myocardial revascularisation
+XM1M3,LIMA sequential anastomosis
+XM1M4,RIMA sequential anastomosis
+XM1PL,Stroke in the puerperium
+XM1Qk,Mural cardiac aneurysm
+XM1Qn,Impaired left ventricular function
+XM1Qp,Cardiomegaly - hypertensive
+XM1Qu,Claudication
+XM1Qw,Blue baby
+XM1Qx,Diabetes mellitus with gangrene
+XM1R2,H/O: CVA
+XM1R3,H/O: stroke
+XM1U2,Hypertension clinic admin.
+XM1YA,Hypertension monitoring
+XSDSb,Diastolic hypertension
+XSDT6,Coronary artery atheroma
+Xa00I,Occipital cerebral infarction
+Xa00J,Cerebellar infarction
+Xa00K,Brainstem infarction
+Xa07h,Neonatal cardiac failure
+Xa07j,Myocardial ischaemia of newborn
+Xa07k,Transient myocardial ischaemia of newborn
+Xa0Bj,Intracerebellar and posterior fossa haemorrhage
+Xa0Cs,Labile hypertension
+Xa0Kw,Coronary artery graft placement
+Xa0Ml,Central post-stroke pain
+Xa0N3,Ruptured cerebral arteriovenous malformation
+Xa0N7,Angiogram-negative subarachnoid haemorrhage
+Xa0NJ,Ruptured aneurysm of anterior cerebral artery
+Xa0NK,Ruptured aneurysm of middle cerebral artery
+Xa0NN,Ruptured aneurysm of posterior cerebral artery
+Xa0NO,Ruptured aneurysm of anterior communicating artery
+Xa0NQ,Ruptured aneurysm of posterior communicating artery
+Xa0NR,Ruptured aneurysm of basilar artery
+Xa0NS,Ruptured aneurysm of posterior inferior cerebellar artery
+Xa0NV,Rupturd intern carotid-anter communic art zone aneurysm
+Xa0NW,Rupt intern carotid-posterior communicat art zone aneurysm
+Xa0NX,Ruptured internal carotid bifurcation aneurysm
+Xa0RY,Percutaneous embolisation of coronary artery fistula
+Xa0TT,Sepsis-associated left ventricular failure
+Xa0TU,Sepsis-associated right ventricular failure
+Xa0YL,Acute anterior myocardial infarction
+Xa0aP,Percutaneous removal of foreign body from coronary artery
+Xa0kX,Renovascular hypertension
+Xa0kZ,Cerebral infarction
+Xa0lV,Peripheral vascular disease
+Xa0lt,Pre-existing hypertension complicating pregnancy
+Xa1dP,Ischaemic myocardial dysfunction
+Xa1dQ,Stunned myocardium
+Xa1dR,Hibernating myocardium
+Xa1fq,Arrhythmogenic right ventricular cardiomyopathy
+Xa1hE,Extension of cerebrovascular accident
+Xa2E8,Paroxysmal atrial fibrillation
+Xa3fK,Chronic rheumatic mitral valve
+Xa3fN,Chronic rheumatic aortic valve disease
+Xa3fQ,Malignant hypertension
+Xa3fV,Cerebral artery occlusion NOS
+Xa3hW,Septal defect NOS
+Xa3kl,Heart - arterial implant NOS
+Xa3km,Indirect heart revascularisation
+Xa3kp,Ligation of coronary arteriovenous fistula
+Xa3ks,Heart internal mammary artery implant
+Xa6Yx,Left ventricular aneurysm
+Xa7lT,Ischaemia of feet
+Xa7lV,Carotid atherosclerosis
+Xa7nH,Exercise-induced angina
+Xa7nI,Controlled atrial fibrillation
+Xa84U,Ischaemic foot
+Xa8HD,On treatment for hypertension
+Xa9Bp,Muscular dystrophy - cardiac type
+Xa9Cm,Abnormal number of pulmonary valve cusps
+Xa9Qh,Jatene procedure
+XaAC3,Acute Q wave myocardial infarction
+XaAsJ,Admission to stroke unit
+XaAzi,Acute non-Q wave infarction
+XaB4Z,Multiple lacunar infarcts
+XaBEB,[V]Presence of coronary artery bypass graft
+XaBEC,Left sided cerebral infarction
+XaBED,Right sided cerebral infarction
+XaBFI,Leriche's syndrome
+XaBL3,H/O: Stroke in last year
+XaBLq,Antihypertensive therapy
+XaBLr,Antianginal therapy
+XaBLt,Cardiac failure therapy
+XaBM4,"Left sided intracerebral haemorrhage, unspecified"
+XaBM5,"Right sided intracerebral haemorrhage, unspecified"
+XaBSX,Hypertension screening recall
+XaBU4,Hypertension monitoring status
+XaBU5,Hypertension monitoring call
+XaBrm,Perc trans thrombolysis of femoral graft streptokinase
+XaBtO,Right ventricular thrombus
+XaBtP,Left ventricular thrombus
+XaC2P,Persistent truncus arteriosus
+XaC2Q,Aortocoronary bypass grafting
+XaCIn,Division of coronary arteriovenous fistula
+XaD2b,Postoperative myocardial infarction
+XaD2d,Postoperative transmural myocardial infarction anterior wall
+XaD2e,Postoperative transmural myocardial infarction inferior wall
+XaD2f,Postoperative transmural myocardial infarction other sites
+XaD2g,Postoperative transmural myocardial infarction unspec site
+XaD2h,Postoperative subendocardial myocardial infarction
+XaD2i,"Postoperative myocardial infarction, unspecified"
+XaDki,Men ret congen heart dis blepharophim blepharop hypopl teeth
+XaDmh,Open insertion of iliac artery stent
+XaDmi,Percutaneous transluminal insertion of iliac artery stent
+XaDyY,Congenital anomaly of aorta
+XaE3G,Critical ischaemia of foot
+XaEGq,Stroke NOS
+XaEXt,Post infarct angina
+XaEgY,Refractory heart failure
+XaEgZ,Non-Q wave myocardial infarction
+XaEga,Rapid atrial fibrillation
+XaFmK,Type I diabetes mellitus with peripheral angiopathy
+XaFn7,Type II diabetes mellitus with peripheral angiopathy
+XaFsG,Refractory angina
+XaFsH,Transient myocardial ischaemia
+XaFx7,Diab mellit insulin-glucose infus acute myocardial infarct
+XaG1Q,Asymptomatic coronary heart disease
+XaI9b,Cardiomyopathy in Duchenne muscular dystrophy
+XaI9h,Coronary heart disease annual review
+XaIIq,Left ventricular systolic dysfunction
+XaINF,Acute coronary syndrome
+XaIOW,Coronary heart disease review
+XaIQM,Heart failure follow-up
+XaIQN,Heart failure annual review
+XaIRJ,Cereb autosom dominant arteriop subcort infarcts leukoenceph
+XaIf1,First myocardial infarction
+XaIfL,Coronary heart disease medication review
+XaIpn,Heart failure confirmed
+XaItG,Left ventricular diastolic dysfunction
+XaIvK,Coronary heart disease monitoring 1st letter
+XaIvL,Coronary heart disease monitoring 2nd letter
+XaIvM,Coronary heart disease monitoring 3rd letter
+XaIvN,Coronary heart disease monitoring verbal invitation
+XaIwM,Acute ST segment elevation myocardial infarction
+XaIwY,Acute non-ST segment elevation myocardial infarction
+XaIy8,Moderate hypertension control
+XaIyD,Hypertension six month review
+XaIyE,Hypertension annual review
+XaIzF,Stroke annual review
+XaJ4J,Exception reporting: CHD quality indicators
+XaJ4L,Excepted from CHD quality indicators: Patient unsuitable
+XaJ4M,Excepted from CHD quality indicators: Informed dissent
+XaJ5h,Patient on maximal tolerated antihypertensive therapy
+XaJ98,Echocardiogram shows left ventricular systolic dysfunction
+XaJ99,Echocardiogram shows left ventricular diastolic dysfunction
+XaJ9G,New York Heart Association classification - class I
+XaJ9H,New York Heart Association classification - class II
+XaJ9I,New York Heart Association classification - class III
+XaJ9J,New York Heart Association classification - class IV
+XaJIU,Coronary artery bypass graft occlusion
+XaJJv,Cardiothoracic transplantation
+XaJX0,Acute posterolateral myocardial infarction
+XaJYi,Hypertension clinical management plan
+XaJgQ,Infarction of basal ganglia
+XaJi5,Ref to multidisciplinary stroke function improvement service
+XaKNW,Admit heart failure emergency
+XaKyd,Myocardial bridge of coronary artery
+XaL1C,Transfer of care from paediatric congenital heart service
+XaLN7,Heart failure review completed
+XaLNA,Heart failure care plan discussed with patient
+XaLSD,Insertion of drug-eluting coronary artery stent
+XaLeo,Left ventricle aorta tunnel right ventricle pul art val con
+XaLep,Atrial switch and arterial switch
+XaLev,Percutaneous transluminal chemical mediated septal ablation
+XaLf7,Repair double outlet right ventricle intraventricular tunnel
+XaLfL,Repair of univentricular heart
+XaLfM,Total cavopulmonary con extrac inf cav vein pulmon art con
+XaLfN,Total cavopulmonary connection with lateral atrial tunnel
+XaLfO,Radical aortopulmonary reconstr systemic-to-pulmon art shunt
+XaLfQ,Biventricular repair of hypoplastic left heart syndrome
+XaLfS,Conversion atrial pulmonary anastomosis total pulmon connect
+XaLfT,Other specified repair of univentricular heart
+XaLfU,Repair of univentricular heart NOS
+XaLfW,Relief of right ventricular outflow tract obstruction
+XaLfX,Repair of double chambered right ventricle
+XaLg5,Repair of rupture of coronary artery
+XaLg6,Repair of arteriovenous malformation of coronary artery
+XaLgU,Perc translumin balloon angioplasty stenting coronary artery
+XaLgV,Perc translum ball angio insert 1-2 drug elut stents cor art
+XaLgW,Perc tran ball angio ins 3 or more drug elut stents cor art
+XaLgX,Perc translum balloon angioplasty insert 1-2 stents cor art
+XaLgY,Percutaneous cor balloon angiop 3 more stents cor art NEC
+XaLgZ,OS perc translumina balloon angioplast stenting coronary art
+XaLga,Perc translum balloon angioplasty stenting coronary art NOS
+XaLhK,Endovascular stenting of aorto-uniiliac aneurysm
+XaLhe,Percutaneous transluminal placement peripheral stent artery
+XaLon,Heart failure 6 month review
+XaLqp,Congenital heart condition monitoring
+XaLtA,Delivery of rehabilitation for stroke
+XaM5f,High cost hypertension drugs
+XaM5n,Other specified high cost hypertension drugs
+XaM5p,High cost hypertension drugs NOS
+XaMFr,Heart failure monitoring telephone invite
+XaMGk,Coronary heart disease monitoring telephone invite
+XaMGo,Heart failure monitoring verbal invite
+XaMGs,Heart failure monitoring first letter
+XaMGt,Heart failure monitoring second letter
+XaMGu,Heart failure monitoring third letter
+XaMK5,Repair of tetralogy of Fallot using transannular patch
+XaMK6,Repair of tetralogy of Fallot with absent pulmonary valve
+XaMK7,Repair Fallot-type pulmonary atresia aortopulmonary collater
+XaMKA,Other repair of transposition of great arteries
+XaMKB,Repositioning of transposed great arteries
+XaMKC,OS other repair of transposition of great arteries
+XaMKD,Other repair of transposition of great arteries NOS
+XaMKE,Percut translum cutting balloon angioplasty coronary artery
+XaMNe,Percutaneous transluminal insertion of stent femoral artery
+XaMmK,Endovas insertion of stent graft for aorto-uniiliac aneurysm
+XaMqN,Atrial inversion operations for transposition of great art
+XaMzU,Review of patient at risk from coronary heart disease
+XaNxN,Admit ischaemic heart disease emergency
+XaO5n,Congestive heart failure due to valvular disease
+XaOfa,Persistent atrial fibrillation
+XaOft,Permanent atrial fibrillation
+XaOiT,Congenital dextroposition of heart
+XaPr5,Aortopulm reconstruct with systemic to pulmon arterial shunt
+XaPx1,Excepted CVD quality indicators: informed dissent
+XaQbK,Pure motor lacunar syndrome
+XaQbM,Pure sensory lacunar syndrome
+XaQk7,History of myocardial infarction
+XaR68,Stroke 6 month review
+XaRFL,Exception reporting: myocardial infarction quality indicator
+XaRFO,Exc myocard infarction quality indicators: informed dissent
+XaRFP,Exc myocar infarction quality indicators: patient unsuitable
+XaVvs,Coronary artery bypass graft operation planned
+XaWye,Takotsubo cardiomyopathy
+XaWyi,Heart failure with normal ejection fraction
+XaX1p,Coronary angioplasty planned
+XaXLu,Worsening pulmonary oedema
+XaXNg,Tachycardia-induced cardiomyopathy
+XaXOi,Hypertension 9 month review
+XaXew,Angina self management plan commenced
+XaXex,Angina self management plan completed
+XaXkR,Has heart failure management plan
+XaXnr,Frequency of angina
+XaXzw,Preferred place of care for next exacerbation heart failure
+XaYYq,Coronary microvascular disease
+XaYYr,Right ventricular diastolic dysfunction
+XaYYs,Diastolic dysfunction
+XaYZQ,Stroke self-management plan review
+XaYZS,Hypertension self-management plan review
+XaYae,Angina self-management plan review
+XaYb7,Angina self-management plan agreed
+XaYbC,Heart failure self-management plan agreed
+XaYbE,Stroke self-management plan agreed
+XaYft,Education about deteriorating heart failure
+XaZSy,Percutaneous coronary intervention
+XaZT1,Occlusion of radial artery
+XaZT3,Occlusion of ulnar artery
+XaZWm,Stage 1 hypertension (NICE - Nat Ins for Hth Clin Excl 2011)
+XaZWn,Severe hypertension (Nat Inst for Health Clinical Ex 2011)
+XaZbT,Hypertension resistant to drug therapy
+XaZbz,Stage 2 hypertension (NICE - Nat Ins for Hth Clin Excl 2011)
+XaZcx,Amyloid cardiomyopathy
+XaZih,Heart failure clinical pathway
+XaZlp,Referral to Angina Plan self-management programme
+XaZlr,Referral to Angina Plan self-management programme declined
+XaZzo,Nocturnal hypertension
+XaaH6,Referral to rapid access heart failure clinic
+XaaUH,Paroxysmal atrial flutter
+XaaUg,Emergency percutaneous coronary intervention
+Xaacj,Left ventricular cardiac dysfunction
+Xaapw,Right ventricular systolic dysfunction
+Xab9L,Stage 1 hyperten (NICE 2011) without evidnce end organ damge
+Xab9M,Stage 1 hyperten (NICE 2011) with evidnce end organ damge
+XabM9,On optimal heart failure therapy
+XabhR,Ischaemic foot pain at rest
+XabhS,Ischaemic foot pain when walking
+XaeUO,Locked in syndrome
+XaeUP,Chronic atrial fibrillation
+XaeUQ,Typical atrial flutter
+XaeUR,Atypical atrial flutter
+XaeVd,Non-obstructive coronary atherosclerosis
+XafeB,Heart failure with reduced ejection fraction
+Xafj3,Hypertension monitoring invitation short msg service txt msg
+Xafj4,Hypertension mnitoring short msg service text msg 1st invitn
+Xafj5,Hypertension mnitoring short msg service text msg 2nd invitn
+Xafj6,Hypertension mnitoring short msg service text msg 3rd invitn
+XagLb,Hypertension monitoring invitation email
+XagLe,Coronary heart disease monitoring invitation email
+Xagdx,Andersen Tawil syndrome
+Y1328,Refractory Hypertension
+Y1781,Patient unsuitable for PTCA
+Y1eef,Mixed myocardial ischaemia and infarction
+Y1f1c,Coronary heart disease monitoring invitation
+Y1f20,Heart failure monitoring invitation
+Y1f93,Quality and Outcomes Framework secondary prevention of coronary heart disease quality indicator-related care invitation (procedure)
+Y1f9c,Quality and Outcomes Framework heart failure quality indicator-related care invitation (procedure)
+Y1fa4,Quality and Outcomes Framework stroke and transient ischaemic attack quality indicator-related care invitation (procedure)
+Y9998,Common arterial trunk
+ZV421,[V]Heart transplanted
+ZV457,[V]Presence of aortocoronary bypass graft

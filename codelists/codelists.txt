@@ -1,3 +1,31 @@
+# Covid
 opensafely/covid-identification/2020-06-03
-primis-covid19-vacc-uptake/sev_obesity/v1.2
+
+# Alcohol (ctv3)
 opensafely/hazardous-alcohol-drinking/6364474b
+
+# Obesity
+# Incoming
+
+# Cancer (ctv3)
+user/jkua/cancer/1d9bf8ff
+
+# CVD (ctv3 + SNOMED)
+ons/cardiovascular-disorders/74fd15a0
+nhsd-primary-care-domain-refsets/angina_cod/20210127
+
+# HIV/AIDS (SNOMED)
+opensafely/hiv-snomed/2020-07-13
+
+# Mental and behavioural
+# Incoming
+
+# Metabolic (ctv3)
+ons/metabolic-disorders/10bf48cc
+
+# Musculoskeletal (ctv3 + SNOMED)
+ons/musculoskeletal-disorders/77afd596
+nhsd-primary-care-domain-refsets/osteo_cod/20200812
+
+# Neurological
+# Incoming

@@ -6,17 +6,53 @@
       "downloaded_at": "2022-05-27 14:13:21.010611Z",
       "sha": "124db6929439379b7dacd55ba26ae4f2ed9370bc"
     },
-    "primis-covid19-vacc-uptake-sev_obesity.csv": {
-      "id": "primis-covid19-vacc-uptake/sev_obesity/v1.2",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/sev_obesity/v1.2/",
-      "downloaded_at": "2022-05-27 14:13:21.329856Z",
-      "sha": "dfe3662bed703c590d1449e604e892cdd7a360c1"
-    },
     "opensafely-hazardous-alcohol-drinking.csv": {
       "id": "opensafely/hazardous-alcohol-drinking/6364474b",
       "url": "https://codelists.opensafely.org/codelist/opensafely/hazardous-alcohol-drinking/6364474b/",
       "downloaded_at": "2022-05-27 14:13:21.692988Z",
       "sha": "db9ef41fd8bbd00b01c2669a69812dbb884adea6"
+    },
+    "user-jkua-cancer.csv": {
+      "id": "user/jkua/cancer/1d9bf8ff",
+      "url": "https://codelists.opensafely.org/codelist/user/jkua/cancer/1d9bf8ff/",
+      "downloaded_at": "2022-06-15 14:27:44.575077Z",
+      "sha": "64047621a402d971cc1d1f442453f27f475ef9b8"
+    },
+    "ons-cardiovascular-disorders.csv": {
+      "id": "ons/cardiovascular-disorders/74fd15a0",
+      "url": "https://codelists.opensafely.org/codelist/ons/cardiovascular-disorders/74fd15a0/",
+      "downloaded_at": "2022-06-15 09:51:38.566740Z",
+      "sha": "9d67b9a900b9b14a449f9f56dc9bf0d6314478ca"
+    },
+    "nhsd-primary-care-domain-refsets-angina_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/angina_cod/20210127",
+      "url": "https://codelists.opensafely.org/codelist/nhsd-primary-care-domain-refsets/angina_cod/20210127/",
+      "downloaded_at": "2022-06-15 09:51:38.197277Z",
+      "sha": "156368aa14d4761d0a7348146bcf4cbd4dca9915"
+    },
+    "opensafely-hiv-snomed.csv": {
+      "id": "opensafely/hiv-snomed/2020-07-13",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/hiv-snomed/2020-07-13/",
+      "downloaded_at": "2022-06-15 14:27:45.659101Z",
+      "sha": "9273c81432c3cfba328a19a1037a0dc2621ef543"
+    },
+    "ons-metabolic-disorders.csv": {
+      "id": "ons/metabolic-disorders/10bf48cc",
+      "url": "https://codelists.opensafely.org/codelist/ons/metabolic-disorders/10bf48cc/",
+      "downloaded_at": "2022-06-15 14:27:46.025701Z",
+      "sha": "4b2ef14b5ae8a4403745d9cd03f998b53b2a526f"
+    },
+    "ons-musculoskeletal-disorders.csv": {
+      "id": "ons/musculoskeletal-disorders/77afd596",
+      "url": "https://codelists.opensafely.org/codelist/ons/musculoskeletal-disorders/77afd596/",
+      "downloaded_at": "2022-06-15 14:27:46.487631Z",
+      "sha": "727b8c96bd80287011309f909a2edabc836cedc5"
+    },
+    "nhsd-primary-care-domain-refsets-osteo_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/osteo_cod/20200812",
+      "url": "https://codelists.opensafely.org/codelist/nhsd-primary-care-domain-refsets/osteo_cod/20200812/",
+      "downloaded_at": "2022-06-15 14:27:46.802687Z",
+      "sha": "bc7e135ca0ce304a7c611f137c4c9ece2ca146be"
     }
   }
 }

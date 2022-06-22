@@ -23,56 +23,56 @@ study = StudyDefinition(
 
     population=patients.all(),
 
-    # # Date of death, any reason
-    # dod=patients.died_from_any_cause(
-    #     on_or_before=end_date,
-    #     returning='date_of_death',
-    #     date_format='YYYY-MM-DD',
-    #     return_expectations={
-    #         "date" : {"earliest" : start_date, "latest" : end_date}
-    #     }
-    # ),
+    # Date of death, any reason
+    dod=patients.died_from_any_cause(
+        on_or_before=end_date,
+        returning='date_of_death',
+        date_format='YYYY-MM-DD',
+        return_expectations={
+            "date" : {"earliest" : start_date, "latest" : end_date}
+        }
+    ),
 
-    # # Date of earliest hospitalisation from Covid
-    # hes_admission=patients.admitted_to_hospital(
-    #     on_or_before=end_date,
-    #     returning='date_admitted',
-    #     find_first_match_in_period=True,
-    #     date_format='YYYY-MM-DD',
-    #     with_these_primary_diagnoses=codelist_from_csv(
-    #         'codelists/opensafely-covid-identification.csv',
-    #         system='icd10',
-    #         column='icd10_code'
-    #     ),
-    #     return_expectations={
-    #         "date" : {"earliest": start_date, "latest": end_date}
-    #     }
-    # ),
+    # Date of earliest hospitalisation from Covid
+    hes_admission=patients.admitted_to_hospital(
+        on_or_before=end_date,
+        returning='date_admitted',
+        find_first_match_in_period=True,
+        date_format='YYYY-MM-DD',
+        with_these_primary_diagnoses=codelist_from_csv(
+            'codelists/opensafely-covid-identification.csv',
+            system='icd10',
+            column='icd10_code'
+        ),
+        return_expectations={
+            "date" : {"earliest": start_date, "latest": end_date}
+        }
+    ),
 
-    # # Date of earliest +ve test and trace result
-    # tt_positive=patients.with_test_result_in_sgss(
-    #     pathogen='SARS-CoV-2',
-    #     test_result='positive',
-    #     on_or_before=end_date,
-    #     returning="date",
-    #     date_format="YYYY-MM-DD",
-    #     restrict_to_earliest_specimen_date=True,
-    #     return_expectations={
-    #         "date" : {"earliest": start_date, "latest": end_date}
-    #     }
-    # ),
+    # Date of earliest +ve test and trace result
+    tt_positive=patients.with_test_result_in_sgss(
+        pathogen='SARS-CoV-2',
+        test_result='positive',
+        on_or_before=end_date,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        restrict_to_earliest_specimen_date=True,
+        return_expectations={
+            "date" : {"earliest": start_date, "latest": end_date}
+        }
+    ),
 
-    # # Date of 1st Covid vaccine
-    # covid_vaccine=patients.with_tpp_vaccination_record(
-    #     target_disease_matches="SARS-2 CORONAVIRUS",
-    #     on_or_before=end_date,
-    #     returning="date",
-    #     date_format="YYYY-MM-DD",
-    #     find_first_match_in_period=True,
-    #     return_expectations={
-    #         "date" : {"earliest": start_date, "latest": end_date}
-    #     }
-    # ),
+    # Date of 1st Covid vaccine
+    covid_vaccine=patients.with_tpp_vaccination_record(
+        target_disease_matches="SARS-2 CORONAVIRUS",
+        on_or_before=end_date,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        find_first_match_in_period=True,
+        return_expectations={
+            "date" : {"earliest": start_date, "latest": end_date}
+        }
+    ),
 
     # # Date of earliest +ve cis result
     

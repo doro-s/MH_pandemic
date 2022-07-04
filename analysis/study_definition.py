@@ -107,6 +107,11 @@ study = StudyDefinition(
     ),
     
     # TODO - obesity
+    # obesity=patients.with_these_clinical_events(
+    #     codelist=codelist_from_csv(
+    #         'codelists/ons-overweight-or-obese-bmi-25-or-over.csv',
+    #         system='snomed',
+    #         column=''))
     
     cancer=patients.with_these_clinical_events(
         codelist=codelist_from_csv(

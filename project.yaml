@@ -12,23 +12,19 @@ actions:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv
     
-    generate_study_population:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition
+    transform_cis_wide_to_long:
+        run: r:latest analysis/cis_wide_to_long.R
+        needs: [generate_cis_visit_level]
         outputs:
             highly_sensitive:
-                cohort: output/input.csv
+                cohort: output/input_cis_long.csv
     
     reconcile_snomed_ctv3:
         run: r:latest analysis/reconcile_snomed_ctv3.R
-        needs: [generate_study_population]
+        needs: [transform_cis_wide_to_long]
         outputs:
             highly_sensitive:
                 cohort: output/input_reconciled.csv
     
-    # transform_cis_wide_to_long:
-    #     run: r:latest analysis/cis_wide_to_long.R
-    #     needs: [generate_cis_visit_level]
-    #     outputs:
-    #         highly_sensitive:
-    #             cohort: output/input_cis_long.csv
+
 

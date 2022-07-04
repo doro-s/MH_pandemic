@@ -1,0 +1,237 @@
+code,term
+7609.,Open operations on oesophageal varices
+76093,Local ligation of oesophageal varices
+76094,Open injection sclerotherapy to oesophageal varices
+7609y,Oesophageal varices operation: [OS open] or [Tanner]
+7609z,Open operation on oesophageal varices NOS
+760C3,Fibreoptic oesophagoscopy & injection sclerotherapy varices
+760C5,Fibreoptic oesophagoscopy and banding of oesophageal varices
+760F3,Rigid oesophagoscopy and injection sclerotherapy of varices
+760F4,Rigid oesophagoscopy and banding of oesophageal varices
+760J4,Balloon tamponade of oesophagus
+7800.,Liver transplant
+78000,Orthotopic liver transplant
+78001,Heterotopic liver transplant
+78002,Replacement of previous liver transplant
+7800y,Other specified transplantation of liver
+7800z,Transplantation of liver NOS
+78052,Exploration liver (& transplanted)
+A704.,Other specified viral hepatitis with coma
+A7040,Viral hepatitis C with coma
+A704z,Other specified viral hepatitis with hepatic coma NOS
+A706.,Unspecified viral hepatitis with coma
+A7071,Chronic viral hepatitis B without delta-agent
+A7072,Chronic viral hepatitis C
+AyuB1,[X]Other chronic viral hepatitis
+AyuB2,"[X]Chronic viral hepatitis, unspecified"
+AyuB3,[X]Unspecified viral hepatitis with coma
+F10y0,Progressive neuronal degeneration with liver cirrhosis
+G850.,Bleeding oesophageal varices
+G851.,Oesophageal varices without bleeding
+G852.,Oesophageal varices in diseases EC
+G8520,Oesophageal varices with bleeding in diseases EC
+G8521,Oesophageal varices without bleeding in diseases EC
+G852z,Oesophageal varices in diseases EC NOS
+G857.,Gastric varices
+Gyu94,[X]Oesophageal varices in diseases classified elsewhere
+J08z9,Orofacial Crohn's disease
+J4...,(Noninf enter/colit) or (inflam bowel dis) or (noninf diarr)
+J40..,Enteritis: [regional-Crohn's disease] or [granulomatous]
+J400.,Regional enteritis of small bowel
+J4000,Crohn's disease of duodenum
+J4001,Regional enteritis of the jejunum
+J4002,Crohn's disease of terminal ileum
+J4003,Crohn's disease of the ileum unspecified
+J4004,Crohn's disease of the ileum NOS
+J400z,Crohn's disease of the small bowel NOS
+J401.,Regional enteritis of the large bowel
+J4010,Crohn's colitis
+J4011,Crohn's proctitis
+J401z,(Crohn's colitis) or (Crohn's disease of large bowel NOS)
+J402.,Regional ileocolitis
+J40z.,Regional enteritis NOS
+J41..,(Idiopath proctocol)/(muc colit/proctit)/(ulc colit/proctit)
+J410.,Ulcerative proctocolitis
+J4100,Ulcerative ileocolitis
+J4103,Ulcerative proctitis
+J410z,Ulcerative proctocolitis NOS
+J41y.,Other idiopathic proctocolitis
+J41yz,Other idiopathic proctocolitis NOS
+J41z.,Idiopathic proctocolitis NOS
+J6000,Acute hepatic failure
+J6010,Subacute hepatic failure
+J61..,Cirrhosis and chronic liver disease
+J610.,Alcoholic fatty liver
+J611.,Acute alcoholic hepatitis
+J612.,Cirrhosis: [florid] or [alcoholic]
+J613.,Alcoholic liver damage unspecified
+J614.,Chronic hepatitis
+J6140,Chronic persistent hepatitis
+J6141,Chronic active hepatitis
+J6142,Chronic aggressive hepatitis
+J6143,Recurrent hepatitis
+J614y,Chronic hepatitis unspecified
+J614z,Chronic hepatitis NOS
+J615.,(Cirrhosis - non alcoholic) or (portal cirrhosis)
+J6150,Unilobular portal cirrhosis
+J6151,Cirrhosis of liver: [multilobular portal] or [postnecrotic]
+J6152,Mixed portal cirrhosis
+J6153,Diffuse nodular cirrhosis
+J6154,Fatty portal cirrhosis
+J6155,Macronodular cirrhosis
+J6156,Capsular portal cirrhosis
+J6157,Cirrhosis: [cardiac portal] or [congestive]
+J6158,Cirrhosis: [juv portal] or [childh funct] or [Indian childh]
+J6159,Pigmentary portal cirrhosis
+J615A,Pipestem portal cirrhosis
+J615B,Toxic portal cirrhosis
+J615D,Bacterial portal cirrhosis
+J615F,Syphilitic portal cirrhosis
+J615G,Zooparasitic portal cirrhosis
+J615H,Infectious cirrhosis NOS
+J615y,Portal cirrhosis unspecified
+J615z,(Liver cirrhos: [named vars] or [NOS]) or (hepat fibrosis)
+J616.,Biliary cirrhosis
+J6160,Primary biliary cirrhosis
+J6161,Secondary biliary cirrhosis
+J6162,Biliary cirrhosis of children
+J616z,Biliary cirrhosis NOS
+J617.,Alcoholic hepatitis
+J61y.,Other non-alcoholic chronic liver disease
+J61y0,Chronic yellow atrophy
+J61y3,Portal fibrosis without cirrhosis
+J61yz,Other non-alcoholic chronic liver disease NOS
+J61z.,Chronic liver disease NOS
+J62..,Liver abscess and sequelae of chronic liver disease
+J623.,Portal hypertension
+J624.,Hepatorenal syndrome
+J62z.,Liver abscess and chronic liver disease causing sequelae NOS
+J630.,Chronic passive congestion of liver
+J6353,Toxic liver disease with chronic persistent hepatitis
+J6354,Toxic liver disease with chronic lobular hepatitis
+J6355,Toxic liver disease with chronic active hepatitis
+J6356,Toxic liver disease with fibrosis and cirrhosis of liver
+J63A.,Hepatic granulomas in sarcoidosis
+J6617,Primary sclerosing cholangitis
+Jyu40,[X]Other Crohn's disease
+Jyu41,[X]Other ulcerative colitis
+Jyu71,[X]Other and unspecified cirrhosis of liver
+N0310,Arthropathy in ulcerative colitis
+N0311,Arthropathy in Crohn's disease
+N0453,Juvenile arthritis in Crohn's disease
+N0454,Juvenile arthritis in ulcerative colitis
+PB61.,Atresia of bile ducts
+PB610,Congenital absence of bile duct
+PB611,Congenital hypoplasia of bile duct
+PB614,Atresia of bile duct (& [intrahepatic] or [extrahepatic]
+PB615,Congenital absence of hepatic ducts
+PB616,Atresia of hepatic ducts
+PB61z,Biliary atresia NOS
+PB635,Alagille syndrome
+SP086,Liver transplant failure and rejection
+SP142,Hepatic failure as a complication of care
+SP143,Hepatorenal syndrome as a complication of care
+X2063,Oesophageal varices
+X20Pq,Orofacial Crohn's disease of gingivae
+X20Uu,Balln tamponade oesophagus using Sengstaken-Blakemore tube
+X20Uv,Balloon tamponade of oesophagus using Minnesota tube
+X20Zz,Exploration of liver transplant
+X300J,Crohn's disease of oesophagus
+X301b,Crohn's disease of stomach
+X302r,Crohn's jejunitis
+X302t,Crohn's ileitis
+X3030,Ulcerative enterocolitis
+X303k,Indeterminate colitis
+X3050,Perianal Crohn's disease
+X306h,Chronic viral hepatitis
+X306i,Chronic viral hepatitis B
+X306j,Chronic viral hepatitis B with hepatitis D
+X306k,Chronic viral hepatitis C
+X306l,Chronic non-A non-B hepatitis
+X306r,Alcoholic hepatitis
+X3071,Alcoholic liver disease
+X3072,Alcoholic fibrosis and sclerosis of liver
+X3073,Alcoholic hepatic failure
+X3076,Hepatic failure
+X3077,Liver failure NOS
+X3078,Hepatic failure NOS
+X3079,Fulminant hepatic failure
+X307A,Subfulminant hepatic failure
+X307C,Chronic hepatic failure
+X307G,Chronic lobular hepatitis
+X307I,Drug-induced chronic hepatitis
+X307L,Cirrhosis of liver
+X307M,Cirrhosis of liver NOS
+X307N,Florid cirrhosis
+X307O,Cryptogenic cirrhosis
+X307P,Indian childhood cirrhosis
+X307Q,Micronodular cirrhosis
+X307R,Portal cirrhosis
+X307S,"Laennec's cirrhosis, non-alcoholic"
+X307T,Infectious cirrhosis
+X307U,Hypoxia-associated cirrhosis
+X307V,Toxic cirrhosis
+X307W,Fibrosis of liver
+X307X,Congenital hepatic fibrosis
+X307Y,Pericellular fibrosis of congenital syphilis
+X307Z,Hepatic sclerosis
+X307a,Portal and splenic vein sclerosis
+X307b,Hepatic fibrosis with hepatic sclerosis
+X307c,Intrahepatic phlebosclerosis and fibrosis
+X307x,Liver transplant disorder
+X307y,Liver transplant rejection
+X307z,Liver transplant failure
+X3085,Ichthyosis congenita with biliary atresia
+X7847,Intrahepatic biliary atresia
+X7848,Extrahepatic biliary atresia
+XE0CP,Other specified open operation on oesophageal varices
+XE0ae,Inflammatory bowel disease
+XE0af,Crohn's disease of the large bowel NOS
+XE0ag,Ulcerative colitis
+XE0aj,Other non-infective inflammatory gastroenteritis and colitis
+XE0b4,Alcoholic cirrhosis of liver
+XE0b5,Cirrhosis - non-alcoholic
+XE0b6,Multilobular portal cirrhosis
+XE0b7,Cardiac portal cirrhosis
+XE0b8,Juvenile portal cirrhosis
+XE0bA,Non-alcoholic cirrhosis NOS
+XE0bC,Other sequelae of chronic liver disease
+XE0cX,Inflammatory bowel disease (& [noninfect enteritis/colitis])
+XE0cZ,Crohn's disease (& [regional enteritis])
+XE0dD,(Cirrhos &/or chron liver dis) or (alcoholic liver disease)
+XE0dF,Alcoholic liver damage NOS
+XE0dH,Chronic hepatitis (& [NOS]/[active B]/[active]/[persistent])
+XE0dJ,Biliary cirrhosis (& [primary])
+XE2QL,Crohn's disease
+XE2up,Cirrhosis secondary to cholestasis
+Xa0lh,Regional enteritis
+Xa3fm,"Non-infective gastrointestinal inflammation, NOS"
+Xa7nY,Non-infective colitis
+Xa9C7,Cardiac cirrhosis
+XaB5x,Non-infective enteritis and colitis
+XaB5z,Enterocolitis
+XaBE3,Chronic alcoholic hepatitis
+XaBM6,Oesophageal varices in cirrhosis of the liver
+XaC1d,Oesophageal varices in alcoholic cirrhosis of the liver
+XaE6u,Oesophageal varices NOS
+XaJTk,Autoimmune hepatitis
+XaJxp,Acute hepatic failure due to drugs
+XaK6C,Exacerbation of Crohn's disease of small intestine
+XaK6D,Exacerbation of Crohn's disease of large intestine
+XaK6E,Exacerbation of ulcerative colitis
+XaK6F,Exacerbation of non-infective colitis
+XaLdJ,Fibreopt endoscop rubber band ligation of upper GIT varices
+XaLde,Transplantation of liver cells
+XaLdf,Orthotopic transplantation of whole liver
+XaMMe,Orthotopic transplantation of liver NEC
+XaMuG,Compensation for liver failure
+XaMuH,Other specified compensation for liver failure
+XaMuI,Compensation for liver failure NOS
+XaPLW,Chronic hepatitis annual review
+XaREa,Liver disease due to cystic fibrosis
+XaXi9,Cystic fibrosis related cirrhosis
+XaYbp,Viral hepatitis with hepatic coma
+XaYzX,Ulcerative pancolitis
+XaZ2j,Left sided ulcerative colitis
+ZV427,[V]Liver transplanted
+ZV7C0,[V]Assessment for liver transplant

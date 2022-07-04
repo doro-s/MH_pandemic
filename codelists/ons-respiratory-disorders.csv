@@ -1,0 +1,581 @@
+code,term
+14B4.,H/O: asthma
+173A.,Exercise-induced asthma
+23E5.,O/E - fibrosis of lung present
+663K.,Airways obstructn irreversible
+663N.,Asthma disturbing sleep
+663N0,Asthma causing night waking
+663N1,Asthma disturbs sleep weekly
+663N2,Asthma disturbs sleep frequently
+663O.,Asthma not disturbing sleep
+663O0,Asthma never disturbs sleep
+663P.,Asthma limiting activities
+663Q.,Asthma not limiting activities
+663U.,Asthma management plan given
+663V.,Asthma severity
+663V0,Occasional asthma
+663V1,Mild asthma
+663V2,Moderate asthma
+663V3,Severe asthma
+663W.,Asthma prophylactic medication used
+663d.,Emergency asthma admission since last appointment
+663e.,Asthma restricts exercise
+663e0,Asthma sometimes restricts exercise
+663e1,Asthma severely restricts exercise
+663f.,Asthma never restricts exercise
+679J.,Health education - asthma
+7450.,Lung transplant
+7450y,Other specified transplantation of lung
+7450z,Transplantation of lung NOS
+8791.,Further asthma - drug prevention
+8793.,Asthma control step 0
+8794.,Asthma control step 1
+8795.,Asthma control step 2
+8796.,Asthma control step 3
+8797.,Asthma control step 4
+8798.,Asthma control step 5
+8H2P.,"Emergency admission, asthma"
+9OJ1.,Attends asthma monitoring
+9OJ3.,Asthma monitor offer default
+9OJ4.,Asthma monitoring call first letter
+9OJ5.,Asthma monitoring call second letter
+9OJ6.,Asthma monitoring call third letter
+9OJ7.,Asthma monitoring call verbal invite
+9OJ8.,Asthma monitoring call telephone invite
+9OJ9.,Asthma monitoring deleted
+9OJA.,Asthma monitored (& check done)
+9Q21.,Patient in asthma study
+A114.,Tuberculous fibrosis of lung
+A115.,Tuberculous bronchiectasis
+A7899,HIV disease resulting in lymphoid interstitial pneumonitis
+AD52.,Sarcoidosis of lung with sarcoidosis of lymph nodes
+C370.,Cystic fibrosis
+C3700,Cystic fibrosis with no meconium ileus
+C3701,Meconium ileus in cystic fibrosis
+C3702,Cystic fibrosis with pulmonary manifestations
+C3703,Cystic fibrosis with intestinal manifestations
+C370z,Cystic fibrosis NOS
+H0614,Obliterating fibrous bronchiolitis
+H3...,Chronic obstructive lung disease
+H31..,Chronic bronchitis
+H310.,Simple chronic bronchitis
+H3100,Simple chronic bronchitis
+H310z,Simple chronic bronchitis NOS
+H311.,Mucopurulent chronic bronchitis
+H3110,Purulent chronic bronchitis
+H311z,Mucopurulent chronic bronchitis NOS
+H3120,Chronic asthmatic bronchitis
+H3121,Emphysematous bronchitis
+H3122,Acute exacerbation of chronic obstructive airways disease
+H312z,Obstructive chronic bronchitis NOS
+H313.,Mixed simple and mucopurulent chronic bronchitis
+H31y.,Other chronic bronchitis
+H31y0,Chronic tracheitis
+H31y1,Chronic tracheobronchitis
+H31yz,Other chronic bronchitis NOS
+H31z.,Chronic bronchitis NOS
+H32..,Emphysema
+H320.,Chronic bullous emphysema
+H3200,Segmental bullous emphysema
+H3201,Zonal bullous emphysema
+H3202,Giant bullous emphysema
+H3203,(Bullous emphysema with collapse) or (tension pneumatocoele)
+H320z,Chronic bullous emphysema NOS
+H321.,Panlobular emphysema
+H322.,Centrilobular emphysema
+H32y.,Other emphysema
+H32y0,Acute vesicular emphysema
+H32y1,Emphysema: [acute interstitial] or [atrophic - senile]
+H32y2,MacLeods syndrome
+H32yz,(Sawyer-Jones syndrome) or (other emphysema NOS)
+H32z.,Emphysema NOS
+H33..,Asthma
+H330.,Asthma: [extrins - atop][allerg][pollen][childh][+ hay fev]
+H3300,(Hay fever + asthma) or (extr asthma without status asthmat)
+H3301,Extrins asthma with: [asthma attack] or [status asthmaticus]
+H330z,Extrinsic asthma NOS
+H331.,(Intrinsic asthma) or (late onset asthma)
+H3310,Intrinsic asthma without status asthmaticus
+H3311,Intrins asthma with: [asthma attack] or [status asthmaticus]
+H331z,Intrinsic asthma NOS
+H332.,Mixed asthma
+H33z.,Asthma unspecified
+H33z0,(Severe asthma attack) or (status asthmaticus NOS)
+H33z1,Asthma attack (& NOS)
+H33z2,Late onset asthma
+H33zz,(Asthma:[exerc ind][allerg NEC][NOS]) or (allerg bronch NEC)
+H34..,Bronchiectasis
+H340.,Recurrent bronchiectasis
+H341.,Post-infective bronchiectasis
+H34z.,Bronchiectasis NOS
+H35..,Extrinsic allergic alveolitis
+H350.,Farmers' lung
+H351.,Bagassosis
+H352.,Bird-fancier's lung
+H3520,Budgerigar-fanciers' lung
+H3521,Pigeon-fanciers' lung
+H352z,Bird-fancier's lung NOS
+H353.,Cork-handlers' lung
+H354.,Malt workers' lung
+H355.,Mushroom workers' lung
+H356.,Maple bark strippers' lung
+H357.,Ventilation pneumonitis
+H35y.,Other allergic alveolitis
+H35y0,Cheese-washers' lung
+H35y1,Coffee-workers' lung
+H35y2,Fish-meal workers' lung
+H35y3,Furriers' lung
+H35y4,Grain-handlers' disease
+H35y5,Pituitary snuff-takers' disease
+H35y6,Sequoiosis
+H35y7,Wood pulp workers' lung
+H35y8,Air-conditioner and humidifier lung
+H35yz,Other allergic alveolitis NOS
+H35z.,Allergic alveolitis and pneumonitis NOS
+H35z0,Allergic extrinsic alveolitis NOS
+H35z1,Hypersensitivity pneumonitis NOS
+H3y..,Other specified chronic obstructive airways disease
+H3y0.,Chronic obstruct pulmonary dis with acute lower resp infectn
+H3y1.,"Chron obstruct pulmonary dis wth acute exacerbation, unspec"
+H3z..,Chronic obstructive airways disease NOS
+H4...,Lung dis: [pneumoconioses] or [occup] or [due extern agent]
+H40..,Coal workers' pneumoconiosis
+H41..,Asbestos pneumoconiosis
+H41z.,Asbestosis NOS
+H42..,Silicosis
+H420.,Talc pneumoconiosis
+H421.,Simple silicosis
+H422.,Complicated silicosis
+H423.,Massive silicotic fibrosis
+H42z.,Silica pneumoconiosis NOS
+H43..,Pneumoconiosis due to other inorganic dust
+H430.,Aluminium lung
+H431.,Bauxite pneumoconiosis
+H432.,Berylliosis
+H433.,Graphite pneumoconiosis
+H434.,Iron pneumoconiosis
+H435.,Tin pneumoconiosis
+H43z.,Pneumoconiosis due to inorganic dust NOS
+H44..,Pneumopathy due to inhalation of other dust
+H440.,Byssinosis
+H441.,Cannabinosis
+H44z.,Pneumopathy due to inhalation of other dust NOS
+H45..,Pneumoconiosis NOS
+H450.,Pneumoconiosis associated with tuberculosis
+H460.,Bronchitis and pneumonitis due to chemical fumes
+H4601,Acute pneumonitis due to chemical fumes
+H460z,Bronchitis and pneumonitis due to chemical fumes NOS
+H464.,Chronic respiratory conditions due to chemical fumes
+H4640,Chronic emphysema due to chemical fumes
+H4641,Toxic bronchiolitis obliterans
+H4642,Chronic pulmonary fibrosis due to chemical fumes
+H464z,Chronic respiratory conditions due to chemical fumes NOS
+H46z0,Silo-fillers' disease
+H47..,Aspiration pneumonitis
+H47y0,Detergent asthma
+H4y0.,Acute pulmonary radiation disease
+H4y00,Acute radiation pneumonitis
+H4y0z,Acute pulmonary radiation disease NOS
+H4y1.,Chronic pulmonary radiation disease
+H4y10,Radiation-induced diffuse interstitial pulmonary fibrosis
+H4y1z,Chronic pulmonary radiation disease NOS
+H4y2.,Drug-induced interstitial lung disorders
+H4y20,Acute drug-induced interstitial lung disorders
+H4y21,Chronic drug-induced interstitial lung disorders
+H52y1,Persistent pneumothorax
+H5302,Gangrenous pneumonia
+H5410,Chronic pulmonary oedema
+H55..,Lung: [cirrhosis of] or [postinflamm pulmonary fibrosis]
+H561.,Idiopathic pulmonary haemosiderosis
+H563.,(Fibros alveolitis: [idiopath][cryptog]) or (Hamm-Rich synd)
+H5631,Diffuse interstitial pulmonary fibrosis
+H563z,Idiopathic fibrosing alveolitis NOS
+H56y0,Endogenous lipoid pneumonia
+H571.,Rheumatic pneumonia
+H572.,Lung disease with systemic sclerosis
+H57y0,Pulmonary amyloidosis
+H57y1,Lung disease with polymyositis
+H57y2,Pulmonary sarcoidosis
+H57y3,Lung disease with Sjogren's disease
+H57y4,Lung disease with systemic lupus erythematosus
+H581.,(Emphysema [interstitial]/[mediastinal])/(pneumomediastinum)
+H582.,Compensatory emphysema
+H583.,Pulmonary eosinophilia
+H591.,Chronic respiratory failure
+Hy02.,Chronic pulmonary insufficiency following surgery
+Hyu30,[X]Other emphysema
+Hyu31,[X]Other specified chronic obstructive pulmonary disease
+Hyu40,[X]Pneumoconiosis due to other dust containing silica
+Hyu41,[X]Pneumoconiosis due to other specified inorganic dusts
+Hyu43,[X]Hypersensitivity pneumonitis due to other organic dusts
+Hyu47,[X]Pneumonitis due to inhalation of other solids and liquids
+Hyu50,[X]Other interstitial pulmonary diseases with fibrosis
+K260.,(Azoospermia) or (Young's syndrome)
+L380.,(Obstet anaesth + pulm complications) or (Mendelson's syndr)
+N0421,Rheumatoid lung
+N04y0,(Rheum lung) or (Caplan synd) or (fibr alveolit assoc arthr)
+P851.,Pulmonary hypoplasia
+P861.,Congenital bronchiectasis
+PK35.,Kartageners syndrome
+Q317.,Neonatal chronic respiratory disease
+Q3170,Bronchopulmonary dysplasia
+Q3171,Prematurity with interstitial pulmonary fibrosis
+Q3172,Pulmonary dysmaturity
+Q317z,Perinatal chronic respiratory disease NOS
+Qyu36,[X]Other chronic resp diseases originating/perinatal period
+SP130,Mendelson's syndrome as a complication of care
+SP131,Other aspiration pneumonia as a complication of care
+Ua1AX,Brittle asthma
+X00s1,Single lung transplant
+X00s2,Double lung transplant
+X00s3,Double lung transplant as a block
+X00s4,Bilateral sequential single lung transplant
+X100V,Chronic pulmonary coccidioidomycosis
+X100l,Congenital cystic bronchiectasis
+X100m,Acquired bronchiectasis
+X100n,Idiopathic bronchiectasis
+X100o,Obstructive bronchiectasis
+X100p,Toxin-induced bronchiectasis
+X100q,Bronchiectasis due to toxic aspiration
+X100r,Bronchiectasis due to toxic inhalation
+X100t,Post-lung transplantation bronchiectasis
+X101U,Asbestos-induced pleural plaque
+X101X,Inherited mucociliary clearance defect
+X101Z,Primary ciliary dyskinesia
+X101a,Primary ciliary dyskinesia - transposn ciliary microtubules
+X101b,Immotile cilia syndrome due to defective radial spokes
+X101c,Immotile cilia syndrome due to excessively long cilia
+X101d,Young's syndrome
+X101e,Rutland ciliary disorientation syndrome
+X101i,"Chron obstruct pulmonary dis wth acute exacerbation, unspec"
+X101j,Occupational chronic bronchitis
+X101k,Byssinosis grade 3
+X101l,Bronchiolitis obliterans
+X101m,Drug-induced bronchiolitis obliterans
+X101n,Pulmonary emphysema
+X101o,Pulmonary emphysema in alpha-1 PI deficiency
+X101p,Toxic emphysema
+X101q,Congenital lobar emphysema
+X101r,Scar emphysema
+X101t,Childhood asthma
+X101u,Late onset asthma
+X101x,Allergic asthma
+X101y,Extrinsic asthma with asthma attack
+X101z,Allergic asthma NEC
+X1020,Hay fever with asthma
+X1021,Allergic non-atopic asthma
+X1022,Intrinsic asthma with asthma attack
+X1023,Drug-induced asthma
+X1024,Aspirin-sensitive asthma with nasal polyps
+X1025,Occupational asthma
+X1026,Baker's asthma
+X1027,Colophony asthma
+X1028,Grain worker's asthma
+X1029,Sulphite-induced asthma
+X102B,Mill fever
+X102D,Status asthmaticus
+X102G,Asthmatic pulmonary eosinophilia
+X102H,Cryptogenic pulmonary eosinophilia
+X102J,Animal handlers' lung
+X102K,Dog house disease
+X102L,Dry rot lung
+X102M,Lycoperdonosis
+X102N,Wheat weevil disease
+X102O,New Guinea lung
+X102P,Paprika splitters' lung
+X102Q,Pyrethrum alveolitis
+X102R,Rodent handlers' lung
+X102S,Sewage workers' lung
+X102T,Summer-type hypersensitivity pneumonitis
+X102U,Vineyard sprayers' lung
+X102j,Cryptogenic organising pneumonitis
+X102k,"Seasonal crypt organising pneumonia, biochemical cholestasis"
+X102u,Pulmonary fibrosis
+X102v,Usual interstitial pneumonitis
+X102w,Desquamative interstitial pneumonitis
+X102x,Lymphoid interstitial pneumonitis
+X102y,Giant cell interstitial pneumonitis
+X102z,Bronchiolitis obliterans with usual interstitial pneumonitis
+X1030,Toxic diffuse interstitial pulmonary fibrosis
+X1031,Drug-induced diffuse interstitial pulmonary fibrosis
+X1032,Localised pulmonary fibrosis
+X1033,Mediastinal radiation fibrosis
+X1034,Pneumonitis of non-infectious cause
+X1035,Cholesterol pneumonia
+X1038,Lupus pneumonia
+X103A,Toxic pneumonitis
+X103G,Radiation-induced fibrous mediastinitis
+X103W,Simple pneumoconiosis
+X103X,Complicated pneumoconiosis
+X103Y,Rheumatoid pneumoconiosis
+X103Z,Bentonite pneumoconiosis
+X103a,Erionite pneumoconiosis
+X103b,Kaolin pneumoconiosis
+X103c,Metal pneumoconiosis
+X103d,Antimony pneumoconiosis
+X103e,Argyro-siderosis
+X103f,Barium pneumoconiosis
+X103h,Subacute berylliosis
+X103i,Chronic berylliosis
+X103j,Cerium pneumoconiosis
+X103k,Hard metal pneumoconiosis
+X103l,Nickel pneumoconiosis
+X103m,Thorium pneumoconiosis
+X103n,Zirconium pneumoconiosis
+X103o,Mica pneumoconiosis
+X103p,Mixed mineral dust pneumoconiosis
+X103q,Liparosis
+X103r,Slate pneumoconiosis
+X103s,Diatomite pneumoconiosis
+X103u,Subacute silicosis
+X103v,Chronic silicosis
+X103w,Silicotuberculosis
+X103x,Wollastonite pneumoconiosis
+X1043,Stage 1 pulmonary sarcoidosis
+X1044,Stage 2 pulmonary sarcoidosis
+X1045,Stage 3 pulmonary sarcoidosis
+X1046,Stage 4 pulmonary sarcoidosis
+X1047,Endobronchial sarcoidosis
+X1048,Necrotising sarcoid granulomatosis
+X1049,Sarcoid pulmonary calcification
+X104B,Grain fever
+X104C,Humidifier fever
+X309R,Cystic fibrosis of pancreas
+X701k,Fibrosing alveolitis associated with rheumatoid arthritis
+X70Eg,Pneumonitis due to fetal aspiration
+X70RL,Chronic pulmonary histoplasmosis capsulati
+XE0YM,Purulent chronic bronchitis
+XE0YN,Bullous emphysema with collapse
+XE0YO,Atrophic (senile) emphysema
+XE0YP,Other emphysema NOS
+XE0YQ,Allergic atopic asthma
+XE0YR,Extrinsic asthma without status asthmaticus
+XE0YS,Extrinsic asthma with status asthmaticus
+XE0YT,Non-allergic asthma
+XE0YU,Intrinsic asthma with status asthmaticus
+XE0YV,Status asthmaticus NOS
+XE0YW,Asthma attack
+XE0YX,Asthma NOS
+XE0YY,Lung disease due to external agents
+XE0Ya,Post-inflammatory pulmonary fibrosis
+XE0Yb,Cryptogenic fibrosing alveolitis
+XE0ZN,Chronic: [bronchitis NOS] or [tracheobronchitis]
+XE0ZP,Extrinsic asthma - atopy (& pollen)
+XE0ZR,Asthma: [intrinsic] or [late onset]
+XE0ZT,Asthma: [NOS] or [attack]
+XE0ZV,"(Extrin allerg alveol)/(farm lung)/(pneumonitis, allerg NOS)"
+XE0ZX,(Asbestosis) or (byssinosis) or (pleural plaque disease)
+XE0ZZ,(Pneumoconiosis NOS) or (siderosis)
+XE0Zf,Chronic chemical resp. disease
+XE0Zh,Chemical resp. disease NOS
+XE0Zr,Idiopath. fibrosing alveolitis (& Hamman-Rich syndrome)
+XE1NO,(Congenital resp anomalies NOS) or (bronchiectasis - congen)
+XE1ep,Other specified perinatal chronic respiratory disease
+XE2Nb,Asthma monitoring check done
+XE2Pp,History of chronic obstructive pulmonary disease
+XM0s2,Asthma attack NOS
+XM1Qc,Tension pneumatocele
+XM1Xb,Asthma monitoring
+XSC3p,Complication of transplanted lung
+Xa08A,Chronic pulmonary insufficiency of prematurity
+Xa0BC,Pulmonary fibroplasia
+Xa0Qe,Congenital hypoplasia of lung
+Xa0Qi,Secondary pulmonary hypoplasia
+Xa0Qj,Pulmonary hypoplasia associated with short gestation
+Xa0Tw,Primary pulmonary hypoplasia
+Xa0lZ,Asthmatic bronchitis
+Xa1hD,Exacerbation of asthma
+Xa35l,Acute infective exacerbation chronic obstruct airway disease
+Xa8Hn,Asthma control steps
+Xa9Bw,Pneumoconiosis
+Xa9Bx,Radiation pneumonitis
+Xa9zf,Acute asthma
+XaBAQ,Recent asthma management
+XaBDb,Cystic fibrosis with other manifestations
+XaBU2,Asthma monitoring call
+XaBU3,Asthma monitoring status
+XaDvK,Asthma - currently active
+XaDvL,Asthma - currently dormant
+XaEIV,Mild chronic obstructive pulmonary disease
+XaEIW,Moderate chronic obstructive pulmonary disease
+XaEIY,Severe chronic obstructive pulmonary disease
+XaEKI,Flax-dressers' disease
+XaIIW,Asthma accident and emergency attendance since last visit
+XaIIX,Asthma treatment compliance satisfactory
+XaIIY,Asthma treatment compliance unsatisfactory
+XaIIZ,Asthma daytime symptoms
+XaIND,End stage chronic obstructive airways disease
+XaINZ,Asthma causes night symptoms 1 to 2 times per month
+XaINa,Asthma never causes daytime symptoms
+XaINb,Asthma causes daytime symptoms 1 to 2 times per month
+XaINc,Asthma causes daytime symptoms 1 to 2 times per week
+XaINd,Asthma causes daytime symptoms most days
+XaINf,Asthma limits walking up hills or stairs
+XaINg,Asthma limits walking on the flat
+XaINh,Number of asthma exacerbations in past year
+XaIOV,Asthma finding
+XaIQ4,Change in asthma management plan
+XaIQD,Step up change in asthma management plan
+XaIQE,Step down change in asthma management plan
+XaIQT,Chronic obstructive pulmonary disease monitoring
+XaIQg,Interstitial pulmonary emphysema
+XaIQh,Mediastinal emphysema
+XaIR3,Absent from work or school due to asthma
+XaIRN,Asthma monitoring due
+XaIRO,Chronic obstructive pulmonary disease monitoring due
+XaIUt,COPD self-management plan given
+XaIeq,Asthma annual review
+XaIer,Asthma follow-up
+XaIes,Chronic obstructive pulmonary disease follow-up
+XaIet,Chronic obstructive pulmonary disease annual review
+XaIfK,Asthma medication review
+XaIoE,Asthma night-time symptoms
+XaIu5,Asthma monitoring by nurse
+XaIu6,Asthma monitoring by doctor
+XaIu7,Chronic obstructive pulmonary disease monitoring by nurse
+XaIu8,Chronic obstructive pulmonary disease monitoring by doctor
+XaIuG,Asthma confirmed
+XaIww,Asthma trigger
+XaJ4k,Excepted from COPD quality indicators: Patient unsuitable
+XaJFG,Aspirin-induced asthma
+XaJFu,Admit COPD emergency
+XaJYe,Asthma clinical management plan
+XaJYf,Chronic obstructive pulmonary disease clini management plan
+XaJlS,Chronic obstructive pulmonary disease monitoring admin
+XaJlT,Chronic obstructive pulmonary disease monitoring 1st letter
+XaJlU,Chronic obstructive pulmonary disease monitoring 2nd letter
+XaJlV,Chronic obstructive pulmonary disease monitoring 3rd letter
+XaJlW,Chronic obstructive pulmonary disease monitoring verb invite
+XaJlY,Chronic obstructive pulmonary disease monitor phone invite
+XaK8Q,Chronic obstructive pulmonary disease finding
+XaK8R,COPD accident and emergency attendance since last visit
+XaK8S,Emergency COPD admission since last appointment
+XaK8U,Number of COPD exacerbations in past year
+XaKdk,Work aggravated asthma
+XaKv8,Chronic obstructive pulmonary disease disturbs sleep
+XaKv9,Chronic obstructive pulmonary disease does not disturb sleep
+XaKzy,Multiple COPD emergency hospital admissions
+XaL2O,"Pneumonitis, unspecified"
+XaLIm,Asthma trigger - respiratory infection
+XaLIn,Asthma trigger - seasonal
+XaLIr,Asthma trigger - animals
+XaLJS,Asthma trigger - cold air
+XaLJT,Asthma trigger - damp
+XaLJU,Asthma trigger - emotion
+XaLPE,Nocturnal asthma
+XaLcH,Single lobe lung transplant
+XaLqj,Health education - chronic obstructive pulmonary disease
+XaMzI,Cystic fibrosis related diabetes mellitus
+XaN4a,Very severe chronic obstructive pulmonary disease
+XaNKw,Royal College of Physicians asthma assessment
+XaO5l,Chronic type 1 respiratory failure
+XaO5m,Chronic type 2 respiratory failure
+XaOYV,Recurrent pulmonary embolism
+XaObi,Asthma trigger - airborne dust
+XaObj,Asthma trigger - exercise
+XaObk,Asthma trigger - pollen
+XaObl,Asthma trigger - tobacco smoke
+XaObm,Asthma trigger - warm air
+XaPZH,COPD patient unsuitable for pulmonary rehabilitation
+XaPls,Referred for COPD structured smoking assessment
+XaPlu,COPD structured smoking assessment declined
+XaPzu,At risk of chronic obstructive pulmonary diseas exacerbation
+XaQHq,Asthma control test
+XaQig,Asthma control questionnaire
+XaQih,Mini asthma quality of life questionnaire
+XaQij,Under care of asthma specialist nurse
+XaQvd,Cystic fibrosis annual review
+XaR8K,Did not attend asthma review
+XaRCG,Step down change in COPD management plan
+XaRCH,Step up change in COPD management plan
+XaREX,Arthropathy in cystic fibrosis
+XaREZ,Cystic fibrosis with distal intestinal obstruction syndrome
+XaREa,Liver disease due to cystic fibrosis
+XaREd,Fibrosing colonopathy
+XaRFi,Patient has a written asthma personal action plan
+XaRFj,Health education - asthma self management
+XaRFk,Health education - structured asthma discussion
+XaRFl,Health education - structured patient focused asthma discuss
+XaW9D,Issue of chronic obstructive pulmonary disease rescue pack
+XaX3n,Asthma review using Roy Colleg of Physicians three questions
+XaXCa,Chronic obstructive pulmonary disease 3 monthly review
+XaXCb,Chronic obstructive pulmonary disease 6 monthly review
+XaXZm,Asthma causes night time symptoms 1 to 2 times per week
+XaXZp,Asthma causes symptoms most nights
+XaXZs,Asthma limits activities 1 to 2 times per month
+XaXZu,Asthma limits activities 1 to 2 times per week
+XaXZx,Asthma limits activities most days
+XaXa0,Royal College Physician asthma assessment 3 question score
+XaXi9,Cystic fibrosis related cirrhosis
+XaXlE,Respiratory bronchiolitis associated interstitial lung dis
+XaXlF,Interstitial lung disease due to collagen vascular disease
+XaXlJ,Interstitial lung disease due to connective tissue disease
+XaXnt,GP OOH service notified of COPD care plan
+XaXzy,Preferred place of care for next exacerbation of COPD
+XaY05,Chronic obstructiv pulmonary disease medication optimisation
+XaY0w,Referral to COPD community nursing team
+XaY2V,Asthma never causes night symptoms
+XaYR1,Bronchiolitis obliterans syndrome after lung transplantation
+XaYZB,Asthma self-management plan review
+XaYZO,COPD self-management plan review
+XaYZh,Number days absent from school due to asthma in past 6 month
+XaYb8,Asthma self-management plan agreed
+XaYbA,COPD self-management plan agreed
+XaYby,Hantavirus pulmonary syndrome
+XaYja,Asthma trigger - wind
+XaYpF,Asthma trigger - perfume
+XaYuZ,Chronic obstructve pulmonry disease rescue pack not indicatd
+XaZ6U,On chronic obstructive pulmonary disease supprtv cre pathway
+XaZ8t,Has chronic obstructive pulmonary disease care plan
+XaZd1,Acute non-infective exacerbation of COPD
+XaZee,Chronic obstructive pulmonary disease care pathway
+XaZoz,Seen in chronic obstructive pulmonary disease clinic
+XaZp7,Chronic obstructive pulmonary disease rescue pack declined
+XaZp8,Chronic obstructive pulmon dis wr self managem plan declined
+XaZr7,Exacerbation of cystic fibrosis
+Xaa7B,Chronic asthma with fixed airflow obstruction
+Xaa7C,Eosinophilic bronchitis
+Xaa7Q,No asthma trigger identified by subject
+Xaam4,Chronic obstruct pulmonary disease management plan declined
+XaavA,Shared care chronic obstructive pulmonary disease monitoring
+Xabiu,Asthma monitorng invit SMS (short message servce) txt messge
+Xabj3,Asthma monitoring invitation email
+Xabud,H/O: bronchiectasis
+Xac33,Asthma-chronic obstructive pulmonary disease overlap syndrom
+Xac8r,Telehealth asthma monitoring
+Xac8s,Telehealth chronic obstructive pulmonary disease monitoring
+XacLz,Asthma monitoring SMS text message 1st invitation
+XacM0,Asthma monitoring SMS text message 2nd invitation
+XacM1,Asthma monitoring SMS text message 3rd invitation
+XacXj,At risk of severe asthma exacerbation
+Xafdj,Acute severe exacerbation of asthma
+Xafdy,Moderate acute exacerbation of asthma
+Xafdz,Life threatening acute exacerbation of asthma
+Xaff0,Use of asthma symptom diary
+XafhZ,COPD monitoring email invitation
+Xafhe,COPD monitring short message service text message invitation
+Xafir,COPD monitoring SMS text message first invitation
+Xafit,COPD monitoring SMS text message second invitation
+Xafiu,COPD monitoring SMS text message third invitation
+Y0017,Nocturnal Asthma
+Y137e,Asthma guidance
+Y137f,Indicators - worsening asthma
+Y138a,Indicators - asthma attack
+Y139b,Asthma guidance
+Y139c,Indicators - worsening asthma
+Y139d,Indicators - asthma attack
+Y13a1,Worsening asthma - preventer inhaler increased dose
+Y13a2,Worsening asthma - reliever inhaler increased dose 4 hourly
+Y13a3,Worsening asthma - steroid Rescue dose prednisolone
+Y13a4,Worsening asthma - steroid Rescue dose prednisolone no. 5mg tabs
+Y13a5,Worsening asthma - steroid Rescue dose prednisolone no. days treatment
+Y13a7,Peak flow - worsening asthma - less than
+Y13a8,Asthma attack - reliever use more frequent than every
+Y13a9,Asthma attack - peak flow less than
+Y1b24,Acute severe exacerbation of allergic asthma
+Y1f1b,Chronic obstructive pulmonary disease monitoring invitation
+Y1f90,Quality and Outcomes Framework asthma quality indicator-related care invitation (procedure)
+Y1f94,Quality and Outcomes Framework chronic obstructive pulmonary disease quality indicator-related care invitation (procedure)
+Y1f95,Excepted from chronic obstructive pulmonary disease quality indicators - service unavailable (finding)
+Y2708,Cystic fibrosis screening test
+Y2710,Cystic fibrosis positive

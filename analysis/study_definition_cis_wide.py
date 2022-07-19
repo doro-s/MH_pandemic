@@ -13,6 +13,7 @@ start_date = '2020-01-24'
 end_date = '2021-09-30'
 n_visits = 10
 n_years = 5
+n_years_forward = 1
 
 def get_visit_date(name, col, date):
     return {
@@ -28,13 +29,54 @@ def get_result_mk(name, col, date):
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
-            on_or_after=date,
+            on_or_before=date,
             find_first_match_in_period=True,
             date_filter_column='visit_date',
             return_expectations={
-                'category': {'ratios': {0: 0.8, 1: 0.2}}
+                'category': {'ratios': {0: 0.95, 1: 0.05}}
                 }
             )}
+
+def get_result_combined(name, col, date):
+    return {
+        name : patients.with_an_ons_cis_record(
+            returning=col,
+            on_or_before=date,
+            find_first_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                'category': {'ratios': {0: 0.9, 1: 0.1}}
+            }
+        )}
+
+def get_first_swab_date(name, col, date):
+    # User reported
+    return {
+        name : patients.with_an_ons_cis_record(
+            returning=col,
+            on_or_before=date,
+            find_first_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "incidence": 0.1
+            }
+        )}
+
+def get_first_blood_date(name, col, date):
+    # User reported
+    return {
+        name : patients.with_an_ons_cis_record(
+            returning=col,
+            on_or_before=date,
+            find_first_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "incidence": 0.1
+            }
+        )}
 
 def get_tt_positive(name, date):
     return{
@@ -42,10 +84,11 @@ def get_tt_positive(name, date):
             pathogen='SARS-CoV-2',
             test_result='positive',
             on_or_before=date,
-            returning='binary_flag',
+            returning='date',
+            date_format='YYYY-MM-DD',
             restrict_to_earliest_specimen_date=True,
             return_expectations={
-                "incidence": 0.1
+                "incidence": 0.2
             }
         )}
 
@@ -53,7 +96,8 @@ def get_hes_admission(name, date):
     return{
         name : patients.admitted_to_hospital(
             on_or_before=date,
-            returning='binary_flag',
+            returning='date_admitted',
+            date_format='YYYY-MM-DD',
             find_first_match_in_period=True,
             with_these_primary_diagnoses=codelist_from_csv(
                 'codelists/opensafely-covid-identification.csv',
@@ -61,7 +105,18 @@ def get_hes_admission(name, date):
                 column='icd10_code'
             ),
             return_expectations={
-                "incidence": 0.1
+                "incidence": 0.05
+            }
+        )}
+
+def get_date_of_death(name, date):
+    return{
+        name : patients.died_from_any_cause(
+            on_or_after=date,
+            returning='date_of_death',
+            date_format='YYYY-MM-DD',
+            return_expectations={
+                "incidence": 0.02
             }
         )}
 
@@ -70,10 +125,11 @@ def get_covid_vaccine(name, date):
         name : patients.with_tpp_vaccination_record(
             target_disease_matches="SARS-2 CORONAVIRUS",
             on_or_before=date,
-            returning='binary_flag',
+            returning='date',
+            date_format='YYYY-MM-DD',
             find_first_match_in_period=True,
             return_expectations={
-                "incidence": 0.1
+                "incidence": 0.8
             }
         )}
 
@@ -89,6 +145,30 @@ def get_alcohol(name, date):
         find_last_match_in_period=True,
         return_expectations={
             'incidence' : 0.1
+        }
+    )}
+
+def get_obesity(name, date):
+    return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-overweight-or-obese-bmi-25-or-over.csv',
+            system='snomed',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            'incidence' : 0.1
+        }
+    )}
+
+def get_bmi(name, date):
+    return {name : patients.most_recent_bmi(
+        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        return_expectations={
+            'float' : {'distribution': 'normal', 'mean': 28, 'stddev': 8},
+            'incidence' : 1
         }
     )}
 
@@ -234,9 +314,9 @@ def get_neurological_ctv3(name, date):
             system='ctv3',
             column='CTV3ID'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[date, f'{date} + {n_years_forward} years'],
         returning='binary_flag',
-        find_last_match_in_period=True,
+        find_first_match_in_period=True,
         return_expectations={
             "incidence": 0.1
         }
@@ -249,7 +329,7 @@ def get_neurological_snomed(name, date):
             system='snomed',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[date, f'{date} + {n_years_forward} years'],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -298,8 +378,18 @@ def cis_earliest_positive(start_date, n):
     # get 1st visit date
     variables = get_visit_date(f'visit_date_{i}', 'visit_date', start_date)
     
+    # get result combined
+    variables.update(get_result_combined(f'result_combined_{i}', 'result_combined', f'visit_date_{i}'))
+    
+    # get user report swab and blood
+    variables.update(get_first_swab_date(f'first_pos_swab_{i}', 'covid_test_swab_pos_first_date', f'visit_date_{i}'))
+    variables.update(get_first_blood_date(f'first_pos_blood_{i}', 'covid_test_blood_pos_first_date', f'visit_date_{i}'))
+    
     # get corresponding result_mk
     variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
+    
+    # get date of death
+    variables.update(get_date_of_death(f'date_of_death_{i}', f'visit_date_{i}'))
     
     # get evidence of covid infection history
     variables.update(get_hes_admission(f'covid_hes_{i}', f'visit_date_{i}'))
@@ -308,6 +398,8 @@ def cis_earliest_positive(start_date, n):
     
     # get health history
     variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
+    variables.update(get_obesity(f'obesity_{i}', f'visit_date_{i}'))
+    variables.update(get_bmi(f'bmi_{i}', f'visit_date_{i}'))
     variables.update(get_cancer(f'cancer_{i}', f'visit_date_{i}'))
     variables.update(get_CVD_ctv3(f'CVD_ctv3_{i}', f'visit_date_{i}'))
     variables.update(get_CVD_snomed(f'CVD_snomed_{i}', f'visit_date_{i}'))
@@ -325,9 +417,17 @@ def cis_earliest_positive(start_date, n):
     for i in range(2, n+1):
         variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))
         
+        variables.update(get_first_swab_date(f'first_pos_swab_{i}', 'covid_test_swab_pos_first_date', f'visit_date_{i}'))
+        variables.update(get_first_blood_date(f'first_pos_blood_{i}', 'covid_test_blood_pos_first_date', f'visit_date_{i}'))
+        
         variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
+        variables.update(get_result_combined(f'result_combined_{i}', 'result_combined', f'visit_date_{i}'))
+        
+        variables.update(get_date_of_death(f'date_of_death_{i}', f'visit_date_{i}'))
         
         variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
+        variables.update(get_obesity(f'obesity_{i}', f'visit_date_{i}'))
+        variables.update(get_bmi(f'bmi_{i}', f'visit_date_{i}'))
         variables.update(get_cancer(f'cancer_{i}', f'visit_date_{i}'))
         variables.update(get_CVD_ctv3(f'CVD_ctv3_{i}', f'visit_date_{i}'))
         variables.update(get_CVD_snomed(f'CVD_snomed_{i}', f'visit_date_{i}'))

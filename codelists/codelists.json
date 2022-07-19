@@ -15,13 +15,13 @@
     "ons-overweight-or-obese-bmi-25-or-over.csv": {
       "id": "ons/overweight-or-obese-bmi-25-or-over/71ebb061",
       "url": "https://codelists.opensafely.org/codelist/ons/overweight-or-obese-bmi-25-or-over/71ebb061/",
-      "downloaded_at": "2022-06-28 09:42:02.357150Z",
-      "sha": "3a718e5473eb073d351212f3a1e0b36427a1f539"
+      "downloaded_at": "2022-07-05 12:02:08.326402Z",
+      "sha": "ed77d60681ab40bf8b0adb51d3cadd8b47cf0f33"
     },
-    "primis-covid19-vacc-uptake-bmi_cod.csv": {
-      "id": "primis-covid19-vacc-uptake/bmi_cod/v.1.5.3",
-      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/bmi_cod/v.1.5.3/",
-      "downloaded_at": "2022-06-28 09:19:44.456025Z",
+    "primis-covid19-vacc-uptake-bmi.csv": {
+      "id": "primis-covid19-vacc-uptake/bmi/v.1.5.3",
+      "url": "https://codelists.opensafely.org/codelist/primis-covid19-vacc-uptake/bmi/v.1.5.3/",
+      "downloaded_at": "2022-07-06 10:05:55.665351Z",
       "sha": "6e96c04ee1a647905be2b410fa2c33d770576bf0"
     },
     "user-jkua-cancer.csv": {

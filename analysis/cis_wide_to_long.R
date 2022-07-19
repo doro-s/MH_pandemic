@@ -1,4 +1,5 @@
 library(tidyverse)
+library(purrr)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
@@ -21,11 +22,21 @@ wide_to_long <- function(df_wide, col, regex){
 
 visit_date <- wide_to_long(cis_wide, 'visit_date', 'visit\\_date\\_\\d+')
 result_mk <- wide_to_long(cis_wide, 'result_mk', 'result\\_mk\\_\\d+')
+result_combined <- wide_to_long(cis_wide, 'result_combined', 'result\\_combined\\_\\d+')
+dod <- wide_to_long(cis_wide, 'date_of_death', 'date\\_of\\_death_\\d+')
+
+first_pos_swab <- wide_to_long(cis_wide, 'first_pos_swab', 'first\\_pos\\_swab\\_\\d+')
+first_pos_blood <- wide_to_long(cis_wide, 'first_pos_blood', 'first\\_pos\\_blood\\_\\d+')
+
 covid_hes <- wide_to_long(cis_wide, 'covid_hes', 'covid\\_hes\\_\\d+')
 covid_tt <- wide_to_long(cis_wide, 'covid_tt', 'covid\\_tt\\_\\d+')
 covid_vaccine <- wide_to_long(cis_wide, 'covid_vaccine', 'covid\\_vaccine\\_\\d+')
 
 alcohol <- wide_to_long(cis_wide, 'alcohol', 'alcohol\\_\\d+')
+
+obesity <- wide_to_long(cis_wide, 'obesity', 'obesity\\_\\d+')
+
+bmi <- wide_to_long(cis_wide, 'bmi', 'bmi\\_\\d+')
 
 cancer <- wide_to_long(cis_wide, 'cancer', 'cancer\\_\\d+')
 
@@ -51,30 +62,35 @@ kidney_disorder <- wide_to_long(cis_wide, 'kidney_disorder', 'kidney\\_disorder\
 
 respiratory_disorder <- wide_to_long(cis_wide, 'respiratory_disorder', 'respiratory\\_disorder\\_\\d+')
 
+join_keys <- c('patient_id', 'visit_number')
+
 # Join everything together
 cis_long <- visit_date %>% 
-  left_join(result_mk, by = c('patient_id', 'visit_number')) %>% 
-  left_join(covid_hes, by = c('patient_id', 'visit_number')) %>% 
-  left_join(covid_tt, by = c('patient_id', 'visit_number')) %>% 
-  left_join(covid_vaccine, by = c('patient_id', 'visit_number')) %>% 
-  left_join(alcohol, by = c('patient_id', 'visit_number')) %>% 
-  left_join(cancer, by = c('patient_id', 'visit_number')) %>% 
-  left_join(CVD_ctv3, by = c('patient_id', 'visit_number')) %>% 
-  left_join(CVD_snomed, by = c('patient_id', 'visit_number')) %>% 
-  left_join(digestive_disorder, by = c('patient_id', 'visit_number')) %>% 
-  left_join(hiv_aids, by = c('patient_id', 'visit_number')) %>% 
-  left_join(mental_disorder, by = c('patient_id', 'visit_number')) %>% 
-  left_join(metabolic_disorder, by = c('patient_id', 'visit_number')) %>% 
-  left_join(musculoskeletal_ctv3, by = c('patient_id', 'visit_number')) %>% 
-  left_join(musculoskeletal_snomed, by = c('patient_id', 'visit_number')) %>% 
-  left_join(neurological_ctv3, by = c('patient_id', 'visit_number')) %>% 
-  left_join(neurological_snomed, by = c('patient_id', 'visit_number')) %>% 
-  left_join(kidney_disorder, by = c('patient_id', 'visit_number')) %>% 
-  left_join(respiratory_disorder, by = c('patient_id', 'visit_number'))
+  left_join(dod, by = join_keys) %>% 
+  left_join(first_pos_swab, by = join_keys) %>% 
+  left_join(first_pos_blood, by = join_keys) %>% 
+  left_join(result_mk, by = join_keys) %>% 
+  left_join(result_combined, by = join_keys) %>% 
+  left_join(covid_hes, by = join_keys) %>% 
+  left_join(covid_tt, by = join_keys) %>% 
+  left_join(covid_vaccine, by = join_keys) %>% 
+  left_join(alcohol, by = join_keys) %>% 
+  left_join(obesity, by = join_keys) %>% 
+  left_join(bmi, by = join_keys) %>% 
+  left_join(cancer, by = join_keys) %>% 
+  left_join(CVD_ctv3, by = join_keys) %>% 
+  left_join(CVD_snomed, by = join_keys) %>% 
+  left_join(digestive_disorder, by = join_keys) %>% 
+  left_join(hiv_aids, by = join_keys) %>% 
+  left_join(mental_disorder, by = join_keys) %>% 
+  left_join(metabolic_disorder, by = join_keys) %>% 
+  left_join(musculoskeletal_ctv3, by = join_keys) %>% 
+  left_join(musculoskeletal_snomed, by = join_keys) %>% 
+  left_join(neurological_ctv3, by = join_keys) %>% 
+  left_join(neurological_snomed, by = join_keys) %>% 
+  left_join(kidney_disorder, by = join_keys) %>% 
+  left_join(respiratory_disorder, by = join_keys) %>% 
+  select(-visit_number)
 
-# TODO
-# Put in sense check to remove rows where visit dates are not monotonically
-# increasing
-# Shouldn't be a problem in the real data but will affect pipeline devlopment
-
+# Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

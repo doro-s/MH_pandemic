@@ -8,7 +8,7 @@ opensafely/hazardous-alcohol-drinking/6364474b
 ons/overweight-or-obese-bmi-25-or-over/71ebb061
 
 # BMI (SNOMED)
-primis-covid19-vacc-uptake/bmi_cod/v.1.5.3
+primis-covid19-vacc-uptake/bmi/v.1.5.3
 
 # Cancer (ctv3)
 user/jkua/cancer/1d9bf8ff

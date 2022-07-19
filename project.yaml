@@ -26,5 +26,26 @@ actions:
             highly_sensitive:
                 cohort: output/input_reconciled.csv
     
+    derive_exposed:
+        run: r:latest analysis/exposed_population.R
+        needs: [reconcile_snomed_ctv3]
+        outputs:
+            highly_sensitive:
+                cohort: output/cis_exposed.csv
+    
+    derive_controls:
+        run: r:latest analysis/control_population.R
+        needs: [reconcile_snomed_ctv3]
+        outputs:
+            highly_sensitive:
+                cohort: output/cis_control.csv
+                
+    perform matching:
+        run: r:latest analysis/create_controls.R
+        needs: [derive_exposed, derive_controls]
+        outputs:
+            moderately_sensitive:
+                cohort: output/group_flags.csv
+    
 
 

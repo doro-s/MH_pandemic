@@ -62,35 +62,109 @@ kidney_disorder <- wide_to_long(cis_wide, 'kidney_disorder', 'kidney\\_disorder\
 
 respiratory_disorder <- wide_to_long(cis_wide, 'respiratory_disorder', 'respiratory\\_disorder\\_\\d+')
 
+rm(cis_wide)
+gc()
+
 join_keys <- c('patient_id', 'visit_number')
 
 # Join everything together
 cis_long <- visit_date %>% 
-  left_join(dod, by = join_keys) %>% 
-  left_join(first_pos_swab, by = join_keys) %>% 
-  left_join(first_pos_blood, by = join_keys) %>% 
-  left_join(result_mk, by = join_keys) %>% 
-  left_join(result_combined, by = join_keys) %>% 
-  left_join(covid_hes, by = join_keys) %>% 
-  left_join(covid_tt, by = join_keys) %>% 
-  left_join(covid_vaccine, by = join_keys) %>% 
-  left_join(alcohol, by = join_keys) %>% 
-  left_join(obesity, by = join_keys) %>% 
-  left_join(bmi, by = join_keys) %>% 
-  left_join(cancer, by = join_keys) %>% 
-  left_join(CVD_ctv3, by = join_keys) %>% 
-  left_join(CVD_snomed, by = join_keys) %>% 
-  left_join(digestive_disorder, by = join_keys) %>% 
-  left_join(hiv_aids, by = join_keys) %>% 
-  left_join(mental_disorder, by = join_keys) %>% 
-  left_join(metabolic_disorder, by = join_keys) %>% 
-  left_join(musculoskeletal_ctv3, by = join_keys) %>% 
-  left_join(musculoskeletal_snomed, by = join_keys) %>% 
-  left_join(neurological_ctv3, by = join_keys) %>% 
-  left_join(neurological_snomed, by = join_keys) %>% 
-  left_join(kidney_disorder, by = join_keys) %>% 
+  left_join(dod, by = join_keys)
+rm(dod)
+
+cis_long <- cis_long %>% 
+  left_join(first_pos_swab, by = join_keys)
+rm(first_pos_swab)
+
+cis_long <- cis_long %>% 
+  left_join(first_pos_blood, by = join_keys)
+rm(first_pos_blood)
+
+cis_long <- cis_long %>% 
+  left_join(result_mk, by = join_keys)
+rm(result_mk)
+
+cis_long <- cis_long %>% 
+  left_join(result_combined, by = join_keys)
+rm(result_combined)
+
+cis_long <- cis_long %>% 
+  left_join(covid_hes, by = join_keys)
+rm(covid_hes)
+
+cis_long <- cis_long %>% 
+  left_join(covid_tt, by = join_keys)
+rm(covid_tt)
+
+cis_long <- cis_long %>% 
+  left_join(covid_vaccine, by = join_keys)
+rm(covid_vaccine)
+
+cis_long <- cis_long %>% 
+  left_join(alcohol, by = join_keys)
+rm(alcohol)
+
+cis_long <- cis_long %>% 
+  left_join(obesity, by = join_keys)
+rm(obesity)
+
+cis_long <- cis_long %>% 
+  left_join(bmi, by = join_keys)
+rm(bmi)
+
+cis_long <- cis_long %>% 
+  left_join(cancer, by = join_keys) 
+rm(cancer)
+
+cis_long <- cis_long %>% 
+  left_join(CVD_ctv3, by = join_keys)
+rm(CVD_ctv3)
+
+cis_long <- cis_long %>% 
+  left_join(CVD_snomed, by = join_keys)
+rm(CVD_snomed)
+   
+cis_long <- cis_long %>% 
+  left_join(digestive_disorder, by = join_keys)
+rm(digestive_disorder)
+   
+cis_long <- cis_long %>% 
+  left_join(hiv_aids, by = join_keys) 
+rm(hiv_aids)
+
+cis_long <- cis_long %>% 
+  left_join(mental_disorder, by = join_keys)
+rm(mental_disorder)
+
+cis_long <- cis_long %>% 
+  left_join(metabolic_disorder, by = join_keys)
+rm(metabolic_disorder)
+
+cis_long <- cis_long %>% 
+  left_join(musculoskeletal_ctv3, by = join_keys)
+rm(musculoskeletal_ctv3)
+
+cis_long <- cis_long %>% 
+  left_join(musculoskeletal_snomed, by = join_keys)
+rm(musculoskeletal_snomed)
+
+cis_long <- cis_long %>% 
+  left_join(neurological_ctv3, by = join_keys)
+rm(neurological_ctv3)
+
+cis_long <- cis_long %>% 
+  left_join(neurological_snomed, by = join_keys)
+rm(neurological_snomed)
+
+cis_long <- cis_long %>% 
+  left_join(kidney_disorder, by = join_keys)
+rm(kidney_disorder)
+
+cis_long <- cis_long %>% 
   left_join(respiratory_disorder, by = join_keys) %>% 
   select(-visit_number)
+rm(respiratory_disorder)
+gc()
 
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

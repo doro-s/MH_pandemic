@@ -33,7 +33,7 @@ def get_result_mk(name, col, date):
             find_first_match_in_period=True,
             date_filter_column='visit_date',
             return_expectations={
-                'category': {'ratios': {0: 0.95, 1: 0.05}}
+                'category': {'ratios': {0: 0.99, 1: 0.01}}
                 }
             )}
 

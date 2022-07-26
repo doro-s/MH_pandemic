@@ -33,7 +33,7 @@ def get_result_mk(name, col, date):
             find_first_match_in_period=True,
             date_filter_column='visit_date',
             return_expectations={
-                'category': {'ratios': {0: 0.99, 1: 0.01}}
+                'category': {'ratios': {0: 0.95, 1: 0.05}}
                 }
             )}
 
@@ -50,12 +50,12 @@ def get_result_combined(name, col, date):
             }
         )}
 
-def get_first_swab_date(name, col, date):
+def get_first_swab_date(name, col):
     # User reported
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
-            on_or_before=date,
+            between=[start_date, end_date],
             find_first_match_in_period=True,
             date_format='YYYY-MM-DD',
             date_filter_column='visit_date',
@@ -64,12 +64,12 @@ def get_first_swab_date(name, col, date):
             }
         )}
 
-def get_first_blood_date(name, col, date):
+def get_first_blood_date(name, col):
     # User reported
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
-            on_or_before=date,
+            between=[start_date, end_date],
             find_first_match_in_period=True,
             date_format='YYYY-MM-DD',
             date_filter_column='visit_date',
@@ -78,24 +78,24 @@ def get_first_blood_date(name, col, date):
             }
         )}
 
-def get_tt_positive(name, date):
+def get_tt_positive(name):
     return{
         name : patients.with_test_result_in_sgss(
             pathogen='SARS-CoV-2',
             test_result='positive',
-            on_or_before=date,
+            between=[start_date, end_date],
             returning='date',
             date_format='YYYY-MM-DD',
             restrict_to_earliest_specimen_date=True,
             return_expectations={
-                "incidence": 0.2
+                "incidence": 0.1
             }
         )}
 
-def get_hes_admission(name, date):
+def get_hes_admission(name):
     return{
         name : patients.admitted_to_hospital(
-            on_or_before=date,
+            between=[start_date, end_date],
             returning='date_admitted',
             date_format='YYYY-MM-DD',
             find_first_match_in_period=True,
@@ -109,10 +109,10 @@ def get_hes_admission(name, date):
             }
         )}
 
-def get_date_of_death(name, date):
+def get_date_of_death(name):
     return{
         name : patients.died_from_any_cause(
-            on_or_after=date,
+            between=[start_date, end_date],
             returning='date_of_death',
             date_format='YYYY-MM-DD',
             return_expectations={
@@ -120,11 +120,11 @@ def get_date_of_death(name, date):
             }
         )}
 
-def get_covid_vaccine(name, date):
+def get_covid_vaccine(name):
     return{
         name : patients.with_tpp_vaccination_record(
             target_disease_matches="SARS-2 CORONAVIRUS",
-            on_or_before=date,
+            between=[start_date, end_date],
             returning='date',
             date_format='YYYY-MM-DD',
             find_first_match_in_period=True,
@@ -378,23 +378,21 @@ def cis_earliest_positive(start_date, n):
     # get 1st visit date
     variables = get_visit_date(f'visit_date_{i}', 'visit_date', start_date)
     
-    # get result combined
+    # get result combined and corresponding result_mk
+    variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
     variables.update(get_result_combined(f'result_combined_{i}', 'result_combined', f'visit_date_{i}'))
     
-    # get user report swab and blood
-    variables.update(get_first_swab_date(f'first_pos_swab_{i}', 'covid_test_swab_pos_first_date', f'visit_date_{i}'))
-    variables.update(get_first_blood_date(f'first_pos_blood_{i}', 'covid_test_blood_pos_first_date', f'visit_date_{i}'))
-    
-    # get corresponding result_mk
-    variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
+    # get earliest positive user report swab and blood
+    variables.update(get_first_swab_date('first_pos_swab', 'covid_test_swab_pos_first_date'))
+    variables.update(get_first_blood_date('first_pos_blood', 'covid_test_blood_pos_first_date'))
     
     # get date of death
-    variables.update(get_date_of_death(f'date_of_death_{i}', f'visit_date_{i}'))
+    variables.update(get_date_of_death('date_of_death'))
     
     # get evidence of covid infection history
-    variables.update(get_hes_admission(f'covid_hes_{i}', f'visit_date_{i}'))
-    variables.update(get_tt_positive(f'covid_tt_{i}', f'visit_date_{i}'))
-    variables.update(get_covid_vaccine(f'covid_vaccine_{i}', f'visit_date_{i}'))
+    variables.update(get_hes_admission('covid_hes'))
+    variables.update(get_tt_positive('covid_tt'))
+    variables.update(get_covid_vaccine('covid_vaccine'))
     
     # get health history
     variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
@@ -417,14 +415,9 @@ def cis_earliest_positive(start_date, n):
     for i in range(2, n+1):
         variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))
         
-        variables.update(get_first_swab_date(f'first_pos_swab_{i}', 'covid_test_swab_pos_first_date', f'visit_date_{i}'))
-        variables.update(get_first_blood_date(f'first_pos_blood_{i}', 'covid_test_blood_pos_first_date', f'visit_date_{i}'))
-        
         variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
         variables.update(get_result_combined(f'result_combined_{i}', 'result_combined', f'visit_date_{i}'))
-        
-        variables.update(get_date_of_death(f'date_of_death_{i}', f'visit_date_{i}'))
-        
+ 
         variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
         variables.update(get_obesity(f'obesity_{i}', f'visit_date_{i}'))
         variables.update(get_bmi(f'bmi_{i}', f'visit_date_{i}'))
@@ -443,10 +436,6 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_neurological_snomed(f'neurological_snomed_{i}', f'visit_date_{i}'))
         variables.update(get_kidney_disorder(f'kidney_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_respiratory_disorder(f'respiratory_disorder_{i}', f'visit_date_{i}'))  
-        
-        variables.update(get_hes_admission(f'covid_hes_{i}', f'visit_date_{i}'))
-        variables.update(get_tt_positive(f'covid_tt_{i}', f'visit_date_{i}'))
-        variables.update(get_covid_vaccine(f'covid_vaccine_{i}', f'visit_date_{i}'))
         
     return variables
     

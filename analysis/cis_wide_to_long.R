@@ -1,9 +1,9 @@
 library(tidyverse)
 library(purrr)
 
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('output/input_cis_wide.csv')
+cis_wide <- read_csv('../output/input_cis_wide.csv')
 
 wide_to_long <- function(df_wide, col, regex){
   
@@ -23,14 +23,11 @@ wide_to_long <- function(df_wide, col, regex){
 visit_date <- wide_to_long(cis_wide, 'visit_date', 'visit\\_date\\_\\d+')
 result_mk <- wide_to_long(cis_wide, 'result_mk', 'result\\_mk\\_\\d+')
 result_combined <- wide_to_long(cis_wide, 'result_combined', 'result\\_combined\\_\\d+')
-dod <- wide_to_long(cis_wide, 'date_of_death', 'date\\_of\\_death_\\d+')
 
-first_pos_swab <- wide_to_long(cis_wide, 'first_pos_swab', 'first\\_pos\\_swab\\_\\d+')
-first_pos_blood <- wide_to_long(cis_wide, 'first_pos_blood', 'first\\_pos\\_blood\\_\\d+')
-
-covid_hes <- wide_to_long(cis_wide, 'covid_hes', 'covid\\_hes\\_\\d+')
-covid_tt <- wide_to_long(cis_wide, 'covid_tt', 'covid\\_tt\\_\\d+')
-covid_vaccine <- wide_to_long(cis_wide, 'covid_vaccine', 'covid\\_vaccine\\_\\d+')
+cis_dates <- cis_wide %>% 
+  select(patient_id, date_of_death, 
+         first_pos_swab, first_pos_blood, 
+         covid_hes, covid_tt, covid_vaccine)
 
 alcohol <- wide_to_long(cis_wide, 'alcohol', 'alcohol\\_\\d+')
 
@@ -69,36 +66,12 @@ join_keys <- c('patient_id', 'visit_number')
 
 # Join everything together
 cis_long <- visit_date %>% 
-  left_join(dod, by = join_keys)
-rm(dod)
-
-cis_long <- cis_long %>% 
-  left_join(first_pos_swab, by = join_keys)
-rm(first_pos_swab)
-
-cis_long <- cis_long %>% 
-  left_join(first_pos_blood, by = join_keys)
-rm(first_pos_blood)
-
-cis_long <- cis_long %>% 
   left_join(result_mk, by = join_keys)
 rm(result_mk)
 
 cis_long <- cis_long %>% 
   left_join(result_combined, by = join_keys)
 rm(result_combined)
-
-cis_long <- cis_long %>% 
-  left_join(covid_hes, by = join_keys)
-rm(covid_hes)
-
-cis_long <- cis_long %>% 
-  left_join(covid_tt, by = join_keys)
-rm(covid_tt)
-
-cis_long <- cis_long %>% 
-  left_join(covid_vaccine, by = join_keys)
-rm(covid_vaccine)
 
 cis_long <- cis_long %>% 
   left_join(alcohol, by = join_keys)
@@ -164,6 +137,10 @@ cis_long <- cis_long %>%
   left_join(respiratory_disorder, by = join_keys) %>% 
   select(-visit_number)
 rm(respiratory_disorder)
+
+cis_long <- cis_long %>% 
+  left_join(cis_dates, by = 'patient_id')
+rm(cis_dates)
 gc()
 
 # Save out

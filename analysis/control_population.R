@@ -47,7 +47,7 @@ cis_never_pos <- cis %>%
   filter(ever_tested_pos == 0) %>%
   mutate(min_pos_date_cis = as.Date('2100-01-01')) %>%
   ungroup() %>%
-  select(patient_id, min_pos_date_cis, eos_date, visit_date_one_year) %>% 
+  select(-ever_tested_pos) %>% 
   distinct(.keep_all = TRUE)
 
 cis_pos <- cis %>%
@@ -56,7 +56,6 @@ cis_pos <- cis %>%
   mutate(min_pos_date_cis = min(visit_date)) %>%
   filter(min_pos_date_cis == visit_date) %>%
   ungroup() %>%
-  select(patient_id, min_pos_date_cis, eos_date, visit_date_one_year) %>% 
   distinct(.keep_all = TRUE)
 
 cis_dates <- rbind(cis_never_pos, cis_pos)
@@ -210,7 +209,12 @@ cis <- cis %>%
   left_join(cis_dates, by = 'patient_id') %>% 
   select(-date_of_death, -first_pos_swab, -first_pos_blood,
          -result_combined, -covid_hes, -covid_tt,
-         -covid_vaccine, -eos_date)
+         -covid_vaccine, -eos_date, -visit_date_one_year)
+
+# Create overweight flag
+cis <- cis %>% 
+  mutate(overweight = ifelse(bmi >= 25, 1, 0)) %>% 
+  select(-bmi)
 
 # Save data
 write_csv(cis, 'output/cis_control.csv')

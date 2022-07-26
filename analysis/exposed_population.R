@@ -40,10 +40,7 @@ exposed <- cis %>%
   group_by(patient_id) %>%
   mutate(min_pos_date_cis = min(visit_date)) %>%
   filter(min_pos_date_cis == visit_date) %>%
-  ungroup() %>%
-  select(patient_id, 
-         min_pos_date_cis,
-         visit_date_one_year)
+  ungroup()
 
 min_pos_tt <- cis %>%
   filter(covid_tt != '2100-01-01') %>%
@@ -92,7 +89,15 @@ exposed <- exposed %>%
 exposed <- exposed %>%
   mutate(end_date = if_else(eos_date <= visit_date_one_year, eos_date, visit_date_one_year)) %>%
   mutate(end_date = if_else(end_date <= dod, end_date, dod)) %>%
-  select(-eos_date, -visit_date_one_year, -dod)
+  select(-eos_date, -visit_date_one_year, -dod,
+         -first_pos_swab, -first_pos_blood, -result_combined,
+         -covid_hes, -covid_tt, -covid_vaccine,
+         -date_of_death)
+
+# Create overweight flag
+exposed <- exposed %>% 
+  mutate(overweight = ifelse(bmi >= 25, 1, 0)) %>% 
+  select(-bmi)
 
 # Save index dates for exposed population
 write_csv(exposed, 'output/cis_exposed.csv')

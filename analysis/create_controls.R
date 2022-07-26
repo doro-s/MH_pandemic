@@ -5,7 +5,7 @@ library(tidyverse)
 # Read in exposed population
 exposed <- read_csv('../output/cis_exposed.csv')
 
-# Bring cis dates into memory
+# Bring cis dates into memory #################### this data is wrong - 10x too many visits
 control <- read_csv('../output/cis_control.csv')
 
 # Make copy of cis dates that can be reduced
@@ -138,6 +138,13 @@ for (i in 1:nrow(exposed)){
   
   control <- control %>%
     mutate(group_id = ifelse(patient_id %in% control_ids, i, group_id))
+  
+  for (i in nrow(temp)){
+    id <- temp$patient_id[i]
+    v_date <- temp$visit_date[i]
+    control <- control %>% 
+      mutate(visit_date_flag = ifelse(patient_id == id & visit_date == v_date, 1, 0))
+  }
   
   # Remove from visit level population
   control_reduced <- control_reduced %>%

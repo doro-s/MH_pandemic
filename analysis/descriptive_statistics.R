@@ -1,21 +1,21 @@
 library(tidyverse)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-source('../analysis/cov_dist_cat.R')
-source('../analysis/cov_dist_cont.R')
+source('analysis/cov_dist_cat.R')
+source('analysis/cov_dist_cont.R')
 
-matched <- read_csv('../output/group_flags.csv')
+matched <- read_csv('output/group_flags.csv')
 
 # Need to read in matched person level data
 # Only need to consider participants characteristics at the index date
 # 100% of cases and 0% controls should have result_mk == 1
 
 # Read in exposed population
-exposed <- read_csv('../output/cis_exposed.csv')
+exposed <- read_csv('output/cis_exposed.csv')
 
 # Bring cis dates into memory
-control <- read_csv('../output/cis_control.csv')
+control <- read_csv('output/cis_control.csv')
 
 # Add flag for exposed
 control <- control %>% 

@@ -1,12 +1,12 @@
 library(tidyverse)
 
-(dirname(rstudioapi::getActiveDocumentContext()$path))
+# (dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Read in exposed population
-exposed <- read_csv('../output/cis_exposed.csv')
+exposed <- read_csv('output/cis_exposed.csv')
 
 # Bring cis dates into memory #################### this data is wrong - 10x too many visits
-control <- read_csv('../output/cis_control.csv')
+control <- read_csv('output/cis_control.csv')
 
 # Make copy of cis dates that can be reduced
 control_reduced <- control %>% 

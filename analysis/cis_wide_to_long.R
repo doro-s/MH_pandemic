@@ -1,9 +1,9 @@
 library(tidyverse)
 library(purrr)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('../output/input_cis_wide.csv')
+cis_wide <- read_csv('output/input_cis_wide.csv')
 
 wide_to_long <- function(df_wide, col, regex){
   

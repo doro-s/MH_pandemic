@@ -6,7 +6,8 @@ library(tidyverse)
 exposed <- read_csv('output/cis_exposed.csv')
 
 # Bring cis dates into memory #################### this data is wrong - 10x too many visits
-control <- read_csv('output/cis_control.csv')
+control <- read_csv('output/cis_control.csv') %>% 
+  mutate(visit_date_flag = 0)
 
 # Make copy of cis dates that can be reduced
 control_reduced <- control %>% 
@@ -26,24 +27,7 @@ exposed <- slice_sample(exposed, n=nrow(exposed), replace=FALSE) %>%
 N <- 5
 
 
-# Create data structure to store matching results
-n <- nrow(exposed)
-groups <- data.frame(matching_group = 1:n,
-                     exposed = character(n),
-                     index_date_exposed = rep(as.Date('2100-01-01'), n),
-                     end_date_exposed = rep(as.Date('2100-01-01'), n),
-                     stringsAsFactors = FALSE)
-
-for (i in 1:N){
-  var <- paste0('control_', i)
-  groups[var] <- character(n)
-  var <- paste0('index_date_control_', i)
-  groups[var] <- as.Date('2100-01-01')
-  var <- paste0('end_date_control_', i)
-  groups[var] <- as.Date('2100-01-01')
-}
-
-
+# Run the matching
 for (i in 1:nrow(exposed)){
   
   if (i %% 10 == 0){
@@ -59,7 +43,7 @@ for (i in 1:nrow(exposed)){
   end_date_exposed <- row$end_date[1]
   
   # Get min and max dates based on date_positive
-  date_pos_exposed <- row$min_pos_covid[1]
+  date_pos_exposed <- row$date_positive[1]
   visit_date_min <- date_pos_exposed - 14
   visit_date_max <- date_pos_exposed + 14
   
@@ -84,7 +68,7 @@ for (i in 1:nrow(exposed)){
   
   # If no controls, move on to next exposed person
   if (nrow(temp) == 0){
-    print('No controls found')
+    # print('No controls found')
     next
   }
   
@@ -93,7 +77,7 @@ for (i in 1:nrow(exposed)){
   control_ids <- unique(temp$patient_id)
   
   if (length(control_ids) < N){
-    print(paste0('Fewer than ', N, ' controls found - taking maximum'))
+    # print(paste0('Fewer than ', N, ' controls found - taking maximum'))
     print(length(control_ids))
   }
   else{
@@ -115,19 +99,6 @@ for (i in 1:nrow(exposed)){
     select(-t_to_origin, -row_id) %>%
     ungroup()
   
-  # Add to groups table
-  groups$exposed[i] <- id_pos_exposed
-  groups$index_date_exposed[i] <- date_pos_exposed
-  groups$end_date_exposed[i] <- end_date_exposed
-  for (j in 1:nrow(temp)){
-    var <- paste0('control_', j)
-    groups[[var]][i] <- temp$patient_id[j]
-    var <- paste0('index_date_control_', j)
-    groups[[var]][i] <- temp$visit_date[j]
-    var <- paste0('end_date_control_', j)
-    groups[[var]][i] <- temp$end_date[j]
-  }
-  
   # Remove the selected control(s) from the population
   # (cannot be a control for someone else)  
   exposed <- exposed %>%
@@ -143,7 +114,7 @@ for (i in 1:nrow(exposed)){
     id <- temp$patient_id[i]
     v_date <- temp$visit_date[i]
     control <- control %>% 
-      mutate(visit_date_flag = ifelse(patient_id == id & visit_date == v_date, 1, 0))
+      mutate(visit_date_flag = ifelse(patient_id == id & visit_date == v_date, 1, visit_date_flag))
   }
   
   # Remove from visit level population
@@ -153,60 +124,19 @@ for (i in 1:nrow(exposed)){
 }
 
 
+rm(temp, control_reduced, row)
 
-## Reformat table into 1 row per person (CIS ID/NHS number) ##
+control <- control %>% 
+  filter(visit_date_flag == 1) %>% 
+  mutate(exposed = 0) %>% 
+  select(-visit_date_flag)
 
-flags <- control %>%
-  select(patient_id) %>%
-  distinct(patient_id, .keep_all = TRUE) %>%
-  mutate(group_exposed = -1,
-         group_control = -1,
-         index_date_exposed = as.Date('2100-01-01'),
-         index_date_control = as.Date('2100-01-01'),
-         end_date_exposed = as.Date('2100-01-01'),
-         end_date_control = as.Date('2100-01-01'))
+exposed <- exposed %>% 
+  mutate(exposed = 1)
 
-# For every group, populate placeholder
-for (i in 1:nrow(groups)){
+groups <- rbind(control, exposed) %>% 
+  filter(group_id != -1)
 
-  row <- groups[i, ]
-
-  # Get exposed person info
-  exposed_id <- row$exposed[1]
-  index_date_exp <- row$index_date_exposed[1]
-  end_date_exp <- row$end_date_exposed[1]
-
-  # Populate exposed person
-  flags <- flags %>%
-    mutate(group_exposed = ifelse(patient_id == exposed_id, i, group_exposed),
-           index_date_exposed = if_else(patient_id == exposed_id, index_date_exp, index_date_exposed),
-           end_date_exposed = if_else(patient_id == exposed_id, end_date_exp, end_date_exposed))
-
-  # Loop through all available controls
-  # and populate control rows
-  for (j in 1:N){
-    # Get exposed person info
-    var <- paste0('control_', j)
-    control_id <- row[[var]][1]
-    # Stop looping through controls if none left
-    if (is.na(control_id)){
-      print('yes')
-      break
-    }
-    var <- paste0('index_date_control_', j)
-    index_date_con <- row[[var]][1]
-    var <- paste0('end_date_control_', j)
-    end_date_con <- row[[var]][1]
-
-    # Populate control person
-    flags <- flags %>%
-      mutate(group_control = ifelse(patient_id == control_id, i, group_control),
-             index_date_control = if_else(patient_id == control_id, index_date_con, index_date_control),
-             end_date_control = if_else(patient_id == control_id, end_date_con, end_date_control))
-
-  }
-
-}
 
 # Save flags
-write_csv(flags, 'output/group_flags.csv')
+write_csv(groups, 'output/group_flags.csv')

@@ -25,10 +25,15 @@ cis <- cis %>%
 cis <- cis %>% 
   arrange(patient_id, visit_date)
 
-# Remove rows where date of death < visit date
+# Remove rows where date of death < visit date, and where duplicated visit dates
 # Won't be necessary in actual data
 cis <- cis %>% 
-  filter(date_of_death > visit_date)
+  mutate(row_id = 1:nrow(cis)) %>% 
+  filter(date_of_death > visit_date) %>% 
+  group_by(patient_id, visit_date) %>% 
+  filter(n() == 1) %>% 
+  ungroup() %>% 
+  select(-row_id)
 
 # Add 365 days to most recent visit date per person,
 # do not link to anything after this date
@@ -38,24 +43,26 @@ cis <- cis %>%
          eos_date = as.Date('2021-09-30')) %>%
   ungroup()
 
+
 # Derive all source dates for entire cis data
 
-# Earliest date of +ve test in cis
+# All rows in CIS where eligible for control
 cis_never_pos <- cis %>%
   group_by(patient_id) %>%
   mutate(ever_tested_pos = ifelse(sum(result_mk) > 0, 1, 0)) %>%
   filter(ever_tested_pos == 0) %>%
   mutate(min_pos_date_cis = as.Date('2100-01-01')) %>%
+  filter(visit_date == min(visit_date)) %>% 
   ungroup() %>%
   select(-ever_tested_pos) %>% 
   distinct(.keep_all = TRUE)
 
 cis_pos <- cis %>%
-  filter(result_mk == 1) %>%
+  filter(result_mk == 1) %>% 
   group_by(patient_id) %>%
   mutate(min_pos_date_cis = min(visit_date)) %>%
   filter(min_pos_date_cis == visit_date) %>%
-  ungroup() %>%
+  ungroup() %>% 
   distinct(.keep_all = TRUE)
 
 cis_dates <- rbind(cis_never_pos, cis_pos)

@@ -40,12 +40,19 @@ actions:
             highly_sensitive:
                 cohort: output/cis_control.csv
                 
-    # perform matching:
-    #     run: r:latest analysis/create_controls.R
-    #     needs: [derive_exposed, derive_controls]
-    #     outputs:
-    #         moderately_sensitive:
-    #             cohort: output/group_flags.csv
+    perform_matching:
+        run: r:latest analysis/create_controls.R
+        needs: [derive_exposed, derive_controls]
+        outputs:
+            highly_sensitive:
+                cohort: output/group_flags.csv
+    
+    descriptive_stats:
+        run: r:latest analysis/descriptive_statistics.R
+        needs: [perform_matching]
+        outputs:
+            moderately_sensitive:
+                cohort: output/cat_stats.csv
     
 
 

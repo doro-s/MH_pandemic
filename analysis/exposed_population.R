@@ -59,7 +59,7 @@ exposed <- exposed %>%
   mutate(min_pos_date_tt = if_else(is.na(min_pos_date_tt), as.Date('2100-01-01'), min_pos_date_tt)) %>%
   mutate(min_pos_date_tt = if_else(min_pos_date_tt > visit_date_one_year, as.Date('2100-01-01'), min_pos_date_tt)) %>% 
   # Get minimum of T&T and CIS
-  mutate(min_pos_covid = pmin(min_pos_date_cis, min_pos_date_tt)) %>% 
+  mutate(date_positive = pmin(min_pos_date_cis, min_pos_date_tt)) %>% 
   select(-min_pos_date_cis, -min_pos_date_tt)
 
 # Derive end of study date for exposed

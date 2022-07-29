@@ -116,7 +116,7 @@ def get_date_of_death(name):
             returning='date_of_death',
             date_format='YYYY-MM-DD',
             return_expectations={
-                "incidence": 0.02
+                "incidence": 0.05
             }
         )}
 

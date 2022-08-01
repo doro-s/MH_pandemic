@@ -16,6 +16,8 @@ actions:
         run: r:latest analysis/cis_wide_to_long.R
         needs: [generate_cis_visit_level]
         outputs:
+            moderately_sensitive:
+                cohort: output/cis_wide_dimensions.csv
             highly_sensitive:
                 cohort: output/input_cis_long.csv
     

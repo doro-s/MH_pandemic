@@ -12,7 +12,7 @@ from codelists import *
 start_date = '2020-01-24'
 end_date = '2021-09-30'
 n_visits = 10
-n_years = 5
+n_years_back = 5
 n_years_forward = 1
 
 def get_visit_date(name, col, date):
@@ -140,7 +140,7 @@ def get_alcohol(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -155,7 +155,7 @@ def get_obesity(name, date):
             system='snomed',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -165,7 +165,7 @@ def get_obesity(name, date):
 
 def get_bmi(name, date):
     return {name : patients.most_recent_bmi(
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         return_expectations={
             'float' : {'distribution': 'normal', 'mean': 28, 'stddev': 8},
             'incidence' : 1
@@ -179,7 +179,7 @@ def get_cancer(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -194,7 +194,7 @@ def get_CVD_ctv3(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -209,7 +209,7 @@ def get_CVD_snomed(name, date):
             system='snomed',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -224,7 +224,7 @@ def get_digestive_disorder(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -239,7 +239,7 @@ def get_hiv_aids(name, date):
             system='snomed',
             column='id'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -254,7 +254,7 @@ def get_mental_disorder(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -269,7 +269,7 @@ def get_metabolic_disorder(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -284,7 +284,7 @@ def get_musculoskeletal_ctv3(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -299,7 +299,7 @@ def get_musculoskeletal_snomed(name, date):
             system='snomed',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -344,7 +344,7 @@ def get_kidney_disorder(name, date):
             system='snomed',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -359,7 +359,7 @@ def get_respiratory_disorder(name, date):
             system='ctv3',
             column='code'
         ),
-        between=[max(f'{date} - {n_years} years', '2016-01-01'), date],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -442,7 +442,7 @@ def cis_earliest_positive(start_date, n):
 
 study = StudyDefinition(
     
-    population=patients.all(),
+    population=patients.registered_as_of('2016-01-01'),
 
     default_expectations={
         "date": {"earliest": start_date, "latest": end_date},

@@ -54,7 +54,8 @@ actions:
         needs: [perform_matching]
         outputs:
             moderately_sensitive:
-                cohort: output/cat_stats.csv
+                cat_stats: output/cat_stats.csv
+                con_stats: output/cont_stats.csv
     
 
 

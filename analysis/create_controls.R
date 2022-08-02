@@ -137,6 +137,10 @@ exposed <- exposed %>%
 groups <- rbind(control, exposed) %>% 
   filter(group_id != -1)
 
+# Create overweight flag
+groups <- groups %>% 
+  mutate(overweight = ifelse(bmi >= 25, 1, 0))
+
 
 # Save flags
 write_csv(groups, 'output/group_flags.csv')

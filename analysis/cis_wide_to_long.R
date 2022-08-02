@@ -8,6 +8,10 @@ cis_wide <- read_csv('output/input_cis_wide.csv')
 table_dims <- as.data.frame(dim(cis_wide))
 write_csv(table_dims, 'output/cis_wide_dimensions.csv')
 
+# Remove anyone not in the CIS
+cis_wide <- cis_wide %>% 
+  filter(!is.na(visit_date_1))
+
 wide_to_long <- function(df_wide, col, regex){
   
   df_long <- cis_wide %>%
@@ -27,12 +31,13 @@ cis_dates <- cis_wide %>%
   select(patient_id, date_of_death, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine)
+# ,
+         # last_linkage_dt, nhs_data_share)
 
 # Join keys
 join_keys <- c('patient_id', 'visit_number')
 
-visit_date <- wide_to_long(cis_wide, 'visit_date', 'visit\\_date\\_\\d+') %>% 
-  filter(!is.na(visit_date))
+visit_date <- wide_to_long(cis_wide, 'visit_date', 'visit\\_date\\_\\d+')
 result_mk <- wide_to_long(cis_wide, 'result_mk', 'result\\_mk\\_\\d+')
 cis_long <- visit_date %>% 
   left_join(result_mk, by = join_keys)
@@ -43,6 +48,12 @@ result_combined <- wide_to_long(cis_wide, 'result_combined', 'result\\_combined\
 cis_long <- cis_long %>% 
   left_join(result_combined, by = join_keys)
 rm(result_combined)
+
+
+age <- wide_to_long(cis_wide, 'age', 'age\\_\\d+')
+cis_long <- cis_long %>% 
+  left_join(age, by = join_keys)
+rm(age)
 
 
 alcohol <- wide_to_long(cis_wide, 'alcohol', 'alcohol\\_\\d+')
@@ -93,10 +104,16 @@ cis_long <- cis_long %>%
 rm(hiv_aids)
 
 
-mental_disorder <- wide_to_long(cis_wide, 'mental_disorder', 'mental\\_disorder\\_\\d+')
+mental_disorder_history <- wide_to_long(cis_wide, 'mental_disorder_history', 'mental\\_disorder\\_history\\_\\d+')
 cis_long <- cis_long %>% 
-  left_join(mental_disorder, by = join_keys)
-rm(mental_disorder)
+  left_join(mental_disorder_history, by = join_keys)
+rm(mental_disorder_history)
+
+
+mental_disorder_outcome <- wide_to_long(cis_wide, 'mental_disorder_outcome', 'mental\\_disorder\\_outcome\\_\\d+')
+cis_long <- cis_long %>% 
+  left_join(mental_disorder_outcome, by = join_keys)
+rm(mental_disorder_outcome)
 
 
 metabolic_disorder <- wide_to_long(cis_wide, 'metabolic_disorder', 'metabolic\\_disorder\\_\\d+')

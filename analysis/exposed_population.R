@@ -94,10 +94,6 @@ exposed <- exposed %>%
          -covid_hes, -covid_tt, -covid_vaccine,
          -date_of_death)
 
-# Create overweight flag
-exposed <- exposed %>% 
-  mutate(overweight = ifelse(bmi >= 25, 1, 0)) %>% 
-  select(-bmi)
 
 # Save index dates for exposed population
 write_csv(exposed, 'output/cis_exposed.csv')

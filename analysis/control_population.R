@@ -192,7 +192,7 @@ eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%
   mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death))
 
-# Get minimum date of eos, max(visit) + 365, dod
+# Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection ######################### TODO)
 eos_dates <- eos_dates %>%
   mutate(end_date = if_else(eos_date <= visit_date_one_year, eos_date, visit_date_one_year)) %>%
   mutate(end_date = if_else(end_date <= date_of_death, end_date, date_of_death)) %>%
@@ -218,10 +218,6 @@ cis <- cis %>%
          -result_combined, -covid_hes, -covid_tt,
          -covid_vaccine, -eos_date, -visit_date_one_year)
 
-# Create overweight flag
-cis <- cis %>% 
-  mutate(overweight = ifelse(bmi >= 25, 1, 0)) %>% 
-  select(-bmi)
 
 # Save data
 write_csv(cis, 'output/cis_control.csv')

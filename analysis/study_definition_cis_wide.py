@@ -9,11 +9,11 @@ from cohortextractor import (
 
 from codelists import *
 
+
 start_date = '2020-01-24'
 end_date = '2021-09-30'
 n_visits = 10
 n_years_back = 5
-n_years_forward = 1
 
 def get_visit_date(name, col, date):
     return {
@@ -133,6 +133,42 @@ def get_covid_vaccine(name):
             }
         )}
 
+def get_last_linkage_date(name, col):
+    return{
+        name : patients.with_an_ons_cis_record(
+            returning=col,
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                
+            }
+        )}
+
+def get_nhs_data_share(name, col):
+    return{
+        name : patients.with_an_ons_cis_record(
+            returning=col,
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                'category': {'ratios': {0: 0.98, 1: 0.02}}
+            }
+        )}
+
+def get_age(name, date):
+    return{
+        name: patients.age_as_of(
+            reference_date=date,
+            return_expectations={
+                "rate" : "universal",
+                "int" : {"distribution" : "population_ages"}
+            }
+        )}
+
 def get_alcohol(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
@@ -168,7 +204,7 @@ def get_bmi(name, date):
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         return_expectations={
             'float' : {'distribution': 'normal', 'mean': 28, 'stddev': 8},
-            'incidence' : 1
+            'incidence' : 0.9
         }
     )}
 
@@ -247,7 +283,7 @@ def get_hiv_aids(name, date):
         }
     )}
 
-def get_mental_disorder(name, date):
+def get_mental_disorder_history(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-mental-and-behavioural-disorders.csv',
@@ -257,6 +293,22 @@ def get_mental_disorder(name, date):
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.1
+        }
+    )}
+
+def get_mental_disorder_outcome(name, date):
+    return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-mental-and-behavioural-disorders.csv',
+            system='ctv3',
+            column='code'
+        ),
+        between=[date, end_date],
+        returning='date',
+        date_format='YYYY-MM-DD',
+        find_first_match_in_period=True,
         return_expectations={
             "incidence": 0.1
         }
@@ -314,7 +366,7 @@ def get_neurological_ctv3(name, date):
             system='ctv3',
             column='CTV3ID'
         ),
-        between=[date, f'{date} + {n_years_forward} years'],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_first_match_in_period=True,
         return_expectations={
@@ -329,7 +381,7 @@ def get_neurological_snomed(name, date):
             system='snomed',
             column='code'
         ),
-        between=[date, f'{date} + {n_years_forward} years'],
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
@@ -370,8 +422,6 @@ def get_respiratory_disorder(name, date):
 
 
 
-
-
 def cis_earliest_positive(start_date, n):
     i = 1
     
@@ -394,7 +444,14 @@ def cis_earliest_positive(start_date, n):
     variables.update(get_tt_positive('covid_tt'))
     variables.update(get_covid_vaccine('covid_vaccine'))
     
-    # get health history
+    # get linkage permission variables
+    # variables.update(get_last_linkage_date('last_linkage_date', 'Final_linkage_date'))
+    # variables.update(get_nhs_data_share('nhs_data_share', 'cis_nhs_data_share'))
+    
+    # age
+    variables.update(get_age(f'age_{i}', f'visit_date_{i}'))
+    
+    # get health history/outcomes
     variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
     variables.update(get_obesity(f'obesity_{i}', f'visit_date_{i}'))
     variables.update(get_bmi(f'bmi_{i}', f'visit_date_{i}'))
@@ -403,7 +460,8 @@ def cis_earliest_positive(start_date, n):
     variables.update(get_CVD_snomed(f'CVD_snomed_{i}', f'visit_date_{i}'))
     variables.update(get_digestive_disorder(f'digestive_disorder_{i}', f'visit_date_{i}'))
     variables.update(get_hiv_aids(f'hiv_aids_{i}', f'visit_date_{i}'))
-    variables.update(get_mental_disorder(f'mental_disorder_{i}', f'visit_date_{i}'))
+    variables.update(get_mental_disorder_history(f'mental_disorder_history_{i}', f'visit_date_{i}'))
+    variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_{i}', f'visit_date_{i}'))
     variables.update(get_metabolic_disorder(f'metabolic_disorder_{i}', f'visit_date_{i}'))
     variables.update(get_musculoskeletal_ctv3(f'musculoskeletal_ctv3_{i}', f'visit_date_{i}'))
     variables.update(get_musculoskeletal_snomed(f'musculoskeletal_snomed_{i}', f'visit_date_{i}'))
@@ -417,7 +475,9 @@ def cis_earliest_positive(start_date, n):
         
         variables.update(get_result_mk(f'result_mk_{i}', 'result_mk', f'visit_date_{i}'))
         variables.update(get_result_combined(f'result_combined_{i}', 'result_combined', f'visit_date_{i}'))
- 
+        
+        variables.update(get_age(f'age_{i}', f'visit_date_{i}'))
+        
         variables.update(get_alcohol(f'alcohol_{i}', f'visit_date_{i}'))
         variables.update(get_obesity(f'obesity_{i}', f'visit_date_{i}'))
         variables.update(get_bmi(f'bmi_{i}', f'visit_date_{i}'))
@@ -428,7 +488,8 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_CVD_snomed(f'hiv_aids_{i}', f'visit_date_{i}'))
         variables.update(get_digestive_disorder(f'digestive_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_hiv_aids(f'hiv_aids_{i}', f'visit_date_{i}'))
-        variables.update(get_mental_disorder(f'mental_disorder_{i}', f'visit_date_{i}'))
+        variables.update(get_mental_disorder_history(f'mental_disorder_history_{i}', f'visit_date_{i}'))
+        variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_{i}', f'visit_date_{i}'))
         variables.update(get_metabolic_disorder(f'metabolic_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_ctv3(f'musculoskeletal_ctv3_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_snomed(f'musculoskeletal_snomed_{i}', f'visit_date_{i}'))
@@ -447,7 +508,7 @@ study = StudyDefinition(
     default_expectations={
         "date": {"earliest": start_date, "latest": end_date},
         "rate": "uniform",
-        "incidence": 1
+        "incidence": 0.99
     },
 
     # Return visit level CIS data

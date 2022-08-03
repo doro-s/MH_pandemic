@@ -13,7 +13,10 @@ cis_long <- cis_long %>%
          -neurological_snomed, -neurological_ctv3)
 
 # Add a check for where date of death is all NAs - convert from logical to date
-cis_long <- cis_long %>% 
-  mutate(date_of_death = as.Date(date_of_death))
+if (sum(is.na(cis_long$date_of_death)) == nrow(cis_long)){
+  cis_long <- cis_long %>% 
+    mutate(date_of_death = as.Date('2100-01-01'))
+}
+
 
 write_csv(cis_long, 'output/input_reconciled.csv')

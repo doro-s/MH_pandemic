@@ -43,7 +43,6 @@ exposed <- cis %>%
   ungroup()
 
 min_pos_tt <- cis %>%
-  filter(covid_tt != '2100-01-01') %>%
   group_by(patient_id) %>%
   mutate(min_pos_date_tt = min(covid_tt)) %>%
   filter(min_pos_date_tt == covid_tt) %>%
@@ -68,7 +67,6 @@ exposed <- exposed %>%
 
 # Get deaths and join to eos_dates
 dod <- cis %>% 
-  filter(date_of_death != '2100-01-01') %>%
   group_by(patient_id) %>%
   mutate(dod = min(date_of_death)) %>%
   filter(dod == date_of_death) %>% 

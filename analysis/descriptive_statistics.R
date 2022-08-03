@@ -19,7 +19,6 @@ matched <- matched %>%
     bmi >= 25 & bmi < 30 ~ 'overweight',
     bmi >= 30 ~ 'obese'))
 
-
 cat_vars <- c("alcohol", "obesity", "cancer", "digestive_disorder",
               "hiv_aids", "mental_disorder_history",  "metabolic_disorder",
               "kidney_disorder", "respiratory_disorder", "CVD",

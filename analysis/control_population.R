@@ -5,26 +5,6 @@ library(lubridate)
 
 cis <- read_csv('output/input_reconciled.csv')
 
-# Drop non-cis participants (no visit dates)
-# Drop anything after 30th September 2021 - end of study date
-cis <- cis %>%
-  filter(!is.na(visit_date)) %>% 
-  filter(visit_date <= '2021-09-30')
-
-# For rows where date is NA (no observation), make arbitrarily large date
-cis <- cis %>% 
-  mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death),
-         covid_hes = if_else(is.na(covid_hes), as.Date('2100-01-01'), covid_hes),
-         covid_tt = if_else(is.na(covid_tt), as.Date('2100-01-01'), covid_tt),
-         covid_vaccine = if_else(is.na(covid_vaccine), as.Date('2100-01-01'), covid_vaccine),
-         first_pos_swab = if_else(is.na(first_pos_swab), as.Date('2100-01-01'), first_pos_swab),
-         first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood))
-
-# Rearrange rows so that visit dates are monotonically increasing
-# Shouldn't be a problem in the real data but will affect pipeline development
-cis <- cis %>% 
-  arrange(patient_id, visit_date)
-
 # Remove rows where date of death < visit date, and where duplicated visit dates
 # Won't be necessary in actual data
 cis <- cis %>% 

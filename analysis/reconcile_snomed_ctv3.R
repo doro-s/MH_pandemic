@@ -18,5 +18,55 @@ if (sum(is.na(cis_long$date_of_death)) == nrow(cis_long)){
     mutate(date_of_death = as.Date('2100-01-01'))
 }
 
+# Add a check for where hospital admission is all NAs - convert from logical to date
+if (sum(is.na(cis_long$covid_hes)) == nrow(cis_long)){
+  cis_long <- cis_long %>% 
+    mutate(covid_hes = as.Date('2100-01-01'))
+}
 
+# Add a check for where date of death is all NAs - convert from logical to date
+if (sum(is.na(cis_long$covid_tt)) == nrow(cis_long)){
+  cis_long <- cis_long %>% 
+    mutate(covid_tt = as.Date('2100-01-01'))
+}
+
+# Add a check for where date of death is all NAs - convert from logical to date
+if (sum(is.na(cis_long$covid_vaccine)) == nrow(cis_long)){
+  cis_long <- cis_long %>% 
+    mutate(covid_vaccine = as.Date('2100-01-01'))
+}
+
+# For rows where date is NA (no observation), make arbitrarily large date
+cis_long <- cis_long %>% 
+  mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death),
+         covid_hes = if_else(is.na(covid_hes), as.Date('2100-01-01'), covid_hes),
+         covid_tt = if_else(is.na(covid_tt), as.Date('2100-01-01'), covid_tt),
+         covid_vaccine = if_else(is.na(covid_vaccine), as.Date('2100-01-01'), covid_vaccine),
+         first_pos_swab = if_else(is.na(first_pos_swab), as.Date('2100-01-01'), first_pos_swab),
+         first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood))
+
+# Drop non-cis participants (no visit dates)
+# Drop anything after 30th September 2021 - end of study date
+cis_long <- cis_long %>%
+  filter(!is.na(visit_date)) %>% 
+  filter(visit_date <= '2021-09-30')
+
+# Rearrange rows so that visit dates are monotonically increasing
+# Shouldn't be a problem in the real data but will affect pipeline development
+cis_long <- cis_long %>% 
+  arrange(patient_id, visit_date)
+
+# Remove rows where date of death < visit date
+# Won't be necessary in actual data
+cis_long <- cis_long %>% 
+  filter(date_of_death > visit_date)
+
+# Add 365 days to most recent visit date per person,
+# do not link to anything after this date
+cis_long <- cis_long %>%
+  group_by(patient_id) %>%
+  mutate(visit_date_one_year = max(visit_date) + 365) %>%
+  ungroup()
+
+# Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

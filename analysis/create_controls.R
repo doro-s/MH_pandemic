@@ -99,18 +99,21 @@ for (i in 1:nrow(exposed)){
     select(-t_to_origin, -row_id) %>%
     ungroup()
   
-  # Remove the selected control(s) from the population
-  # (cannot be a control for someone else)  
+  # Assign group id to exposed person
   exposed <- exposed %>%
     mutate(group_id = ifelse(patient_id %in% id_pos_exposed, i, group_id))
   
+  # Remove the selected control(s) from the population 
+  # (cannot be a control for someone else) 
   control_reduced <- control_reduced %>% 
     mutate(already_used = ifelse(patient_id %in% control_ids, 1, already_used))
   
+  # Assign group id to controls
   control <- control %>%
     mutate(group_id = ifelse(patient_id %in% control_ids, i, group_id))
   
-  for (i in nrow(temp)){
+  # Adjust visit date flag so we know which row to take from visit level controls
+  for (i in 1:nrow(temp)){
     id <- temp$patient_id[i]
     v_date <- temp$visit_date[i]
     control <- control %>% 
@@ -143,4 +146,4 @@ groups <- groups %>%
 
 
 # Save flags
-write_csv(groups, 'output/group_flags.csv')
+write_csv(groups, 'output/matched_groups.csv')

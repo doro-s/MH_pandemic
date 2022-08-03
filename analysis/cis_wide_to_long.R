@@ -110,10 +110,16 @@ cis_long <- cis_long %>%
 rm(mental_disorder_history)
 
 
-mental_disorder_outcome <- wide_to_long(cis_wide, 'mental_disorder_outcome', 'mental\\_disorder\\_outcome\\_\\d+')
+mental_disorder_outcome <- wide_to_long(cis_wide, 'mental_disorder_outcome_date', 'mental\\_disorder\\_outcome\\_date\\_\\d+')
 cis_long <- cis_long %>% 
   left_join(mental_disorder_outcome, by = join_keys)
 rm(mental_disorder_outcome)
+
+
+mental_disorder_hospital <- wide_to_long(cis_wide, 'mental_disorder_hospital', 'mental\\_disorder\\_hospital\\_\\d+')
+cis_long <- cis_long %>% 
+  left_join(mental_disorder_hospital, by = join_keys)
+rm(mental_disorder_hospital)
 
 
 metabolic_disorder <- wide_to_long(cis_wide, 'metabolic_disorder', 'metabolic\\_disorder\\_\\d+')

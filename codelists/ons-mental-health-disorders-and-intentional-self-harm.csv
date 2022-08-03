@@ -1,0 +1,165 @@
+code,term
+F20,Schizophrenia
+F200,Paranoid schizophrenia
+F201,Hebephrenic schizophrenia
+F202,Catatonic schizophrenia
+F203,Undifferentiated schizophrenia
+F204,Post-schizophrenic depression
+F205,Residual schizophrenia
+F206,Simple schizophrenia
+F208,Other schizophrenia
+F209,"Schizophrenia, unspecified"
+F21,Schizotypal disorder
+F22,Persistent delusional disorders
+F220,Delusional disorder
+F228,Other persistent delusional disorders
+F229,"Persistent delusional disorder, unspecified"
+F23,Acute and transient psychotic disorders
+F230,Acute polymorphic psychotic disorder without symptoms of schizophrenia
+F231,Acute polymorphic psychotic disorder with symptoms of schizophrenia
+F232,Acute schizophrenia-like psychotic disorder
+F233,Other acute predominantly delusional psychotic disorders
+F238,Other acute and transient psychotic disorders
+F239,"Acute and transient psychotic disorder, unspecified"
+F24,Induced delusional disorder
+F25,Schizoaffective disorders
+F250,"Schizoaffective disorder, manic type"
+F251,"Schizoaffective disorder, depressive type"
+F252,"Schizoaffective disorder, mixed type"
+F258,Other schizoaffective disorders
+F259,"Schizoaffective disorder, unspecified"
+F28,Other nonorganic psychotic disorders
+F29,Unspecified nonorganic psychosis
+F30,Manic episode
+F300,Hypomania
+F301,Mania without psychotic symptoms
+F302,Mania with psychotic symptoms
+F308,Other manic episodes
+F309,"Manic episode, unspecified"
+F31,Bipolar affective disorder
+F310,"Bipolar affective disorder, current episode hypomanic"
+F311,"Bipolar affective disorder, current episode manic without psychotic symptoms"
+F312,"Bipolar affective disorder, current episode manic with psychotic symptoms"
+F313,"Bipolar affective disorder, current episode mild or moderate depression"
+F314,"Bipolar affective disorder, current episode severe depression without psychotic symptoms"
+F315,"Bipolar affective disorder, current episode severe depression with psychotic symptoms"
+F316,"Bipolar affective disorder, current episode mixed"
+F317,"Bipolar affective disorder, currently in remission"
+F318,Other bipolar affective disorders
+F319,"Bipolar affective disorder, unspecified"
+F32,Depressive episode
+F320,Mild depressive episode
+F321,Moderate depressive episode
+F322,Severe depressive episode without psychotic symptoms
+F323,Severe depressive episode with psychotic symptoms
+F328,Other depressive episodes
+F329,"Depressive episode, unspecified"
+F33,Recurrent depressive disorder
+F330,"Recurrent depressive disorder, current episode mild"
+F331,"Recurrent depressive disorder, current episode moderate"
+F332,"Recurrent depressive disorder, current episode severe without psychotic symptoms"
+F333,"Recurrent depressive disorder, current episode severe with psychotic symptoms"
+F334,"Recurrent depressive disorder, currently in remission"
+F338,Other recurrent depressive disorders
+F339,"Recurrent depressive disorder, unspecified"
+F34,Persistent mood [affective] disorders
+F340,Cyclothymia
+F341,Dysthymia
+F348,Other persistent mood [affective] disorders
+F349,"Persistent mood [affective] disorder, unspecified"
+F38,Other mood [affective] disorders
+F380,Other single mood [affective] disorders
+F381,Other recurrent mood [affective] disorders
+F388,Other specified mood [affective] disorders
+F39,Unspecified mood [affective] disorder
+F40,Phobic anxiety disorders
+F400,Agoraphobia
+F401,Social phobias
+F402,Specific (isolated) phobias
+F408,Other phobic anxiety disorders
+F409,"Phobic anxiety disorder, unspecified"
+F41,Other anxiety disorders
+F410,Panic disorder [episodic paroxysmal anxiety]
+F411,Generalized anxiety disorder
+F412,Mixed anxiety and depressive disorder
+F413,Other mixed anxiety disorders
+F418,Other specified anxiety disorders
+F419,"Anxiety disorder, unspecified"
+F42,Obsessive-compulsive disorder
+F420,Predominantly obsessional thoughts or ruminations
+F421,Predominantly compulsive acts [obsessional rituals]
+F422,Mixed obsessional thoughts and acts
+F428,Other obsessive-compulsive disorders
+F429,"Obsessive-compulsive disorder, unspecified"
+F43,"Reaction to severe stress, and adjustment disorders"
+F430,Acute stress reaction
+F431,Post-traumatic stress disorder
+F432,Adjustment disorders
+F438,Other reactions to severe stress
+F439,"Reaction to severe stress, unspecified"
+F44,Dissociative [conversion] disorders
+F440,Dissociative amnesia
+F441,Dissociative fugue
+F442,Dissociative stupor
+F443,Trance and possession disorders
+F444,Dissociative motor disorders
+F445,Dissociative convulsions
+F446,Dissociative anaesthesia and sensory loss
+F447,Mixed dissociative [conversion] disorders
+F448,Other dissociative [conversion] disorders
+F449,"Dissociative [conversion] disorder, unspecified"
+F45,Somatoform disorders
+F450,Somatization disorder
+F451,Undifferentiated somatoform disorder
+F452,Hypochondriacal disorder
+F453,Somatoform autonomic dysfunction
+F454,Persistent somatoform pain disorder
+F458,Other somatoform disorders
+F459,"Somatoform disorder, unspecified"
+F48,Other neurotic disorders
+F480,Neurasthenia
+F481,Depersonalization-derealization syndrome
+F488,Other specified neurotic disorders
+F489,"Neurotic disorder, unspecified"
+F50,Eating disorders
+F500,Anorexia nervosa
+F501,Atypical anorexia nervosa
+F502,Bulimia nervosa
+F503,Atypical bulimia nervosa
+F504,Overeating associated with other psychological disturbances
+F505,Vomiting associated with other psychological disturbances
+F508,Other eating disorders
+F509,"Eating disorder, unspecified"
+F51,Nonorganic sleep disorders
+F510,Nonorganic insomnia
+F511,Nonorganic hypersomnia
+F512,Nonorganic disorder of the sleep-wake schedule
+F513,Sleepwalking [somnambulism]
+F514,Sleep terrors [night terrors]
+F515,Nightmares
+F518,Other nonorganic sleep disorders
+F519,"Nonorganic sleep disorder, unspecified"
+F53,"Mental and behavioural disorders associated with the puerperium, not elsewhere classified"
+F530,"Mild mental and behavioural disorders associated with the puerperium, not elsewhere classified"
+F531,"Severe mental and behavioural disorders associated with the puerperium, not elsewhere classified"
+F538,"Other mental and behavioural disorders associated with the puerperium, not elsewhere classified"
+F539,"Puerperal mental disorder, unspecified"
+X70,"Intentional self-harm by hanging, strangulation and suffocation"
+X71,Intentional self-harm by drowning and submersion
+X72,Intentional self-harm by handgun discharge
+X73,"Intentional self-harm by rifle, shotgun and larger firearm discharge"
+X74,Intentional self-harm by other and unspecified firearm discharge
+X75,Intentional self-harm by explosive material
+X76,"Intentional self-harm by smoke, fire and flames"
+X77,"Intentional self-harm by steam, hot vapours and hot objects"
+X78,Intentional self-harm by sharp object
+X79,Intentional self-harm by blunt object
+X80,Intentional self-harm by jumping from a high place
+X81,Intentional self-harm by jumping or lying before moving object
+X82,Intentional self-harm by crashing of motor vehicle
+X83,Intentional self-harm by other specified means
+X84,Intentional self-harm by unspecified means
+Y87,"Sequelae of intentional self-harm, assault and events of undetermined intent"
+Y870,Sequelae of intentional self-harm
+Y871,Sequelae of assault
+Y872,Sequelae of events of undetermined intent

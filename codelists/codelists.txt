@@ -29,6 +29,9 @@ opensafely/hiv-snomed/2020-07-13
 # Mental and behavioural (ctv3)
 ons/mental-and-behavioural-disorders/29cebc01
 
+# Hospital admission due to mental health/self-harm (ICD-10)
+ons/mental-health-disorders-and-intentional-self-harm/71122ad8
+
 # Metabolic (ctv3)
 ons/metabolic-disorders/10bf48cc
 

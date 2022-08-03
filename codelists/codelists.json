@@ -60,6 +60,12 @@
       "downloaded_at": "2022-06-28 09:42:04.573272Z",
       "sha": "9cbb56a0183f57668186625ec69eeba94cdd9bb5"
     },
+    "ons-mental-health-disorders-and-intentional-self-harm.csv": {
+      "id": "ons/mental-health-disorders-and-intentional-self-harm/71122ad8",
+      "url": "https://codelists.opensafely.org/codelist/ons/mental-health-disorders-and-intentional-self-harm/71122ad8/",
+      "downloaded_at": "2022-08-03 13:10:59.581198Z",
+      "sha": "665c95b08b84fbffb3e7f5f0719ff99215c67775"
+    },
     "ons-metabolic-disorders.csv": {
       "id": "ons/metabolic-disorders/10bf48cc",
       "url": "https://codelists.opensafely.org/codelist/ons/metabolic-disorders/10bf48cc/",

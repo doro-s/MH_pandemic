@@ -310,6 +310,22 @@ def get_mental_disorder_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
+            "incidence": 0.2
+        }
+    )}
+
+def get_mental_disorder_hospitalisation(name, date):
+    return {name : patients.admitted_to_hospital(
+        with_these_primary_diagnoses=codelist_from_csv(
+            'codelists/ons-mental-health-disorders-and-intentional-self-harm.csv',
+            system='icd10',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='date_admitted',
+        date_format='YYYY-MM-DD',
+        find_first_match_in_period=True,
+        return_expectations={
             "incidence": 0.1
         }
     )}
@@ -461,7 +477,8 @@ def cis_earliest_positive(start_date, n):
     variables.update(get_digestive_disorder(f'digestive_disorder_{i}', f'visit_date_{i}'))
     variables.update(get_hiv_aids(f'hiv_aids_{i}', f'visit_date_{i}'))
     variables.update(get_mental_disorder_history(f'mental_disorder_history_{i}', f'visit_date_{i}'))
-    variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_{i}', f'visit_date_{i}'))
+    variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_date_{i}', f'visit_date_{i}'))
+    variables.update(get_mental_disorder_hospitalisation(f'mental_disorder_hospital_{i}', f'visit_date_{i}'))
     variables.update(get_metabolic_disorder(f'metabolic_disorder_{i}', f'visit_date_{i}'))
     variables.update(get_musculoskeletal_ctv3(f'musculoskeletal_ctv3_{i}', f'visit_date_{i}'))
     variables.update(get_musculoskeletal_snomed(f'musculoskeletal_snomed_{i}', f'visit_date_{i}'))
@@ -489,7 +506,8 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_digestive_disorder(f'digestive_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_hiv_aids(f'hiv_aids_{i}', f'visit_date_{i}'))
         variables.update(get_mental_disorder_history(f'mental_disorder_history_{i}', f'visit_date_{i}'))
-        variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_{i}', f'visit_date_{i}'))
+        variables.update(get_mental_disorder_outcome(f'mental_disorder_outcome_date_{i}', f'visit_date_{i}'))
+        variables.update(get_mental_disorder_hospitalisation(f'mental_disorder_hospital_{i}', f'visit_date_{i}'))
         variables.update(get_metabolic_disorder(f'metabolic_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_ctv3(f'musculoskeletal_ctv3_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_snomed(f'musculoskeletal_snomed_{i}', f'visit_date_{i}'))

@@ -31,7 +31,25 @@ matched <- matched %>%
   mutate(mental_disorder_outcome = ifelse(mental_disorder_outcome_date != '2100-01-01', 1, 0),
          md_new_onset = ifelse(mental_disorder_history == 0 & mental_disorder_outcome == 1, 1, 0))
 
-# Remove groups based on historical evidence
+# For new onset, remove groups based on historical evidence of 
+# mental disorder, including hospitalisation
+
+# DO I NEED TO APPLY THIS TO ALL CASES WHERE MD OUTCOME == 1, NOT JUST NEW ONSET?
+matched <- matched %>% 
+  group_by(group_id) %>% 
+  mutate(md_history_group = sum(mental_disorder_history) + sum(mental_disorder_hospital),
+         md_new_onset_group = sum(md_new_onset),
+         remove_group = ifelse(md_new_onset_group > 0 & md_history_group > 0, 1, 0)) %>% 
+  ungroup() %>% 
+  filter(remove_group == 0) %>% 
+  select(-md_history_group, -md_new_onset_group, -remove_group, -md_new_onset)
+
+
+# Derive time to outcome
+matched <- matched %>% 
+  mutate(t = ifelse(mental_disorder_outcome_date == '2100-01-01', 
+                    end_date - visit_date,
+                    mental_disorder_outcome_date - visit_date))
 
 
 # Write out adjusted groups

@@ -310,7 +310,7 @@ def get_mental_disorder_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.2
+            "incidence": 0.1
         }
     )}
 

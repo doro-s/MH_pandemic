@@ -3,7 +3,7 @@ library(purrr)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('output/input_cis_wide.csv')
+cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 100000)
 
 table_dims <- as.data.frame(dim(cis_wide))
 write_csv(table_dims, 'output/cis_wide_dimensions.csv')

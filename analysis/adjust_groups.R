@@ -2,7 +2,7 @@ library(tidyverse)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-matched <- read_csv('output/matched_groups.csv')
+matched <- read_csv('output/matched_groups.csv', guess_max = 100000)
 
 if (sum(is.na(matched$mental_disorder_outcome_date)) == nrow(matched)){
   matched <- matched %>% 

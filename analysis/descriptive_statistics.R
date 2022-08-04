@@ -5,7 +5,7 @@ library(tidyverse)
 source('analysis/cov_dist_cat.R')
 source('analysis/cov_dist_cont.R')
 
-matched <- read_csv('output/adjusted_groups.csv')
+matched <- read_csv('output/adjusted_groups.csv', guess_max = 100000)
 
 # Need to read in matched person level data
 # Only need to consider participants characteristics at the index date

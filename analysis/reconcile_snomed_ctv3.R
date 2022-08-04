@@ -2,37 +2,7 @@ library(tidyverse)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('output/input_cis_long.csv',
-                     col_types = cols(
-                       patient_id = col_double(),
-                       visit_date = col_date(format = ""),
-                       result_mk = col_double(),
-                       result_combined = col_double(),
-                       age = col_double(),
-                       alcohol = col_double(),
-                       obesity = col_double(),
-                       bmi = col_double(),
-                       cancer = col_double(),
-                       CVD_ctv3 = col_double(),
-                       CVD_snomed = col_double(),
-                       digestive_disorder = col_double(),
-                       hiv_aids = col_double(),
-                       mental_disorder_history = col_double(),
-                       mental_disorder_outcome_date = col_date(format = ""),
-                       mental_disorder_hospital = col_double(),
-                       metabolic_disorder = col_double(),
-                       musculoskeletal_ctv3 = col_double(),
-                       musculoskeletal_snomed = col_double(),
-                       neurological_ctv3 = col_double(),
-                       neurological_snomed = col_double(),
-                       kidney_disorder = col_double(),
-                       respiratory_disorder = col_double(),
-                       date_of_death = col_date(format = ""),
-                       first_pos_swab = col_date(format = ""),
-                       first_pos_blood = col_date(format = ""),
-                       covid_hes = col_date(format = ""),
-                       covid_tt = col_date(format = ""),
-                       covid_vaccine = col_date(format = "")))
+cis_long <- read_csv('output/input_cis_long.csv', guess_max = 100000)
 
 cis_long <- cis_long %>% 
   mutate(CVD = ifelse(CVD_snomed == 1 | CVD_ctv3 == 1, 1, 0),

@@ -3,7 +3,7 @@ library(lubridate)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis <- read_csv('output/input_reconciled.csv')
+cis <- read_csv('output/input_reconciled.csv', guess_max = 100000)
 
 # Remove rows where date of death < visit date, and where duplicated visit dates
 # Won't be necessary in actual data

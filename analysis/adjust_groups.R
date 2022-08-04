@@ -4,19 +4,13 @@ library(tidyverse)
 
 matched <- read_csv('output/matched_groups.csv')
 
-if (sum(is.na(matched$mental_disorder_hospital)) == nrow(matched)){
-  matched <- matched %>% 
-    mutate(mental_disorder_hospital = as.Date(2100-01-01))
-}
-
 if (sum(is.na(matched$mental_disorder_outcome_date)) == nrow(matched)){
   matched <- matched %>% 
     mutate(mental_disorder_outcome_date = as.Date(2100-01-01))
 }
 
 matched <- matched %>% 
-  mutate(mental_disorder_hospital = if_else(is.na(mental_disorder_hospital), as.Date('2100-01-01'), mental_disorder_hospital),
-         mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
+  mutate(mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
 
 # Create weights for groups
 # weights for controls (1/n) where n controls in matching group

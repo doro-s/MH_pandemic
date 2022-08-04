@@ -322,8 +322,7 @@ def get_mental_disorder_hospitalisation(name, date):
             column='code'
         ),
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
-        returning='date_admitted',
-        date_format='YYYY-MM-DD',
+        returning='binary_flag',
         find_first_match_in_period=True,
         return_expectations={
             "incidence": 0.1

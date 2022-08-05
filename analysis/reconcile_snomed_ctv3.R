@@ -1,12 +1,12 @@
 library(tidyverse)
 
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('output/input_cis_long.csv',
+cis_long <- read_csv('../output/input_cis_long.csv',
                      col_types = cols(
                        patient_id = col_double(),
                        visit_date = col_date(format = ""),
-                       result_mk = col_double(),
+                       result_mk = col_character(),
                        result_combined = col_double(),
                        age = col_double(),
                        alcohol = col_double(),
@@ -94,6 +94,7 @@ cis_long <- cis_long %>%
 cis_long <- cis_long %>%
   filter(!is.na(visit_date)) %>% 
   filter(visit_date <= '2021-09-30') %>% 
+  mutate(result_mk = as.numeric(result_mk)) %>% 
   mutate(result_mk = ifelse(is.na(result_mk) | result_mk > 1, 0, result_mk),
          result_combined = ifelse(is.na(result_combined) | result_combined > 1, 0, result_combined))
 

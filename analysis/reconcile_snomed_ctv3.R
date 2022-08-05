@@ -43,6 +43,11 @@ if (sum(is.na(cis_long$first_pos_blood)) == nrow(cis_long)){
     mutate(first_pos_blood = as.Date('2100-01-01'))
 }
 
+if (sum(is.na(cis_long$mental_disorder_outcome_date)) == nrow(cis_long)){
+  cis_long <- cis_long %>% 
+    mutate(mental_disorder_outcome_date = as.Date('2100-01-01'))
+}
+
 # For rows where date is NA (no observation), make arbitrarily large date
 cis_long <- cis_long %>% 
   mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death),
@@ -50,7 +55,8 @@ cis_long <- cis_long %>%
          covid_tt = if_else(is.na(covid_tt), as.Date('2100-01-01'), covid_tt),
          covid_vaccine = if_else(is.na(covid_vaccine), as.Date('2100-01-01'), covid_vaccine),
          first_pos_swab = if_else(is.na(first_pos_swab), as.Date('2100-01-01'), first_pos_swab),
-         first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood))
+         first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood),
+         mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
 
 # Drop non-cis participants (no visit dates)
 # Drop anything after 30th September 2021 - end of study date

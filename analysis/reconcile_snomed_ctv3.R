@@ -7,7 +7,7 @@ cis_long <- read_csv('output/input_cis_long.csv',
                        patient_id = col_double(),
                        visit_date = col_date(format = ""),
                        result_mk = col_character(),
-                       result_combined = col_double(),
+                       result_combined = col_character(),
                        age = col_double(),
                        alcohol = col_double(),
                        obesity = col_double(),
@@ -33,6 +33,9 @@ cis_long <- read_csv('output/input_cis_long.csv',
                        covid_hes = col_date(format = ""),
                        covid_tt = col_date(format = ""),
                        covid_vaccine = col_date(format = "")))
+
+cis_long %>% pull(result_mk) %>% table()
+cis_long %>% pull(result_combined) %>% table()
 
 cis_long <- cis_long %>% 
   mutate(CVD = ifelse(CVD_snomed == 1 | CVD_ctv3 == 1, 1, 0),

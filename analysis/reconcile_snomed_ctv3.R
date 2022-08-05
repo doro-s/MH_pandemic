@@ -114,5 +114,7 @@ cis_long <- cis_long %>%
   mutate(visit_date_one_year = max(visit_date) + 365) %>%
   ungroup()
 
+cis_long %>% pull(result_mk) %>% table()
+
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

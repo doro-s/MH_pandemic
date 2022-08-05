@@ -1,8 +1,8 @@
 library(tidyverse)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('../output/input_cis_long.csv',
+cis_long <- read_csv('output/input_cis_long.csv',
                      col_types = cols(
                        patient_id = col_double(),
                        visit_date = col_date(format = ""),

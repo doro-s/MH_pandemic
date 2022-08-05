@@ -1,8 +1,8 @@
 library(tidyverse)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis <- read_csv('../output/input_reconciled.csv', guess_max = 100000)
+cis <- read_csv('output/input_reconciled.csv', guess_max = 100000)
 
 # Derive the index date - earliest date of +ve test
 exposed <- cis %>%

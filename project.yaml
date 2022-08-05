@@ -3,7 +3,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 500
+  population_size: 5000
 
 actions:
     generate_cis_visit_level:
@@ -42,27 +42,27 @@ actions:
             highly_sensitive:
                 cohort: output/cis_control.csv
                 
-    perform_matching:
-        run: r:latest analysis/create_controls.R
-        needs: [derive_exposed, derive_controls]
-        outputs:
-            highly_sensitive:
-                cohort: output/matched_groups.csv
+    # perform_matching:
+    #     run: r:latest analysis/create_controls.R
+    #     needs: [derive_exposed, derive_controls]
+    #     outputs:
+    #         highly_sensitive:
+    #             cohort: output/matched_groups.csv
     
-    adjust_matched_groups:
-        run: r:latest analysis/adjust_groups.R
-        needs: [perform_matching]
-        outputs:
-            highly_sensitive:
-                cohort: output/adjusted_groups.csv
+    # adjust_matched_groups:
+    #     run: r:latest analysis/adjust_groups.R
+    #     needs: [perform_matching]
+    #     outputs:
+    #         highly_sensitive:
+    #             cohort: output/adjusted_groups.csv
     
-    descriptive_stats:
-        run: r:latest analysis/descriptive_statistics.R
-        needs: [adjust_matched_groups]
-        outputs:
-            moderately_sensitive:
-                cat_stats: output/cat_stats.csv
-                con_stats: output/cont_stats.csv
+    # descriptive_stats:
+    #     run: r:latest analysis/descriptive_statistics.R
+    #     needs: [adjust_matched_groups]
+    #     outputs:
+    #         moderately_sensitive:
+    #             cat_stats: output/cat_stats.csv
+    #             con_stats: output/cont_stats.csv
     
 
 

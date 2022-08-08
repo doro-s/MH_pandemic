@@ -49,7 +49,7 @@ def get_result_combined(name, col, date):
             date_filter_column='visit_date',
             return_expectations={
                 'category': {'ratios': {'Negative': 0.89, 
-                                        'Positve': 0.1,
+                                        'Positive': 0.1,
                                         'Void' : 0.01}}
             }
         )}

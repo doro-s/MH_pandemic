@@ -33,7 +33,9 @@ def get_result_mk(name, col, date):
             find_first_match_in_period=True,
             date_filter_column='visit_date',
             return_expectations={
-                'category': {'ratios': {0: 0.95, 1: 0.05}}
+                'category': {'ratios': {'Negative': 0.94,
+                                        'Positive': 0.05,
+                                        'Void' : 0.01}}
                 }
             )}
 
@@ -46,7 +48,9 @@ def get_result_combined(name, col, date):
             date_format='YYYY-MM-DD',
             date_filter_column='visit_date',
             return_expectations={
-                'category': {'ratios': {0: 0.9, 1: 0.1}}
+                'category': {'ratios': {'Negative': 0.89, 
+                                        'Positve': 0.1,
+                                        'Void' : 0.01}}
             }
         )}
 

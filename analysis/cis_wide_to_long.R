@@ -31,8 +31,8 @@ cis_dates <- cis_wide %>%
   select(patient_id, date_of_death, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine)
-# ,
-         # last_linkage_dt, nhs_data_share)
+
+# last_linkage_dt, nhs_data_share)
 
 # Join keys
 join_keys <- c('patient_id', 'visit_number')

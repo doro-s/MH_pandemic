@@ -37,6 +37,13 @@ cis_long <- read_csv('output/input_cis_long.csv',
 cis_long %>% pull(result_mk) %>% table()
 cis_long %>% pull(result_combined) %>% table()
 
+# result_mk
+# Positive, Negative, Void
+
+# result_combined
+# Could not process, Insufficient sample, Negative, Positive
+
+
 cis_long <- cis_long %>% 
   mutate(CVD = ifelse(CVD_snomed == 1 | CVD_ctv3 == 1, 1, 0),
          musculoskeletal = ifelse(musculoskeletal_snomed == 1 | musculoskeletal_ctv3 == 1, 1, 0),
@@ -97,9 +104,8 @@ cis_long <- cis_long %>%
 cis_long <- cis_long %>%
   filter(!is.na(visit_date)) %>% 
   filter(visit_date <= '2021-09-30') %>% 
-  mutate(result_mk = as.numeric(result_mk)) %>% 
-  mutate(result_mk = ifelse(is.na(result_mk) | result_mk > 1, 0, result_mk),
-         result_combined = ifelse(is.na(result_combined) | result_combined > 1, 0, result_combined))
+  mutate(result_mk = ifelse(result_mk == 'Positive', 1, 0),
+         result_combined = ifelse(result_combined == 'Positive', 1, 0))
 
 # Rearrange rows so that visit dates are monotonically increasing
 # Shouldn't be a problem in the real data but will affect pipeline development

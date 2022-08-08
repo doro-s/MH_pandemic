@@ -3,35 +3,7 @@ library(glue)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis <- read_csv('output/input_reconciled.csv',
-                col_types = cols(
-                  patient_id = col_double(),
-                  visit_date = col_date(format = ""),
-                  result_mk = col_double(),
-                  result_combined = col_double(),
-                  age = col_double(),
-                  alcohol = col_double(),
-                  obesity = col_double(),
-                  bmi = col_double(),
-                  cancer = col_double(),
-                  digestive_disorder = col_double(),
-                  hiv_aids = col_double(),
-                  mental_disorder_history = col_double(),
-                  mental_disorder_outcome_date = col_date(format = ""),
-                  mental_disorder_hospital = col_double(),
-                  metabolic_disorder = col_double(),
-                  kidney_disorder = col_double(),
-                  respiratory_disorder = col_double(),
-                  date_of_death = col_date(format = ""),
-                  first_pos_swab = col_date(format = ""),
-                  first_pos_blood = col_date(format = ""),
-                  covid_hes = col_date(format = ""),
-                  covid_tt = col_date(format = ""),
-                  covid_vaccine = col_date(format = ""),
-                  CVD = col_double(),
-                  musculoskeletal = col_double(),
-                  neurological = col_double(),
-                  visit_date_one_year = col_date(format = "")))
+cis <- read_csv('output/input_reconciled.csv')
 
 cat(dim(cis))
 cat('\n')

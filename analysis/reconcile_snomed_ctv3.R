@@ -37,13 +37,6 @@ cis_long <- read_csv('output/input_cis_long.csv',
 cis_long %>% pull(result_mk) %>% table()
 cis_long %>% pull(result_combined) %>% table()
 
-# result_mk
-# Positive, Negative, Void
-
-# result_combined
-# Could not process, Insufficient sample, Negative, Positive
-
-
 cis_long <- cis_long %>% 
   mutate(CVD = ifelse(CVD_snomed == 1 | CVD_ctv3 == 1, 1, 0),
          musculoskeletal = ifelse(musculoskeletal_snomed == 1 | musculoskeletal_ctv3 == 1, 1, 0),
@@ -98,6 +91,9 @@ cis_long <- cis_long %>%
          first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood),
          mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
 
+print('Number of positive rows (string)')
+cis_long %>% filter(result_mk == 'Positive') %>% nrow()
+
 # Drop non-cis participants (no visit dates)
 # Drop anything after 30th September 2021 - end of study date
 # Fix missing result_mk and result_combined
@@ -106,6 +102,9 @@ cis_long <- cis_long %>%
   filter(visit_date <= '2021-09-30') %>% 
   mutate(result_mk = ifelse(result_mk == 'Positive', 1, 0),
          result_combined = ifelse(result_combined == 'Positive', 1, 0))
+
+print('Number of positive rows (numeric)')
+cis_long %>% filter(result_mk == 1) %>% nrow()
 
 # Rearrange rows so that visit dates are monotonically increasing
 # Shouldn't be a problem in the real data but will affect pipeline development
@@ -125,6 +124,9 @@ cis_long <- cis_long %>%
   ungroup()
 
 cis_long %>% pull(result_mk) %>% table()
+
+print('number of rows on reconciled data, visit_date <= 2021-09-30')
+nrow(cis_long)
 
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

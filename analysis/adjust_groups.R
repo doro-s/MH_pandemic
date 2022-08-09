@@ -4,6 +4,13 @@ library(tidyverse)
 
 matched <- read_csv('output/matched_groups.csv', guess_max = 100000)
 
+# Get some summary stats for number of exposed and controls
+print('Number of exposed')
+matched %>% filter(exposed == 1) %>% nrow()
+
+print('Number of controls')
+matched %>% filter(exposed == 0) %>%  nrow()
+
 if (sum(is.na(matched$mental_disorder_outcome_date)) == nrow(matched)){
   matched <- matched %>% 
     mutate(mental_disorder_outcome_date = as.Date(2100-01-01))
@@ -50,6 +57,13 @@ matched <- matched %>%
   mutate(t = ifelse(mental_disorder_outcome_date == '2100-01-01', 
                     end_date - visit_date,
                     mental_disorder_outcome_date - visit_date))
+
+# Get some summary stats for number of exposed and controls (how many have been lost?)
+print('Number of exposed')
+matched %>% filter(exposed == 1) %>% nrow()
+
+print('Number of controls')
+matched %>% filter(exposed == 0) %>%  nrow()
 
 
 # Write out adjusted groups

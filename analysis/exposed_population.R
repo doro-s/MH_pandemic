@@ -89,6 +89,8 @@ exposed <- exposed %>%
          -covid_hes, -covid_tt, -covid_vaccine,
          -date_of_death)
 
+print('Size of exposed population')
+nrow(exposed)
 
 # Save index dates for exposed population
 write_csv(exposed, 'output/cis_exposed.csv')

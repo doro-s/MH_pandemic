@@ -198,6 +198,8 @@ cis <- cis %>%
          -result_combined, -covid_hes, -covid_tt,
          -covid_vaccine, -eos_date, -visit_date_one_year)
 
+print('Size of control population')
+nrow(cis)
 
 # Save data
 write_csv(cis, 'output/cis_control.csv')

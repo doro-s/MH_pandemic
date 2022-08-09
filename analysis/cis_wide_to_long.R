@@ -5,12 +5,16 @@ library(purrr)
 
 cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 100000)
 
-table_dims <- as.data.frame(dim(cis_wide))
-write_csv(table_dims, 'output/cis_wide_dimensions.csv')
+print('original wide data')
+nrow(cis_wide)
 
 # Remove anyone not in the CIS
 cis_wide <- cis_wide %>% 
   filter(!is.na(visit_date_1))
+
+print('cis only wide data')
+nrow(cis_wide)
+
 
 wide_to_long <- function(df_wide, col, regex){
   
@@ -33,6 +37,12 @@ cis_dates <- cis_wide %>%
          covid_hes, covid_tt, covid_vaccine)
 
 # last_linkage_dt, nhs_data_share)
+
+for (i in 1:10){
+  print(paste0('visit date ', i))
+  print(cis_wide %>% pull(paste0('result_mk_', i)) %>% table())
+}
+
 
 # Join keys
 join_keys <- c('patient_id', 'visit_number')

@@ -30,7 +30,7 @@ def get_result_mk(name, col, date):
         name : patients.with_an_ons_cis_record(
             returning=col,
             on_or_before=date,
-            find_first_match_in_period=True,
+            find_last_match_in_period=True,
             date_filter_column='visit_date',
             return_expectations={
                 'category': {'ratios': {'Negative': 0.94,

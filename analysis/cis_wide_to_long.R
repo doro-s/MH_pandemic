@@ -3,7 +3,7 @@ library(purrr)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 100000)
+cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 10000000)
 
 print('original wide data')
 nrow(cis_wide)
@@ -40,7 +40,7 @@ cis_dates <- cis_wide %>%
 
 for (i in 1:10){
   print(paste0('visit date ', i))
-  print(cis_wide %>% pull(paste0('result_mk_', i)) %>% table())
+  print(cis_wide %>% pull(paste0('result_mk_', i)) %>% table(useNA = 'always'))
 }
 
 

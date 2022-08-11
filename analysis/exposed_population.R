@@ -12,33 +12,14 @@ cat(str(cis))
 cat('\n')
 
 # Derive the index date - earliest date of +ve test
-# exposed <- cis %>%
-#   filter(result_mk == 1) %>%
-#   group_by(patient_id) %>%
-#   mutate(min_pos_date_cis = min(visit_date)) %>%
-#   filter(min_pos_date_cis == visit_date) %>%
-#   ungroup()
+exposed <- cis %>%
+  filter(result_mk == 1) %>%
+  group_by(patient_id) %>%
+  mutate(min_pos_date_cis = min(visit_date)) %>%
+  filter(min_pos_date_cis == visit_date) %>%
+  ungroup()
 
-exposed_0 <- cis %>% filter(result_mk == 1)
-cat(glue('test0'))
-cat('\n')
-cat(dim(exposed_0))
-
-exposed_1 <- exposed_0 %>% group_by(patient_id)
-cat(glue('test1'))
-
-exposed_1 %>% pull(visit_date) %>% head()
-cat('\n')
-
-exposed_2 <- exposed_1 %>% dplyr::mutate(min_pos_date_cis = min(visit_date))
-cat(glue('test2'))
-
-exposed_3 <- exposed_2 %>% filter(min_pos_date_cis == visit_date)
-cat(glue('test3'))
-
-exposed <- exposed_3 %>% ungroup()
-cat(glue('test4'))
-
+# Get earliest positive date from test and trace
 min_pos_tt <- exposed %>%
   group_by(patient_id) %>%
   mutate(min_pos_date_tt = min(covid_tt)) %>%

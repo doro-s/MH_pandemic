@@ -2,38 +2,8 @@ library(tidyverse)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('output/input_cis_long.csv',
-                     col_types = cols(
-                       patient_id = col_double(),
-                       visit_date = col_date(format = ""),
-                       result_mk = col_character(),
-                       result_combined = col_character(),
-                       age = col_double(),
-                       alcohol = col_double(),
-                       obesity = col_double(),
-                       bmi = col_double(),
-                       cancer = col_double(),
-                       CVD_ctv3 = col_double(),
-                       CVD_snomed = col_double(),
-                       digestive_disorder = col_double(),
-                       hiv_aids = col_double(),
-                       mental_disorder_history = col_double(),
-                       mental_disorder_outcome_date = col_date(format = ""),
-                       mental_disorder_hospital = col_double(),
-                       metabolic_disorder = col_double(),
-                       musculoskeletal_ctv3 = col_double(),
-                       musculoskeletal_snomed = col_double(),
-                       neurological_ctv3 = col_double(),
-                       neurological_snomed = col_double(),
-                       kidney_disorder = col_double(),
-                       respiratory_disorder = col_double(),
-                       date_of_death = col_date(format = ""),
-                       first_pos_swab = col_date(format = ""),
-                       first_pos_blood = col_date(format = ""),
-                       covid_hes = col_date(format = ""),
-                       covid_tt = col_date(format = ""),
-                       covid_vaccine = col_date(format = "")))
-
+cis_long <- read_csv('output/input_cis_long.csv', guess_max = 100000)
+                    
 cis_long %>% pull(result_mk) %>% table()
 cis_long %>% pull(result_combined) %>% table()
 
@@ -46,40 +16,27 @@ cis_long <- cis_long %>%
          -neurological_snomed, -neurological_ctv3)
 
 # Add a check for date columns where all NAs - convert from logical to date
-if (sum(is.na(cis_long$date_of_death)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(date_of_death = as.Date('2100-01-01'))
+check_all_na_date <- function(df, col){
+  if (sum(is.na(df[col])) == nrow(df)){
+    df <- df %>% 
+      mutate(col = as.Date('2100-01-01'))
+  }
+  return(df)
 }
 
-if (sum(is.na(cis_long$covid_hes)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(covid_hes = as.Date('2100-01-01'))
-}
+cis_long <- check_all_na_date(cis_long, 'date_of_death')
+cis_long <- check_all_na_date(cis_long, 'covid_hes')
+cis_long <- check_all_na_date(cis_long, 'covid_tt')
+cis_long <- check_all_na_date(cis_long, 'covid_vaccine')
+cis_long <- check_all_na_date(cis_long, 'first_pos_swab')
+cis_long <- check_all_na_date(cis_long, 'first_pos_blood')
+cis_long <- check_all_na_date(cis_long, 'cmd_outcome_date_hospital')
+cis_long <- check_all_na_date(cis_long, 'cmd_outcome_date')
+cis_long <- check_all_na_date(cis_long, 'smi_outcome_date_hospital')
+cis_long <- check_all_na_date(cis_long, 'smi_outcome_date')
+cis_long <- check_all_na_date(cis_long, 'self_harm_outcome_date_hospital')
+cis_long <- check_all_na_date(cis_long, 'self_harm_outcome_date')
 
-if (sum(is.na(cis_long$covid_tt)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(covid_tt = as.Date('2100-01-01'))
-}
-
-if (sum(is.na(cis_long$covid_vaccine)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(covid_vaccine = as.Date('2100-01-01'))
-}
-
-if (sum(is.na(cis_long$first_pos_swab)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(first_pos_swab = as.Date('2100-01-01'))
-}
-
-if (sum(is.na(cis_long$first_pos_blood)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(first_pos_blood = as.Date('2100-01-01'))
-}
-
-if (sum(is.na(cis_long$mental_disorder_outcome_date)) == nrow(cis_long)){
-  cis_long <- cis_long %>% 
-    mutate(mental_disorder_outcome_date = as.Date('2100-01-01'))
-}
 
 # For rows where date is NA (no observation), make arbitrarily large date
 cis_long <- cis_long %>% 
@@ -89,7 +46,12 @@ cis_long <- cis_long %>%
          covid_vaccine = if_else(is.na(covid_vaccine), as.Date('2100-01-01'), covid_vaccine),
          first_pos_swab = if_else(is.na(first_pos_swab), as.Date('2100-01-01'), first_pos_swab),
          first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood),
-         mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
+         cmd_outcome_date_hospital = if_else(is.na(cmd_outcome_date_hospital), as.Date('2100-01-01'), cmd_outcome_date_hospital),
+         cmd_outcome_date = if_else(is.na(cmd_outcome_date), as.Date('2100-01-01'), cmd_outcome_date),
+         smi_outcome_date_hospital = if_else(is.na(smi_outcome_date_hospital), as.Date('2100-01-01'), smi_outcome_date_hospital),
+         smi_outcome_date = if_else(is.na(smi_outcome_date), as.Date('2100-01-01'), smi_outcome_date),
+         self_harm_outcome_date_hospital = if_else(is.na(self_harm_outcome_date_hospital), as.Date('2100-01-01'), self_harm_outcome_date_hospital),
+         self_harm_outcome_date = if_else(is.na(self_harm_outcome_date), as.Date('2100-01-01'), self_harm_outcome_date))
 
 print('Number of positive rows (string)')
 cis_long %>% filter(result_mk == 'Positive') %>% nrow()

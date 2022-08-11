@@ -54,17 +54,59 @@
       "downloaded_at": "2022-06-15 14:27:45.659101Z",
       "sha": "9273c81432c3cfba328a19a1037a0dc2621ef543"
     },
-    "ons-mental-and-behavioural-disorders.csv": {
-      "id": "ons/mental-and-behavioural-disorders/29cebc01",
-      "url": "https://codelists.opensafely.org/codelist/ons/mental-and-behavioural-disorders/29cebc01/",
-      "downloaded_at": "2022-06-28 09:42:04.573272Z",
-      "sha": "9cbb56a0183f57668186625ec69eeba94cdd9bb5"
+    "ons-depression-and-anxiety-excluding-specific-anxieties.csv": {
+      "id": "ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664",
+      "url": "https://codelists.opensafely.org/codelist/ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664/",
+      "downloaded_at": "2022-08-11 12:23:48.835699Z",
+      "sha": "8a2ed6cbfa1b803cbe073195ee8c563fd3efd1ec"
     },
-    "ons-mental-health-disorders-and-intentional-self-harm.csv": {
-      "id": "ons/mental-health-disorders-and-intentional-self-harm/71122ad8",
-      "url": "https://codelists.opensafely.org/codelist/ons/mental-health-disorders-and-intentional-self-harm/71122ad8/",
-      "downloaded_at": "2022-08-03 13:10:59.581198Z",
-      "sha": "665c95b08b84fbffb3e7f5f0719ff99215c67775"
+    "ons-historic-anxiety-and-depression-diagnosis-codes.csv": {
+      "id": "ons/historic-anxiety-and-depression-diagnosis-codes/3672f646",
+      "url": "https://codelists.opensafely.org/codelist/ons/historic-anxiety-and-depression-diagnosis-codes/3672f646/",
+      "downloaded_at": "2022-08-11 12:23:49.266846Z",
+      "sha": "492884b2954718ead129ea055bf2e212180a157c"
+    },
+    "ons-depression-and-anxiety-diagnoses-and-symptoms-excluding-specific-anxieties.csv": {
+      "id": "ons/depression-and-anxiety-diagnoses-and-symptoms-excluding-specific-anxieties/7fb5437e",
+      "url": "https://codelists.opensafely.org/codelist/ons/depression-and-anxiety-diagnoses-and-symptoms-excluding-specific-anxieties/7fb5437e/",
+      "downloaded_at": "2022-08-11 12:23:49.579533Z",
+      "sha": "7318303488c4f10b03e80c78c070bb5383d19482"
+    },
+    "ons-serious-mental-illness.csv": {
+      "id": "ons/serious-mental-illness/7c3bcff9",
+      "url": "https://codelists.opensafely.org/codelist/ons/serious-mental-illness/7c3bcff9/",
+      "downloaded_at": "2022-08-11 12:23:49.890847Z",
+      "sha": "632d88369fb4529322d627688d1580981cc1280b"
+    },
+    "ons-historic-serious-mental-illness-diagnosis-codes.csv": {
+      "id": "ons/historic-serious-mental-illness-diagnosis-codes/04540fdc",
+      "url": "https://codelists.opensafely.org/codelist/ons/historic-serious-mental-illness-diagnosis-codes/04540fdc/",
+      "downloaded_at": "2022-08-11 12:23:50.197660Z",
+      "sha": "8a37ed34fd874f7822df69d12def9903a00719a5"
+    },
+    "ons-serious-mental-illness-schizophrenia-bipolar-disorder-psychosis.csv": {
+      "id": "ons/serious-mental-illness-schizophrenia-bipolar-disorder-psychosis/39ec69cb",
+      "url": "https://codelists.opensafely.org/codelist/ons/serious-mental-illness-schizophrenia-bipolar-disorder-psychosis/39ec69cb/",
+      "downloaded_at": "2022-08-11 12:23:50.489664Z",
+      "sha": "83758e14ae4b745011aed627b1cfae66d36e723b"
+    },
+    "ons-self-harm.csv": {
+      "id": "ons/self-harm/154b432f",
+      "url": "https://codelists.opensafely.org/codelist/ons/self-harm/154b432f/",
+      "downloaded_at": "2022-08-11 12:23:50.857651Z",
+      "sha": "83284b283ae17d16715e263c0deb389acf1e2c64"
+    },
+    "ons-historic-self-harm-codes.csv": {
+      "id": "ons/historic-self-harm-codes/6b449ca6",
+      "url": "https://codelists.opensafely.org/codelist/ons/historic-self-harm-codes/6b449ca6/",
+      "downloaded_at": "2022-08-11 12:23:51.160660Z",
+      "sha": "4fd03c42ec27535fc09413e258dd3f6652471245"
+    },
+    "ons-self-harm-intentional-and-undetermined-intent.csv": {
+      "id": "ons/self-harm-intentional-and-undetermined-intent/74239017",
+      "url": "https://codelists.opensafely.org/codelist/ons/self-harm-intentional-and-undetermined-intent/74239017/",
+      "downloaded_at": "2022-08-11 12:23:51.455897Z",
+      "sha": "6217ca378b4c55aaa67912723cef2ee1e0cad269"
     },
     "ons-metabolic-disorders.csv": {
       "id": "ons/metabolic-disorders/10bf48cc",

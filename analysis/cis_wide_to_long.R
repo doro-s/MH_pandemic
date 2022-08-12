@@ -1,5 +1,4 @@
 library(tidyverse)
-library(purrr)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
@@ -39,8 +38,8 @@ remove_cols_string <- function(df, string){
   return(df)
 }
 
-cis_dates <- cis_wide %>% 
-  select(patient_id, date_of_death, 
+cis_cols <- cis_wide %>% 
+  select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine)
 

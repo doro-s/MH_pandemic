@@ -26,6 +26,9 @@ ons/digestive-disorders/42de2f36
 # HIV/AIDS (SNOMED)
 opensafely/hiv-snomed/2020-07-13
 
+# Unspecified mood disorder hospital admission (ICD-10)
+ons/unspecified-mood-disorders/110b1c1b
+
 # CMD hospital admission (ICD-10)
 ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664
 

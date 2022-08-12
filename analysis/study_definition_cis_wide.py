@@ -174,6 +174,15 @@ def get_nhs_data_share(name, col):
             }
         )}
 
+def get_sex(name):
+    return{
+        name : patients.sex(
+            return_expectations={
+                "category": {"ratios": {"M": 0.49, "F": 0.51}},
+                "incidence": 1,
+            }
+        )}
+
 def get_age(name, date):
     return{
         name: patients.age_as_of(
@@ -289,6 +298,21 @@ def get_hiv_aids(name, date):
             'codelists/opensafely-hiv-snomed.csv',
             system='snomed',
             column='id'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.1
+        }
+    )}
+
+def get_other_mood_disorder_hospital_history(name, date):
+    return {name : patients.admitted_to_hospital(
+        with_these_primary_diagnoses=codelist_from_csv(
+            'codelists/ons-unspecified-mood-disorders.csv',
+            system='icd10',
+            column='code'
         ),
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
@@ -606,6 +630,8 @@ def cis_earliest_positive(start_date, n):
             variables.update(get_hes_admission('covid_hes'))
             variables.update(get_tt_positive('covid_tt'))
             variables.update(get_covid_vaccine('covid_vaccine'))
+            # get sex
+            variables.update(get_sex('sex'))
         else:
             # get nth visit date
             variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))
@@ -645,6 +671,9 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_neurological_snomed(f'neurological_snomed_{i}', f'visit_date_{i}'))
         variables.update(get_kidney_disorder(f'kidney_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_respiratory_disorder(f'respiratory_disorder_{i}', f'visit_date_{i}'))
+        variables.update(get_other_mood_disorder_hospital_history(f'other_mood_disorder_hospital_history_{i}', f'visit_date_{i}'))
+        
+        # mental health history
         variables.update(get_CMD_history(f'cmd_history_{i}', f'visit_date_{i}'))
         variables.update(get_SMI_history(f'smi_history_{i}', f'visit_date_{i}'))
         variables.update(get_self_harm_history(f'self_harm_history_{i}', f'visit_date_{i}'))
@@ -653,7 +682,7 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_self_harm_hospital_history(f'self_harm_history_hospital_{i}', f'visit_date_{i}'))
         
         
-        # get health outcomes
+        # get mental health outcomes
         variables.update(get_CMD_outcome(f'cmd_outcome_date_{i}', f'visit_date_{i}'))
         variables.update(get_SMI_outcome(f'smi_outcome_date_{i}', f'visit_date_{i}'))
         variables.update(get_self_harm_outcome(f'self_harm_outcome_date_{i}', f'visit_date_{i}'))
@@ -667,7 +696,13 @@ def cis_earliest_positive(start_date, n):
 
 study = StudyDefinition(
     
-    population=patients.all(),
+    population=patients.satisfying(
+        'in_cis',
+        in_cis = patients.with_an_ons_cis_record(
+            returning='binary_flag',
+            between=[start_date, end_date],
+            date_filter_column='visit_date')
+        ),
 
     default_expectations={
         "date": {"earliest": start_date, "latest": end_date},
@@ -679,4 +714,15 @@ study = StudyDefinition(
     **cis_earliest_positive(start_date=start_date, n=n_visits)
     
 )
+
+# no history (incident, new onset)
+
+# history (prevalance)
+# need to adjust for what they already have in the model
+# (possibly single grouped binary outcome)
+
+# cmd history -> smi or self-harm outcome (exacerbation)
+# outcome of interest: SMI, self-harm, or ANY hospital admission 
+# (possibly a single grouped binary outcome)
+# remove anyone with the outcomes
 

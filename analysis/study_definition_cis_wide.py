@@ -325,7 +325,7 @@ def get_other_mood_disorder_hospital_history(name, date):
 def get_CMD_history(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
-            'codelists/ons-historic-anxiety-and-depression-diagnosis-codes.csv',
+            'codelists/ons-cmd-codes.csv',
             system='snomed',
             column='code'
         ),
@@ -387,7 +387,7 @@ def get_CMD_hospital_outcome(name, date):
 def get_SMI_history(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
-            'codelists/ons-historic-serious-mental-illness-diagnosis-codes.csv',
+            'codelists/ons-smi-codes.csv',
             system='snomed',
             column='code'
         ),
@@ -449,7 +449,7 @@ def get_SMI_hospital_outcome(name, date):
 def get_self_harm_history(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
-            'codelists/ons-historic-self-harm-codes.csv',
+            'codelists/ons-self-harm-codes.csv',
             system='snomed',
             column='code'
         ),
@@ -715,7 +715,7 @@ study = StudyDefinition(
     
 )
 
-# no history (incident, new onset)
+# no history (incidence) new onset
 
 # history (prevalance)
 # need to adjust for what they already have in the model

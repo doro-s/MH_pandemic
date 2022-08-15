@@ -11,13 +11,14 @@ matched %>% filter(exposed == 1) %>% nrow()
 print('Number of controls')
 matched %>% filter(exposed == 0) %>%  nrow()
 
-if (sum(is.na(matched$mental_disorder_outcome_date)) == nrow(matched)){
-  matched <- matched %>% 
-    mutate(mental_disorder_outcome_date = as.Date(2100-01-01))
-}
-
+# For date outcome variables, add binary flag for convenience
 matched <- matched %>% 
-  mutate(mental_disorder_outcome_date = if_else(is.na(mental_disorder_outcome_date), as.Date('2100-01-01'), mental_disorder_outcome_date))
+  mutate(cmd_outcome = ifelse(cmd_outcome_date != '2100-01-01', 1, 0),
+         cmd_outcome_hospital = ifelse(cmd_outcome_date_hospital != '2100-01-01', 1, 0),
+         smi_outcome = ifelse(smi_outcome_date != '2100-01-01', 1, 0),
+         smi_outcome_hospital = ifelse(smi_outcome_date_hospital != '2100-01-01', 1, 0),
+         self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
+         self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
 
 # Create weights for groups
 # weights for controls (1/n) where n controls in matching group
@@ -28,44 +29,73 @@ matched <- matched %>%
   ungroup() %>% 
   mutate(weight = ifelse(exposed == 1, 1, weight))
 
-# For new onset of mental health, if ANYONE in matching group has 
-# mental health history, remove entire group
-# include hospitalisation due to mental health - looking for any historical
-# evidence in history
 
-# Create new onset flag for mental disorder
-matched <- matched %>% 
-  mutate(mental_disorder_outcome = ifelse(mental_disorder_outcome_date != '2100-01-01', 1, 0),
-         md_new_onset = ifelse(mental_disorder_history == 0 & mental_disorder_outcome == 1, 1, 0))
+# 3 groups of outcome
 
-# For new onset, remove groups based on historical evidence of 
-# mental disorder, including hospitalisation
+### (1) Incidence group (new onset) ###
+# No history of mental illness (in entire group)
 
-# DO I NEED TO APPLY THIS TO ALL CASES WHERE MD OUTCOME == 1, NOT JUST NEW ONSET?
-matched <- matched %>% 
+incidence <- matched %>% 
+  mutate(mh_history_any = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
+                             smi_history == 1 | smi_history_hospital == 1 |
+                             self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>% 
   group_by(group_id) %>% 
-  mutate(md_history_group = sum(mental_disorder_history) + sum(mental_disorder_hospital),
-         md_new_onset_group = sum(md_new_onset),
-         remove_group = ifelse(md_new_onset_group > 0 & md_history_group > 0, 1, 0)) %>% 
+  mutate(group_mh_history = max(mh_history_any)) %>% 
   ungroup() %>% 
-  filter(remove_group == 0) %>% 
-  select(-md_history_group, -md_new_onset_group, -remove_group, -md_new_onset)
+  filter(group_mh_history == 0) %>% 
+  select(-mh_history_any, -group_mh_history)
+
+print('size of new onset cohort')
+print(nrow(incidence))
+
+write_csv(incidence, 'output/incidence_group.csv')
 
 
-# Derive time to outcome
-matched <- matched %>% 
-  mutate(t = ifelse(mental_disorder_outcome_date == '2100-01-01', 
-                    end_date - visit_date,
-                    mental_disorder_outcome_date - visit_date))
+### (2) Prevalence group ###
+# Everyone in the groups needs to have some form of MH history
+prevalence <- matched %>% 
+  mutate(mh_history_any = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
+                                   smi_history == 1 | smi_history_hospital == 1 |
+                                   self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>%
+  group_by(group_id) %>% 
+  mutate(group_mh_history = max(mh_history_any)) %>% 
+  ungroup() %>% 
+  filter(group_mh_history == 1) %>% 
+  select(-mh_history_any, -group_mh_history)
 
-# Get some summary stats for number of exposed and controls (how many have been lost?)
-print('Number of exposed')
-matched %>% filter(exposed == 1) %>% nrow()
+print('size of incidence group')
+print(nrow(prevalence))
 
-print('Number of controls')
-matched %>% filter(exposed == 0) %>%  nrow()
+write_csv(prevalence, 'output/prevalence_group.csv')
 
 
-# Write out adjusted groups
-write_csv(matched, 'output/adjusted_groups.csv')
+### (3) Exacerbation group ###
+# Those with a cmd history (non-hospitalisation), or no history
+# who have any hospitalisation as outcome or smi/self harm
 
+# Part 1 - remove groups where cmd hospitalisation or smi/self harm history
+exac <- matched %>% 
+  mutate(cmd_history_only = ifelse(cmd_history_hospital == 1 |
+                                   smi_history == 1 | smi_history_hospital == 1 |
+                                   self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>%
+  group_by(group_id) %>% 
+  mutate(group_cmd_history = max(cmd_history_only)) %>% 
+  ungroup() %>% 
+  filter(group_cmd_history == 0) %>% 
+  select(-cmd_history_only, -group_cmd_history)
+
+# Part 2 - keep groups where cmd hospitalisation or smi/self harm outcomes
+exac <- exac %>% 
+  mutate(exacerbated = ifelse(cmd_outcome_hospital == 1 |
+                              smi_outcome == 1 | smi_outcome_hospital == 1 |
+                              self_harm_outcome == 1 | self_harm_outcome_hospital == 1, 1, 0)) %>% 
+  group_by(group_id) %>% 
+  mutate(group_exacerbated_outcome = max(exacerbated)) %>% 
+  ungroup() %>% 
+  filter(group_exacerbated_outcome == 1) %>% 
+  select(-exacerbated, -group_exacerbated_outcome)
+
+print('size of exacerbated group')
+print(nrow(exac))
+
+write_csv(exac, 'output/exacerbated_group.csv')

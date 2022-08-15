@@ -78,7 +78,7 @@ for (i in 1:nrow(exposed)){
   
   if (length(control_ids) < N){
     # print(paste0('Fewer than ', N, ' controls found - taking maximum'))
-    print(length(control_ids))
+    # print(length(control_ids))
   }
   else{
     control_ids <- sample(control_ids, N, replace = FALSE)

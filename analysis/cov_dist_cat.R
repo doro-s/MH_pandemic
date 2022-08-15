@@ -3,6 +3,7 @@ cov.dist.cat <- function(vars, dataset, exposure) {
   out_list1 <- as.list(NULL)
   
   for(i in 1:length(vars)) {
+    print(vars[i])
     
     dataset[[vars[i]]] <- as.factor(dataset[[vars[i]]])
     dataset[[vars[i]]] <- droplevels(dataset[[vars[i]]])

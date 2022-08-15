@@ -56,6 +56,7 @@ cis_long <- cis_long %>%
 print('Number of positive rows (string)')
 cis_long %>% filter(result_mk == 'Positive') %>% nrow()
 
+
 # Drop non-cis participants (no visit dates)
 # Drop anything after 30th September 2021 - end of study date
 # Fix missing result_mk and result_combined
@@ -87,8 +88,24 @@ cis_long <- cis_long %>%
 
 cis_long %>% pull(result_mk) %>% table()
 
-print('number of rows on reconciled data, visit_date <= 2021-09-30')
+print('number of rows on reconciled data (visit level), visit_date <= 2021-09-30')
 nrow(cis_long)
+
+
+# Perform naive counts on outcome variables
+print('cmd outcome')
+cis_long %>% mutate(flag = ifelse(cmd_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('cmd outcome hospital')
+cis_long %>% mutate(flag = ifelse(cmd_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('smi outcome')
+cis_long %>% mutate(flag = ifelse(smi_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('smi outcome hospital')
+cis_long %>% mutate(flag = ifelse(smi_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('self harm outcome')
+cis_long %>% mutate(flag = ifelse(self_harm_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('self harm outcome hospital')
+cis_long %>% mutate(flag = ifelse(self_harm_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+
 
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

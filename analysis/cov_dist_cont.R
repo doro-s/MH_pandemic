@@ -3,6 +3,7 @@ cov.dist.cont <- function(vars, dataset, exposure) {
 out_list1 <- as.list(NULL)
 
 for(i in 1:length(vars)) {
+    print(vars[i])
     
     ds0 <- dataset[dataset[[exposure]]==0,]
     ds1 <- dataset[dataset[[exposure]]==1,]

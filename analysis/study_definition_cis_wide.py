@@ -307,6 +307,21 @@ def get_hiv_aids(name, date):
         }
     )}
 
+def mental_and_behavioural_disorder(name, date):
+    return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-mental-and-behavioural-disorders.csv',
+            system='ctv3',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.1
+        }
+    )}
+
 def get_other_mood_disorder_hospital_history(name, date):
     return {name : patients.admitted_to_hospital(
         with_these_primary_diagnoses=codelist_from_csv(
@@ -333,7 +348,7 @@ def get_CMD_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -349,7 +364,7 @@ def get_CMD_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -364,7 +379,7 @@ def get_CMD_hospital_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -380,7 +395,7 @@ def get_CMD_hospital_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -395,7 +410,7 @@ def get_SMI_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -411,7 +426,7 @@ def get_SMI_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -426,7 +441,7 @@ def get_SMI_hospital_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -442,7 +457,7 @@ def get_SMI_hospital_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -457,7 +472,7 @@ def get_self_harm_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -473,7 +488,7 @@ def get_self_harm_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -488,7 +503,7 @@ def get_self_harm_hospital_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -504,7 +519,7 @@ def get_self_harm_hospital_outcome(name, date):
         date_format='YYYY-MM-DD',
         find_first_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
         }
     )}
 
@@ -664,6 +679,7 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_CVD_snomed(f'CVD_snomed_{i}', f'visit_date_{i}'))
         variables.update(get_digestive_disorder(f'digestive_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_hiv_aids(f'hiv_aids_{i}', f'visit_date_{i}'))
+        variables.update(get_hiv_aids(f'mental_behavioural_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_metabolic_disorder(f'metabolic_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_ctv3(f'musculoskeletal_ctv3_{i}', f'visit_date_{i}'))
         variables.update(get_musculoskeletal_snomed(f'musculoskeletal_snomed_{i}', f'visit_date_{i}'))

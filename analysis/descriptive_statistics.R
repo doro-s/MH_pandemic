@@ -42,23 +42,26 @@ cat_vars <- c("alcohol", "obesity", "cancer", "digestive_disorder",
 
 continuous_vars <- c('bmi', 'age')
 
-incidence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = incidence, exposure = 'exposed')
-incidence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = incidence, exposure = 'exposed')
+if (nrow(incidence) > 0){
+  incidence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = incidence, exposure = 'exposed')
+  incidence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = incidence, exposure = 'exposed')
+  write_csv(incidence_cat_stats, 'output/incidence_cat_stats.csv')
+  write_csv(incidence_con_stats, 'output/incidence_con_stats.csv')
+}
 
-prevalence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = prevalence, exposure = 'exposed')
-prevalence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = prevalence, exposure = 'exposed')
+if (nrow(prevalence) > 0){
+  prevalence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = prevalence, exposure = 'exposed')
+  prevalence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = prevalence, exposure = 'exposed')
+  write_csv(prevalence_cat_stats, 'output/prevalence_cat_stats.csv')
+  write_csv(prevalence_con_stats, 'output/prevalence_con_stats.csv')
+}
 
-exac_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = exac, exposure = 'exposed')
-exac_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = exac, exposure = 'exposed')
-
-write_csv(incidence_cat_stats, 'output/incidence_cat_stats.csv')
-write_csv(incidence_con_stats, 'output/incidence_con_stats.csv')
-
-write_csv(prevalence_cat_stats, 'output/prevalence_cat_stats.csv')
-write_csv(prevalence_con_stats, 'output/prevalence_con_stats.csv')
-
-write_csv(exac_cat_stats, 'output/exacerbated_cat_stats.csv')
-write_csv(exac_con_stats, 'output/exacerbated_con_stats.csv')
+if (nrow(exac) > 0){
+  exac_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = exac, exposure = 'exposed')
+  exac_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = exac, exposure = 'exposed')
+  write_csv(exac_cat_stats, 'output/exacerbated_cat_stats.csv')
+  write_csv(exac_con_stats, 'output/exacerbated_con_stats.csv')
+}
 
 # TODO - calculates incidence of common mental disorders (outcomes).
 # Rate per 1000 person-years

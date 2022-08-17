@@ -3,7 +3,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 500
+  population_size: 1000
 
 actions:
 
@@ -16,7 +16,7 @@ actions:
                 self_harm : 'codelists/ons-self-harm-codes.csv'
                 
     generate_cis_visit_level:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_cis_wide
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_cis_wide --with-end-date-fix
         needs : [combine_codelists]
         outputs:
             highly_sensitive:
@@ -77,6 +77,13 @@ actions:
                 prevalence_con_stats: output/prevalence_con_stats.csv
                 exacerbated_cat_stats: output/exacerbated_cat_stats.csv
                 exacerbated_con_stats: output/exacerbated_con_stats.csv
+    
+    cumulative_incidence:
+        run: r:latest analysis/cumulative_incidence_curves.R
+        needs: [adjust_matched_groups]
+        outputs:
+            moderately_sensitive:
+                placeholder: output/placeholder.csv
     
 
 

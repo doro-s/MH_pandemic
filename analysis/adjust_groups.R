@@ -70,30 +70,32 @@ write_csv(prevalence, 'output/prevalence_group.csv')
 
 
 ### (3) Exacerbation group ###
-# Those with a cmd history (non-hospitalisation), or no history
+# Those with a cmd history (non-hospitalisation) only
 # who have any hospitalisation as outcome or smi/self harm
 
-# Part 1 - remove groups where cmd hospitalisation or smi/self harm history
+# Part 1 - keeps groups where EVERYONE has cmd history only (non hospitalisation)
 exac <- matched %>% 
-  mutate(cmd_history_only = ifelse(cmd_history_hospital == 1 |
-                                   smi_history == 1 | smi_history_hospital == 1 |
-                                   self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>%
+  mutate(cmd_history_only = ifelse(cmd_history == 1 & cmd_history_hospital == 0 &
+                                   smi_history == 0 & smi_history_hospital == 0 &
+                                   self_harm_history == 0 & self_harm_history_hospital == 0, 1, 0)) %>%
   group_by(group_id) %>% 
-  mutate(group_cmd_history = max(cmd_history_only)) %>% 
+  mutate(group_cmd_history = sum(cmd_history_only),
+         group_size = n()) %>%
   ungroup() %>% 
-  filter(group_cmd_history == 0) %>% 
-  select(-cmd_history_only, -group_cmd_history)
+  filter(group_cmd_history == group_size) %>% 
+  select(-cmd_history_only, -group_cmd_history, -group_size)
 
-# Part 2 - keep groups where cmd hospitalisation or smi/self harm outcomes
+# Part 2 - keep groups where everyone has cmd hospitalisation or smi/self harm outcomes
 exac <- exac %>% 
   mutate(exacerbated = ifelse(cmd_outcome_hospital == 1 |
                               smi_outcome == 1 | smi_outcome_hospital == 1 |
                               self_harm_outcome == 1 | self_harm_outcome_hospital == 1, 1, 0)) %>% 
   group_by(group_id) %>% 
-  mutate(group_exacerbated_outcome = max(exacerbated)) %>% 
+  mutate(group_exacerbated_outcome = sum(exacerbated),
+         group_size = n()) %>% 
   ungroup() %>% 
-  filter(group_exacerbated_outcome == 1) %>% 
-  select(-exacerbated, -group_exacerbated_outcome)
+  filter(group_exacerbated_outcome == group_size) %>% 
+  select(-exacerbated, -group_exacerbated_outcome, -group_size)
 
 print('size of exacerbated group')
 print(nrow(exac))

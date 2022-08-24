@@ -10,7 +10,7 @@ from cohortextractor import (
 
 start_date = '2020-01-24'
 end_date = '2021-09-30'
-n_visits = 25
+n_visits = 5
 n_years_back = 5
 
 def get_visit_date(name, col, date):
@@ -333,7 +333,22 @@ def get_other_mood_disorder_hospital_history(name, date):
         returning='binary_flag',
         find_last_match_in_period=True,
         return_expectations={
-            "incidence": 0.1
+            "incidence": 0.05
+        }
+    )}
+
+def get_other_mood_disorder_diagnosis_history(name, date):
+    return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-mood-disorder.csv',
+            system='snomed',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.05
         }
     )}
 
@@ -688,6 +703,7 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_kidney_disorder(f'kidney_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_respiratory_disorder(f'respiratory_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_other_mood_disorder_hospital_history(f'other_mood_disorder_hospital_history_{i}', f'visit_date_{i}'))
+        variables.update(get_other_mood_disorder_diagnosis_history(f'other_mood_disorder_diagnosis_history_{i}', f'visit_date_{i}'))
         
         # mental health history
         variables.update(get_CMD_history(f'cmd_history_{i}', f'visit_date_{i}'))
@@ -730,15 +746,3 @@ study = StudyDefinition(
     **cis_earliest_positive(start_date=start_date, n=n_visits)
     
 )
-
-# no history (incidence) new onset
-
-# history (prevalance)
-# need to adjust for what they already have in the model
-# (possibly single grouped binary outcome)
-
-# cmd history -> smi or self-harm outcome (exacerbation)
-# outcome of interest: SMI, self-harm, or ANY hospital admission 
-# (possibly a single grouped binary outcome)
-# remove anyone with the outcomes
-

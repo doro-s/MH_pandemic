@@ -2,7 +2,7 @@ library(tidyverse)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('output/input_cis_long.csv', guess_max = 100000)
+cis_long <- read_csv('output/input_cis_long.csv', guess_max = 10000000)
                     
 cis_long %>% pull(result_mk) %>% table()
 cis_long %>% pull(result_combined) %>% table()

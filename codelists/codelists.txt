@@ -32,6 +32,9 @@ ons/mental-and-behavioural-disorders/29cebc01
 # Unspecified mood disorder hospital admission (ICD-10)
 ons/unspecified-mood-disorders/110b1c1b
 
+# Unspecified mood disorder diagnosis (SNOMED)
+ons/mood-disorder/37984f1e
+
 # CMD hospital admission (ICD-10)
 ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664
 

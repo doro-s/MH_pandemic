@@ -2,16 +2,16 @@ library(tidyverse)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 1000000)
+cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 10000000)
 
-N <- 25
+# N <- 25
 
 print('original wide data')
 nrow(cis_wide)
 
 # Remove anyone not in the CIS
 cis_wide <- cis_wide %>% 
-  filter(!is.na(visit_date_1))
+  filter(!is.na(visit_date_0))
 
 print('cis only wide data')
 nrow(cis_wide)

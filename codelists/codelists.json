@@ -66,6 +66,12 @@
       "downloaded_at": "2022-08-12 12:12:04.516575Z",
       "sha": "0957c436887ae8126304dafc1097c9a11529d1b1"
     },
+    "ons-mood-disorder.csv": {
+      "id": "ons/mood-disorder/37984f1e",
+      "url": "https://codelists.opensafely.org/codelist/ons/mood-disorder/37984f1e/",
+      "downloaded_at": "2022-08-18 13:25:02.117662Z",
+      "sha": "3ddbcd9e8587e87e3186d83f342ea5d4b107bfcc"
+    },
     "ons-depression-and-anxiety-excluding-specific-anxieties.csv": {
       "id": "ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664",
       "url": "https://codelists.opensafely.org/codelist/ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664/",

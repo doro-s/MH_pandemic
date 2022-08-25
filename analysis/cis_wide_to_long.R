@@ -58,8 +58,6 @@ for (i in 0:N){
   cat('\n')
 }
 
-# after filters (age > 16)
-
 
 # Join keys
 join_keys <- c('patient_id', 'visit_number')
@@ -122,21 +120,21 @@ cis_wide <- remove_cols_string(cis_wide, 'digestive_disorder')
 cis_long <- add_new_wide_col(cis_wide, cis_long, 'hiv_aids', 'hiv\\_aids\\_\\d+', join_keys)
 cis_wide <- remove_cols_string(cis_wide, 'hiv_aids')
 
-temp <- cis_wide %>% select(contains('mental_behavioural_disorder'))
-print(colnames(temp))
+# temp <- cis_wide %>% select(contains('mental_behavioural_disorder'))
+# print(colnames(temp))
 
-cis_long <- add_new_wide_col(cis_wide, cis_long, 'mental_behavioural_disorder', 'mental\\_behavioural\\_disorder\\_\\d+', join_keys)
-cis_wide <- remove_cols_string(cis_wide, 'mental_behavioural_disorder')
+# cis_long <- add_new_wide_col(cis_wide, cis_long, 'mental_behavioural_disorder', 'mental\\_behavioural\\_disorder\\_\\d+', join_keys)
+# cis_wide <- remove_cols_string(cis_wide, 'mental_behavioural_disorder')
 
-temp <- cis_wide %>% select(contains('other_mood_disorder_hospital_history'))
-print(colnames(temp))
+# temp <- cis_wide %>% select(contains('other_mood_disorder_hospital_history'))
+# print(colnames(temp))
 
-cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_hospital_history', 'other\\_mood\\_disorder\\_hospital\\_history\\_\\d+', join_keys)
-cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_hospital_history')
+# cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_hospital_history', 'other\\_mood\\_disorder\\_hospital\\_history\\_\\d+', join_keys)
+# cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_hospital_history')
 
 
-cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_diagnosis_history', 'other\\_mood\\_disorder\\_diagnosis\\_history\\_\\d+', join_keys)
-cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_diagnosis_history')
+# cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_diagnosis_history', 'other\\_mood\\_disorder\\_diagnosis\\_history\\_\\d+', join_keys)
+# cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_diagnosis_history')
 
 
 cis_long <- add_new_wide_col(cis_wide, cis_long, 'cmd_history_hospital', 'cmd\\_\\history\\_hospital\\_\\d+', join_keys)

@@ -1,10 +1,12 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-incidence <- read_csv('output/incidence_group.csv')
-prevalence <- read_csv('output/prevalence_group.csv')
-exac <- read_csv('output/exacerbated_group.csv')
+incidence <- fread('output/incidence_group.csv')
+prevalence <- fread('output/prevalence_group.csv')
+exac <- fread('output/exacerbated_group.csv')
 
 
 count_outcomes <- function(df, variables){

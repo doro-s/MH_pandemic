@@ -1,8 +1,10 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- read_csv('output/input_cis_wide.csv', guess_max = 10000000)
+cis_wide <- fread('output/input_cis_wide.csv')
 
 # N <- 25
 

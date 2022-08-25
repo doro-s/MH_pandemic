@@ -1,9 +1,10 @@
 library(tidyverse)
-library(glue)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis <- read_csv('output/input_reconciled.csv')
+cis <- fread('output/input_reconciled.csv')
 
 cat(dim(cis))
 cat('\n')
@@ -33,15 +34,15 @@ exposed <- exposed %>%
   left_join(min_pos_tt, by = 'patient_id') %>%
   # Undo any joins where min T&T is more than 1 year after most recent visit date
   # or non-matches
-  mutate(min_pos_date_tt = if_else(is.na(min_pos_date_tt), as.Date('2100-01-01'), min_pos_date_tt)) %>%
-  mutate(min_pos_date_tt = if_else(min_pos_date_tt > visit_date_one_year, as.Date('2100-01-01'), min_pos_date_tt)) %>% 
+  mutate(min_pos_date_tt = ifelse(is.na(min_pos_date_tt), as.IDate('2100-01-01'), min_pos_date_tt)) %>%
+  mutate(min_pos_date_tt = ifelse(min_pos_date_tt > visit_date_one_year, as.IDate('2100-01-01'), min_pos_date_tt)) %>% 
   # Get minimum of T&T and CIS
   mutate(date_positive = pmin(min_pos_date_cis, min_pos_date_tt)) %>% 
   select(-min_pos_date_cis, -min_pos_date_tt)
 
 # Derive end of study date for exposed
 exposed <- exposed %>%
-  mutate(eos_date = as.Date('2021-09-30'))
+  mutate(eos_date = as.IDate('2021-09-30'))
 
 # Get deaths and join to eos_dates
 dod <- cis %>% 
@@ -57,14 +58,14 @@ dod <- dod %>%
 
 exposed <- exposed %>%
   left_join(dod, by = 'patient_id') %>%
-  mutate(dod = if_else(is.na(dod), as.Date('2100-01-01'), dod))
+  mutate(dod = ifelse(is.na(dod), as.IDate('2100-01-01'), dod))
 
 # Undo any link to dod where after visit date one year #########################
 
 # Get minimum date of eos, max(visit) + 365, dod
 exposed <- exposed %>%
-  mutate(end_date = if_else(eos_date <= visit_date_one_year, eos_date, visit_date_one_year)) %>%
-  mutate(end_date = if_else(end_date <= dod, end_date, dod)) %>%
+  mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
+  mutate(end_date = pmin(end_date, dod)) %>%
   select(-eos_date, -visit_date_one_year, -dod,
          -first_pos_swab, -first_pos_blood, -result_combined,
          -covid_hes, -covid_tt, -covid_vaccine,

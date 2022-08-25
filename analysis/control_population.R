@@ -1,9 +1,10 @@
 library(tidyverse)
-library(lubridate)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis <- read_csv('output/input_reconciled.csv', guess_max = 100000)
+cis <- fread('output/input_reconciled.csv')
 
 # Remove rows where date of death < visit date, and where duplicated visit dates
 # Won't be necessary in actual data
@@ -20,7 +21,7 @@ cis <- cis %>%
 cis <- cis %>%
   group_by(patient_id) %>%
   mutate(visit_date_one_year = max(visit_date) + 365,
-         eos_date = as.Date('2021-09-30')) %>%
+         eos_date = as.IDate('2021-09-30')) %>%
   ungroup()
 
 
@@ -31,7 +32,7 @@ cis_never_pos <- cis %>%
   group_by(patient_id) %>%
   mutate(ever_tested_pos = ifelse(sum(result_mk) > 0, 1, 0)) %>%
   filter(ever_tested_pos == 0) %>%
-  mutate(min_pos_date_cis = as.Date('2100-01-01')) %>%
+  mutate(min_pos_date_cis = as.IDate('2100-01-01')) %>%
   filter(visit_date == min(visit_date)) %>% 
   ungroup() %>%
   select(-ever_tested_pos) %>% 
@@ -71,8 +72,8 @@ cis_dates <- cis_dates %>%
 
 # UNDO ANY JOINS WHERE T&T OR HES HAPPENS AFTER visit_date_one_year
 cis_dates <- cis_dates %>%
-  mutate(min_pos_date_tt = if_else(min_pos_date_tt > visit_date_one_year, as.Date('2100-01-01'), min_pos_date_tt),
-         min_pos_date_hes = if_else(min_pos_date_hes > visit_date_one_year, as.Date('2100-01-01'), min_pos_date_hes))
+  mutate(min_pos_date_tt = fifelse(min_pos_date_tt > visit_date_one_year, as.IDate('2100-01-01'), min_pos_date_tt),
+         min_pos_date_hes = fifelse(min_pos_date_hes > visit_date_one_year, as.IDate('2100-01-01'), min_pos_date_hes))
 
 
 # Minimum blood test date in CIS as 3rd date column
@@ -125,9 +126,9 @@ earliest_pos_blood <- earliest_pos_blood %>%
 # min_self_blood
 # min_self_swab
 earliest_pos_blood <- earliest_pos_blood  %>%
-  mutate(min_pos_result_comb = if_else(vacc_date < min_pos_result_comb, as.Date('2100-01-01'), min_pos_result_comb)) %>%
-  mutate(min_pos_result_comb = if_else(min_self_blood < min_pos_result_comb, as.Date('2100-01-01'), min_pos_result_comb)) %>%
-  mutate(min_pos_result_comb = if_else(min_self_swab < min_pos_result_comb, as.Date('2100-01-01'), min_pos_result_comb)) %>%
+  mutate(min_pos_result_comb = ifelse(vacc_date < min_pos_result_comb, as.IDate('2100-01-01'), min_pos_result_comb)) %>%
+  mutate(min_pos_result_comb = ifelse(min_self_blood < min_pos_result_comb, as.IDate('2100-01-01'), min_pos_result_comb)) %>%
+  mutate(min_pos_result_comb = ifelse(min_self_swab < min_pos_result_comb, as.IDate('2100-01-01'), min_pos_result_comb)) %>%
   select(-vacc_date, -min_self_swab, -min_self_blood)
 
 # Link blood date to +ve cases
@@ -136,8 +137,8 @@ cis_dates <- cis_dates %>%
 
 # UNDO ANY JOINS WHERE BLOOD DATES HAPPENS AFTER visit_date_one_year
 cis_dates <- cis_dates %>%
-  mutate(min_pos_result_comb = if_else(is.na(min_pos_result_comb), as.Date('2100-01-01'), min_pos_result_comb)) %>%
-  mutate(min_pos_result_comb = if_else(min_pos_result_comb > visit_date_one_year, as.Date('2100-01-01'), min_pos_result_comb))
+  mutate(min_pos_result_comb = ifelse(is.na(min_pos_result_comb), as.IDate('2100-01-01'), min_pos_result_comb)) %>%
+  mutate(min_pos_result_comb = ifelse(min_pos_result_comb > visit_date_one_year, as.IDate('2100-01-01'), min_pos_result_comb))
 
 
 # Derive end of study date
@@ -170,12 +171,12 @@ dod <- dod %>%
 
 eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%
-  mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death))
+  mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death))
 
 # Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection ######################### TODO)
 eos_dates <- eos_dates %>%
-  mutate(end_date = if_else(eos_date <= visit_date_one_year, eos_date, visit_date_one_year)) %>%
-  mutate(end_date = if_else(end_date <= date_of_death, end_date, date_of_death)) %>%
+  mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
+  mutate(end_date = pmin(end_date, date_of_death)) %>%
   select(-eos_date, -visit_date_one_year, -date_of_death)
 
 # Join eos_dates back onto cis_dates
@@ -185,9 +186,9 @@ cis_dates <- cis_dates %>%
 
 # Get minimum +ve date for cis_dates
 cis_dates <- cis_dates %>%
-  mutate(date_positive = if_else(min_pos_date_cis < min_pos_date_tt, min_pos_date_cis, min_pos_date_tt)) %>%
-  mutate(date_positive = if_else(date_positive < min_pos_result_comb, date_positive, min_pos_result_comb)) %>%
-  mutate(date_positive = if_else(date_positive < min_pos_date_hes, date_positive, min_pos_date_hes)) %>%
+  mutate(date_positive = pmin(min_pos_date_cis, min_pos_date_tt)) %>%
+  mutate(date_positive = pmin(date_positive, min_pos_result_comb)) %>% 
+  mutate(date_positive = pmin(date_positive, min_pos_date_hes))%>%
   select(patient_id, date_positive, end_date)
 
 

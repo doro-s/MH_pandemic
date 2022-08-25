@@ -10,7 +10,7 @@ from cohortextractor import (
 
 start_date = '2020-01-24'
 end_date = '2021-09-30'
-n_visits = 5
+n_visits = 25
 n_years_back = 5
 
 def get_visit_date(name, col, date):

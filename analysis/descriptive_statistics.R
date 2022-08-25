@@ -1,13 +1,15 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 source('analysis/cov_dist_cat.R')
 source('analysis/cov_dist_cont.R')
 
-incidence <- read_csv('output/incidence_group.csv', guess_max = 100000)
-prevalence <- read_csv('output/prevalence_group.csv', guess_max = 100000)
-exac <- read_csv('output/exacerbated_group.csv', guess_max = 100000)
+incidence <- fread('output/incidence_group.csv')
+prevalence <- fread('output/prevalence_group.csv')
+exac <- fread('output/exacerbated_group.csv')
 
 # Need to read in matched person level data
 # Only need to consider participants characteristics at the index date

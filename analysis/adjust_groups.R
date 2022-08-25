@@ -1,8 +1,10 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-matched <- read_csv('output/matched_groups.csv', guess_max = 100000)
+matched <- fread('output/matched_groups.csv')
 
 # Get some summary stats for number of exposed and controls
 print('Number of exposed')

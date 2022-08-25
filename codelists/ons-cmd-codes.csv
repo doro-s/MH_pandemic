@@ -23,7 +23,7 @@ code,term
 10532003,"Primary degenerative dementia of the Alzheimer type, presenile onset, with depression"
 1053791000000108,Signposting to Improving Access to Psychological Therapies service
 10586006,Occupation-related stress disorder
-10743001000119104,Anxiety disorder in mother complicating childbirth
+10743001000119103,Anxiety disorder in mother complicating childbirth
 1084061000000106,Depressive personality disorder
 1086661000000108,"Reactive depression, prolonged single episode"
 1086671000000101,"Reactive depression, single episode"
@@ -56,17 +56,17 @@ code,term
 154970001,Recurrent depression
 15639000,"Moderate major depression, single episode"
 158735002,[D]Nervousness
-162191009,"[""Nerves""] or [nervousness] or [nervous tension]"
+162191009,"[""""Nerves""""] or [nervousness] or [nervous tension]"
 162192002,Anxiousness (& symptom)
 162196004,(Depressed) or (C/O feeling: [depressed] or [unhappy])
-16238181000119100,Depressive disorder caused by amphetamine
-16238221000119108,Depressive disorder caused by methamphetamine
-16264621000119108,Recurrent mild major depressive disorder co-occurrent with anxiety
+16238181000119101,Depressive disorder caused by amphetamine
+16238221000119109,Depressive disorder caused by methamphetamine
+16264621000119109,Recurrent mild major depressive disorder co-occurrent with anxiety
 16264821000119108,Recurrent severe major depressive disorder co-occurrent with anxiety
-16264901000119108,Recurrent moderate major depressive disorder co-occurrent with anxiety
-16265061000119104,Recurrent major depressive disorder co-occurrent with anxiety in full remission
+16264901000119109,Recurrent moderate major depressive disorder co-occurrent with anxiety
+16265061000119105,Recurrent major depressive disorder co-occurrent with anxiety in full remission
 16265301000119106,Recurrent major depressive disorder in partial remission co-occurrent with anxiety
-16265951000119108,Mild major depressive disorder co-occurrent with anxiety single episode
+16265951000119109,Mild major depressive disorder co-occurrent with anxiety single episode
 16266831000119100,Moderate major depressive disorder co-occurrent with anxiety single episode
 16266991000119108,Severe major depressive disorder co-occurrent with anxiety single episode
 162722001,On examination - depressed

@@ -80,7 +80,7 @@ code,term
 154870000,Schizophrenia NOS
 154871001,Affective psychoses: [manic depressive] or [involutional melancholia]
 162004,Severe manic bipolar I disorder without psychotic features
-16238741000119104,Bipolar disorder caused by drug
+16238741000119105,Bipolar disorder caused by drug
 16295005,"Bipolar II disorder, most recent episode major depressive"
 16506000,Mixed bipolar I disorder
 16990005,Subchronic schizophrenia
@@ -432,7 +432,7 @@ code,term
 61831009,Induced psychotic disorder
 623961000000108,Other alcoholic psychosis
 623971000000101,"Unspecified bipolar affective disorder, NOS"
-63204009,Bouffée délirante
+63204009,Bouff<c3><a9>e d<c3><a9>lirante
 632271000000100,Psychotic episode NOS
 633351000000106,Unspecified hebephrenic schizophrenia
 633391000000103,Catatonic schizophrenia NOS

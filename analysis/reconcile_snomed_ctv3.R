@@ -1,8 +1,10 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_long <- read_csv('output/input_cis_long.csv', guess_max = 10000000)
+cis_long <- fread('output/input_cis_long.csv')
                     
 cis_long %>% pull(result_mk) %>% table()
 cis_long %>% pull(result_combined) %>% table()
@@ -19,7 +21,7 @@ cis_long <- cis_long %>%
 check_all_na_date <- function(df, col){
   if (sum(is.na(df[col])) == nrow(df)){
     df <- df %>% 
-      mutate(col = as.Date('2100-01-01'))
+      mutate(col = as.IDate('2100-01-01'))
   }
   return(df)
 }
@@ -40,18 +42,18 @@ cis_long <- check_all_na_date(cis_long, 'self_harm_outcome_date')
 
 # For rows where date is NA (no observation), make arbitrarily large date
 cis_long <- cis_long %>% 
-  mutate(date_of_death = if_else(is.na(date_of_death), as.Date('2100-01-01'), date_of_death),
-         covid_hes = if_else(is.na(covid_hes), as.Date('2100-01-01'), covid_hes),
-         covid_tt = if_else(is.na(covid_tt), as.Date('2100-01-01'), covid_tt),
-         covid_vaccine = if_else(is.na(covid_vaccine), as.Date('2100-01-01'), covid_vaccine),
-         first_pos_swab = if_else(is.na(first_pos_swab), as.Date('2100-01-01'), first_pos_swab),
-         first_pos_blood = if_else(is.na(first_pos_blood), as.Date('2100-01-01'), first_pos_blood),
-         cmd_outcome_date_hospital = if_else(is.na(cmd_outcome_date_hospital), as.Date('2100-01-01'), cmd_outcome_date_hospital),
-         cmd_outcome_date = if_else(is.na(cmd_outcome_date), as.Date('2100-01-01'), cmd_outcome_date),
-         smi_outcome_date_hospital = if_else(is.na(smi_outcome_date_hospital), as.Date('2100-01-01'), smi_outcome_date_hospital),
-         smi_outcome_date = if_else(is.na(smi_outcome_date), as.Date('2100-01-01'), smi_outcome_date),
-         self_harm_outcome_date_hospital = if_else(is.na(self_harm_outcome_date_hospital), as.Date('2100-01-01'), self_harm_outcome_date_hospital),
-         self_harm_outcome_date = if_else(is.na(self_harm_outcome_date), as.Date('2100-01-01'), self_harm_outcome_date))
+  mutate(date_of_death = if_else(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death),
+         covid_hes = if_else(is.na(covid_hes), as.IDate('2100-01-01'), covid_hes),
+         covid_tt = if_else(is.na(covid_tt), as.IDate('2100-01-01'), covid_tt),
+         covid_vaccine = if_else(is.na(covid_vaccine), as.IDate('2100-01-01'), covid_vaccine),
+         first_pos_swab = if_else(is.na(first_pos_swab), as.IDate('2100-01-01'), first_pos_swab),
+         first_pos_blood = if_else(is.na(first_pos_blood), as.IDate('2100-01-01'), first_pos_blood),
+         cmd_outcome_date_hospital = if_else(is.na(cmd_outcome_date_hospital), as.IDate('2100-01-01'), cmd_outcome_date_hospital),
+         cmd_outcome_date = if_else(is.na(cmd_outcome_date), as.IDate('2100-01-01'), cmd_outcome_date),
+         smi_outcome_date_hospital = if_else(is.na(smi_outcome_date_hospital), as.IDate('2100-01-01'), smi_outcome_date_hospital),
+         smi_outcome_date = if_else(is.na(smi_outcome_date), as.IDate('2100-01-01'), smi_outcome_date),
+         self_harm_outcome_date_hospital = if_else(is.na(self_harm_outcome_date_hospital), as.IDate('2100-01-01'), self_harm_outcome_date_hospital),
+         self_harm_outcome_date = if_else(is.na(self_harm_outcome_date), as.IDate('2100-01-01'), self_harm_outcome_date))
 
 print('Number of positive rows (string)')
 cis_long %>% filter(result_mk == 'Positive') %>% nrow()

@@ -1,12 +1,14 @@
 library(tidyverse)
+library(data.table)
+options(datatable.fread.datatable=FALSE)
 
 # (dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Read in exposed population
-exposed <- read_csv('output/cis_exposed.csv', guess_max = 100000)
+exposed <- fread('output/cis_exposed.csv')
 
 # Bring cis dates into memory #################### this data is wrong - 10x too many visits
-control <- read_csv('output/cis_control.csv', guess_max = 100000) %>% 
+control <- fread('output/cis_control.csv') %>% 
   mutate(visit_date_flag = 0)
 
 # Make copy of cis dates that can be reduced
@@ -44,8 +46,8 @@ for (i in 1:nrow(exposed)){
   
   # Get min and max dates based on date_positive
   date_pos_exposed <- row$date_positive[1]
-  visit_date_min <- date_pos_exposed - 14
-  visit_date_max <- date_pos_exposed + 14
+  visit_date_min <- as.IDate(as.Date(date_pos_exposed) - 14)
+  visit_date_max <- as.IDate(as.Date(date_pos_exposed) + 14)
   
   # Filter cis based on min and max dates,
   # negative visit, and whether they are already a 
@@ -92,7 +94,7 @@ for (i in 1:nrow(exposed)){
   # Also handle multiple visits on same day per person
   temp <- temp %>%
     mutate(row_id = 1:nrow(temp),
-           t_to_origin = abs(as.numeric(date_pos_exposed - visit_date))) %>%
+           t_to_origin = abs(as.numeric(as.Date(date_pos_exposed) - as.Date(visit_date)))) %>%
     group_by(patient_id) %>%
     filter(t_to_origin == min(t_to_origin)) %>%
     filter(row_id == min(row_id)) %>%

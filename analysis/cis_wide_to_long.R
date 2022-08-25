@@ -2,9 +2,9 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-cis_wide <- fread('../output/input_cis_wide.csv')
+cis_wide <- fread('output/input_cis_wide.csv')
 
 print('original wide data')
 nrow(cis_wide)

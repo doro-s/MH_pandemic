@@ -6,8 +6,6 @@ options(datatable.fread.datatable=FALSE)
 
 cis_wide <- fread('output/input_cis_wide.csv')
 
-# N <- 25
-
 print('original wide data')
 nrow(cis_wide)
 
@@ -47,16 +45,18 @@ cis_cols <- cis_wide %>%
 
 # last_linkage_dt, nhs_data_share)
 
-# for (i in 0:N){
-#   v_date <- paste0('visit_date_', i)
-#   r_mk <- paste0('result_mk_', i)
-#   print(cis_wide %>% pull(r_mk) %>% table())
-#   print(paste0('min visit date ', i))
-#   print(cis_wide %>% pull(v_date) %>% min(na.rm = TRUE))
-#   print(paste0('max visit date ', i))
-#   print(cis_wide %>% pull(v_date) %>% max(na.rm = TRUE))
-#   cat('\n')
-# }
+N <- 25
+for (i in 0:N){
+  print(i)
+  v_date <- paste0('visit_date_', i)
+  r_mk <- paste0('result_mk_', i)
+  print(cis_wide %>% pull(r_mk) %>% table())
+  print(paste0('min visit date ', i))
+  print(cis_wide %>% pull(v_date) %>% min(na.rm = TRUE))
+  print(paste0('max visit date ', i))
+  print(cis_wide %>% pull(v_date) %>% max(na.rm = TRUE))
+  cat('\n')
+}
 
 # after filters (age > 16)
 

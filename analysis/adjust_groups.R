@@ -75,7 +75,7 @@ write_csv(prevalence, 'output/prevalence_group.csv')
 # Those with a cmd history (non-hospitalisation) only
 # who have any hospitalisation as outcome or smi/self harm
 
-# Part 1 - keeps groups where EVERYONE has cmd history only (non hospitalisation)
+# Keep groups where EVERYONE has cmd history only (non hospitalisation)
 exac <- matched %>% 
   mutate(cmd_history_only = ifelse(cmd_history == 1 & cmd_history_hospital == 0 &
                                    smi_history == 0 & smi_history_hospital == 0 &
@@ -86,18 +86,6 @@ exac <- matched %>%
   ungroup() %>% 
   filter(group_cmd_history == group_size) %>% 
   select(-cmd_history_only, -group_cmd_history, -group_size)
-
-# Part 2 - keep groups where everyone has cmd hospitalisation or smi/self harm outcomes
-exac <- exac %>% 
-  mutate(exacerbated = ifelse(cmd_outcome_hospital == 1 |
-                              smi_outcome == 1 | smi_outcome_hospital == 1 |
-                              self_harm_outcome == 1 | self_harm_outcome_hospital == 1, 1, 0)) %>% 
-  group_by(group_id) %>% 
-  mutate(group_exacerbated_outcome = sum(exacerbated),
-         group_size = n()) %>% 
-  ungroup() %>% 
-  filter(group_exacerbated_outcome == group_size) %>% 
-  select(-exacerbated, -group_exacerbated_outcome, -group_size)
 
 print('size of exacerbated group')
 print(nrow(exac))

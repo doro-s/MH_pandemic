@@ -11,7 +11,7 @@ cis_long %>% pull(result_combined) %>% table()
 
 cis_long <- cis_long %>% 
   mutate(CVD = ifelse(CVD_snomed == 1 | CVD_ctv3 == 1, 1, 0),
-         musculoskeletal = ifelse(musculoskeletal_snomed == 1 | musculoskeletal_ctv3 == 1, 1, 0),
+         musculoskeletal = if_else(musculoskeletal_snomed == 1 | musculoskeletal_ctv3 == 1, 1, 0),
          neurological = if_else(neurological_snomed == 1 | neurological_ctv3 == 1, 1, 0)) %>%
   select(-CVD_snomed, -CVD_ctv3,
          -musculoskeletal_snomed, -musculoskeletal_ctv3,
@@ -20,11 +20,11 @@ cis_long <- cis_long %>%
 # Add a check for date columns where all NAs - convert from logical to date
 check_all_na_date <- function(df, col){
   if (sum(is.na(df[col])) == nrow(df)){
-    df <- df %>% 
-      mutate(col = as.IDate('2100-01-01'))
+    df[col] <- as.IDate('2100-01-01')
   }
   return(df)
 }
+
 
 cis_long <- check_all_na_date(cis_long, 'date_of_death')
 cis_long <- check_all_na_date(cis_long, 'covid_hes')

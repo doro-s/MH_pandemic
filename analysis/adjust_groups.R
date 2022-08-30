@@ -22,6 +22,7 @@ matched <- matched %>%
          self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
          self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
 
+
 print('Pre-splitting history counts:')
 print('cmd outcome')
 matched %>% pull(cmd_history) %>% table()

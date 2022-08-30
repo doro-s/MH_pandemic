@@ -17,10 +17,24 @@ actions:
                 
     generate_cis_visit_level:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_cis_wide --with-end-date-fix
-        needs : [combine_codelists]
+        needs: [combine_codelists]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv
+    
+    generate_cmd_counts:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_cmd --with-end-date-fix
+        needs: [combine_codelists]
+        outputs:
+            highly_sensitive:
+                cohort: output/input_cmd.csv
+    
+    population_cmd:
+        run: r:latest analysis/population_cmd.R
+        needs: [generate_cmd_counts]
+        outputs:
+            highly_sensitive:
+                cohort: output/population_cmd.csv
     
     transform_cis_wide_to_long:
         run: r:latest analysis/cis_wide_to_long.R

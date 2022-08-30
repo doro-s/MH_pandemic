@@ -22,7 +22,22 @@ matched <- matched %>%
          self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
          self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
 
-print('Pre-splitting counts:')
+print('Pre-splitting history counts:')
+print('cmd outcome')
+matched %>% pull(cmd_history) %>% table()
+print('cmd history hospital')
+matched %>% pull(cmd_history_hospital) %>% table()
+print('smi history')
+matched %>% pull(smi_history) %>% table()
+print('smi history hospital')
+matched %>% pull(smi_history_hospital) %>% table()
+print('self harm history')
+matched %>% pull(self_harm_history) %>% table()
+print('self harm history hospital')
+matched %>% pull(self_harm_history_hospital) %>% table()
+
+
+print('Pre-splitting outcome counts:')
 print('cmd outcome')
 matched %>% pull(cmd_outcome) %>% table()
 print('cmd outcome hospital')
@@ -35,6 +50,8 @@ print('self harm outcome')
 matched %>% pull(self_harm_outcome) %>% table()
 print('self harm outcome hospital')
 matched %>% pull(self_harm_outcome_hospital) %>% table()
+
+
 
 
 # Create weights for groups

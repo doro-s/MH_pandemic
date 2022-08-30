@@ -63,6 +63,9 @@ if (nrow(exac) > 0){
   exac_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = exac, exposure = 'exposed')
   write_csv(exac_cat_stats, 'output/exacerbated_cat_stats.csv')
   write_csv(exac_con_stats, 'output/exacerbated_con_stats.csv')
+} else{
+  write_csv(data.frame(1), 'output/exacerbated_cat_stats.csv')
+  write_csv(data.frame(1), 'output/exacerbated_con_stats.csv')
 }
 
 # TODO - calculates incidence of common mental disorders (outcomes).

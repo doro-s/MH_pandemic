@@ -22,6 +22,21 @@ matched <- matched %>%
          self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
          self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
 
+print('Pre-splitting counts:')
+print('cmd outcome')
+matched %>% pull(cmd_outcome) %>% table()
+print('cmd outcome hospital')
+matched %>% pull(cmd_outcome_hospital) %>% table()
+print('smi outcome')
+matched %>% pull(smi_outcome) %>% table()
+print('smi outcome hospital')
+matched %>% pull(smi_outcome_hospital) %>% table()
+print('self harm outcome')
+matched %>% pull(self_harm_outcome) %>% table()
+print('self harm outcome hospital')
+matched %>% pull(self_harm_outcome_hospital) %>% table()
+
+
 # Create weights for groups
 # weights for controls (1/n) where n controls in matching group
 # Convert weight back to 1 for exposed people
@@ -47,7 +62,7 @@ incidence <- matched %>%
   filter(group_mh_history == 0) %>% 
   select(-mh_history_any, -group_mh_history)
 
-print('size of new onset cohort')
+print('size of incidence group')
 print(nrow(incidence))
 
 write_csv(incidence, 'output/incidence_group.csv')
@@ -65,7 +80,7 @@ prevalence <- matched %>%
   filter(group_mh_history == 1) %>% 
   select(-mh_history_any, -group_mh_history)
 
-print('size of incidence group')
+print('size of prevalence group')
 print(nrow(prevalence))
 
 write_csv(prevalence, 'output/prevalence_group.csv')

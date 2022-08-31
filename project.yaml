@@ -22,19 +22,19 @@ actions:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv
     
-    generate_cmd_counts:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_cmd --with-end-date-fix
-        needs: [combine_codelists]
-        outputs:
-            highly_sensitive:
-                cohort: output/input_cmd.csv
+    # generate_cmd_counts:
+    #     run: cohortextractor:latest generate_cohort --study-definition study_definition_cmd --with-end-date-fix
+    #     needs: [combine_codelists]
+    #     outputs:
+    #         highly_sensitive:
+    #             cohort: output/input_cmd.csv
     
-    population_cmd:
-        run: r:latest analysis/population_cmd.R
-        needs: [generate_cmd_counts]
-        outputs:
-            highly_sensitive:
-                cohort: output/population_cmd.csv
+    # population_cmd:
+    #     run: r:latest analysis/population_cmd.R
+    #     needs: [generate_cmd_counts]
+    #     outputs:
+    #         highly_sensitive:
+    #             cohort: output/population_cmd.csv
     
     transform_cis_wide_to_long:
         run: r:latest analysis/cis_wide_to_long.R
@@ -69,16 +69,18 @@ actions:
         needs: [derive_exposed, derive_controls]
         outputs:
             highly_sensitive:
-                cohort: output/matched_groups.csv
+                incidence: output/incidence_group.csv
+                prevalence: output/prevalence_group.csv
+                exacerbated: output/exacerbated_group.csv
     
     adjust_matched_groups:
         run: r:latest analysis/adjust_groups.R
         needs: [perform_matching]
         outputs:
             highly_sensitive:
-                incidence: output/incidence_group.csv
-                prevalence: output/prevalence_group.csv
-                exacerbated: output/exacerbated_group.csv
+                incidence: output/adjusted_incidence_group.csv
+                prevalence: output/adjusted_prevalence_group.csv
+                exacerbated: output/adjusted_exacerbated_group.csv
     
     descriptive_stats:
         run: r:latest analysis/descriptive_statistics.R

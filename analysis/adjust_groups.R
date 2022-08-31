@@ -4,14 +4,32 @@ options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-matched <- fread('output/matched_groups.csv')
+incidence <- fread('output/incidence_group.csv') %>% 
+  mutate(group = 'incidence')
+prevalence <- fread('output/prevalence_group.csv') %>% 
+  mutate(group = 'prevalence')
+exac <- fread('output/exacerbated_group.csv') %>% 
+  mutate(group = 'exacerbated')
 
 # Get some summary stats for number of exposed and controls
-print('Number of exposed')
-matched %>% filter(exposed == 1) %>% nrow()
+count_exposed_and_control <- function(df){
+  print('Number of exposed')
+  df %>% filter(exposed == 1) %>% nrow() %>% print()
+  print('Number of controls')
+  df %>% filter(exposed == 0) %>%  nrow() %>% print()
+}
 
-print('Number of controls')
-matched %>% filter(exposed == 0) %>%  nrow()
+print('counts for incidence group')
+count_exposed_and_control(incidence)
+
+print('counts for prevalence group')
+count_exposed_and_control(prevalence)
+
+print('counts for exacerbated group')
+count_exposed_and_control(exac)
+
+# Temporary rbind() together for convenience
+matched <- rbind(incidence, rbind(prevalence, exac))
 
 # For date outcome variables, add binary flag for convenience
 matched <- matched %>% 
@@ -22,105 +40,64 @@ matched <- matched %>%
          self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
          self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
 
-
-print('Pre-splitting history counts:')
-print('cmd outcome')
-matched %>% pull(cmd_history) %>% table()
-print('cmd history hospital')
-matched %>% pull(cmd_history_hospital) %>% table()
-print('smi history')
-matched %>% pull(smi_history) %>% table()
-print('smi history hospital')
-matched %>% pull(smi_history_hospital) %>% table()
-print('self harm history')
-matched %>% pull(self_harm_history) %>% table()
-print('self harm history hospital')
-matched %>% pull(self_harm_history_hospital) %>% table()
-
-
-print('Pre-splitting outcome counts:')
-print('cmd outcome')
-matched %>% pull(cmd_outcome) %>% table()
-print('cmd outcome hospital')
-matched %>% pull(cmd_outcome_hospital) %>% table()
-print('smi outcome')
-matched %>% pull(smi_outcome) %>% table()
-print('smi outcome hospital')
-matched %>% pull(smi_outcome_hospital) %>% table()
-print('self harm outcome')
-matched %>% pull(self_harm_outcome) %>% table()
-print('self harm outcome hospital')
-matched %>% pull(self_harm_outcome_hospital) %>% table()
-
-
-
-
 # Create weights for groups
 # weights for controls (1/n) where n controls in matching group
 # Convert weight back to 1 for exposed people
 matched <- matched %>% 
-  group_by(group_id) %>% 
+  group_by(group, group_id) %>% 
   mutate(weight = 1/(n()-1)) %>% 
   ungroup() %>% 
   mutate(weight = ifelse(exposed == 1, 1, weight))
 
+# Split back out into the three groups
+incidence <- matched %>% filter(group == 'incidence')
+prevalence <- matched %>% filter(group == 'prevalence')
+exac <- matched %>% filter(group == 'exacerbated')
 
-# 3 groups of outcome
+rm(matched)
 
-### (1) Incidence group (new onset) ###
-# No history of mental illness (in entire group)
-
-incidence <- matched %>% 
-  mutate(mh_history_any = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
-                             smi_history == 1 | smi_history_hospital == 1 |
-                             self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>% 
-  group_by(group_id) %>% 
-  mutate(group_mh_history = max(mh_history_any)) %>% 
-  ungroup() %>% 
-  filter(group_mh_history == 0) %>% 
-  select(-mh_history_any, -group_mh_history)
-
-print('size of incidence group')
-print(nrow(incidence))
-
-write_csv(incidence, 'output/incidence_group.csv')
-
-
-### (2) Prevalence group ###
-# Everyone in the groups needs to have some form of MH history
-prevalence <- matched %>% 
-  mutate(mh_history_any = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
-                                   smi_history == 1 | smi_history_hospital == 1 |
-                                   self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>%
-  group_by(group_id) %>% 
-  mutate(group_mh_history = max(mh_history_any)) %>% 
-  ungroup() %>% 
-  filter(group_mh_history == 1) %>% 
-  select(-mh_history_any, -group_mh_history)
-
-print('size of prevalence group')
-print(nrow(prevalence))
-
-write_csv(prevalence, 'output/prevalence_group.csv')
+count_outcomes <- function(df){
+  
+  print('Pre-splitting history counts:')
+  print('cmd outcome')
+  df %>% pull(cmd_history) %>% table() %>% print()
+  print('cmd history hospital')
+  df %>% pull(cmd_history_hospital) %>% table() %>% print()
+  print('smi history')
+  df %>% pull(smi_history) %>% table() %>% print()
+  print('smi history hospital')
+  df %>% pull(smi_history_hospital) %>% table() %>% print()
+  print('self harm history')
+  df %>% pull(self_harm_history) %>% table() %>% print()
+  print('self harm history hospital')
+  df %>% pull(self_harm_history_hospital) %>% table() %>% print()
+  
+  
+  print('Pre-splitting outcome counts:')
+  print('cmd outcome')
+  df %>% pull(cmd_outcome) %>% table() %>% print()
+  print('cmd outcome hospital')
+  df %>% pull(cmd_outcome_hospital) %>% table() %>% print()
+  print('smi outcome')
+  df %>% pull(smi_outcome) %>% table() %>% print()
+  print('smi outcome hospital')
+  df %>% pull(smi_outcome_hospital) %>% table() %>% print()
+  print('self harm outcome')
+  df %>% pull(self_harm_outcome) %>% table() %>% print()
+  print('self harm outcome hospital')
+  df %>% pull(self_harm_outcome_hospital) %>% table() %>% print()
+  
+}
 
 
-### (3) Exacerbation group ###
-# Those with a cmd history (non-hospitalisation) only
-# who have any hospitalisation as outcome or smi/self harm
+print('counting history & outcomes for incidence')
+count_outcomes(incidence)
+print('counting history & outcomes for prevalence')
+count_outcomes(prevalence)
+print('counting history & outcomes for exacerbated')
+count_outcomes(exac)
 
-# Keep groups where EVERYONE has cmd history only (non hospitalisation)
-exac <- matched %>% 
-  mutate(cmd_history_only = ifelse(cmd_history == 1 & cmd_history_hospital == 0 &
-                                   smi_history == 0 & smi_history_hospital == 0 &
-                                   self_harm_history == 0 & self_harm_history_hospital == 0, 1, 0)) %>%
-  group_by(group_id) %>% 
-  mutate(group_cmd_history = sum(cmd_history_only),
-         group_size = n()) %>%
-  ungroup() %>% 
-  filter(group_cmd_history == group_size) %>% 
-  select(-cmd_history_only, -group_cmd_history, -group_size)
 
-print('size of exacerbated group')
-print(nrow(exac))
-
-write_csv(exac, 'output/exacerbated_group.csv')
+write_csv(incidence, 'output/adjusted_incidence_group.csv')
+write_csv(prevalence, 'outputadjusted_/prevalence_group.csv')
+write_csv(exac, 'output/adjusted_exacerbated_group.csv')

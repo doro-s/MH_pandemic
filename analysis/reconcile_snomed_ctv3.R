@@ -17,6 +17,10 @@ cis_long <- cis_long %>%
          -musculoskeletal_snomed, -musculoskeletal_ctv3,
          -neurological_snomed, -neurological_ctv3)
 
+# Create overweight flag
+cis_long <- cis_long %>% 
+  mutate(overweight = ifelse(bmi >= 25, 1, 0))
+
 # Add a check for date columns where all NAs - convert from logical to date
 check_all_na_date <- function(df, col){
   if (sum(is.na(df[col])) == nrow(df)){

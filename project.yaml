@@ -80,7 +80,6 @@ actions:
             highly_sensitive:
                 incidence: output/adjusted_incidence_group.csv
                 prevalence: output/adjusted_prevalence_group.csv
-                exacerbated: output/adjusted_exacerbated_group.csv
     
     descriptive_stats:
         run: r:latest analysis/descriptive_statistics.R
@@ -91,8 +90,6 @@ actions:
                 incidence_con_stats: output/incidence_con_stats.csv
                 prevalence_cat_stats: output/prevalence_cat_stats.csv
                 prevalence_con_stats: output/prevalence_con_stats.csv
-                exacerbated_cat_stats: output/exacerbated_cat_stats.csv
-                exacerbated_con_stats: output/exacerbated_con_stats.csv
     
     cumulative_incidence:
         run: r:latest analysis/cumulative_incidence_curves.R

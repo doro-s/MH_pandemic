@@ -2,59 +2,25 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-incidence <- fread('output/incidence_group.csv')
-prevalence <- fread('output/prevalence_group.csv')
-exac <- fread('output/exacerbated_group.csv')
+incidence <- fread('../output/adjusted_incidence_group.csv')
+prevalence <- fread('../output/adjusted_prevalence_group.csv')
 
+eos_date <- as.IDate('2021-09-30')
 
-count_outcomes <- function(df, variables){
-  
-  for (v in variables){
-    print(v)
-    print(table(df[[v]]))
-    cat('\n')
-  }
-}
-
-
-# Count outcomes for feasibility of analysis - do outcomes need to be grouped?
-count_outcomes(incidence, c('cmd_outcome', 'cmd_outcome_hospital',
-                            'smi_outcome', 'smi_outcome_hospital',
-                            'self_harm_outcome', 'self_harm_outcome_hospital'))
-
-count_outcomes(prevalence, c('cmd_outcome', 'cmd_outcome_hospital',
-                             'smi_outcome', 'smi_outcome_hospital',
-                             'self_harm_outcome', 'self_harm_outcome_hospital'))
-
-count_outcomes(exac, c('cmd_outcome', 'cmd_outcome_hospital',
-                       'smi_outcome', 'smi_outcome_hospital',
-                       'self_harm_outcome', 'self_harm_outcome_hospital'))
-
-
-# Derive t for incidence of every individual outcome
+# Derive t for outcomes
 derive_t <- function(df){
   
   df <- df %>% 
-    mutate(cmd_outcome_t = ifelse(cmd_outcome_date == '2100-01-01',
-                                  end_date - visit_date, 
-                                  cmd_outcome_date - visit_date),
-           cmd_outcome_hospital_t = ifelse(cmd_outcome_date_hospital == '2100-01-01',
-                                           end_date - visit_date, 
-                                           cmd_outcome_date_hospital - visit_date),
-           smi_outcome_t = ifelse(smi_outcome_date == '2100-01-01',
-                                  end_date - visit_date, 
-                                  smi_outcome_date - visit_date),
-           smi_outcome_hospital_t = ifelse(smi_outcome_date_hospital == '2100-01-01',
-                                           end_date - visit_date, 
-                                           smi_outcome_date_hospital - visit_date),
-           self_harm_outcome_t = ifelse(self_harm_outcome_date == '2100-01-01',
-                                        end_date - visit_date, 
-                                        self_harm_outcome_date - visit_date),
-           self_harm_outcome_hospital_t = ifelse(self_harm_outcome_date_hospital == '2100-01-01',
-                                                 end_date - visit_date, 
-                                                 self_harm_outcome_date_hospital - visit_date))
+    mutate(min_outcome_date_cmd = cmd_outcome_date,
+           min_outcome_date_other = pmin(cmd_outcome_date_hospital,
+                                         smi_outcome_date, smi_outcome_date_hospital,
+                                         self_harm_outcome_date, self_harm_outcome_date_hospital)) %>% 
+    mutate(min_outcome_date = fifelse(min_outcome_date == '2100-01-01', eos_date, min_outcome_date)) %>% 
+    mutate(t = fifelse(min_outcome_date == '2021-09-30', 
+                       end_date - visit_date, 
+                       min_outcome_date - visit_date))
   
   return(df)
 }
@@ -80,14 +46,9 @@ cumulative_inc <- function(df, v){
 
 incidence <- derive_t(incidence)
 prevalence <- derive_t(prevalence)
-exac <- derive_t(exac)
 
 cumulative_inc(incidence, 'cmd_outcome_t')
 cumulative_inc(incidence, 'cmd_outcome_hospital_t')
-cumulative_inc(incidence, 'smi_outcome_t')
-cumulative_inc(incidence, 'smi_outcome_hospital_t')
-cumulative_inc(incidence, 'self_harm_outcome_t')
-cumulative_inc(incidence, 'self_harm_outcome_hospital_t')
 
 cumulative_inc(prevalence, 'cmd_outcome_t')
 cumulative_inc(prevalence, 'cmd_outcome_hospital_t')
@@ -95,12 +56,5 @@ cumulative_inc(prevalence, 'smi_outcome_t')
 cumulative_inc(prevalence, 'smi_outcome_hospital_t')
 cumulative_inc(prevalence, 'self_harm_outcome_t')
 cumulative_inc(prevalence, 'self_harm_outcome_hospital_t')
-
-cumulative_inc(exac, 'cmd_outcome_t')
-cumulative_inc(exac, 'cmd_outcome_hospital_t')
-cumulative_inc(exac, 'smi_outcome_t')
-cumulative_inc(exac, 'smi_outcome_hospital_t')
-cumulative_inc(exac, 'self_harm_outcome_t')
-cumulative_inc(exac, 'self_harm_outcome_hospital_t')
 
 write_csv(data.frame(1), 'output/placeholder.csv')

@@ -98,6 +98,29 @@ print('counting history & outcomes for exacerbated')
 count_outcomes(exac)
 
 
+# At this point exacerbation group has so few outcome counts of cmd hosp, 
+# smi or self harm that analysis cannot be performed on this group
+
+# For incidence and prevalence groups - groups outcome into
+# cmd (non hosp) vs everything else
+
+group_outcomes <- function(df){
+  
+  df <- df %>% 
+    mutate(all_other_outcomes = pmax(cmd_outcome_hospital,
+                                     smi_outcome, smi_outcome_hospital,
+                                     self_harm_outcome, self_harm_outcome_hospital)) %>% 
+    select(-cmd_outcome_hospital,
+           -smi_outcome, -smi_outcome_hospital,
+           -self_harm_outcome, -self_harm_outcome_hospital)
+  
+  return(df)
+}
+
+
+incidence <- group_outcomes(incidence)
+prevalence <- group_outcomes(prevalence)
+
+
 write_csv(incidence, 'output/adjusted_incidence_group.csv')
-write_csv(prevalence, 'outputadjusted_/prevalence_group.csv')
-write_csv(exac, 'output/adjusted_exacerbated_group.csv')
+write_csv(prevalence, 'output/adjusted_prevalence_group.csv')

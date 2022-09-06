@@ -96,7 +96,10 @@ actions:
         needs: [adjust_matched_groups]
         outputs:
             moderately_sensitive:
-                placeholder: output/placeholder.csv
+                inc_ci_cmd: output/incidence_ci_cmd.jpg
+                inc_ci_other: output/incidence_ci_other.jpg
+                prev_ci_cmd: output/prevalence_ci_cmd.jpg
+                prev_ci_other: output/prevalence_ci_other.jpg
     
 
 

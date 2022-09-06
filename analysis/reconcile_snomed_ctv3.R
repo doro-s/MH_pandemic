@@ -113,5 +113,7 @@ print('self harm outcome hospital')
 cis_long %>% mutate(flag = ifelse(self_harm_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
 
 
+# TODO - check bmi mean, min, max
+
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

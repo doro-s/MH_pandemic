@@ -2,6 +2,8 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
+eos_date <- as.IDate('2022-03-31')
+
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 cis <- fread('output/input_reconciled.csv')
@@ -42,7 +44,7 @@ exposed <- exposed %>%
 
 # Derive end of study date for exposed
 exposed <- exposed %>%
-  mutate(eos_date = as.IDate('2021-09-30'))
+  mutate(eos_date = eos_date)
 
 # Get deaths and join to eos_dates
 dod <- cis %>% 
@@ -54,7 +56,7 @@ dod <- cis %>%
   distinct(.keep_all = TRUE)
 
 dod <- dod %>% 
-  filter(dod >= '2020-01-01' & dod <= '2021-09-30')
+  filter(dod >= '2020-01-01' & dod <= eos_date)
 
 exposed <- exposed %>%
   left_join(dod, by = 'patient_id') %>%

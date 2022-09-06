@@ -2,6 +2,8 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
+eos_date <- as.IDate('2022-03-31')
+
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 cis <- fread('output/input_reconciled.csv')
@@ -21,7 +23,7 @@ cis <- cis %>%
 cis <- cis %>%
   group_by(patient_id) %>%
   mutate(visit_date_one_year = max(visit_date) + 365,
-         eos_date = as.IDate('2021-09-30')) %>%
+         eos_date = eos_date) %>%
   ungroup()
 
 
@@ -167,7 +169,7 @@ dod <- cis %>%
   select(patient_id, date_of_death)
   
 dod <- dod %>%
-  filter(date_of_death >= '2020-01-01' & date_of_death <= '2021-09-30')
+  filter(date_of_death >= '2020-01-01' & date_of_death <= eos_date)
 
 eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%

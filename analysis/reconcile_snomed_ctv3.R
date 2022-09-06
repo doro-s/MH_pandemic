@@ -68,7 +68,6 @@ cis_long %>% filter(result_mk == 'Positive') %>% nrow()
 # Fix missing result_mk and result_combined
 cis_long <- cis_long %>%
   filter(!is.na(visit_date)) %>% 
-  filter(visit_date <= '2021-09-30') %>% 
   mutate(result_mk = ifelse(result_mk == 'Positive', 1, 0),
          result_combined = ifelse(result_combined == 'Positive', 1, 0))
 
@@ -113,7 +112,10 @@ print('self harm outcome hospital')
 cis_long %>% mutate(flag = ifelse(self_harm_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
 
 
-# TODO - check bmi mean, min, max
+cis_long %>% 
+  summarise(mean_bmi = mean(bmi),
+            min_bmi = min(bmi),
+            max_bmi = max(bmi))
 
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

@@ -9,7 +9,7 @@ from cohortextractor import (
 
 
 start_date = '2020-01-24'
-end_date = '2021-09-30'
+end_date = '2022-03-31'
 n_visits = 25
 n_years_back = 5
 

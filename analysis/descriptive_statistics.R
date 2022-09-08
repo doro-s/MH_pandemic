@@ -36,7 +36,7 @@ cat_vars <- c("alcohol", "obesity", "cancer", "digestive_disorder",
               "cmd_history", "cmd_history_hospital",
               "smi_history", "smi_history_hospital",
               "self_harm_history", "self_harm_history_hospital",
-              "cmd_outcome", "all_other_outcomes")
+              "mh_outcome")
 
 continuous_vars <- c('bmi', 'age')
 
@@ -62,7 +62,5 @@ if (nrow(prevalence) > 0){
 
 # TODO - calculates incidence of common mental disorders (outcomes).
 # Rate per 1000 person-years
-
-# Follow up time
 
 # Poisson.test - to see rate with CIs

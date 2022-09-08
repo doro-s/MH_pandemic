@@ -107,10 +107,10 @@ count_outcomes(exac)
 group_outcomes <- function(df){
   
   df <- df %>% 
-    mutate(all_other_outcomes = pmax(cmd_outcome_hospital,
+    mutate(mh_outcome = pmax(cmd_outcome, cmd_outcome_hospital,
                                      smi_outcome, smi_outcome_hospital,
                                      self_harm_outcome, self_harm_outcome_hospital)) %>% 
-    select(-cmd_outcome_hospital,
+    select(-cmd_outcome, -cmd_outcome_hospital,
            -smi_outcome, -smi_outcome_hospital,
            -self_harm_outcome, -self_harm_outcome_hospital)
   

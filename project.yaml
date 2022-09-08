@@ -95,9 +95,12 @@ actions:
         run: r:latest analysis/cumulative_incidence_curves.R
         needs: [adjust_matched_groups]
         outputs:
+            highly_sensitive:
+                inc_t: output/incidence_t.csv
+                prev_t: output/prevalence_t.csv
             moderately_sensitive:
-                inc_ci_cmd: output/incidence_surv.jpg
-                prev_ci_cmd: output/prevalence_surv.jpg
+                inc_surv: output/incidence_surv.jpg
+                prev_surv: output/prevalence_surv.jpg
     
 
 

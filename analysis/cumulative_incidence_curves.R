@@ -49,6 +49,10 @@ cumulative_inc <- function(df, v){
 incidence <- derive_t(incidence)
 prevalence <- derive_t(prevalence)
 
+# Save out data with t derived
+write_csv(incidence, 'output/incidence_t.csv')
+write_csv(prevalence, 'output/prevalence_t.csv')
+
 inc_ci_cmd <- cumulative_inc(incidence, 't')
 prev_ci_other <- cumulative_inc(prevalence, 't')
 

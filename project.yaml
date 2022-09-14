@@ -3,7 +3,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 200
+  population_size: 1000
 
 actions:
 
@@ -15,30 +15,30 @@ actions:
                 smi: 'codelists/ons-smi-codes.csv'
                 self_harm : 'codelists/ons-self-harm-codes.csv'
                 
-    generate_cis_visit_level:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_cis_wide --with-end-date-fix
+    generate_wide_non_health:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_non_health --with-end-date-fix
         needs: [combine_codelists]
         outputs:
             highly_sensitive:
+                cohort: output/input_non_health.csv
+    
+    generate_wide_health:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_health --with-end-date-fix
+        needs: [combine_codelists]
+        outputs:
+            highly_sensitive:
+                cohort: output/input_health.csv
+                
+    combine_wide_data:
+        run: r:latest analysis/combine_wide_data.R
+        needs: [generate_wide_non_health, generate_wide_health]
+        outputs:
+            highly_sensitive:
                 cohort: output/input_cis_wide.csv
-    
-    # generate_cmd_counts:
-    #     run: cohortextractor:latest generate_cohort --study-definition study_definition_cmd --with-end-date-fix
-    #     needs: [combine_codelists]
-    #     outputs:
-    #         highly_sensitive:
-    #             cohort: output/input_cmd.csv
-    
-    # population_cmd:
-    #     run: r:latest analysis/population_cmd.R
-    #     needs: [generate_cmd_counts]
-    #     outputs:
-    #         highly_sensitive:
-    #             cohort: output/population_cmd.csv
-    
+        
     transform_cis_wide_to_long:
         run: r:latest analysis/cis_wide_to_long.R
-        needs: [generate_cis_visit_level]
+        needs: [combine_wide_data]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_long.csv

@@ -3,6 +3,7 @@ library(data.table)
 options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 health <- fread('output/input_health.csv')
 non_health <- fread('output/input_non_health.csv')

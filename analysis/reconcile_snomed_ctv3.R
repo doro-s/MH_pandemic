@@ -3,6 +3,7 @@ library(data.table)
 options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 cis_long <- fread('output/input_cis_long.csv')
                     

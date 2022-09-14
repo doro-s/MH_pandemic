@@ -3,6 +3,7 @@ library(data.table)
 options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 # Read in exposed population
 exposed <- fread('output/cis_exposed.csv') %>% 

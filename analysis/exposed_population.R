@@ -5,6 +5,7 @@ options(datatable.fread.datatable=FALSE)
 eos_date <- as.IDate('2022-03-31')
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 cis <- fread('output/input_reconciled.csv')
 

@@ -3,6 +3,7 @@ library(data.table)
 options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 cis_wide <- fread('output/input_cis_wide.csv')
 

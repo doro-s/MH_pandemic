@@ -3,6 +3,7 @@ library(data.table)
 options(datatable.fread.datatable=FALSE)
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 incidence <- fread('output/adjusted_incidence_group.csv')
 prevalence <- fread('output/adjusted_prevalence_group.csv')

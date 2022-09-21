@@ -175,6 +175,21 @@ def get_nhs_data_share(name, col):
             }
         )}
 
+def get_ethnicity(name):
+    return{
+        name : patients.with_an_ons_cis_record(
+            returning='ethnicity',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios": {"White-British": 0.49, 
+                                        "Any other ethnic group": 0.51}},
+                "incidence": 1,
+            }
+        )}
+
 def get_sex(name):
     return{
         name : patients.sex(
@@ -211,6 +226,8 @@ def cis_earliest_positive(start_date, n):
             variables.update(get_covid_vaccine('covid_vaccine'))
             # get sex
             variables.update(get_sex('sex'))
+            # get ethnicity
+            variables.update(get_ethnicity('ethnicity'))
         else:
             # get nth visit date
             variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))

@@ -167,6 +167,12 @@
       "url": "https://codelists.opensafely.org/codelist/ons/respiratory-disorders/284154e3/",
       "downloaded_at": "2022-06-28 09:42:07.220261Z",
       "sha": "bba0f54a357cbebcabbd1f425bf1d648efa605cb"
+    },
+    "opensafely-copd-secondary-care.csv": {
+      "id": "opensafely/copd-secondary-care/35734162",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/copd-secondary-care/35734162/",
+      "downloaded_at": "2022-09-21 08:45:23.762418Z",
+      "sha": "83bc1fc962ce3c09248be11d58cd22b3128ddc51"
     }
   }
 }

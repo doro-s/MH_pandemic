@@ -42,7 +42,8 @@ remove_cols_string <- function(df, string){
 cis_cols <- cis_wide %>% 
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
-         covid_hes, covid_tt, covid_vaccine)
+         covid_hes, covid_tt, covid_vaccine,
+         ethnicity)
 
 # last_linkage_dt, nhs_data_share)
 

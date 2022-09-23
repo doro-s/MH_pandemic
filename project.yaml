@@ -108,6 +108,13 @@ actions:
             moderately_sensitive:
                 inc_surv: output/incidence_surv.jpg
                 prev_surv: output/prevalence_surv.jpg
+                
+    hazard_ratios:
+        run: r:latest analysis/hazard_ratios.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                temp: output/hr_placeholder.csv
     
 
 

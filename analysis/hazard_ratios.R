@@ -3,8 +3,8 @@ library(survival)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd('../')
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd('../')
 
 incidence <- fread('output/incidence_t.csv')
 prevalence <- fread('output/prevalence_t.csv')
@@ -45,3 +45,7 @@ prev_vars <- c('age', 'alcohol', 'obesity',
 
 prev_model <- fit_cox_model(incidence, inc_vars)
 summary(prev_model)
+
+# All scripts need an output for opensafely to work, so save out placeholder
+# csv while still waiting for results
+write_csv(data.frame(1), 'output/hr_placeholder.csv')

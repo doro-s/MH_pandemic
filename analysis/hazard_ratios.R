@@ -21,6 +21,8 @@ fit_cox_model <- function(df, vars){
   
 }
 
+# Check model specification - correct covariates? Missing any variables?
+# Get outputs into opensafely friendly format e.g. csv file
 
 inc_vars <- c('age', 'alcohol', 'obesity',
               'bmi', 'cancer', 'hiv_aids',

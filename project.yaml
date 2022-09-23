@@ -22,16 +22,23 @@ actions:
             highly_sensitive:
                 cohort: output/input_non_health.csv
     
-    generate_wide_health:
-        run: cohortextractor:latest generate_cohort --study-definition study_definition_health --with-end-date-fix
+    generate_wide_health_mh:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_health_mh --with-end-date-fix
         needs: [combine_codelists]
         outputs:
             highly_sensitive:
-                cohort: output/input_health.csv
+                cohort: output/input_health_mh.csv
+                
+    generate_wide_health_non_mh:
+        run: cohortextractor:latest generate_cohort --study-definition study_definition_health_non_mh --with-end-date-fix
+        needs: [combine_codelists]
+        outputs:
+            highly_sensitive:
+                cohort: output/input_health_non_mh.csv
                 
     combine_wide_data:
         run: r:latest analysis/combine_wide_data.R
-        needs: [generate_wide_non_health, generate_wide_health]
+        needs: [generate_wide_non_health, generate_wide_health_mh, generate_wide_health_non_mh]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv

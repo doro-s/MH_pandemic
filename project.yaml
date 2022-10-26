@@ -56,7 +56,7 @@ actions:
         outputs:
             highly_sensitive:
                 cohort: output/input_reconciled.csv
-                bmi: output/bmi_summary_table_info.csv
+                bmi: output/bmi_summary_table_info_before_cap.csv
     
     derive_exposed:
         run: r:latest analysis/exposed_population.R
@@ -98,6 +98,8 @@ actions:
                 incidence_con_stats: output/incidence_con_stats.csv
                 prevalence_cat_stats: output/prevalence_cat_stats.csv
                 prevalence_con_stats: output/prevalence_con_stats.csv
+                incidence_bmi: output/incidence_cont_bmi_stats.csv
+                prevalence_bmi: output/prevalence_cont_bmi_stats.csv
     
     cumulative_incidence:
         run: r:latest analysis/cumulative_incidence_curves.R

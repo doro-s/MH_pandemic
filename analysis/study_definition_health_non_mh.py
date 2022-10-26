@@ -42,7 +42,7 @@ def get_alcohol(name, date):
 def get_obesity(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
-            'codelists/ons-overweight-or-obese-bmi-25-or-over.csv',
+            'codelists/ons-obese-bmi-30.csv',
             system='snomed',
             column='code'
         ),

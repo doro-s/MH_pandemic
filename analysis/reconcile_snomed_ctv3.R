@@ -63,6 +63,35 @@ cis_long <- cis_long %>%
 print('Number of positive rows (string)')
 cis_long %>% filter(result_mk == 'Positive') %>% nrow()
 
+#For rows where covariates are NA (missing), make the variable 0 
+cis_long <- cis_long %>% 
+  mutate_at(c("alcohol",
+              "obesity",
+              "bmi",
+              "overweight",
+              "cancer",
+              "CVD",                             
+              "digestive_disorder",
+              "hiv_aids",
+              "mental_behavioural_disorder",
+              "other_mood_disorder_hospital_history",
+              "other_mood_disorder_diagnosis_history",
+              "cmd_history_hospital",
+              "cmd_history",
+              "smi_history_hospital",
+              "smi_history",                          
+              "self_harm_history_hospital",
+              "self_harm_history",
+              "musculoskeletal",
+              "neurological",
+              "kidney_disorder",
+              "respiratory_disorder",                 
+              "metabolic_disorder"), ~replace_na(.,0))
+
+#create new variable for obesity binary flag (using snomed codes and bmi)
+
+cis_long <- cis_long %>% 
+  mutate(obese_binary_flag = ifelse(bmi >= 30 | obesity == 1, 1,0))
 
 # Drop non-cis participants (no visit dates)
 # Drop anything after 30th September 2021 - end of study date
@@ -112,11 +141,21 @@ cis_long %>% mutate(flag = ifelse(self_harm_outcome_date == '2100-01-01', 0, 1))
 print('self harm outcome hospital')
 cis_long %>% mutate(flag = ifelse(self_harm_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
 
-
-cis_long %>% 
-  summarise(mean_bmi = mean(bmi),
+#save bmi info just to check bmi distribution
+bmi_summary_table<- cis_long %>% 
+            summarise(mean_bmi = mean(bmi[bmi > 0]),
             min_bmi = min(bmi),
+            min_not_0 = min(bmi[bmi > 0]),
             max_bmi = max(bmi))
+
+#save bmi summary just for info
+write_csv(bmi_summary_table, 'output/bmi_summary_table_info_before_cap.csv')
+
+# cap BMI to only those within the accepted range 10-55. Anyone not in range will be coded as 0
+cis_long <- cis_long %>% mutate(bmi = case_when(
+  bmi <= 10 ~ 0,
+  bmi > 10 & bmi < 55 ~ bmi,
+  bmi >= 55 ~ 0))
 
 # Save data
 write_csv(cis_long, 'output/input_reconciled.csv')

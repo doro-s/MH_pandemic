@@ -4,8 +4,11 @@ opensafely/covid-identification/2020-06-03
 # Alcohol (ctv3)
 opensafely/hazardous-alcohol-drinking/6364474b
 
-# Obesity (SNOMED)
-ons/overweight-or-obese-bmi-25-or-over/71ebb061
+# Obesity (SNOMED) #Probably need to drop
+#ons/overweight-or-obese-bmi-25-or-over/71ebb061
+
+# New obesity
+ons/obese-bmi-30/502ce213
 
 # BMI (SNOMED)
 primis-covid19-vacc-uptake/bmi/v.1.5.3

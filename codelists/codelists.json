@@ -12,11 +12,11 @@
       "downloaded_at": "2022-05-27 14:13:21.692988Z",
       "sha": "db9ef41fd8bbd00b01c2669a69812dbb884adea6"
     },
-    "ons-overweight-or-obese-bmi-25-or-over.csv": {
-      "id": "ons/overweight-or-obese-bmi-25-or-over/71ebb061",
-      "url": "https://codelists.opensafely.org/codelist/ons/overweight-or-obese-bmi-25-or-over/71ebb061/",
-      "downloaded_at": "2022-07-05 12:02:08.326402Z",
-      "sha": "ed77d60681ab40bf8b0adb51d3cadd8b47cf0f33"
+    "ons-obese-bmi-30.csv": {
+      "id": "ons/obese-bmi-30/502ce213",
+      "url": "https://codelists.opensafely.org/codelist/ons/obese-bmi-30/502ce213/",
+      "downloaded_at": "2022-10-25 11:11:53.567956Z",
+      "sha": "f2994ec6baad98dc357c083e2d035a5d55ca35fc"
     },
     "primis-covid19-vacc-uptake-bmi.csv": {
       "id": "primis-covid19-vacc-uptake/bmi/v.1.5.3",
@@ -167,12 +167,6 @@
       "url": "https://codelists.opensafely.org/codelist/ons/respiratory-disorders/284154e3/",
       "downloaded_at": "2022-06-28 09:42:07.220261Z",
       "sha": "bba0f54a357cbebcabbd1f425bf1d648efa605cb"
-    },
-    "opensafely-copd-secondary-care.csv": {
-      "id": "opensafely/copd-secondary-care/35734162",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/copd-secondary-care/35734162/",
-      "downloaded_at": "2022-09-21 08:45:23.762418Z",
-      "sha": "83bc1fc962ce3c09248be11d58cd22b3128ddc51"
     }
   }
 }

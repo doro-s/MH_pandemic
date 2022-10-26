@@ -56,6 +56,7 @@ actions:
         outputs:
             highly_sensitive:
                 cohort: output/input_reconciled.csv
+                bmi: output/bmi_summary_table_info.csv
     
     derive_exposed:
         run: r:latest analysis/exposed_population.R
@@ -114,7 +115,8 @@ actions:
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
-                temp: output/hr_placeholder.csv
+                temp: output/inc_hr_placeholder.csv
+                temp2: output/prev_hr_placeholder.csv
     
 
 

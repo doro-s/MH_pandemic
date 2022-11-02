@@ -119,6 +119,35 @@ actions:
             moderately_sensitive:
                 temp: output/inc_hr_placeholder.csv
                 temp2: output/prev_hr_placeholder.csv
-    
+                cox_inc1: output/cox_graph_inc_no_adj.jpg
+                cox_inc2: output/cox_graph_inc_min_adj.jpg
+                cox_inc3: output/cox_graph_inc_full_adj.jpg
+                cox_prev1: output/cox_graph_prev_no_adj.jpg
+                cox_prev2: output/cox_graph_prev_min_adj.jpg
+                cox_prev3: output/cox_graph_prev_full_adj.jpg
+                res_inc1: output/res_no_inc.jpg
+                res_inc2: output/res_min_inc.jpg 
+                res_inc3: output/res_full_inc.jpg
+                res_prev1: output/res_no_prev.jpg
+                res_prev2: output/res_min_prev.jpg
+                res_prev3: output/res_full_prev.jpg
+                sch_res1: output/schoenfled_inc_no.csv
+                sch_res2: output/schoenfled_inc_min.csv
+                sch_res3: output/schoenfled_inc_full.csv
+                sch_res4: output/schoenfled_prev_no.csv
+                sch_res5: output/schoenfled_prev_min.csv
+                sch_res6: output/schoenfled_prev_full.csv
 
+    event_rates_incidence:
+        run: r:latest analysis/event_rates_incidence.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                incidence_event_rates: output/event_counts_and_rates_incidence.csv
 
+    event_rates_prevalence:
+        run: r:latest analysis/event_rates_prevalence.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                incidence_event_rates: output/event_counts_and_rates_prevalence.csv

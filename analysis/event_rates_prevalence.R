@@ -6,7 +6,7 @@ options(datatable.fread.datatable=FALSE)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
-dat <- fread('output/incidence_t.csv') 
+dat <- fread('output/prevalence_t.csv')
 
 
 ### add a constant to obtain results not broken down (i.e. all participants)
@@ -46,8 +46,8 @@ domains <- c("all",
              "CVD",
              "musculoskeletal",
              "neurological")
-                                                              
-                         
+
+
 ### list exposures to loop over 
 exposures <- c("all", "exposed") #our exposure of interest is all and our infected vs control
 
@@ -64,8 +64,8 @@ for(k in 1:length(outcomes)){
   outcome <- outcomes[k]
   
   for(j in 1:length(exposures)){
-   
-     exposure <- exposures[j]
+    
+    exposure <- exposures[j]
     
     for(i in 1:length(domains)){
       
@@ -100,17 +100,17 @@ for(k in 1:length(outcomes)){
       comb <- comb[c(5:6,1:4)]
       
       out1[[i]] <- comb
- 
+      
       print(i)     
     }
-     
-     df1 <- out1[[1]]
-     if(length(domains)>1){
-       for(i in 2:length(domains)) {df1 <- rbind(df1, out1[[i]])}
-     }
-     
-     out2[[j]] <- df1
-     
+    
+    df1 <- out1[[1]]
+    if(length(domains)>1){
+      for(i in 2:length(domains)) {df1 <- rbind(df1, out1[[i]])}
+    }
+    
+    out2[[j]] <- df1
+    
   }
   
   df2 <- out2[[1]]
@@ -143,5 +143,4 @@ df3$ucl <- unlist(map2(df3$events,
                        ~poisson.test(.x,.y)$conf.int[2]))
 
 ### save result to working directory
-write_csv(df3, 'output/event_counts_and_rates_incidence.csv')
-
+write_csv(df3, 'output/event_counts_and_rates_prevalence.csv')

@@ -1,5 +1,6 @@
-library(purrr)
 library(data.table)
+library(purrr)
+library(tidyverse)
 options(datatable.fread.datatable=FALSE)
 
 
@@ -101,7 +102,7 @@ for(k in 1:length(outcomes)){
       
       out1[[i]] <- comb
       
-      print(i)     
+      #print(i)     
     }
     
     df1 <- out1[[1]]

@@ -24,13 +24,15 @@ def get_visit_date(name, col, date):
             date_filter_column='visit_date'
             )}
 
+get_cmd_h1 = codelist_from_csv('codelists/ons-historic-anxiety-and-depression-diagnosis-codes.csv', system='snomed', column='code')
+get_cmd_h2 = codelist_from_csv('codelists/ons-depression-and-anxiety-diagnoses-and-symptoms-excluding-specific-anxieties.csv', system='snomed', column='code')
+
+#combine the self-harm code list 
+ons_cmd_codes = combine_codelists(get_cmd_h1, get_cmd_h2)
+
 def get_CMD_history(name, date):
     return {name : patients.with_these_clinical_events(
-        codelist=codelist_from_csv(
-            'codelists/ons-cmd-codes.csv',
-            system='snomed',
-            column='code'
-        ),
+        codelist=ons_cmd_codes,
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
@@ -38,6 +40,21 @@ def get_CMD_history(name, date):
             "incidence": 0.05
         }
     )}
+
+#def get_CMD_history(name, date):
+#    return {name : patients.with_these_clinical_events(
+#        codelist=codelist_from_csv(
+#            'codelists/ons-cmd-codes.csv',
+#            system='snomed',
+#            column='code'
+#        ),
+#        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+#        returning='binary_flag',
+#        find_last_match_in_period=True,
+#        return_expectations={
+#            "incidence": 0.05
+#        }
+#    )}
 
 def get_CMD_outcome(name, date):
     return {name : patients.with_these_clinical_events(
@@ -57,7 +74,7 @@ def get_CMD_outcome(name, date):
 
 def get_CMD_hospital_history(name, date):
     return {name : patients.admitted_to_hospital(
-        with_these_primary_diagnoses=codelist_from_csv(
+        with_these_primary_diagnoses = codelist_from_csv(
             'codelists/ons-depression-and-anxiety-excluding-specific-anxieties.csv',
             system='icd10',
             column='code'
@@ -86,13 +103,16 @@ def get_CMD_hospital_outcome(name, date):
         }
     )}
 
+# load 2 smi codes to combine (previously in R)
+get_smi_h1 = codelist_from_csv('codelists/ons-serious-mental-illness-schizophrenia-bipolar-disorder-psychosis.csv', system='snomed', column='code')
+get_smi_h2 = codelist_from_csv('codelists/ons-historic-serious-mental-illness-diagnosis-codes.csv', system='snomed', column='code')
+
+#combine the SMI code list 
+ons_smi_codes = combine_codelists(get_smi_h1, get_smi_h2)
+
 def get_SMI_history(name, date):
     return {name : patients.with_these_clinical_events(
-        codelist=codelist_from_csv(
-            'codelists/ons-smi-codes.csv',
-            system='snomed',
-            column='code'
-        ),
+        codelist = ons_smi_codes,
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,
@@ -100,6 +120,7 @@ def get_SMI_history(name, date):
             "incidence": 0.05
         }
     )}
+
 
 def get_SMI_outcome(name, date):
     return {name : patients.with_these_clinical_events(
@@ -148,13 +169,17 @@ def get_SMI_hospital_outcome(name, date):
         }
     )}
 
+
+# load 2 self-harm codes to combine (previously in R)
+get_self_harm_h1 = codelist_from_csv('codelists/ons-historic-self-harm-codes.csv', system='snomed', column='code')
+get_self_harm_h2 = codelist_from_csv('codelists/ons-self-harm-intentional-and-undetermined-intent.csv', system='snomed', column='code')
+
+#combine the self-harm code list 
+ons_self_harm_codes = combine_codelists(get_self_harm_h1, get_self_harm_h2)
+
 def get_self_harm_history(name, date):
     return {name : patients.with_these_clinical_events(
-        codelist=codelist_from_csv(
-            'codelists/ons-self-harm-codes.csv',
-            system='snomed',
-            column='code'
-        ),
+        codelist = ons_self_harm_codes,
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         returning='binary_flag',
         find_last_match_in_period=True,

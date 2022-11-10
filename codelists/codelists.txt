@@ -44,7 +44,7 @@ ons/depression-and-anxiety-excluding-specific-anxieties/2e5ab664
 # Historic CMD (SNOMED)
 ons/historic-anxiety-and-depression-diagnosis-codes/3672f646
 
-# CMD outcome (SNOMED)
+# CMD outcome ((SNOMED))
 ons/depression-and-anxiety-diagnoses-and-symptoms-excluding-specific-anxieties/7fb5437e
 
 # SMI hospital admission (ICD-10)

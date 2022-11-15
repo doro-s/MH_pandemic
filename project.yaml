@@ -145,9 +145,9 @@ actions:
             moderately_sensitive:
                 incidence_event_rates: output/event_counts_and_rates_incidence.csv
 
-#    event_rates_prevalence:
-#        run: r:latest analysis/event_rates_prevalence.R
-#        needs: [cumulative_incidence]
-#        outputs:
-#            moderately_sensitive:
-#                incidence_event_rates: output/event_counts_and_rates_prevalence.csv
+    event_rates_prevalence:
+        run: r:latest analysis/event_rates_prevalence.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                incidence_event_rates: output/event_counts_and_rates_prevalence.csv

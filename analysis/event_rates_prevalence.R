@@ -9,7 +9,6 @@ options(datatable.fread.datatable=FALSE)
 
 dat <- fread('output/prevalence_t.csv')
 
-
 ### add a constant to obtain results not broken down (i.e. all participants)
 dat$all <- "all"
 
@@ -66,7 +65,7 @@ for(k in 1:length(outcomes)){
   
   for(j in 1:length(exposures)){
     
-    exposure <- exposures[j]
+     exposure <- exposures[j]
     
     for(i in 1:length(domains)){
       
@@ -105,12 +104,12 @@ for(k in 1:length(outcomes)){
       #print(i)     
     }
     
-    df1 <- out1[[1]]
-    if(length(domains)>1){
-      for(i in 2:length(domains)) {df1 <- rbind(df1, out1[[i]])}
-    }
+     df1 <- out1[[1]]
+     if(length(domains)>1){
+       for(i in 2:length(domains)) {df1 <- rbind(df1, out1[[i]])}
+     }
     
-    out2[[j]] <- df1
+     out2[[j]] <- df1
     
   }
   
@@ -145,3 +144,4 @@ df3$ucl <- unlist(map2(df3$events,
 
 ### save result to working directory
 write_csv(df3, 'output/event_counts_and_rates_prevalence.csv')
+

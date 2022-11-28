@@ -57,7 +57,7 @@ ons/historic-serious-mental-illness-diagnosis-codes/04540fdc
 ons/serious-mental-illness-schizophrenia-bipolar-disorder-psychosis/39ec69cb
 
 # Self-harm hospital admission (ICD-10)
-ons/self-harm/154b432f
+ons/self-harm/35eead09
 
 # Historic self-harm (SNOMED)
 ons/historic-self-harm-codes/6b449ca6

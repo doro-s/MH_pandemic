@@ -109,10 +109,10 @@
       "sha": "83758e14ae4b745011aed627b1cfae66d36e723b"
     },
     "ons-self-harm.csv": {
-      "id": "ons/self-harm/154b432f",
-      "url": "https://codelists.opensafely.org/codelist/ons/self-harm/154b432f/",
-      "downloaded_at": "2022-08-11 12:23:50.857651Z",
-      "sha": "83284b283ae17d16715e263c0deb389acf1e2c64"
+      "id": "ons/self-harm/35eead09",
+      "url": "https://codelists.opensafely.org/codelist/ons/self-harm/35eead09/",
+      "downloaded_at": "2022-11-22 13:02:58.325418Z",
+      "sha": "54af0f43d130163037f7357221fc00ce0374b2ee"
     },
     "ons-historic-self-harm-codes.csv": {
       "id": "ons/historic-self-harm-codes/6b449ca6",

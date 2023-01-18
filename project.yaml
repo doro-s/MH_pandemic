@@ -56,7 +56,7 @@ actions:
         outputs:
             highly_sensitive:
                 cohort: output/input_reconciled.csv
-                bmi: output/bmi_summary_table_info_before_cap.csv
+                #bmi: output/bmi_summary_table_info_before_cap.csv
     
     derive_exposed:
         run: r:latest analysis/exposed_population.R
@@ -94,12 +94,10 @@ actions:
         needs: [adjust_matched_groups]
         outputs:
             moderately_sensitive:
-                incidence_cat_stats: output/incidence_cat_stats.csv
-                incidence_con_stats: output/incidence_con_stats.csv
-                prevalence_cat_stats: output/prevalence_cat_stats.csv
-                prevalence_con_stats: output/prevalence_con_stats.csv
-                incidence_bmi: output/incidence_cont_bmi_stats.csv
-                prevalence_bmi: output/prevalence_cont_bmi_stats.csv
+                incidence_cat_stats: output/1_descriptives_incidence_cat.csv
+                incidence_con_stats: output/2_descriptives_incidence_con.csv
+                prevalence_cat_stats: output/3_descriptives_prevalence_cat.csv
+                prevalence_con_stats: output/4_descriptives_prevalence_con.csv
     
     cumulative_incidence:
         run: r:latest analysis/cumulative_incidence_curves.R
@@ -113,31 +111,39 @@ actions:
                 prev_surv: output/prevalence_surv.jpg
                 
     hazard_ratios:
-        run: r:latest analysis/hazard_ratios.R
+        run: r:latest analysis/new_hazard_ratio_code.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
-                temp: output/inc_hr_placeholder.csv
-                temp2: output/prev_hr_placeholder.csv
-                cox_inc1: output/cox_graph_inc_no_adj.jpg
-                cox_inc2: output/cox_graph_inc_min_adj.jpg
-                cox_inc3: output/cox_graph_inc_full_adj.jpg
-                cox_prev1: output/cox_graph_prev_no_adj.jpg
-                cox_prev2: output/cox_graph_prev_min_adj.jpg
-                cox_prev3: output/cox_graph_prev_full_adj.jpg
-                res_inc1: output/res_no_inc.jpg
-                res_inc2: output/res_min_inc.jpg 
-                res_inc3: output/res_full_inc.jpg
-                res_prev1: output/res_no_prev.jpg
-                res_prev2: output/res_min_prev.jpg
-                res_prev3: output/res_full_prev.jpg
-                sch_res1: output/schoenfled_inc_no.csv
-                sch_res2: output/schoenfled_inc_min.csv
-                sch_res3: output/schoenfled_inc_full.csv
-                sch_res4: output/schoenfled_prev_no.csv
-                sch_res5: output/schoenfled_prev_min.csv
-                sch_res6: output/schoenfled_prev_full.csv
+                temp: output/5_cox_hazard_ratio_incidence_table.csv
+                temp2: output/6_cox_hazard_ratio_prevalence.csv
+                surv1: output/1_survfit_plot_incidence_noadj.jpg
+                surv2: output/2_survfit_plot_prevalence_noadj.jpg
+                surv3: output/3_survfit_plot_incidence_min.jpg
+                surv4: output/4_survfit_plot_prevalence_min.jpg
+                surv5: output/5_survfit_plot_incidence_full.jpg
+                surv6: output/6_survfit_plot_prevalence_full.jpg
+                shoen_1: output/inc_no_adj_schoenfeld_res.csv
+                shoen_2: output/inc_min_adj_schoenfeld_res.csv
+                shoen_3: output/inc_full_adj_schoenfeld_res.csv
+                shoen_4: output/prev_no_adj_schoenfeld_res.csv
+                shoen_5: output/ prev_min_adj_schoenfeld_res.csv
+                shoen_6: output/prev_full_adj_schoenfeld_res.csv
+                shoen_jp1: output/inc_no_adj_schoenfeld_res.jpg
+                shoen_jp2: output/inc_min_adj_schoenfeld_res.jpg
+                shoen_jp3: output/inc_full_adj_schoenfeld_res.jpg
+                shoen_jp4: output/prev_no_adj_schoenfeld_res.jpg
+                shoen_jp5: output/prev_min_adj_schoenfeld_res.jpg
+                shoen_jp6: output/prev_full_adj_schoenfeld_res.jpg
 
+    distribution_of_follow_up_time:
+        run: r:latest analysis/distribution_of_follow_up_time.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                distribution_inc: output/distribution_of_follow_up_time_incidence.jpg
+                distribution_prev: output/distribution_of_follow_up_time_prevalence.jpg
+  
     event_rates_incidence:
         run: r:latest analysis/event_rates_incidence.R
         needs: [cumulative_incidence]

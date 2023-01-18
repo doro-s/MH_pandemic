@@ -45,21 +45,21 @@ continuous_vars <- c('age') #Luke originally put BMI here, but we created a cate
 if (nrow(incidence) > 0){
   incidence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = incidence, exposure = 'exposed')
   incidence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = incidence, exposure = 'exposed')
-  write_csv(incidence_cat_stats, 'output/incidence_cat_stats.csv')
-  write_csv(incidence_con_stats, 'output/incidence_con_stats.csv')
+  write_csv(incidence_cat_stats, 'output/1_descriptives_incidence_cat.csv')
+  write_csv(incidence_con_stats, 'output/2_descriptives_incidence_con.csv')
 } else{
-  write_csv(data.frame(1), 'output/incidence_cat_stats.csv')
-  write_csv(data.frame(1), 'output/incidence_con_stats.csv')
+  write_csv(data.frame(1), 'output/1_descriptives_incidence_cat.csv')
+  write_csv(data.frame(1), 'output/2_descriptives_incidence_con.csv')
 }
 
 if (nrow(prevalence) > 0){
   prevalence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = prevalence, exposure = 'exposed')
   prevalence_con_stats <- cov.dist.cont(vars = continuous_vars, dataset = prevalence, exposure = 'exposed')
-  write_csv(prevalence_cat_stats, 'output/prevalence_cat_stats.csv')
-  write_csv(prevalence_con_stats, 'output/prevalence_con_stats.csv')
+  write_csv(prevalence_cat_stats, 'output/3_descriptives_prevalence_cat.csv')
+  write_csv(prevalence_con_stats, 'output/4_descriptives_prevalence_con.csv')
 } else{
-  write_csv(data.frame(1), 'output/prevalence_cat_stats.csv')
-  write_csv(data.frame(1), 'output/prevalence_con_stats.csv')
+  write_csv(data.frame(1), 'output/3_descriptives_prevalence_cat.csv')
+  write_csv(data.frame(1), 'output/4_descriptives_prevalence_con.csv')
 }
 # bmi seperately as i had to filter out 0s
 
@@ -98,13 +98,9 @@ function_get_bmi_descriptives <- function(dataset){
 incidence_bmi <- function_get_bmi_descriptives(incidence)
 prevalence_bmi <- function_get_bmi_descriptives(prevalence)
 
-write_csv(incidence_bmi, 'output/incidence_cont_bmi_stats.csv')
-write_csv(prevalence_bmi, 'output/prevalence_cont_bmi_stats.csv')
+#write_csv(incidence_bmi, 'output/incidence_cont_bmi_stats.csv')
+#write_csv(prevalence_bmi, 'output/prevalence_cont_bmi_stats.csv')
 
 #abs_std_diff <- abs((mu1 - mu0) / sqrt((var1 + var0) / 2))
-
-
-# TODO - calculates incidence of common mental disorders (outcomes).
-# Rate per 1000 person-years
 
 # Poisson.test - to see rate with CIs

@@ -1,185 +1,3 @@
-library(tidyverse)
-library(survival)
-library(survminer)
-library(data.table)
-library(broom)
-library(splines)
-library(gridExtra)
-
-options(datatable.fread.datatable=FALSE)
-
-#rm(list=ls())
-# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-# setwd('../')
-
-incidence <- fread('output/incidence_t.csv')
-prevalence <- fread('output/prevalence_t.csv')
-
-###  Function for the fully adjusted model 
-fit_cox_model <- function(df, vars){
-  
-  vars <- paste(vars, collapse = ' + ')
-  
-  model_formula <- formula(paste0('Surv(t, mh_outcome) ~ ', vars))
-  
-  model <- coxph(model_formula, data = df)
-  
-  return(model)
-  
-}
-
-# Check model specification - correct covariates? Missing any variables?
-inc_vars <- c('exposed',
-              'cluster(patient_id)',
-              "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
-              "alcohol",
-              "obese_binary_flag", 
-              "cancer",
-              "digestive_disorder",
-              "hiv_aids",
-              "kidney_disorder",
-              "respiratory_disorder",
-              "metabolic_disorder",
-              "sex",
-              "CVD",
-              "musculoskeletal",
-              "neurological")
-
-#check if those covariates are correct 
-prev_vars <- c("exposed",
-               "cluster(patient_id)",
-               "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))", 
-               "alcohol", 
-               "obese_binary_flag",
-               "cancer",
-              'hiv_aids',
-              'mental_behavioural_disorder',
-              'other_mood_disorder_diagnosis_history',
-              "other_mood_disorder_hospital_history",
-              "cmd_history_hospital",
-              "cmd_history",
-              "smi_history_hospital",
-              "smi_history",
-              "self_harm_history_hospital",
-              "self_harm_history",
-              "kidney_disorder",
-              "respiratory_disorder",
-              "metabolic_disorder",
-              "sex",
-              "CVD",
-              "musculoskeletal",
-              "neurological")
-
-### ALL MODELS - COX P.HAZARD RATIO
-## incidence
-unadj_incidence <- coxph(Surv(t, mh_outcome) ~ strata(exposed) + cluster(patient_id), data = incidence)
-min_adj_inc <- coxph(Surv(t, mh_outcome) ~ exposed + sex + age + cluster(patient_id), data = incidence)
-inc_model <- fit_cox_model(incidence, inc_vars)
-
-## prevalence
-unadj_prevalence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),data = prevalence)
-min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + age + cluster(patient_id),data = prevalence)
-prev_model <- fit_cox_model(prevalence, prev_vars)
-#summary(prev_model)
-
-### Get outputs into opensafely friendly format e.g. csv file
-## Function to tidy tables 
-
-function_test <- function(df,col){
-  
-  df_out <-tidy(df,conf.int=TRUE,exponentiate = TRUE) 
-  
-  df_out$adjustment <- col
-  
-  return(df_out)
-}
-
-no_inc <- function_test(unadj_incidence, "unadjusted")
-min_inc <- function_test(min_adj_inc, "min adjusted")
-full_inc <- function_test(inc_model, "fully adjusted")
-incidence_cox_hz <- rbind(no_inc, min_inc, full_inc)
-
-no_prev <- function_test(unadj_prevalence, "unadjusted")
-min_prev<- function_test(min_adj_prev, "min adjusted")
-full_prev <- function_test(prev_model, "fully adjusted")
-prevalence_cox_hz <- rbind(no_prev,min_prev,full_prev)
-
-### SAVE
-write_csv(incidence_cox_hz, 'output/cox_hazard_ratio_incidence.csv')
-write_csv(prevalence_cox_hz, 'output/cox_hazard_ratio_prevalence.csv')
-
-###############################################################################
-#   Check Schoenfeld residuals to test the proportional-hazards assumption
-###############################################################################
-
-schoenfeld_residuals_function <- function(df, model_name){
-  
-  #calculate and save graph of schoenfeld residuals
-  df_zph <- cox.zph(df)
-  plot_zph = ggcoxzph(df_zph)
-  ggsave(paste0("output/",model_name,"_schoenfeld_res.jpg"))
-  
-  #save schoenfeld residuals as csv
-  df_zph_table <-  cox.zph(df)$table 
-  
-  write.csv(df_zph_table, paste0("output/",model_name,"_schoenfeld_res.csv"),row.names = FALSE)
-}
-
-schoenfeld_residuals_function(df = unadj_incidence, 
-                              model_name = "inc_no_adj")
-schoenfeld_residuals_function(df = min_adj_inc, 
-                              model_name = "inc_min_adj")
-schoenfeld_residuals_function(df = inc_model, 
-                              model_name = "inc_full_adj")
-schoenfeld_residuals_function(df = unadj_prevalence, 
-                              model_name = "prev_no_adj")
-schoenfeld_residuals_function(df = min_adj_prev, 
-                              model_name = "prev_min_adj")
-schoenfeld_residuals_function(df = prev_model, 
-                              model_name = "prev_full_adj")
-
-
-
-inc_no <- survfit(unadj_incidence)
-inc_min <- survfit(min_adj_inc)
-inc_full <- survfit(inc_model)
-prev_no <- survfit(unadj_prevalence)
-prev_min <- survfit(min_adj_prev)
-prev_full <- survfit(prev_model)
-
-####### TESTING 
-
-##plot(inc_no, fun = "event", xlab="", ylab="Cumulative Hazard")
-
-plot(inc_no, fun = function(x) 1-x,  ylab="Cumulative incidence")
-
-
-plot(inc_no, fun = function(x) 1-x,col=c(1,2), mark.time=F,  ylab="Cumulative incidence")
-
-
-autoplot(survfit(Surv(t, mh_outcome) ~ exposed + cluster(patient_id), data = incidence), fun = function(x) 1-x, censor = FALSE)
-
-
-
-
-######
-slots <- list()
-slots[[1]] <-ggsurvplot(inc_no,   data =incidence,  title= "Incidence (no adjustment)", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-slots[[2]] <-ggsurvplot(prev_no,  data =prevalence, title= "Prevalence(no adjustment)", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-slots[[3]] <-ggsurvplot(inc_min,  data =incidence,  title= "Incidence (min adjustment)", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-slots[[4]] <-ggsurvplot(prev_min, data =prevalence, title= "Prevalence(min adjustment)", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-slots[[5]] <-ggsurvplot(inc_full, data =incidence,  title= "   Incidence", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-slots[[6]] <-ggsurvplot(prev_full,data =prevalence, title= "   Prevalence", ylim = c(0.5, 1),break.y.by = 0.1,  palette= '#2E9FDF', ggtheme = theme_minimal())
-
-
-res <- arrange_ggsurvplots(slots, print = FALSE, ncol = 3, nrow = 2)
-
-ggsave("output/cox_prop_hazard_survival_curve_graphs.jpg",res,
-       width = 664,
-       height = 664,
-       units = c("px"),
-       dpi = 96)
-
 ###########################################################################
 #Purpose: 1. Calculate Cox proportional hazard ratios for all models
 #             incidence: no adjustemnt, min adjustment and full
@@ -197,6 +15,7 @@ library(broom)
 library(splines)
 library(gridExtra)
 library(here)
+library(ggfortify)
 
 options(datatable.fread.datatable=FALSE)
 
@@ -221,6 +40,8 @@ source(here("analysis","functions","inverse_prob_weights_prevalence_full.R"))
 source(here("analysis","functions","schoenfeld_residuals_function.R"))
 source(here("analysis","functions","fit_cox_model_fully_adjusted.R"))
 source(here("analysis","functions","cumulative_incidence_graph_function.R"))
+
+#source('D:/MH_pandemic/analysis/functions/inverse_prob_weights_incidence_full.R')
 
 
 # List variables for incidence and prevalence models
@@ -341,7 +162,6 @@ prevalence_full_with_weights <-inverse_prob_weights_prevalence(prevalence)
 #    Plot survival fit models-unadjusted models don't need Cox.P.HR
 #  
 ###########################################################################
-
 ##UNADJUSTED
 # Incidence
 cumulative_unadj_inc <- autoplot(survfit(Surv(t, mh_outcome) ~ exposed + cluster(patient_id), 
@@ -356,12 +176,12 @@ ggsave("output/1_survfit_plot_incidence_noadj.jpg",cumulative_unadj_inc)
 
 # Prevalence
 cumulative_unadj_prev <- autoplot(survfit(Surv(t, mh_outcome) ~ exposed + cluster(patient_id), 
-                                          data = prevalence), 
-                                  fun = function(x) 1-x, 
-                                  censor = FALSE,
-                                  conf.int = TRUE,
-                                  xlab = "Time", 
-                                  ylab = "Cumulative incidence")
+                                         data = prevalence), 
+                                 fun = function(x) 1-x, 
+                                 censor = FALSE,
+                                 conf.int = TRUE,
+                                 xlab = "Time", 
+                                 ylab = "Cumulative incidence")
 
 ggsave("output/2_survfit_plot_prevalence_noadj.jpg",cumulative_unadj_prev)
 
@@ -401,9 +221,4 @@ schoenfeld_residuals_function(df = min_adj_prev,
 
 schoenfeld_residuals_function(df = prev_model, 
                               model_name = "prev_full_adj")
-
-
-
-
-
 

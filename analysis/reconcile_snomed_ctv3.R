@@ -149,7 +149,7 @@ bmi_summary_table<- cis_long %>%
             max_bmi = max(bmi))
 
 #save bmi summary just for info
-write_csv(bmi_summary_table, 'output/bmi_summary_table_info_before_cap.csv')
+#write_csv(bmi_summary_table, 'output/bmi_summary_table_info_before_cap.csv')
 
 # cap BMI to only those within the accepted range 10-55. Anyone not in range will be coded as 0
 cis_long <- cis_long %>% mutate(bmi = case_when(

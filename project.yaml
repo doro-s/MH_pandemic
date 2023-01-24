@@ -127,7 +127,7 @@ actions:
                 shoen_2: output/inc_min_adj_schoenfeld_res.csv
                 shoen_3: output/inc_full_adj_schoenfeld_res.csv
                 shoen_4: output/prev_no_adj_schoenfeld_res.csv
-                shoen_5: output/ prev_min_adj_schoenfeld_res.csv
+                shoen_5: output/prev_min_adj_schoenfeld_res.csv
                 shoen_6: output/prev_full_adj_schoenfeld_res.csv
                 shoen_jp1: output/inc_no_adj_schoenfeld_res.jpg
                 shoen_jp2: output/inc_min_adj_schoenfeld_res.jpg

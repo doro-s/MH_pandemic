@@ -39,7 +39,13 @@ g1 <- ggplot(incidence, aes(x = t, fill = exposed, colour = exposed)) +
   guides(fill = guide_legend(title = "Legend"),
          colour = guide_legend(title = "Legend"))
 
+den1 <- ggplot(incidence, aes(x = t, fill = exposed, colour = exposed)) + 
+  geom_density(alpha = 0.2, position = "identity") + 
+  guides(fill = guide_legend(title = "Legend"),
+         colour = guide_legend(title = "Legend"))
+
 ggsave("output/distribution_of_follow_up_time_incidence.jpg", g1)
+ggsave("output/distribution_of_follow_up_time_incidence_density.jpg", den1)
 
 
 # prevalence
@@ -48,7 +54,10 @@ g2 <- ggplot(prevalence, aes(x = t, fill = exposed, colour = exposed)) +
   guides(fill = guide_legend(title = "Legend"),
          colour = guide_legend(title = "Legend"))
 
+den2 <- ggplot(prevalence, aes(x = t, fill = exposed, colour = exposed)) + 
+  geom_density(alpha = 0.2, position = "identity") + 
+  guides(fill = guide_legend(title = "Legend"),
+         colour = guide_legend(title = "Legend"))
+
 ggsave("output/distribution_of_follow_up_time_prevalence.jpg", g2)
-
-
-
+ggsave("output/distribution_of_follow_up_time_prevalence_density.jpg", den2)

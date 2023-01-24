@@ -143,6 +143,8 @@ actions:
             moderately_sensitive:
                 distribution_inc: output/distribution_of_follow_up_time_incidence.jpg
                 distribution_prev: output/distribution_of_follow_up_time_prevalence.jpg
+                density1: output/distribution_of_follow_up_time_incidence_density.jpg
+                density2: output/distribution_of_follow_up_time_prevalence_density.jpg
   
     event_rates_incidence:
         run: r:latest analysis/event_rates_incidence.R

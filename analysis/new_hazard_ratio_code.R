@@ -135,8 +135,8 @@ full_prev <- function_test(prev_model, "fully adjusted")
 prevalence_cox_hz <- rbind(no_prev,min_prev,full_prev)
 
 ## SAVE
-write_csv(incidence_cox_hz, 'output/1_cox_hazard_ratio_incidence_table.csv')
-write_csv(prevalence_cox_hz, 'output/2_cox_hazard_ratio_prevalence.csv')
+write_csv(incidence_cox_hz, 'output/5_cox_hazard_ratio_incidence_table.csv')
+write_csv(prevalence_cox_hz, 'output/6_cox_hazard_ratio_prevalence_table.csv')
 
 ###########################################################################
 #               Survival Curves - logistic regression for weights

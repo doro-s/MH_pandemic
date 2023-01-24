@@ -116,7 +116,7 @@ actions:
         outputs:
             moderately_sensitive:
                 temp: output/5_cox_hazard_ratio_incidence_table.csv
-                temp2: output/6_cox_hazard_ratio_prevalence.csv
+                temp2: output/6_cox_hazard_ratio_prevalence_table.csv
                 surv1: output/1_survfit_plot_incidence_noadj.jpg
                 surv2: output/2_survfit_plot_prevalence_noadj.jpg
                 surv3: output/3_survfit_plot_incidence_min.jpg

@@ -35,10 +35,22 @@ actions:
         outputs:
             highly_sensitive:
                 cohort: output/input_health_non_mh.csv
-                
+
+    generate_wide_ons_cis_new:
+        run: >
+            databuilder:v0
+                generate-dataset
+                --output output/dataset_ons_cis_new.csv
+                --dummy-data-file dummy_output/dataset_ons_cis_new.csv
+                analysis/dataset_definition_ons_cis_new.py
+        outputs:
+            highly_sensitive:
+                dataset: output/dataset_ons_cis_new.csv
+
+
     combine_wide_data:
         run: r:latest analysis/combine_wide_data.R
-        needs: [generate_wide_non_health, generate_wide_health_mh, generate_wide_health_non_mh]
+        needs: [generate_wide_non_health, generate_wide_health_mh, generate_wide_health_non_mh, generate_wide_ons_cis_new]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv

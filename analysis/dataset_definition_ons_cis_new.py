@@ -54,16 +54,19 @@ def create_sequential_variables(
     `dataset.var_2`
     """
     sort_column = sort_column or column
-    for index in range(num_variables):
-        # sort the events and take the first one as the row to define the next variable
-        next_event = events.sort_by(getattr(events, sort_column)).first_for_patient()
-        variable_name = variable_name_template.format(n=index + start)
+    # Define later_events initially as the full set of events
+    later_events = events
+    for index in range(num_variables + start):
+        # Each iteration through this loop creates the next variable by sorting `later_events`
+        # and taking the first row for each patient
+        next_event = later_events.sort_by(getattr(events, sort_column)).first_for_patient()
+        variable_name = variable_name_template.format(n=index)
         # set the variable on the dataset by getting the desired column from the event row
         setattr(dataset, variable_name, getattr(next_event, column))
 
-        # Now redefine events for the next iteration by filtering to those that
-        # are AFTER the event we just used
-        events = events.take(
+        # Now later_events is redefined for the next iteration by filtering to those that
+        # are AFTER the event we just found
+        later_events = events.take(
             getattr(events, sort_column) > getattr(next_event, sort_column)
         )
 

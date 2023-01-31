@@ -36,10 +36,6 @@ domains <- c("all",
              "digestive_disorder",
              "hiv_aids",
              "mental_behavioural_disorder",
-             "other_mood_disorder_hospital_history","other_mood_disorder_diagnosis_history",
-             "cmd_history_hospital","cmd_history",
-             "smi_history_hospital", "smi_history",
-             "self_harm_history_hospital","self_harm_history",
              "kidney_disorder",
              "respiratory_disorder",
              "metabolic_disorder",
@@ -47,7 +43,7 @@ domains <- c("all",
              "CVD",
              "musculoskeletal",
              "neurological")
-                                                              
+
                          
 ### list exposures to loop over 
 exposures <- c("all", "exposed") #our exposure of interest is all and our infected vs control

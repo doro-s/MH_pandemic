@@ -37,21 +37,21 @@ actions:
                 cohort: output/input_health_non_mh.csv
                 
     combine_wide_data:
-        run: r:latest analysis/combine_wide_data.R
+        run: r:latest analysis/1_combine_wide_data.R
         needs: [generate_wide_non_health, generate_wide_health_mh, generate_wide_health_non_mh]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_wide.csv
         
     transform_cis_wide_to_long:
-        run: r:latest analysis/cis_wide_to_long.R
+        run: r:latest analysis/2_cis_wide_to_long.R
         needs: [combine_wide_data]
         outputs:
             highly_sensitive:
                 cohort: output/input_cis_long.csv
     
     reconcile_snomed_ctv3:
-        run: r:latest analysis/reconcile_snomed_ctv3.R
+        run: r:latest analysis/3_reconcile_snomed_ctv3.R
         needs: [transform_cis_wide_to_long]
         outputs:
             highly_sensitive:
@@ -59,21 +59,21 @@ actions:
                 #bmi: output/bmi_summary_table_info_before_cap.csv
     
     derive_exposed:
-        run: r:latest analysis/exposed_population.R
+        run: r:latest analysis/4_exposed_population.R
         needs: [reconcile_snomed_ctv3]
         outputs:
             highly_sensitive:
                 cohort: output/cis_exposed.csv
     
     derive_controls:
-        run: r:latest analysis/control_population.R
+        run: r:latest analysis/5_control_population.R
         needs: [reconcile_snomed_ctv3]
         outputs:
             highly_sensitive:
                 cohort: output/cis_control.csv
                 
     perform_matching:
-        run: r:latest analysis/create_controls.R
+        run: r:latest analysis/6_create_controls.R
         needs: [derive_exposed, derive_controls]
         outputs:
             highly_sensitive:
@@ -82,7 +82,7 @@ actions:
                 exacerbated: output/exacerbated_group.csv
     
     adjust_matched_groups:
-        run: r:latest analysis/adjust_groups.R
+        run: r:latest analysis/7_adjust_groups.R
         needs: [perform_matching]
         outputs:
             highly_sensitive:
@@ -90,7 +90,7 @@ actions:
                 prevalence: output/adjusted_prevalence_group.csv
     
     descriptive_stats:
-        run: r:latest analysis/descriptive_statistics.R
+        run: r:latest analysis/8_descriptive_statistics.R
         needs: [adjust_matched_groups]
         outputs:
             moderately_sensitive:
@@ -100,7 +100,7 @@ actions:
                 prevalence_con_stats: output/4_descriptives_prevalence_con.csv
     
     cumulative_incidence:
-        run: r:latest analysis/cumulative_incidence_curves.R
+        run: r:latest analysis/9_cumulative_incidence_curves.R
         needs: [adjust_matched_groups]
         outputs:
             highly_sensitive:
@@ -111,7 +111,7 @@ actions:
                 prev_surv: output/prevalence_surv.jpg
                 
     hazard_ratios:
-        run: r:latest analysis/new_hazard_ratio_code.R
+        run: r:latest analysis/10_new_hazard_ratio_code.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
@@ -137,7 +137,7 @@ actions:
                 shoen_jp6: output/prev_full_adj_schoenfeld_res.jpg
 
     distribution_of_follow_up_time:
-        run: r:latest analysis/distribution_of_follow_up_time.R
+        run: r:latest analysis/11_distribution_of_follow_up_time.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
@@ -147,14 +147,14 @@ actions:
                 density2: output/distribution_of_follow_up_time_prevalence_density.jpg
   
     event_rates_incidence:
-        run: r:latest analysis/event_rates_incidence.R
+        run: r:latest analysis/12_event_rates_incidence.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
                 incidence_event_rates: output/event_counts_and_rates_incidence.csv
 
     event_rates_prevalence:
-        run: r:latest analysis/event_rates_prevalence.R
+        run: r:latest analysis/13_event_rates_prevalence.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:

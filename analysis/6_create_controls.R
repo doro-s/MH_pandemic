@@ -25,6 +25,7 @@ population <- rbind(exposed, control)
 incidence <- population %>% 
   mutate(mh_history = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
                                smi_history == 1 | smi_history_hospital == 1 |
+                               other_mood_disorder_diagnosis_history == 1 | other_mood_disorder_hospital_history == 1 |
                                self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>% 
   filter(mh_history == 0) %>% 
   select(-mh_history)
@@ -41,6 +42,7 @@ incidence_control <- incidence %>%
 prevalence <- population %>% 
   mutate(mh_history = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
                                    smi_history == 1 | smi_history_hospital == 1 |
+                                   other_mood_disorder_diagnosis_history == 1 | other_mood_disorder_hospital_history == 1 |
                                    self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>%
   filter(mh_history == 1) %>% 
   select(-mh_history)
@@ -57,6 +59,7 @@ prevalence_control <- prevalence %>%
 exac <- population %>% 
   mutate(cmd_history_only = ifelse(cmd_history == 1 & cmd_history_hospital == 0 &
                                      smi_history == 0 & smi_history_hospital == 0 &
+                                     other_mood_disorder_diagnosis_history == 0 & other_mood_disorder_hospital_history == 0 &
                                      self_harm_history == 0 & self_harm_history_hospital == 0, 1, 0)) %>%
   filter(cmd_history_only == 1) %>% 
   select(-cmd_history_only)

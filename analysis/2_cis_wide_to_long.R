@@ -134,6 +134,11 @@ cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_hospital_history')
 cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_diagnosis_history', 'other\\_mood\\_disorder\\_diagnosis\\_history\\_\\d+', join_keys)
 cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_diagnosis_history')
 
+cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_hospital_outcome_date', 'other\\_mood\\_disorder\\_hospital\\_outcome\\_date\\_\\d+', join_keys)
+cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_hospital_outcome_date')
+
+cis_long <- add_new_wide_col(cis_wide, cis_long, 'other_mood_disorder_diagnosis_outcome_date', 'other\\_mood\\_disorder\\_diagnosis\\_outcome\\_date\\_\\d+', join_keys)
+cis_wide <- remove_cols_string(cis_wide, 'other_mood_disorder_diagnosis_outcome_date')
 
 cis_long <- add_new_wide_col(cis_wide, cis_long, 'cmd_history_hospital', 'cmd\\_\\history\\_hospital\\_\\d+', join_keys)
 cis_wide <- remove_cols_string(cis_wide, 'cmd_history_hospital')

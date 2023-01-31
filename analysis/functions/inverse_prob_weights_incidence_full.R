@@ -9,6 +9,7 @@ inverse_prob_weights_incidence <- function(data){
       cancer +
       digestive_disorder +
       hiv_aids +
+      mental_behavioural_disorder +
       kidney_disorder +
       respiratory_disorder +
       metabolic_disorder +

@@ -26,8 +26,8 @@ count_exposed_and_control(incidence)
 print('counts for prevalence group')
 count_exposed_and_control(prevalence)
 
-print('counts for exacerbated group')
-count_exposed_and_control(exac)
+#print('counts for exacerbated group')
+#count_exposed_and_control(exac)
 
 # Temporary rbind() together for convenience
 matched <- rbind(incidence, rbind(prevalence, exac))
@@ -39,7 +39,9 @@ matched <- matched %>%
          smi_outcome = ifelse(smi_outcome_date != '2100-01-01', 1, 0),
          smi_outcome_hospital = ifelse(smi_outcome_date_hospital != '2100-01-01', 1, 0),
          self_harm_outcome = ifelse(self_harm_outcome_date != '2100-01-01', 1, 0),
-         self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0))
+         self_harm_outcome_hospital = ifelse(self_harm_outcome_date_hospital != '2100-01-01', 1, 0),
+         other_mood_disorder_hospital_outcome = ifelse(other_mood_disorder_hospital_outcome_date != '2100-01-01', 1, 0),
+         other_mood_disorder_diagnosis_outcome = ifelse(other_mood_disorder_diagnosis_outcome_date != '2100-01-01', 1, 0))
 
 # Create weights for groups
 # weights for controls (1/n) where n controls in matching group
@@ -72,7 +74,10 @@ count_outcomes <- function(df){
   df %>% pull(self_harm_history) %>% table() %>% print()
   print('self harm history hospital')
   df %>% pull(self_harm_history_hospital) %>% table() %>% print()
-  
+  print('other mood disorder hospital history')
+  df %>% pull(other_mood_disorder_hospital_history) %>% table() %>% print()
+  print('other mood disorder diagnosis history')
+  df %>% pull(other_mood_disorder_diagnosis_history) %>% table() %>% print()
   
   print('Pre-splitting outcome counts:')
   print('cmd outcome')
@@ -87,6 +92,10 @@ count_outcomes <- function(df){
   df %>% pull(self_harm_outcome) %>% table() %>% print()
   print('self harm outcome hospital')
   df %>% pull(self_harm_outcome_hospital) %>% table() %>% print()
+  print('other mood disorder hospital history')
+  df %>% pull(other_mood_disorder_hospital_outcome) %>% table() %>% print()
+  print('other mood disorder diagnosis history')
+  df %>% pull(other_mood_disorder_diagnosis_outcome) %>% table() %>% print()
   
 }
 
@@ -95,33 +104,58 @@ print('counting history & outcomes for incidence')
 count_outcomes(incidence)
 print('counting history & outcomes for prevalence')
 count_outcomes(prevalence)
-print('counting history & outcomes for exacerbated')
-count_outcomes(exac)
+#print('counting history & outcomes for exacerbated')
+#count_outcomes(exac)
 
 
 # At this point exacerbation group has so few outcome counts of cmd hosp, 
 # smi or self harm that analysis cannot be performed on this group
 
-# For incidence and prevalence groups - groups outcome into
-# cmd (non hosp) vs everything else
+# For incidence and prevalence groups - group outcome into mh_outcome
+# same for mental health history -> mh_history
 
-group_outcomes <- function(df){
+group_outcomes_history <- function(df){
   
   df <- df %>% 
-    mutate(mh_outcome = pmax(cmd_outcome, cmd_outcome_hospital,
-                                     smi_outcome, smi_outcome_hospital,
-                                     self_harm_outcome, self_harm_outcome_hospital)) %>% 
-    select(-cmd_outcome, -cmd_outcome_hospital,
-           -smi_outcome, -smi_outcome_hospital,
-           -self_harm_outcome, -self_harm_outcome_hospital)
+    mutate(mh_outcome = pmax(cmd_outcome,
+                             cmd_outcome_hospital,
+                             smi_outcome, 
+                             smi_outcome_hospital,
+                             self_harm_outcome, 
+                             self_harm_outcome_hospital,
+                             other_mood_disorder_hospital_outcome,
+                             other_mood_disorder_diagnosis_outcome)) %>% 
+    
+    mutate(mh_history = pmax(cmd_history,
+                             cmd_history_hospital,
+                             smi_history,
+                             smi_history_hospital,
+                             self_harm_history,
+                             self_harm_history_hospital,
+                             other_mood_disorder_hospital_history,
+                             other_mood_disorder_diagnosis_history)) %>%
+    select(-cmd_outcome, 
+           -cmd_outcome_hospital,
+           -smi_outcome, 
+           -smi_outcome_hospital,
+           -self_harm_outcome, 
+           -self_harm_outcome_hospital,
+           -other_mood_disorder_hospital_outcome,
+           -other_mood_disorder_diagnosis_outcome,
+           -cmd_history,
+           -cmd_history_hospital,
+           -smi_history,
+           -smi_history_hospital,
+           -self_harm_history,
+           -self_harm_history_hospital,
+           -other_mood_disorder_hospital_history,
+           -other_mood_disorder_diagnosis_history)
   
   return(df)
 }
 
-
-incidence <- group_outcomes(incidence)
-prevalence <- group_outcomes(prevalence)
-
+incidence <- group_outcomes_history(incidence)
+prevalence <- group_outcomes_history(prevalence)
 
 write_csv(incidence, 'output/adjusted_incidence_group.csv')
 write_csv(prevalence, 'output/adjusted_prevalence_group.csv')

@@ -8,14 +8,16 @@
 # 4. Save all outputs into OpenSAFELY friendly format 
 ###########################################################################
 library(tidyverse)
+library(data.table)
+library(ggfortify)
+library(here)
 library(survival)
 library(survminer)
-library(data.table)
 library(broom)
 library(splines)
 library(gridExtra)
-library(here)
-library(ggfortify)
+
+
 
 options(datatable.fread.datatable=FALSE)
 
@@ -45,8 +47,8 @@ source(here("analysis","functions","cumulative_incidence_graph_function.R"))
 
 
 # List variables for incidence and prevalence models
-inc_vars <- c('exposed',
-              'cluster(patient_id)',
+inc_vars <- c("exposed",
+              "cluster(patient_id)",
               "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
               "alcohol",
               "obese_binary_flag", 
@@ -59,32 +61,27 @@ inc_vars <- c('exposed',
               "sex",
               "CVD",
               "musculoskeletal",
-              "neurological")
+              "neurological",
+              "mental_behavioural_disorder")
 
 #check if those covariates are correct 
 prev_vars <- c("exposed",
                "cluster(patient_id)",
-               "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))", 
-               "alcohol", 
-               "obese_binary_flag",
+               "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
+               "alcohol",
+               "obese_binary_flag", 
                "cancer",
-               'hiv_aids',
-               'mental_behavioural_disorder',
-               'other_mood_disorder_diagnosis_history',
-               "other_mood_disorder_hospital_history",
-               "cmd_history_hospital",
-               "cmd_history",
-               "smi_history_hospital",
-               "smi_history",
-               "self_harm_history_hospital",
-               "self_harm_history",
+               "digestive_disorder",
+               "hiv_aids",
                "kidney_disorder",
                "respiratory_disorder",
                "metabolic_disorder",
                "sex",
                "CVD",
                "musculoskeletal",
-               "neurological")
+               "neurological",
+               "mental_behavioural_disorder",
+               "mh_history")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio

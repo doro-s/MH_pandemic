@@ -235,11 +235,67 @@ def get_self_harm_hospital_outcome(name, date):
         }
     )}
 
+def get_other_mood_disorder_hospital_outcome(name, date):
+    return {name : patients.admitted_to_hospital(
+        with_these_primary_diagnoses=codelist_from_csv(
+            'codelists/ons-unspecified-mood-disorders.csv',
+            system='icd10',
+            column='code'
+        ),
+        between=[date, end_date],
+        returning='date_admitted',
+        date_format='YYYY-MM-DD',
+        find_first_match_in_period=True,
+        return_expectations={
+            "incidence": 0.05
+        }
+    )}
 
+def get_other_mood_disorder_diagnosis_outcome(name, date):
+     return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-mood-disorder.csv',
+            system='snomed',
+            column='code'
+        ),
+        between=[date, end_date],
+        returning='date',
+        date_format='YYYY-MM-DD',
+        find_first_match_in_period=True,
+        return_expectations={
+            "incidence": 0.05
+        }
+    )}   
 
+def get_other_mood_disorder_hospital_history(name, date):
+    return {name : patients.admitted_to_hospital(
+        with_these_primary_diagnoses=codelist_from_csv(
+            'codelists/ons-unspecified-mood-disorders.csv',
+            system='icd10',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.05
+        }
+    )}
 
-
-
+def get_other_mood_disorder_diagnosis_history(name, date):
+    return {name : patients.with_these_clinical_events(
+        codelist=codelist_from_csv(
+            'codelists/ons-mood-disorder.csv',
+            system='snomed',
+            column='code'
+        ),
+        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
+        returning='binary_flag',
+        find_last_match_in_period=True,
+        return_expectations={
+            "incidence": 0.05
+        }
+    )}
 
 def cis_earliest_positive(start_date, n):
     
@@ -260,7 +316,8 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_CMD_hospital_history(f'cmd_history_hospital_{i}', f'visit_date_{i}'))
         variables.update(get_SMI_hospital_history(f'smi_history_hospital_{i}', f'visit_date_{i}'))
         variables.update(get_self_harm_hospital_history(f'self_harm_history_hospital_{i}', f'visit_date_{i}'))
-        
+        variables.update(get_other_mood_disorder_hospital_history(f'other_mood_disorder_hospital_history_{i}', f'visit_date_{i}'))
+        variables.update(get_other_mood_disorder_diagnosis_history(f'other_mood_disorder_diagnosis_history_{i}', f'visit_date_{i}'))
         
         # get mental health outcomes
         variables.update(get_CMD_outcome(f'cmd_outcome_date_{i}', f'visit_date_{i}'))
@@ -269,7 +326,8 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_CMD_hospital_outcome(f'cmd_outcome_date_hospital_{i}', f'visit_date_{i}'))
         variables.update(get_SMI_hospital_outcome(f'smi_outcome_date_hospital_{i}', f'visit_date_{i}'))
         variables.update(get_self_harm_hospital_outcome(f'self_harm_outcome_date_hospital_{i}', f'visit_date_{i}'))
-        
+        variables.update(get_other_mood_disorder_hospital_outcome(f'other_mood_disorder_hospital_outcome_date_{i}', f'visit_date_{i}'))
+        variables.update(get_other_mood_disorder_diagnosis_outcome(f'other_mood_disorder_diagnosis_outcome_date_{i}', f'visit_date_{i}'))
     
     return variables
     

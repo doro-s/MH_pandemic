@@ -16,7 +16,9 @@ derive_t <- function(df){
   df <- df %>% 
     mutate(min_outcome_date_mh = pmin(cmd_outcome_date, cmd_outcome_date_hospital,
                                       smi_outcome_date, smi_outcome_date_hospital,
-                                      self_harm_outcome_date, self_harm_outcome_date_hospital)) %>% 
+                                      self_harm_outcome_date, self_harm_outcome_date_hospital,
+                                      other_mood_disorder_diagnosis_outcome_date, 
+                                      other_mood_disorder_hospital_outcome_date)) %>% 
     mutate(min_outcome_date_mh = fifelse(min_outcome_date_mh == '2100-01-01', eos_date, min_outcome_date_mh)) %>% 
     mutate(t = fifelse(min_outcome_date_mh == '2021-09-30', 
                            end_date - visit_date, 

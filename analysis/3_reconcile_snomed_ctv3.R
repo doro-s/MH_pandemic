@@ -43,7 +43,8 @@ cis_long <- check_all_na_date(cis_long, 'smi_outcome_date_hospital')
 cis_long <- check_all_na_date(cis_long, 'smi_outcome_date')
 cis_long <- check_all_na_date(cis_long, 'self_harm_outcome_date_hospital')
 cis_long <- check_all_na_date(cis_long, 'self_harm_outcome_date')
-
+cis_long <- check_all_na_date(cis_long, 'other_mood_disorder_diagnosis_history')
+cis_long <- check_all_na_date(cis_long, 'other_mood_disorder_hospital_outcome_date')
 
 # For rows where date is NA (no observation), make arbitrarily large date
 cis_long <- cis_long %>% 
@@ -58,7 +59,9 @@ cis_long <- cis_long %>%
          smi_outcome_date_hospital = if_else(is.na(smi_outcome_date_hospital), as.IDate('2100-01-01'), smi_outcome_date_hospital),
          smi_outcome_date = if_else(is.na(smi_outcome_date), as.IDate('2100-01-01'), smi_outcome_date),
          self_harm_outcome_date_hospital = if_else(is.na(self_harm_outcome_date_hospital), as.IDate('2100-01-01'), self_harm_outcome_date_hospital),
-         self_harm_outcome_date = if_else(is.na(self_harm_outcome_date), as.IDate('2100-01-01'), self_harm_outcome_date))
+         self_harm_outcome_date = if_else(is.na(self_harm_outcome_date), as.IDate('2100-01-01'), self_harm_outcome_date),
+         other_mood_disorder_diagnosis_outcome_date = if_else(is.na(other_mood_disorder_diagnosis_outcome_date), as.IDate('2100-01-01'), other_mood_disorder_diagnosis_outcome_date),
+         other_mood_disorder_hospital_outcome_date = if_else(is.na(other_mood_disorder_hospital_outcome_date), as.IDate('2100-01-01'),other_mood_disorder_hospital_outcome_date))
 
 print('Number of positive rows (string)')
 cis_long %>% filter(result_mk == 'Positive') %>% nrow()
@@ -140,6 +143,10 @@ print('self harm outcome')
 cis_long %>% mutate(flag = ifelse(self_harm_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
 print('self harm outcome hospital')
 cis_long %>% mutate(flag = ifelse(self_harm_outcome_date_hospital == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('other_mood_disorder_diagnosis_outcome_date')
+cis_long %>% mutate(flag = ifelse(other_mood_disorder_diagnosis_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
+print('other_mood_disorder_hospital_outcome_date')
+cis_long %>% mutate(flag = ifelse(other_mood_disorder_hospital_outcome_date == '2100-01-01', 0, 1)) %>% pull(flag) %>% table()
 
 #save bmi info just to check bmi distribution
 bmi_summary_table<- cis_long %>% 

@@ -138,36 +138,6 @@ def get_hiv_aids(name, date):
         }
     )}
 
-def get_other_mood_disorder_hospital_history(name, date):
-    return {name : patients.admitted_to_hospital(
-        with_these_primary_diagnoses=codelist_from_csv(
-            'codelists/ons-unspecified-mood-disorders.csv',
-            system='icd10',
-            column='code'
-        ),
-        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
-        returning='binary_flag',
-        find_last_match_in_period=True,
-        return_expectations={
-            "incidence": 0.05
-        }
-    )}
-
-def get_other_mood_disorder_diagnosis_history(name, date):
-    return {name : patients.with_these_clinical_events(
-        codelist=codelist_from_csv(
-            'codelists/ons-mood-disorder.csv',
-            system='snomed',
-            column='code'
-        ),
-        between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
-        returning='binary_flag',
-        find_last_match_in_period=True,
-        return_expectations={
-            "incidence": 0.05
-        }
-    )}
-
 def get_metabolic_disorder(name, date):
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
@@ -305,8 +275,6 @@ def cis_earliest_positive(start_date, n):
         variables.update(get_neurological_snomed(f'neurological_snomed_{i}', f'visit_date_{i}'))
         variables.update(get_kidney_disorder(f'kidney_disorder_{i}', f'visit_date_{i}'))
         variables.update(get_respiratory_disorder(f'respiratory_disorder_{i}', f'visit_date_{i}'))
-        variables.update(get_other_mood_disorder_hospital_history(f'other_mood_disorder_hospital_history_{i}', f'visit_date_{i}'))
-        variables.update(get_other_mood_disorder_diagnosis_history(f'other_mood_disorder_diagnosis_history_{i}', f'visit_date_{i}'))
 
     
     return variables

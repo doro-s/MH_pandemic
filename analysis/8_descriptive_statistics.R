@@ -31,16 +31,24 @@ create_bmi_categories <- function(df){
 incidence <- create_bmi_categories(incidence)
 prevalence <- create_bmi_categories(prevalence)
 
-cat_vars <- c("alcohol", "obese_binary_flag", "cancer", "digestive_disorder",
-              "hiv_aids", "metabolic_disorder", "kidney_disorder",
-              "respiratory_disorder", "CVD", "musculoskeletal", 
-              "neurological", "bmi_category", "sex",
-              "cmd_history", "cmd_history_hospital",
-              "smi_history", "smi_history_hospital",
-              "self_harm_history", "self_harm_history_hospital",
+cat_vars <- c("alcohol", 
+              "obese_binary_flag", 
+              "cancer", 
+              "digestive_disorder",
+              "hiv_aids", 
+              "metabolic_disorder", 
+              "kidney_disorder",
+              "respiratory_disorder",
+              "mental_behavioural_disorder",
+              "CVD", 
+              "musculoskeletal", 
+              "neurological", 
+              "bmi_category",
+              "sex",
+              "mh_history",
               "mh_outcome")
 
-continuous_vars <- c('age') #Luke originally put BMI here, but we created a categorical bmi variable instead
+continuous_vars <- c('age')
 
 if (nrow(incidence) > 0){
   incidence_cat_stats <- cov.dist.cat(vars = cat_vars, dataset = incidence, exposure = 'exposed')

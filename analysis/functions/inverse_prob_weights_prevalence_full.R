@@ -6,17 +6,11 @@ inverse_prob_weights_prevalence <- function(data){
       ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
       alcohol + 
       obese_binary_flag + 
+      digestive_disorder +
       cancer + 
       hiv_aids + 
       mental_behavioural_disorder + 
-      other_mood_disorder_diagnosis_history + 
-      other_mood_disorder_hospital_history + 
-      cmd_history_hospital + 
-      cmd_history + 
-      smi_history_hospital + 
-      smi_history + 
-      self_harm_history_hospital + 
-      self_harm_history + 
+      mh_history + 
       kidney_disorder + 
       respiratory_disorder + 
       metabolic_disorder + 

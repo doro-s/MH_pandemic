@@ -66,12 +66,24 @@ join_keys <- c('patient_id', 'visit_number')
 
 visit_date <- wide_to_long(cis_wide, 'visit_date', 'visit\\_date\\_\\d+')
 result_mk <- wide_to_long(cis_wide, 'result_mk', 'result\\_mk\\_\\d+')
+
+# new ons cis 
+visit_num  <- wide_to_long(cis_wide, 'visit_num', 'visit\\_num\\_\\d+')
+last_linkage_dt <- wide_to_long(cis_wide, 'last_linkage_dt', 'last\\_linkage\\_dt\\_\\d+')
+is_opted_out_of_nhs_data_share <- wide_to_long(cis_wide, 'is_opted_out_of_nhs_data_share', 'is\\_opted\\_out\\_of\\_nhs\\_data\\_share\\_\\d+')
+
 cis_long <- visit_date %>% 
-  left_join(result_mk, by = join_keys)
-rm(visit_date, result_mk)
+  left_join(result_mk, by = join_keys) %>% 
+  left_join(visit_num, by = join_keys) %>% 
+  left_join(last_linkage_dt, by = join_keys) %>% 
+  left_join(is_opted_out_of_nhs_data_share, by = join_keys)
+
+rm(visit_date, result_mk, visit_num, last_linkage_dt, is_opted_out_of_nhs_data_share)
 cis_wide <- remove_cols_string(cis_wide, 'visit_date')
 cis_wide <- remove_cols_string(cis_wide, 'result_mk')
-
+cis_wide <- remove_cols_string(cis_wide, 'visit_num')
+cis_wide <- remove_cols_string(cis_wide, 'last_linkage_dt')
+cis_wide <- remove_cols_string(cis_wide, 'is_opted_out_of_nhs_data_share')
 
 add_new_wide_col <- function(df_wide, df_long, col, col_regex, join_keys){
   temp <- wide_to_long(df_wide, col, col_regex)

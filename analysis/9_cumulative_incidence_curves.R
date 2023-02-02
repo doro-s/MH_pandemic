@@ -11,7 +11,7 @@ prevalence <- fread('output/adjusted_prevalence_group.csv')
 eos_date <- as.IDate('2021-09-30')
 
 # Derive t for outcomes
-derive_t <- function(df){
+derive_t <- function(df, drop_negative = TRUE){
   
   df <- df %>% 
     mutate(min_outcome_date_mh = pmin(cmd_outcome_date, cmd_outcome_date_hospital,
@@ -24,6 +24,10 @@ derive_t <- function(df){
                            end_date - visit_date, 
                            min_outcome_date_mh - visit_date)) %>% 
     select(-min_outcome_date_mh)
+
+    if (drop_negative) {
+    df  <- filter(df, t > 0)  
+    }
   
   return(df)
 }

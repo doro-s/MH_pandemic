@@ -43,8 +43,6 @@ source(here("analysis","functions","schoenfeld_residuals_function.R"))
 source(here("analysis","functions","fit_cox_model_fully_adjusted.R"))
 source(here("analysis","functions","cumulative_incidence_graph_function.R"))
 
-#source('D:/MH_pandemic/analysis/functions/inverse_prob_weights_incidence_full.R')
-
 
 # List variables for incidence and prevalence models
 inc_vars <- c("exposed",
@@ -80,8 +78,7 @@ prev_vars <- c("exposed",
                "CVD",
                "musculoskeletal",
                "neurological",
-               "mental_behavioural_disorder",
-               "mh_history")
+               "mental_behavioural_disorder")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio

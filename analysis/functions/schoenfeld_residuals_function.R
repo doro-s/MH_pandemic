@@ -8,5 +8,5 @@ schoenfeld_residuals_function <- function(df, model_name){
   #save schoenfeld residuals as csv
   df_zph_table <-  cox.zph(df)$table 
   
-  write.csv(df_zph_table, paste0("output/",model_name,"_schoenfeld_res.csv"),row.names = FALSE)
+  write.csv(df_zph_table, paste0("output/",model_name,"_schoenfeld_res.csv"),row.names = TRUE)
 }

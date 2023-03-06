@@ -10,7 +10,6 @@ inverse_prob_weights_prevalence <- function(data){
       cancer + 
       hiv_aids + 
       mental_behavioural_disorder + 
-      mh_history + 
       kidney_disorder + 
       respiratory_disorder + 
       metabolic_disorder + 

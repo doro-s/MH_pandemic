@@ -235,6 +235,6 @@ cis_long <- cis_long %>%
 rm(cis_cols, cis_wide)
 gc()
 
-
+head(cis_long, n=20)
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

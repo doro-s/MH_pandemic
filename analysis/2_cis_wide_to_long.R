@@ -229,12 +229,12 @@ cis_wide <- remove_cols_string(cis_wide, 'metabolic_disorder')
 
 cis_long <- cis_long %>% 
   left_join(cis_cols, by = 'patient_id') %>% 
-  filter(age >= 16) #%>% 
+  filter(age >= 16) %>% 
   #select(-visit_number)
 
 rm(cis_cols, cis_wide)
 gc()
 
-head(cis_long, n=20)
+
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

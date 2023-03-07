@@ -66,8 +66,10 @@ exposed <- exposed %>%
 # Undo any link to dod where after visit date one year #########################
 
 # Get minimum date of eos, max(visit) + 365, dod
+# & keep last_linkage_date if it's less that visit_date_one_year or eos
 exposed <- exposed %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
+  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
   mutate(end_date = pmin(end_date, dod)) %>%
   select(-eos_date, -visit_date_one_year, -dod,
          -first_pos_swab, -first_pos_blood, -result_combined,

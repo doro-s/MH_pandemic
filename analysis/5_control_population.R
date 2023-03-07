@@ -158,7 +158,7 @@ eos_dates <- cis %>%
   filter(visit_date_one_year == max(visit_date_one_year)) %>%
   filter(row_id == max(row_id)) %>% 
   ungroup() %>% 
-  select(patient_id, eos_date, visit_date_one_year)
+  select(patient_id, eos_date, visit_date_one_year,last_linkage_dt)
 
 # Read in latest deaths file and join to eos_dates
 dod <- cis %>%
@@ -179,6 +179,7 @@ eos_dates <- eos_dates %>%
 # Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection ######################### TODO)
 eos_dates <- eos_dates %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
+  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
   mutate(end_date = pmin(end_date, date_of_death)) %>%
   select(-eos_date, -visit_date_one_year, -date_of_death)
 

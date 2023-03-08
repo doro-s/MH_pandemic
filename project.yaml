@@ -6,32 +6,21 @@ expectations:
   population_size: 1000
 
 actions:
-
-#    combine_codelists:
-#        run: r:latest analysis/combine_codelists.R
-#        outputs:
-#           highly_sensitive:
-#                cmd: 'codelists/ons-cmd-codes.csv'
-                #smi: 'codelists/ons-smi-codes.csv'
-                #self_harm : 'codelists/ons-self-harm-codes.csv'
                 
     generate_wide_non_health:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_non_health --with-end-date-fix
-        #needs: [combine_codelists]
         outputs:
             highly_sensitive:
                 cohort: output/input_non_health.csv
     
     generate_wide_health_mh:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_health_mh --with-end-date-fix
-        #needs: [combine_codelists]
         outputs:
             highly_sensitive:
                 cohort: output/input_health_mh.csv
                 
     generate_wide_health_non_mh:
         run: cohortextractor:latest generate_cohort --study-definition study_definition_health_non_mh --with-end-date-fix
-        #needs: [combine_codelists]
         outputs:
             highly_sensitive:
                 cohort: output/input_health_non_mh.csv

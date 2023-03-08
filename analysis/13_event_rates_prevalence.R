@@ -68,15 +68,6 @@ for(k in 1:length(outcomes)){
       
       domain <- domains[i]
       
-      ### exclude participants with end-of-follow-up date=index date
-      #dat<- dat[dat[[paste0("t2_", outcome)]] >0,] #Dan said we do not need that filter
-      
-      ### find midpoint of intervals for calculating exposure time
-      #dat$futime <- t #check if this is the variable - 
-      #time to event time from index date to time they finish the study
-      
-      #t is end_date - visit_date or min_outcome_date_mh - visit_date
-      
       ### calculate exposure time on 'per 1,000 person-years' basis
       dat$ptime <- dat$t/(365.25*1000)
       

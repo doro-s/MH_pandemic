@@ -97,7 +97,7 @@ cis_long <- cis_long %>%
   mutate(obese_binary_flag = ifelse(bmi >= 30 | obesity == 1, 1,0))
 
 # Drop non-cis participants (no visit dates)
-# Drop anything after 30th September 2021 - end of study date
+# Drop anything after 19th October 2022- end of study date
 # Fix missing result_mk and result_combined
 cis_long <- cis_long %>%
   filter(!is.na(visit_date)) %>% 
@@ -126,7 +126,7 @@ cis_long <- cis_long %>%
 
 cis_long %>% pull(result_mk) %>% table()
 
-print('number of rows on reconciled data (visit level), visit_date <= 2021-09-30')
+print('number of rows on reconciled data (visit level), visit_date <= 2022-10-19')
 nrow(cis_long)
 
 

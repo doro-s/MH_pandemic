@@ -2,7 +2,7 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
-eos_date <- as.IDate('2022-03-31')
+eos_date <- as.IDate('2022-10-19')
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')

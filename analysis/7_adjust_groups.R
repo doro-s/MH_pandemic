@@ -26,9 +26,6 @@ count_exposed_and_control(incidence)
 print('counts for prevalence group')
 count_exposed_and_control(prevalence)
 
-#print('counts for exacerbated group')
-#count_exposed_and_control(exac)
-
 # Temporary rbind() together for convenience
 matched <- rbind(incidence, rbind(prevalence, exac))
 
@@ -104,9 +101,6 @@ print('counting history & outcomes for incidence')
 count_outcomes(incidence)
 print('counting history & outcomes for prevalence')
 count_outcomes(prevalence)
-#print('counting history & outcomes for exacerbated')
-#count_outcomes(exac)
-
 
 # At this point exacerbation group has so few outcome counts of cmd hosp, 
 # smi or self harm that analysis cannot be performed on this group

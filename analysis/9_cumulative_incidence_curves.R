@@ -8,7 +8,7 @@ options(datatable.fread.datatable=FALSE)
 incidence <- fread('output/adjusted_incidence_group.csv')
 prevalence <- fread('output/adjusted_prevalence_group.csv')
 
-eos_date <- as.IDate('2021-09-30')
+eos_date <- as.IDate('2022-10-19')
 
 # Derive t for outcomes
 derive_t <- function(df, drop_negative = TRUE){
@@ -20,7 +20,7 @@ derive_t <- function(df, drop_negative = TRUE){
                                       other_mood_disorder_diagnosis_outcome_date, 
                                       other_mood_disorder_hospital_outcome_date)) %>% 
     mutate(min_outcome_date_mh = fifelse(min_outcome_date_mh == '2100-01-01', eos_date, min_outcome_date_mh)) %>% 
-    mutate(t = fifelse(min_outcome_date_mh == '2021-09-30', 
+    mutate(t = fifelse(min_outcome_date_mh == '2022-10-19', 
                            end_date - visit_date, 
                            min_outcome_date_mh - visit_date)) %>% 
     select(-min_outcome_date_mh)

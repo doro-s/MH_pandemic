@@ -45,8 +45,6 @@ cis_cols <- cis_wide %>%
          covid_hes, covid_tt, covid_vaccine,
          ethnicity)
 
-#don't need that
-# last_linkage_dt, is_opted_out_of_nhs_data_share)
 
 N <- 25
 for (i in 0:N){

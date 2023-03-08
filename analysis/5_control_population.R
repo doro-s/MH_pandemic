@@ -2,7 +2,7 @@ library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
-eos_date <- as.IDate('2022-03-31')
+eos_date <- as.IDate('2022-10-19')
 
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
@@ -176,7 +176,7 @@ eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%
   mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death))
 
-# Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection ######################### TODO)
+# Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection)
 eos_dates <- eos_dates %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
   mutate(end_date = pmin(end_date, last_linkage_dt)) %>%

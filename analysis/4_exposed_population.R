@@ -39,6 +39,8 @@ exposed <- exposed %>%
   # or non-matches
   mutate(min_pos_date_tt = ifelse(is.na(min_pos_date_tt), as.IDate('2100-01-01'), min_pos_date_tt)) %>%
   mutate(min_pos_date_tt = ifelse(min_pos_date_tt > visit_date_one_year, as.IDate('2100-01-01'), min_pos_date_tt)) %>% 
+  # if last_linkage_date is NA then place a really high date, if it's not NA keep that date
+  mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt)) %>% 
   # Get minimum of T&T and CIS
   mutate(date_positive = pmin(min_pos_date_cis, min_pos_date_tt)) %>% 
   select(-min_pos_date_cis, -min_pos_date_tt)
@@ -69,7 +71,7 @@ exposed <- exposed %>%
 # & keep last_linkage_date if it's less that visit_date_one_year or eos
 exposed <- exposed %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
-  #mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
+  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
   mutate(end_date = pmin(end_date, dod)) %>%
   select(-eos_date, -visit_date_one_year, -dod,
          -first_pos_swab, -first_pos_blood, -result_combined,

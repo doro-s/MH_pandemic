@@ -179,7 +179,7 @@ eos_dates <- eos_dates %>%
 # Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection)
 eos_dates <- eos_dates %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
-  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
+  #mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
   mutate(end_date = pmin(end_date, date_of_death)) %>%
   select(-eos_date, -visit_date_one_year, -date_of_death)
 

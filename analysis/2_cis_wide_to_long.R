@@ -12,7 +12,8 @@ nrow(cis_wide)
 
 # Remove anyone not in the CIS
 cis_wide <- cis_wide %>% 
-  filter(!is.na(visit_date_0))
+  filter(!is.na(visit_date_0)) %>%
+  filter(sex == 'M' | sex == 'F')
 
 print('cis only wide data')
 nrow(cis_wide)

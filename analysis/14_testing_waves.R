@@ -8,10 +8,10 @@ library(broom)
 library(splines)
 library(gridExtra)
 
-
-rm(list=ls())
+#rm(list=ls())
 
 options(datatable.fread.datatable=FALSE)
+
 #setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #setwd('../')
 
@@ -23,40 +23,6 @@ incidence <- fread('output/incidence_t.csv')
 prevalence <- fread('output/prevalence_t.csv')
 
 ###########################################################################
-# Load functions 
-###########################################################################
-
-#source("analysis/functions/inverse_prob_weights_incidence_full.R")
-#source("analysis/functions/inverse_prob_weights_min.R")
-#source("analysis/functions/inverse_prob_weights_prevalence_full.R")
-#source("analysis/functions/schoenfeld_residuals_function.R")
-#source("analysis/functions/fit_cox_model_fully_adjusted.R")
-#source("analysis/functions/cumulative_incidence_graph_function.R")
-
-
-
-# List variables for incidence and prevalence models
-vars <- c("exposed",
-          "cluster(patient_id)",
-          "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
-          "alcohol",
-          "obese_binary_flag", 
-          "cancer",
-          "digestive_disorder",
-          "hiv_aids",
-          "kidney_disorder",
-          "respiratory_disorder",
-          "metabolic_disorder",
-          "sex",
-          "ethnicity",
-          "region",
-          "hhsize",
-          "CVD",
-          "musculoskeletal",
-          "neurological",
-          "mental_behavioural_disorder")
-
-###########################################################################
 #     Test significance of time (spline) to explore the interaction
 #             between time and the exposed variable
 #         # incidence 
@@ -66,29 +32,30 @@ vars <- c("exposed",
 # convert index date as numeric #create new column with index date  
 
 #as.Date(18382, origin='1970-01-01')
-# if significant we'd like to vis the interaction 
+# if significant we'd like to visualize the interaction 
 #x axis to the date 
 # numbers relative to the start date 2020-01-24
 
 start_date = as.Date("2020/01/24")
 
+view(start_date)
+
 start_date_numeric = as.numeric(start_date) #this is converted into days
 
-
+view(start_date_numeric)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~###
 # INCIDENCE 
 
 incidence$index_numeric <- as.numeric(incidence$date_positive) - start_date_numeric  
 
-inc1 <- coxph(Surv(t,
-                       mh_outcome) ~ exposed*ns(index_numeric, 
-                                                df = 2, 
-                                                Boundary.knots = c(quantile(index_numeric,0.1), 
-                                                                   quantile(index_numeric, 0.9))), 
-                  data = incidence)
+inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_numeric, 
+                                             df = 2, 
+                                             Boundary.knots = c(quantile(index_numeric,0.1), 
+                                                                quantile(index_numeric, 0.9))),data = incidence)
 
 inc1a <-tidy(inc1, conf.int=TRUE,exponentiate = TRUE) 
 
+view(inc1a)
 #inc2 <- coxph(Surv(t, mh_outcome) ~ exposed*ns(index_numeric, 
 #                                                          df = 2, 
 #                                                          Boundary.knots = c(quantile(index_numeric,0.1), 
@@ -102,6 +69,7 @@ inc1a <-tidy(inc1, conf.int=TRUE,exponentiate = TRUE)
 #                     data = incidence)
 
 inc1b <- anova(inc1)
+view(inc1b)
 #inc2 <- anova(inc2)
 #inc3 <- anova(inc3)
 
@@ -120,6 +88,7 @@ prev1 <- coxph(Surv(t,
   
 prev1a <-tidy(prev1, conf.int=TRUE,exponentiate = TRUE) 
 
+view(prev1a)
   
 
 #prev2 <- coxph(Surv(t, mh_outcome) ~ exposed*ns(index_numeric, 
@@ -135,6 +104,7 @@ prev1a <-tidy(prev1, conf.int=TRUE,exponentiate = TRUE)
 #              data = prevalence)
 
 prev1b <- anova(prev1)
+view(prev1b)
 #prev2 <- anova(prev2)
 #prev3 <- anova(prev3)
 

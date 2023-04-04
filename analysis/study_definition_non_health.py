@@ -199,6 +199,45 @@ def get_sex(name):
             }
         )}
 
+def get_region(name):
+    return{
+        name : patients.with_an_ons_cis_record(
+            returning='gor9d',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios": {"E12000001": 0.1,
+                                        "E12000002": 0.1,
+                                        "E12000003": 0.1,
+                                        "E12000004": 0.1,
+                                        "E12000005": 0.1,
+                                        "E12000006": 0.1,
+                                        "E12000007": 0.15,
+                                        "E12000008": 0.15,
+                                        "E12000009": 0.1}},
+                    "incidence": 1,
+            }
+        )}
+
+def get_hhsize(name):
+    return{
+        name: patients.with_an_ons_cis_record(
+            returning ='hhsize',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios":{"1": 0.2,
+                                       "2": 0.2,
+                                       "3": 0.2,
+                                       "4": 0.2,
+                                       "5+": 0.2}},
+                "incidence": 1,
+            }
+        )}
 
 def get_age(name, date):
     return{
@@ -228,6 +267,10 @@ def cis_earliest_positive(start_date, n):
             variables.update(get_sex('sex'))
             # get ethnicity
             variables.update(get_ethnicity('ethnicity'))
+            #get region
+            variables.update(get_region('gor9d'))
+            #get hhsize
+            variables.update(get_hhsize('hhsize'))
         else:
             # get nth visit date
             variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))
@@ -250,7 +293,6 @@ def cis_earliest_positive(start_date, n):
         
         # age
         variables.update(get_age(f'age_{i}', f'visit_date_{i}'))
-        
        
     return variables
     

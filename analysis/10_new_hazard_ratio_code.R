@@ -57,6 +57,9 @@ inc_vars <- c("exposed",
               "respiratory_disorder",
               "metabolic_disorder",
               "sex",
+              "ethnicity",
+              "region",
+              "hhsize",
               "CVD",
               "musculoskeletal",
               "neurological",
@@ -75,6 +78,9 @@ prev_vars <- c("exposed",
                "respiratory_disorder",
                "metabolic_disorder",
                "sex",
+               "ethnicity",
+               "region",
+               "hhsize",
                "CVD",
                "musculoskeletal",
                "neurological",
@@ -91,7 +97,7 @@ prev_vars <- c("exposed",
 unadj_incidence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id), 
                          data = incidence)
 
-min_adj_inc <- coxph(Surv(t, mh_outcome) ~ exposed + sex + age + cluster(patient_id), 
+min_adj_inc <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id), 
                      data = incidence)
 
 inc_model <- fit_cox_model(incidence, inc_vars)
@@ -101,7 +107,7 @@ inc_model <- fit_cox_model(incidence, inc_vars)
 
 unadj_prevalence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),
                           data = prevalence)
-min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + age + cluster(patient_id),
+min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id),
                       data = prevalence)
 
 prev_model <- fit_cox_model(prevalence, prev_vars)

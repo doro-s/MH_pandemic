@@ -159,3 +159,13 @@ actions:
         outputs:
             moderately_sensitive:
                 incidence_event_rates: output/event_counts_and_rates_prevalence.csv
+
+    temporary_test_effects_of_time:
+        run: r:latest analysis/14_testing_waves.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                d1: output/99_TEMPORARY_COX_INCIDENCE_SPLINE_TIME.csv
+                d2: output/99_TEMPORARY_COX_INCIDENCE_ANOVA.csv
+                d3: output/99_TEMPORARY_COX_PREV_SPLINE_TIME.csv
+                d4: output/99_TEMPORARY_COX_PREV_ANOVA.csv

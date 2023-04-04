@@ -44,7 +44,7 @@ cis_cols <- cis_wide %>%
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
-         ethnicity)
+         ethnicity, gor9d, hhsize)
 
 
 N <- 25

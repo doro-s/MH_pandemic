@@ -14,6 +14,9 @@ inverse_prob_weights_incidence <- function(data){
       respiratory_disorder +
       metabolic_disorder +
       sex +
+      ethnicity +
+      region +
+      hhsize +
       CVD +
       musculoskeletal +
       neurological,

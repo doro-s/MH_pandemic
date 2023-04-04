@@ -2,7 +2,7 @@
 inverse_prob_weights_min <- function(data){
   
   sipw_log_reg_model <- glm(
-    exposed ~ + sex + age + cluster(patient_id), 
+    exposed ~ + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id), 
     family = binomial,
     data = data)
   

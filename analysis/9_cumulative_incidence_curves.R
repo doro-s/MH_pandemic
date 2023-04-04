@@ -56,6 +56,47 @@ cumulative_inc <- function(df, v){
 incidence <- derive_t(incidence)
 prevalence <- derive_t(prevalence)
 
+# Rename English regions function 
+rename_regions_function<- function(df){
+  df <- df %>% 
+    mutate(region = case_when(
+      gor9d == 'E12000001' ~ 'North East', 
+      gor9d == 'E12000002' ~ 'North West',
+      gor9d == 'E12000003' ~ 'Yorkshire and The Humber',
+      gor9d == 'E12000004' ~ 'East Midlands',
+      gor9d == 'E12000005' ~ 'West Midlands',
+      gor9d == 'E12000006' ~ 'East of England',
+      gor9d == 'E12000007' ~ 'London',
+      gor9d == 'E12000008' ~ 'South East',
+      gor9d == 'E12000009' ~ 'South West',
+      TRUE ~ "Missing")) 
+  
+  return(df)
+}
+
+# Create age bands 
+age_bands_function <- function(df){
+  df <- df %>% mutate(
+    #create categories
+    age_groups = case_when(
+      age >= 16 & age <= 24 ~ "16 to 24",
+      age >= 25 & age <= 34 ~ "25 to 34",
+      age >= 35 & age <= 49 ~ "35 to 49",
+      age >= 50 & age <= 69 ~ "50 to 69",
+      age >= 70 ~ "70 and over"))
+  return(df)
+}
+
+
+# apply the region renaming function
+incidence <- rename_regions_function(incidence)
+prevalence <- rename_regions_function(prevalence)
+
+# apply age band function &
+# remove the old region column (gor9d)
+incidence <- age_bands_function(incidence) %>% select(-gor9d)
+prevalence <- age_bands_function(prevalence) %>% select(-gor9d)
+
 # Save out data with t derived
 write_csv(incidence, 'output/incidence_t.csv')
 write_csv(prevalence, 'output/prevalence_t.csv')

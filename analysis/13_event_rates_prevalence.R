@@ -14,15 +14,15 @@ dat$all <- "all"
 
 ### change age into age groups so that there's fewer categories(domains) to loop through
 
-dat <- dat %>% 
-  mutate(
-    #create categories
-    age_groups = case_when(
-      age >= 16 & age <= 24 ~ "16 to 24",
-      age >= 25 & age <= 34 ~ "25 to 34",
-      age >= 35 & age <= 49 ~ "35 to 49",
-      age >= 50 & age <= 69 ~ "50 to 69",
-      age >= 70 ~ "70 and over"))
+#dat <- dat %>% 
+#  mutate(
+#    #create categories
+#    age_groups = case_when(
+#      age >= 16 & age <= 24 ~ "16 to 24",
+#      age >= 25 & age <= 34 ~ "25 to 34",
+#      age >= 35 & age <= 49 ~ "35 to 49",
+#      age >= 50 & age <= 69 ~ "50 to 69",
+#      age >= 70 ~ "70 and over"))
 
 
 
@@ -40,6 +40,9 @@ domains <- c("all",
              "respiratory_disorder",
              "metabolic_disorder",
              "sex",
+             "ethnicity",
+             "region",
+             "hhsize",
              "CVD",
              "musculoskeletal",
              "neurological")

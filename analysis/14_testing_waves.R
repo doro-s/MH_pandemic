@@ -36,11 +36,11 @@ prevalence <- fread('output/prevalence_t.csv')
 #x axis to the date 
 # numbers relative to the start date 2020-01-24
 
-start_date = as.Date("2020/01/24")
+start_date <- as.Date("2020/01/24")
 
 view(start_date)
 
-start_date_numeric = as.numeric(start_date) #this is converted into days
+start_date_numeric <- as.numeric(start_date) #this is converted into days
 
 view(start_date_numeric)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~###

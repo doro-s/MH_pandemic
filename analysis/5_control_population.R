@@ -160,7 +160,7 @@ eos_dates <- cis %>%
   filter(visit_date_one_year == max(visit_date_one_year)) %>%
   filter(row_id == max(row_id)) %>% 
   ungroup() %>% 
-  select(patient_id, eos_date, visit_date_one_year)#,last_linkage_dt)
+  select(patient_id, eos_date, visit_date_one_year,last_linkage_dt)
 
 # Read in latest deaths file and join to eos_dates
 dod <- cis %>%

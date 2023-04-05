@@ -36,13 +36,13 @@ prevalence <- fread('output/prevalence_t.csv')
 #x axis to the date 
 # numbers relative to the start date 2020-01-24
 
-start_date = as.Date("2020/01/24")
+start_date <- as.Date("2020/01/24")
 
-view(start_date)
+print(start_date)
 
-start_date_numeric = as.numeric(start_date) #this is converted into days
+start_date_numeric <- as.numeric(start_date) #this is converted into days
 
-view(start_date_numeric)
+print(start_date_numeric)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~###
 # INCIDENCE 
 
@@ -53,9 +53,10 @@ inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_numeric,
                                              Boundary.knots = c(quantile(index_numeric,0.1), 
                                                                 quantile(index_numeric, 0.9))),data = incidence)
 
+print(inc1)
 inc1a <-tidy(inc1, conf.int=TRUE,exponentiate = TRUE) 
 
-view(inc1a)
+print(inc1a)
 #inc2 <- coxph(Surv(t, mh_outcome) ~ exposed*ns(index_numeric, 
 #                                                          df = 2, 
 #                                                          Boundary.knots = c(quantile(index_numeric,0.1), 
@@ -69,7 +70,7 @@ view(inc1a)
 #                     data = incidence)
 
 inc1b <- anova(inc1)
-view(inc1b)
+print(inc1b)
 #inc2 <- anova(inc2)
 #inc3 <- anova(inc3)
 
@@ -85,10 +86,11 @@ prev1 <- coxph(Surv(t,
               data = prevalence)
 
 
-  
+print(prev1)
+
 prev1a <-tidy(prev1, conf.int=TRUE,exponentiate = TRUE) 
 
-view(prev1a)
+print(prev1a)
   
 
 #prev2 <- coxph(Surv(t, mh_outcome) ~ exposed*ns(index_numeric, 
@@ -104,7 +106,7 @@ view(prev1a)
 #              data = prevalence)
 
 prev1b <- anova(prev1)
-view(prev1b)
+print(prev1b)
 #prev2 <- anova(prev2)
 #prev3 <- anova(prev3)
 

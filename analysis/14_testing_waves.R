@@ -1,7 +1,5 @@
 library(tidyverse)
 library(data.table)
-library(ggfortify)
-library(here)
 library(survival)
 library(survminer)
 library(broom)
@@ -46,12 +44,40 @@ print(start_date_numeric)
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~###
 # INCIDENCE 
 
-incidence$index_numeric <- as.numeric(incidence$date_positive) - start_date_numeric  
+incidence$index_numeric <- as.numeric(incidence$date_positive) 
 
-inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_numeric, 
+incidence$index_numeric2 <- incidence$index_numeric - start_date_numeric  
+
+t2<- incidence %>% filter(date_positive <as.Date("2100-01-01"))
+
+print('summary(incidence$date_positive)')
+summary(incidence$date_positive) 
+
+print('summary(t2$date_positive) dates less than 2100-01-01')
+summary(t2$date_positive)
+
+print('summary(incidence$index_numeric)')
+summary(incidence$index_numeric)
+
+print('summary(incidence$index_numeric2)')
+summary(incidence$index_numeric2)
+
+
+print('NAs number')
+incidence %>% filter(is.na(date_positive)) %>% nrow()
+
+######################################################################################################
+
+print('incidence index numeric without spline')
+inc111 <- coxph(Surv(t,mh_outcome)~ exposed*index_numeric2 ,data = incidence)
+print(inc111)
+
+
+print('incidence index numeric with spline')
+inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_numeric2, 
                                              df = 2, 
-                                             Boundary.knots = c(quantile(index_numeric,0.1), 
-                                                                quantile(index_numeric, 0.9))),data = incidence)
+                                             Boundary.knots = c(quantile(index_numeric2,0.1), 
+                                                                quantile(index_numeric2, 0.9))),data = incidence)
 
 print(inc1)
 inc1a <-tidy(inc1, conf.int=TRUE,exponentiate = TRUE) 
@@ -74,15 +100,46 @@ print(inc1b)
 #inc2 <- anova(inc2)
 #inc3 <- anova(inc3)
 
+######################################################################################################
+######################################################################################################
 # PREVALENCE 
 
-prevalence$index_numeric <- as.numeric(prevalence$date_positive) - start_date_numeric  
+prevalence$index_numeric <- as.numeric(prevalence$date_positive) 
+prevalence$index_numeric2 <- prevalence$index_numeric - start_date_numeric  
+
+t2<- prevalence %>% filter(date_positive <as.Date("2100-01-01"))
+
+print('summary(prevalence$date_positive)')
+summary(prevalence$date_positive) 
+
+print('summary(t2$date_positive) dates less than 2100-01-01')
+summary(t2$date_positive)
+
+print('summary(prevalence$index_numeric)')
+summary(prevalence$index_numeric)
+
+print('summary(prevalence$index_numeric2)')
+summary(prevalence$index_numeric2)
+
+
+print('NAs number')
+prevalence %>% filter(is.na(date_positive)) %>% nrow()
+
+
+
+
+print('PREV - index numeric without spline')
+prev111 <- coxph(Surv(t,mh_outcome)~ exposed*index_numeric2 ,data = prevalence)
+print(prev111)
+
+
+print('PREV - index numeric with spline')
 
 prev1 <- coxph(Surv(t,
-                   mh_outcome) ~ exposed*ns(index_numeric, 
+                   mh_outcome) ~ exposed*ns(index_numeric2, 
                                             df = 2, 
-                                            Boundary.knots = c(quantile(index_numeric,0.1), 
-                                                               quantile(index_numeric, 0.9))), 
+                                            Boundary.knots = c(quantile(index_numeric2,0.1), 
+                                                               quantile(index_numeric2, 0.9))), 
               data = prevalence)
 
 

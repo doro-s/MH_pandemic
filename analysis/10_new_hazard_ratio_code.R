@@ -60,6 +60,7 @@ inc_vars <- c("exposed",
               "ethnicity",
               "region",
               "hhsize",
+              "work_status_new",
               "CVD",
               "musculoskeletal",
               "neurological",
@@ -81,6 +82,7 @@ prev_vars <- c("exposed",
                "ethnicity",
                "region",
                "hhsize",
+               "work_status_new",
                "CVD",
                "musculoskeletal",
                "neurological",
@@ -107,10 +109,11 @@ inc_model <- fit_cox_model(incidence, inc_vars)
 
 unadj_prevalence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),
                           data = prevalence)
+
 min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id),
                       data = prevalence)
 
-prev_model <- fit_cox_model(prevalence, prev_vars)
+prev_model <- fit_cox_model(prevalence, vars = prev_vars)
 
 
 ## Function to tidy tables and save outputs into opensafely friendly format e.g. csv file

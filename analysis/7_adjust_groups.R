@@ -9,8 +9,6 @@ incidence <- fread('output/incidence_group.csv') %>%
   mutate(group = 'incidence')
 prevalence <- fread('output/prevalence_group.csv') %>% 
   mutate(group = 'prevalence')
-exac <- fread('output/exacerbated_group.csv') %>% 
-  mutate(group = 'exacerbated')
 
 # Get some summary stats for number of exposed and controls
 count_exposed_and_control <- function(df){
@@ -27,7 +25,7 @@ print('counts for prevalence group')
 count_exposed_and_control(prevalence)
 
 # Temporary rbind() together for convenience
-matched <- rbind(incidence, rbind(prevalence, exac))
+matched <- rbind(incidence, prevalence)
 
 # For date outcome variables, add binary flag for convenience
 matched <- matched %>% 
@@ -52,7 +50,6 @@ matched <- matched %>%
 # Split back out into the three groups
 incidence <- matched %>% filter(group == 'incidence')
 prevalence <- matched %>% filter(group == 'prevalence')
-exac <- matched %>% filter(group == 'exacerbated')
 
 rm(matched)
 

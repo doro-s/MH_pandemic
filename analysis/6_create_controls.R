@@ -5,6 +5,9 @@ options(datatable.fread.datatable=FALSE)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
+################################################################################
+# Load data for exposed and control population
+################################################################################
 # Read in exposed population
 exposed <- fread('output/cis_exposed.csv') %>% 
   mutate(exposed = 1)
@@ -16,8 +19,11 @@ control <- fread('output/cis_control.csv') %>%
 # Temporary rbind() while type of outcome is determined
 population <- rbind(exposed, control)
 
+################################################################################
+# Create different outcome groups per exposed and control population
+# 2 types of outcome
+################################################################################
 
-# 3 types of outcome
 
 ### (1) Incidence group (new onset) ###
 # No history of mental illness
@@ -54,25 +60,8 @@ prevalence_control <- prevalence %>%
   filter(exposed == 0)
 
 
-### (3) Exacerbation group ###
-# Those with a cmd history (non-hospitalisation) only
-exac <- population %>% 
-  mutate(cmd_history_only = ifelse(cmd_history == 1 & cmd_history_hospital == 0 &
-                                     smi_history == 0 & smi_history_hospital == 0 &
-                                     other_mood_disorder_diagnosis_history == 0 & other_mood_disorder_hospital_history == 0 &
-                                     self_harm_history == 0 & self_harm_history_hospital == 0, 1, 0)) %>%
-  filter(cmd_history_only == 1) %>% 
-  select(-cmd_history_only)
-
-exac_exposed <- exac %>% 
-  filter(exposed == 1)
-
-exac_control <- exac %>% 
-  filter(exposed == 0)
-
-
 # Clean up memory
-rm(exposed, control, population, incidence, prevalence, exac)
+rm(exposed, control, population, incidence, prevalence)
 gc()
 
 
@@ -87,11 +76,11 @@ nrow(prevalence_control)
 print('size of pre matched prevalence exposed')
 nrow(prevalence_exposed)
 
-print('size of pre matched exacerbated controls')
-nrow(exac_control)
-print('size of pre matched exacerbated exposed')
-nrow(exac_exposed)
-
+################################################################################
+#                         FUNCTION TO PERFORM MATCHING
+# One to many function (5) 
+#
+################################################################################
 
 # Function to perform matching
 match_exposed_to_controls <- function(exposed, control, N){
@@ -199,7 +188,11 @@ match_exposed_to_controls <- function(exposed, control, N){
       id <- temp$patient_id[i]
       v_date <- temp$visit_date[i]
       control <- control %>% 
-        mutate(visit_date_flag = ifelse(patient_id == id & visit_date == v_date, 1, visit_date_flag))
+        mutate(visit_date_flag = ifelse(patient_id == id & visit_date == v_date, 1, visit_date_flag)) %>%
+        mutate(date_positive = ifelse(patient_id == id & visit_date == v_date, date_pos_exposed, date_positive)) %>%
+        #mutate(end_date = ifelse(patient_id == id & visit_date == v_date, end_date_exposed, end_date)) %>%
+        mutate(date_positive = as.IDate(date_positive)) #%>%
+        #(end_date = as.IDate(end_date))
     }
     
     # Remove from visit level population
@@ -222,17 +215,13 @@ match_exposed_to_controls <- function(exposed, control, N){
 # Run matching
 incidence_group <- match_exposed_to_controls(incidence_exposed, incidence_control, 5)
 prevalence_group <- match_exposed_to_controls(prevalence_exposed, prevalence_control, 5)
-exac_group <- match_exposed_to_controls(exac_exposed, exac_control, 5)
 
 print('total size of post matched incidence population')
 nrow(incidence_group)
 print('total size of post matched prevalence population')
 nrow(prevalence_group)
-print('total size of post matched exacerbated population')
-nrow(exac_group)
 
 
 # Save groups
 write_csv(incidence_group, 'output/incidence_group.csv')
 write_csv(prevalence_group, 'output/prevalence_group.csv')
-write_csv(exac_group, 'output/exacerbated_group.csv')

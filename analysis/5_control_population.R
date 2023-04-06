@@ -7,10 +7,11 @@ eos_date <- as.IDate('2022-10-19')
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
+# Load data 
 cis <- fread('output/input_reconciled.csv')
 
-# Remove rows where date of death < visit date, and where duplicated visit dates
-# Won't be necessary in actual data
+# Remove rows where date of death < visit date (someone died before their visit date)
+#  and where duplicated visit dates (Won't be necessary in actual data)
 cis <- cis %>% 
   mutate(row_id = 1:nrow(cis)) %>% 
   filter(date_of_death > visit_date) %>% 
@@ -26,15 +27,24 @@ cis <- cis %>%
   mutate(visit_date_one_year = max(visit_date) + 365,
          eos_date = eos_date) %>%
   ungroup()
-
+################################################################################
+#               DERIVE CONTROL POPULATION
+# 
+################################################################################
 
 # Derive all source dates for entire cis data
 
 # All rows in CIS where eligible for control
+# Population that has never tested positive for Covid on Covid Infection Survey
 cis_never_pos <- cis %>%
   group_by(patient_id) %>%
+  # create binary flag: ever_tested_pos; 1-yes, 0-no
   mutate(ever_tested_pos = ifelse(sum(result_mk) > 0, 1, 0)) %>%
+  
+  #filter those that never tested positive for covid
   filter(ever_tested_pos == 0) %>%
+  
+  
   mutate(min_pos_date_cis = as.IDate('2100-01-01')) %>%
   filter(visit_date == min(visit_date)) %>% 
   ungroup() %>%
@@ -51,6 +61,7 @@ cis_pos <- cis %>%
 
 cis_dates <- rbind(cis_never_pos, cis_pos)
 
+##############################################################################################################################
 # Derive earliest +ve dates per source (T&T, HES)
 min_pos_tt <- cis %>%
   group_by(patient_id) %>%
@@ -145,9 +156,10 @@ cis_dates <- cis_dates %>%
   mutate(min_pos_result_comb = ifelse(min_pos_result_comb > visit_date_one_year, as.IDate('2100-01-01'), min_pos_result_comb)) %>%
   mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
 
-
+################################################################################
 # Derive end of study date
 
+################################################################################
 # Minimum of:
 # end of study date
 # 365 days after last visit date
@@ -172,11 +184,12 @@ dod <- cis %>%
   select(patient_id, date_of_death)
   
 dod <- dod %>%
-  filter(date_of_death >= '2020-01-01' & date_of_death <= eos_date)
+  filter(date_of_death >= '2020-01-24' & date_of_death <= eos_date)
 
 eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%
-  mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death))
+  mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death)) %>%
+  mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
 
 # Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection)
 eos_dates <- eos_dates %>%
@@ -185,12 +198,12 @@ eos_dates <- eos_dates %>%
   mutate(end_date = pmin(end_date, date_of_death)) %>%
   select(-eos_date, -visit_date_one_year, -date_of_death)
 
-# Join eos_dates back onto cis_dates
+# Join eos_dates back onto cis_dates & amend end_date to censur covid positive tests on follow up
 cis_dates <- cis_dates %>%
-  left_join(eos_dates, by = 'patient_id')
+  left_join(eos_dates, by = 'patient_id') 
 
 
-# Get minimum +ve date for cis_dates
+# Get minimum +ve date for cis_dates & min end date WITH inclusion of covid result
 cis_dates <- cis_dates %>%
   mutate(date_positive = pmin(min_pos_date_cis, min_pos_date_tt)) %>%
   mutate(date_positive = pmin(date_positive, min_pos_result_comb)) %>% 
@@ -207,6 +220,12 @@ cis <- cis %>%
 
 print('Size of control population')
 nrow(cis)
+
+print('Summary of index dates (date_positive')
+summary(cis$date_positive)
+
+print('Summary of end_dates')
+summary(cis$end_date)
 
 # Save data
 write_csv(cis, 'output/cis_control.csv')

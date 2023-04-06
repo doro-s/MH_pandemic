@@ -17,6 +17,7 @@ inverse_prob_weights_prevalence <- function(data){
       ethnicity +
       region +
       hhsize +
+      work_status_new +
       CVD + 
       musculoskeletal + 
       neurological, 

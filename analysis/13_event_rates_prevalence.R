@@ -43,6 +43,7 @@ domains <- c("all",
              "ethnicity",
              "region",
              "hhsize",
+             "work_status_new",
              "CVD",
              "musculoskeletal",
              "neurological")

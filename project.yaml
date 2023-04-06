@@ -79,7 +79,7 @@ actions:
             highly_sensitive:
                 incidence: output/incidence_group.csv
                 prevalence: output/prevalence_group.csv
-                exacerbated: output/exacerbated_group.csv
+                #exacerbated: output/exacerbated_group.csv
     
     adjust_matched_groups:
         run: r:latest analysis/7_adjust_groups.R

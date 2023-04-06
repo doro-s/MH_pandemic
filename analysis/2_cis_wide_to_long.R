@@ -44,7 +44,7 @@ cis_cols <- cis_wide %>%
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
-         ethnicity, gor9d, hhsize)
+         ethnicity, gor9d, hhsize, work_status, work_status_v1)
 
 
 N <- 25
@@ -232,6 +232,37 @@ cis_long <- cis_long %>%
   filter(age >= 16) %>% 
   select(-visit_number)
 
+
+# combine work_status & work_status_v1 into 1 column and remove those 2 after 
+
+cis_long <- cis_long %>% 
+  mutate(work_status_new =
+  case_when(work_status_v1 == "Employed and currently working" | 
+              work_status_v1 == "Self-employed and currently working" ~ "Working",
+            
+            work_status == "Furloughed (temporarily not working)" & 
+              work_status_v1 == "Employed and currently not working" ~"Furloughed",
+            
+            work_status == "Furloughed (temporarily not working)" & 
+              work_status_v1 =="Self-employed and currently not working" ~ "Furloughed",
+            
+            work_status_v1 == "Looking for paid work and able to start" ~ "Unemployed",
+            work_status_v1 == "Not working and not looking for work" ~ "Inactive",
+            work_status_v1 == "Retired"	~ "Retired",
+           
+            work_status_v1 == "Child under 5y not attending child care" | 
+              work_status_v1 == "Child under 5y attending child care" | 
+              work_status_v1 =="5y and older in full-time education"	~ "Student",
+            
+            work_status != "Furloughed (temporarily not working)" & 
+              work_status_v1 == "Employed and currently not working" ~ "Not working (for other reasons e.g. sick leave)",
+            
+            work_status != "Furloughed (temporarily not working)" & 
+              work_status_v1 =="Self-employed and currently not working" ~ "Not working (for other reasons e.g. sick leave)",
+            TRUE ~ 'Unknown')) %>%
+  select(-work_status,
+         -work_status_v1)
+                   
 rm(cis_cols, cis_wide)
 gc()
 

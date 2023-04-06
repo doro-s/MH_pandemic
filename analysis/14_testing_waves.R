@@ -73,8 +73,9 @@ inc111 <- coxph(Surv(t,mh_outcome)~ exposed*index_numeric2 ,data = incidence)
 print(inc111)
 
 print('2. incidence index numeric with spline but sep variable')
-spline_index <-ns(incidence$index_numeric2, df = 2, Boundary.knots = c(quantile(incidence$index_numeric2,0.1), 
-                                                             quantile(incidence$index_numeric2, 0.9)))
+spline_index <-
+
+"ns(index_numeric2, df = 2, Boundary.knots = c(quantile(index_numeric2,0.1),quantile(index_numeric2, 0.9)))"
 
 
 inc111 <- coxph(Surv(t,mh_outcome)~ exposed*spline_index ,data = incidence)
@@ -82,7 +83,7 @@ print(inc111)
 
 
 print('3. incidence index numeric with spline')
-inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(incidence$index_numeric2, 
+inc1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_numeric2, 
                                              df = 2, 
                                              Boundary.knots = c(quantile(incidence$index_numeric2,0.1), 
                                                                 quantile(incidence$index_numeric2, 0.9))),data = incidence)

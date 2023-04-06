@@ -239,6 +239,47 @@ def get_hhsize(name):
             }
         )}
 
+def get_work_status(name):
+    return{
+        name: patients.with_an_ons_cis_record(
+            returning ='work_status',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios":{"Employed": 0.2,
+                                       "Self-employed": 0.2,
+                                       "Furloughed (temporarily not working)": 0.2,
+                                       "Not working (unemployed, retired, long-term sick etc.)": 0.2,
+                                       "Student": 0.2}},
+                "incidence": 1,
+            }
+        )}
+
+def get_work_status_v1(name):
+    return{
+        name: patients.with_an_ons_cis_record(
+            returning ='work_status_v1',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios":{"Employed and currently working": 0.1,
+                                       "Employed and currently not working": 0.1,
+                                       "Self-employed and currently working": 0.1,
+                                       "Self-employed and currently not working": 0.1,
+                                       "Looking for paid work and able to start": 0.1,
+                                       "Not working and not looking for work": 0.1,
+                                       "Retired": 0.1,
+                                       "Child under 5y not attending child care": 0.1,
+                                       "Child under 5y attending child care": 0.1,
+                                       "5y and older in full-time education": 0.1}},
+                "incidence": 1,
+            }
+        )}
+
 def get_age(name, date):
     return{
         name: patients.age_as_of(
@@ -271,6 +312,10 @@ def cis_earliest_positive(start_date, n):
             variables.update(get_region('gor9d'))
             #get hhsize
             variables.update(get_hhsize('hhsize'))
+            # get work_status and work_status_v1
+            variables.update(get_work_status('work_status'))
+            variables.update(get_work_status_v1('work_status_v1'))
+
         else:
             # get nth visit date
             variables.update(get_visit_date(f'visit_date_{i}', 'visit_date', f'visit_date_{i-1} + 1 days'))

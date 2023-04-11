@@ -5,10 +5,32 @@ options(datatable.fread.datatable=FALSE)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
+
+# end of study period
+eos_date <- as.IDate('2022-10-19')
+
+
+# Load data 
 incidence <- fread('output/adjusted_incidence_group.csv')
 prevalence <- fread('output/adjusted_prevalence_group.csv')
 
-eos_date <- as.IDate('2022-10-19')
+###############################################################################
+#                 Create new variable with index_date
+# index date for the exposed should be the date_positive (earliest date of 
+#   positive covid tests from CIS, HES or T&T)
+#
+# index date for the control should be visit_date (of the matched exposed as
+#  we choose people who haven't been infected 14+ or - of visit date)
+###############################################################################
+
+incidence <- incidence %>%
+  mutate(index_date = ifelse(exposed == 1, date_positive, visit_date)) %>%
+  mutate(index_date = as.IDate(index_date))
+
+prevalence <- prevalence %>%
+  mutate(index_date = ifelse(exposed == 1, date_positive, visit_date))%>%
+  mutate(index_date = as.IDate(index_date))
+
 
 # Derive t for outcomes
 derive_t <- function(df, drop_negative = TRUE){
@@ -20,9 +42,9 @@ derive_t <- function(df, drop_negative = TRUE){
                                       other_mood_disorder_diagnosis_outcome_date, 
                                       other_mood_disorder_hospital_outcome_date)) %>% 
     mutate(min_outcome_date_mh = fifelse(min_outcome_date_mh == '2100-01-01', eos_date, min_outcome_date_mh)) %>% 
-    mutate(t = fifelse(min_outcome_date_mh == '2022-10-19', 
-                           end_date - visit_date, 
-                           min_outcome_date_mh - visit_date)) %>% 
+    mutate(t = fifelse(min_outcome_date_mh == eos_date, 
+                           end_date - index_date, 
+                           min_outcome_date_mh - index_date)) %>% 
     select(-min_outcome_date_mh)
 
     if (drop_negative) {

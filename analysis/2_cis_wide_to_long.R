@@ -236,6 +236,9 @@ cis_long <- cis_long %>%
 # combine work_status & work_status_v1 into 1 column and remove those 2 after 
 
 cis_long <- cis_long %>% 
+  mutate(ethnicity = 
+           ifelse(ethnicity == "White-British", "White-British","Any other ethnic group")) %>%
+  
   mutate(work_status_new =
   case_when(work_status_v1 == "Employed and currently working" | 
               work_status_v1 == "Self-employed and currently working" ~ "Working",

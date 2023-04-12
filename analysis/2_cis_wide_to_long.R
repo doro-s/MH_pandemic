@@ -227,6 +227,7 @@ cis_long <- add_new_wide_col(cis_wide, cis_long, 'metabolic_disorder', 'metaboli
 cis_wide <- remove_cols_string(cis_wide, 'metabolic_disorder')
 
 
+# Keep only participants who are aged 16 and over
 cis_long <- cis_long %>% 
   left_join(cis_cols, by = 'patient_id') %>% 
   filter(age >= 16) %>% 
@@ -234,6 +235,7 @@ cis_long <- cis_long %>%
 
 
 # combine work_status & work_status_v1 into 1 column and remove those 2 after 
+# code ethnicity breakdowns into 2 categories
 
 cis_long <- cis_long %>% 
   mutate(ethnicity = 
@@ -265,10 +267,24 @@ cis_long <- cis_long %>%
             TRUE ~ 'Unknown')) %>%
   select(-work_status,
          -work_status_v1)
+
+# Change IMD deciles to IMD quitiles 
+#currently commented out until we load them through a study definition
+
+#cis_long <- cis_long %>% 
+#  mutate(imd = 
+#           case_when(imd_decile_E == 1 | imd_decile_E == 2 ~ 1, 
+#                     imd_decile_E == 3 | imd_decile_E == 4 ~ 2,
+#                     imd_decile_E == 5 | imd_decile_E == 6 ~ 3,
+#                     imd_decile_E == 7 | imd_decile_E == 8 ~ 4,
+#                     imd_decile_E == 9 | imd_decile_E == 10 ~ 5,
+#                     TRUE ~ 'Unknown')) %>% select(-imd_decile_E, -imd_quartile_E)
+  
                    
 rm(cis_cols, cis_wide)
 gc()
 
-
+# temporary step - check if there are any non English patients
+cis_long %>% count(gor9d)  # will remove this line
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

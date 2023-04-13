@@ -17,8 +17,6 @@ library(broom)
 library(splines)
 library(gridExtra)
 
-
-
 options(datatable.fread.datatable=FALSE)
 
 # rm(list=ls())
@@ -43,50 +41,34 @@ source(here("analysis","functions","schoenfeld_residuals_function.R"))
 source(here("analysis","functions","fit_cox_model_fully_adjusted.R"))
 source(here("analysis","functions","cumulative_incidence_graph_function.R"))
 
+#source("analysis/functions/inverse_prob_weights_incidence_full.R")
+#source("analysis/functions/inverse_prob_weights_min.R")
+#source("analysis/functions/inverse_prob_weights_prevalence_full.R")
+#source("analysis/functions/schoenfeld_residuals_function.R")
+#source("analysis/functions/fit_cox_model_fully_adjusted.R")
+#source("analysis/functions/cumulative_incidence_graph_function.R")
 
 # List variables for incidence and prevalence models
-inc_vars <- c("exposed",
-              "cluster(patient_id)",
-              "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
-              "alcohol",
-              "obese_binary_flag", 
-              "cancer",
-              "digestive_disorder",
-              "hiv_aids",
-              "kidney_disorder",
-              "respiratory_disorder",
-              "metabolic_disorder",
-              "sex",
-              "ethnicity",
-              "region",
-              "hhsize",
-              "work_status_new",
-              "CVD",
-              "musculoskeletal",
-              "neurological",
-              "mental_behavioural_disorder")
-
-#check if those covariates are correct 
-prev_vars <- c("exposed",
-               "cluster(patient_id)",
-               "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
-               "alcohol",
-               "obese_binary_flag", 
-               "cancer",
-               "digestive_disorder",
-               "hiv_aids",
-               "kidney_disorder",
-               "respiratory_disorder",
-               "metabolic_disorder",
-               "sex",
-               "ethnicity",
-               "region",
-               "hhsize",
-               "work_status_new",
-               "CVD",
-               "musculoskeletal",
-               "neurological",
-               "mental_behavioural_disorder")
+vars <- c("exposed",
+          "cluster(patient_id)",
+          "ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9)))",
+          "alcohol",
+          "obese_binary_flag", 
+          "cancer",
+          "digestive_disorder",
+          "hiv_aids",
+          "kidney_disorder",
+          "respiratory_disorder",
+          "metabolic_disorder",
+          "sex",
+          "ethnicity",
+          "region",
+          "hhsize",
+          "work_status_new",
+          "CVD",
+          "musculoskeletal",
+          "neurological",
+          "mental_behavioural_disorder")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio
@@ -102,7 +84,7 @@ unadj_incidence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),
 min_adj_inc <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id), 
                      data = incidence)
 
-inc_model <- fit_cox_model(incidence, inc_vars)
+inc_model <- fit_cox_model(incidence, vars = vars)
 
 
 ## Prevalence models
@@ -113,7 +95,7 @@ unadj_prevalence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),
 min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id),
                       data = prevalence)
 
-prev_model <- fit_cox_model(prevalence, vars = prev_vars)
+prev_model <- fit_cox_model(prevalence, vars = vars)
 
 
 ## Function to tidy tables and save outputs into opensafely friendly format e.g. csv file
@@ -205,7 +187,6 @@ cumulative_incidence_plot(data = prevalence_full_with_weights,
 #   Check Schoenfeld residuals to test the proportional-hazards assumption
 #
 ###############################################################################
-
 
 schoenfeld_residuals_function(df = unadj_incidence, 
                               model_name = "inc_no_adj")

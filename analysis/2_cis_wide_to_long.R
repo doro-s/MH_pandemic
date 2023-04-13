@@ -13,7 +13,8 @@ nrow(cis_wide)
 # Remove anyone not in the CIS
 cis_wide <- cis_wide %>% 
   filter(!is.na(visit_date_0)) %>%
-  filter(sex == 'M' | sex == 'F')
+  filter(sex == 'M' | sex == 'F') %>%
+  filter(!gor9d %in% c('N99999999', 'S99999999', 'W99999999'))
 
 print('cis only wide data')
 nrow(cis_wide)
@@ -285,6 +286,6 @@ rm(cis_cols, cis_wide)
 gc()
 
 # temporary step - check if there are any non English patients
-cis_long %>% count(gor9d)  # will remove this line
+#cis_long %>% count(gor9d)  # will remove this line
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

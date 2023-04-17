@@ -72,19 +72,29 @@ result_mk <- wide_to_long(cis_wide, 'result_mk', 'result\\_mk\\_\\d+')
 visit_num  <- wide_to_long(cis_wide, 'visit_num', 'visit\\_num\\_\\d+')
 last_linkage_dt <- wide_to_long(cis_wide, 'last_linkage_dt', 'last\\_linkage\\_dt\\_\\d+')
 is_opted_out_of_nhs_data_share <- wide_to_long(cis_wide, 'is_opted_out_of_nhs_data_share', 'is\\_opted\\_out\\_of\\_nhs\\_data\\_share\\_\\d+')
+imd_decile_e <- wide_to_long(cis_wide, 'imd_decile_e', 'imd\\_decile\\_e\\_\\d+')
+imd_quartile_e <- wide_to_long(cis_wide, 'imd_quartile_e', 'imd\\_quartile\\_e\\_\\d+')
+rural_urban <- wide_to_long(cis_wide, 'rural_urban', 'rural\\_urban\\_\\d+')
 
 cis_long <- visit_date %>% 
   left_join(result_mk, by = join_keys) %>% 
   left_join(visit_num, by = join_keys) %>% 
   left_join(last_linkage_dt, by = join_keys) %>% 
-  left_join(is_opted_out_of_nhs_data_share, by = join_keys)
+  left_join(is_opted_out_of_nhs_data_share, by = join_keys) %>% 
+  left_join(imd_decile_e, by = join_keys) %>% 
+  left_join(imd_quartile_e, by = join_keys) %>% 
+  left_join(rural_urban, by = join_keys)
 
-rm(visit_date, result_mk, visit_num, last_linkage_dt, is_opted_out_of_nhs_data_share)
+rm(visit_date, result_mk, visit_num, last_linkage_dt, is_opted_out_of_nhs_data_share, imd_decile_e, imd_quartile_e, rural_urban)
 cis_wide <- remove_cols_string(cis_wide, 'visit_date')
 cis_wide <- remove_cols_string(cis_wide, 'result_mk')
 cis_wide <- remove_cols_string(cis_wide, 'visit_num')
 cis_wide <- remove_cols_string(cis_wide, 'last_linkage_dt')
 cis_wide <- remove_cols_string(cis_wide, 'is_opted_out_of_nhs_data_share')
+cis_wide <- remove_cols_string(cis_wide, 'imd_decile_e')
+cis_wide <- remove_cols_string(cis_wide, 'imd_quartile_e')
+cis_wide <- remove_cols_string(cis_wide, 'rural_urban')
+
 
 add_new_wide_col <- function(df_wide, df_long, col, col_regex, join_keys){
   temp <- wide_to_long(df_wide, col, col_regex)

@@ -63,36 +63,89 @@ incidence %>% filter(is.na(index_date)) %>% nrow()
 #
 ######################################################################################################
 
-print('1. Incidence index numeric WITHOUT spline')
-incidence_without_spline <- coxph(Surv(t,mh_outcome)~ exposed*index_time_to_start_date ,data = incidence)
-print(incidence_without_spline)
+#print('1. Incidence index numeric WITHOUT spline')
+#incidence_without_spline <- coxph(Surv(t,mh_outcome)~ exposed*index_time_to_start_date ,data = incidence)
+#print(incidence_without_spline)
 
-print('1a. Anova incidince WITHOUT spline')
-anova_incidence_without_spline <- anova(incidence_without_spline)
-print(anova_incidence_without_spline)
+#print('1a. Anova incidince WITHOUT spline')
+#anova_incidence_without_spline <- anova(incidence_without_spline)
+#(anova_incidence_without_spline)
 
 
 print('2. IMPORTANT - Incidence index numeric with spline')
 incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                Boundary.knots = c(quantile(index_time_to_start_date,0.1),
-                                                                  quantile(index_time_to_start_date, 0.9))), data = incidence)
-
+                                                                  quantile(index_time_to_start_date, 0.9))), 
+                               data = incidence)
 print(incidence_with_spline)
-
-
-
 TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
-
 print(TIDY_WITH_SPLINE)
-
 print('2a. IMPORTANT - Anova incidince WITH spline')
 anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
 anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
-
 print(anova_incidence_with_spline)
+
+
 
 write_csv(TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_SPLINE_TIME.csv')
 write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA.csv')
+
+#~~~~~~~
+print('222. IMPORTANT - Incidence index numeric with spline + AGE +SEX')
+incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
+                                                              Boundary.knots = c(quantile(index_time_to_start_date,0.1),
+                                                                                 quantile(index_time_to_start_date, 0.9))) + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))), 
+                               data = incidence)
+print(incidence_with_spline)
+TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
+print(TIDY_WITH_SPLINE)
+print('2a. IMPORTANT - Anova incidince WITH spline')
+anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
+anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
+print(anova_incidence_with_spline)
+
+
+write_csv(TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_SPLINE_TIME_sex_age.csv')
+write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA_sex_age.csv')
+
+
+#~~~~~~~
+print('22233. IMPORTANT - Incidence index numeric with spline + fully adjusted')
+incidence_with_spline <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2, 
+                                                              Boundary.knots = c(quantile(index_time_to_start_date,0.1),
+                                                                                 quantile(index_time_to_start_date, 0.9))) + 
+                                 ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+                                 alcohol + 
+                                 obese_binary_flag + 
+                                 cancer + 
+                                 digestive_disorder + 
+                                 hiv_aids + 
+                                 kidney_disorder + 
+                                 respiratory_disorder + 
+                                 metabolic_disorder + 
+                                 sex + 
+                                 ethnicity + 
+                                 region + 
+                                 hhsize + 
+                                 work_status_new + CVD + 
+                                 musculoskeletal + 
+                                 neurological + 
+                                 mental_behavioural_disorder, 
+                               data = incidence)
+
+
+
+print(incidence_with_spline)
+TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
+print(TIDY_WITH_SPLINE)
+print('2a. IMPORTANT - Anova incidince WITH spline')
+anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
+anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
+print(anova_incidence_with_spline)
+
+
+write_csv(TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_SPLINE_TIME_fully_adjusted.csv')
+write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA_fully_adjusted.csv')
 
 ######################################################################################################
 ######################################################################################################

@@ -282,7 +282,7 @@ print(anova_tidy)
 
 
 write_csv(anova_tidy, 'output/99_anova_waves_fully adjusted.csv')
-write_csv(int_1, 'output/99_coefficients_for_waves_incidence.csv')
+write_csv(tidy_table, 'output/99_coefficients_for_waves_incidence.csv')
 
 
 ######################################################################################################

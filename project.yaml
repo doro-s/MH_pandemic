@@ -169,3 +169,6 @@ actions:
                 d2: output/99_TEMPORARY_COX_INCIDENCE_ANOVA.csv
                 d3: output/99_TEMPORARY_COX_INCIDENCE_ANOVA_fully_adjusted.csv
                 d4: output/99_TEMPORARY_COX_PREV_ANOVA.csv
+                d5: output/99_anova_waves_sex_age.csv
+                d6: output/99_anova_waves_fully adjusted.csv
+                d7: output/99_anova_waves.csv

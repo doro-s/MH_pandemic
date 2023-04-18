@@ -5,6 +5,7 @@ library(survminer)
 library(broom)
 library(splines)
 library(gridExtra)
+library(car)
 
 #rm(list=ls())
 
@@ -44,9 +45,8 @@ prevalence <- fread('output/prevalence_t.csv') %>%
 #     Test significance of time (spline) to explore the interaction
 #             between time and the exposed variable
 #         # incidence 
-# convert index date as numeric #create new column with index date  
-# if significant we'd like to visualize the interaction 
-#x axis to the date 
+# convert index date as numeric 
+#     Change index date to numeric so that we can use it as spline
 # numbers relative to the start date 2020-01-24
 ###########################################################################
 
@@ -56,7 +56,8 @@ print(start_date)
 start_date_numeric <- as.numeric(start_date) #this is converted into days
 print(start_date_numeric)
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~###
+# summary check of index dates
+
 # INCIDENCE 
 
 incidence$index_numeric <- as.numeric(incidence$date_positive) 
@@ -74,6 +75,24 @@ summary(incidence$index_time_to_start_date)
 print('NAs number')
 incidence %>% filter(is.na(index_date)) %>% nrow()
 
+prevalence$index_numeric <- as.numeric(prevalence$index_date) 
+prevalence$index_time_to_start_date <- prevalence$index_numeric - start_date_numeric  
+
+
+print('summary(prevalence$index_date)')
+summary(prevalence$index_date) 
+
+
+print('summary(prevalence$index_numeric)')
+summary(prevalence$index_numeric)
+
+print('summary(prevalence$index_time_to_start_date)')
+summary(prevalence$index_time_to_start_date)
+
+
+print('NAs number')
+prevalence %>% filter(is.na(index_date)) %>% nrow()
+
 ######################################################################################################
 ######################################################################################################
 #
@@ -82,7 +101,9 @@ incidence %>% filter(is.na(index_date)) %>% nrow()
 ######################################################################################################
 ######################################################################################################
 
-print('1. IMPORTANT - Incidence index numeric with spline')
+# INCIDENCE 
+
+print('1. Incidence index numeric model - spline')
 incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                   quantile(index_time_to_start_date, 0.9))), 
@@ -90,17 +111,21 @@ incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_star
 print(incidence_with_spline)
 TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(TIDY_WITH_SPLINE)
-print('1a. IMPORTANT - Anova incidince WITH spline')
-anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
+
+print('1a. Anova incidince - spline')
+anova_incidence_with_spline <- Anova(incidence_with_spline, row.names = TRUE)
 anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(anova_incidence_with_spline)
 
+#a1 <- Anova(incidence_with_spline, row.names = TRUE)
+#a2 <-tidy(a1, conf.int=TRUE,exponentiate = TRUE) 
+#print(a2)
 
 #write_csv(TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_SPLINE_TIME.csv')
 write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA.csv')
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-print('222. IMPORTANT - Incidence index numeric with spline + AGE +SEX')
+print('2. Incidence index numeric model - spline + AGE +SEX')
 incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                               Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                                  quantile(index_time_to_start_date, 0.9))) + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))), 
@@ -108,8 +133,9 @@ incidence_with_spline <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_star
 print(incidence_with_spline)
 TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(TIDY_WITH_SPLINE)
-print('2a. IMPORTANT - Anova incidince WITH spline')
-anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
+
+print('2a. Anova incidince - spline')
+anova_incidence_with_spline <- Anova(incidence_with_spline, row.names = TRUE)
 anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(anova_incidence_with_spline)
 
@@ -118,7 +144,7 @@ write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA_sex_a
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-print('22233. IMPORTANT - Incidence index numeric with spline + fully adjusted')
+print('3. Incidence index numeric - spline + fully adjusted')
 incidence_with_spline <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2, 
                                                               Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                                  quantile(index_time_to_start_date, 0.9))) + 
@@ -146,8 +172,9 @@ incidence_with_spline <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_sta
 print(incidence_with_spline)
 TIDY_WITH_SPLINE <-tidy(incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(TIDY_WITH_SPLINE)
-print('2a. IMPORTANT - Anova incidince WITH spline')
-anova_incidence_with_spline <- anova(incidence_with_spline, row.names = TRUE)
+
+print('3a. IMPORTANT - Anova incidince WITH spline')
+anova_incidence_with_spline <- Anova(incidence_with_spline, row.names = TRUE)
 anova_TIDY_WITH_SPLINE <-tidy(anova_incidence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 print(anova_incidence_with_spline)
 
@@ -159,28 +186,6 @@ write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_INCIDENCE_ANOVA_fully
 ######################################################################################################
 # PREVALENCE 
 
-prevalence$index_numeric <- as.numeric(prevalence$index_date) 
-prevalence$index_time_to_start_date <- prevalence$index_numeric - start_date_numeric  
-
-t2<- prevalence %>% filter(index_date <as.Date("2100-01-01"))
-
-print('summary(prevalence$index_date)')
-summary(prevalence$index_date) 
-
-print('summary(t2$index_date) dates less than 2100-01-01')
-summary(t2$index_date)
-
-print('summary(prevalence$index_numeric)')
-summary(prevalence$index_numeric)
-
-print('summary(prevalence$index_time_to_start_date)')
-summary(prevalence$index_time_to_start_date)
-
-
-print('NAs number')
-prevalence %>% filter(is.na(index_date)) %>% nrow()
-
-######################################################################################################
 # Testing the interaction between exposure and time (time as a spline)
 #
 ######################################################################################################
@@ -190,7 +195,7 @@ prevalence_without_spline <- coxph(Surv(t,mh_outcome)~ exposed*index_time_to_sta
 print(prevalence_without_spline)
 
 print('1a. Anova prevalence WITHOUT spline')
-anova_prevalence_without_spline <- anova(prevalence_without_spline)
+anova_prevalence_without_spline <- Anova(prevalence_without_spline)
 print(anova_prevalence_without_spline)
 
 print('2. IMPORTANT - prevalence index numeric with spline')
@@ -204,7 +209,7 @@ TIDY_WITH_SPLINE <-tidy(prevalence_with_spline, conf.int=TRUE,exponentiate = TRU
 
 print(TIDY_WITH_SPLINE)
 print('2a. IMPORTANT - Anova prevalence WITH spline')
-anova_prevalence_with_spline <- anova(prevalence_with_spline, row.names = TRUE)
+anova_prevalence_with_spline <- Anova(prevalence_with_spline, row.names = TRUE)
 anova_TIDY_WITH_SPLINE <-tidy(anova_prevalence_with_spline, conf.int=TRUE,exponentiate = TRUE) 
 
 print(anova_TIDY_WITH_SPLINE)
@@ -228,10 +233,11 @@ write_csv(anova_TIDY_WITH_SPLINE, 'output/99_TEMPORARY_COX_PREV_ANOVA.csv')
 int_1 <- coxph(Surv(t,mh_outcome)~ exposed*waves, data = incidence)
 tidy_table <-tidy(int_1, conf.int=TRUE,exponentiate = TRUE) 
 print('INTERACTION WITH WAVES VARIABLE ANOVA')
-anova <- anova(int_1, row.names = TRUE)
+anova <- Anova(int_1, row.names = TRUE)
 anova_tidy <-tidy(anova, conf.int=TRUE, exponentiate = TRUE) 
 print(anova_tidy)
 
+#save
 write_csv(anova_tidy, 'output/99_anova_waves.csv')
 
 
@@ -244,9 +250,11 @@ int_1 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
                data = incidence)
 tidy_table <-tidy(int_1, conf.int=TRUE,exponentiate = TRUE) 
 print('INTERACTION WITH WAVES VARIABLE ANOVA')
-anova <- anova(int_1, row.names = TRUE)
+anova <- Anova(int_1, row.names = TRUE)
 anova_tidy <-tidy(anova, conf.int=TRUE, exponentiate = TRUE) 
 print(anova_tidy)
+
+#save
 write_csv(anova_tidy, 'output/99_anova_waves_sex_age.csv')
 
 
@@ -276,13 +284,13 @@ int_1 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
                data = incidence)
 tidy_table <-tidy(int_1, conf.int=TRUE,exponentiate = TRUE) 
 print('INTERACTION WITH WAVES VARIABLE ANOVA')
-anova <- anova(int_1, row.names = TRUE)
+anova <- Anova(int_1, row.names = TRUE)
 anova_tidy <-tidy(anova, conf.int=TRUE, exponentiate = TRUE) 
 print(anova_tidy)
 
-
+#save
 write_csv(anova_tidy, 'output/99_anova_waves_fully adjusted.csv')
-write_csv(int_1, 'output/99_coefficients_for_waves_incidence.csv')
+write_csv(tidy_table, 'output/99_coefficients_for_waves_incidence.csv')
 
 
 ######################################################################################################

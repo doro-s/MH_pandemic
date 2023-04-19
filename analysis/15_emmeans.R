@@ -163,5 +163,20 @@ t<- as.data.frame(sapply(list(in1, in2, in3), BIC))
 
 write_csv(t, 'output/BIC_all_3models.cvs')
 
+#####
+# anova on the models
 
+
+a1 <-tidy(Anova(in1, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
+a2 <-tidy(Anova(in2, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
+a3 <-tidy(Anova(in3, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
+
+a1$df <- "2 DF"
+a2$df <- "3 DF"
+a3$df <- "4 DF"
+
+avova_table <- prevalence_cox_hz <- rbind(a1,a2,a3)
+write_csv(avova_table, 'output/different_degrees_of_freedom_avova_fully_adj.cvs')
+
+rm(a1,a2,a3)
 

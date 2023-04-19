@@ -186,4 +186,5 @@ actions:
                 d5: output/99_emmeans_4df_incidence.csv
                 d6: output/99_emmeans_4df_incidence.jpg
                 d7: output/BIC_all_3models.cvs
+                d8: output/different_degrees_of_freedom_avova_fully_adj.cvs
 

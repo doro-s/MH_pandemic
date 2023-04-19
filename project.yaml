@@ -181,3 +181,9 @@ actions:
             moderately_sensitive:
                 d1: output/99_emmeans_incidence.csv
                 d2: output/99_emmeans_incidence.jpg
+                d3: output/99_emmeans_3df_incidence.csv
+                d4: output/99_emmeans_3df_incidence.jpg
+                d5: output/99_emmeans_4df_incidence.csv
+                d6: output/99_emmeans_4df_incidence.jpg
+                d7: output/BIC_all_3models.cvs
+

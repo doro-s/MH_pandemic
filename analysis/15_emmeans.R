@@ -21,6 +21,8 @@ options(datatable.fread.datatable=FALSE)
 
 start_date <- as.Date("2020/01/24") 
 start_date_numeric <- as.numeric(start_date) #this is converted into days
+#18285 + 800
+#as.Date(19085, origin="1970/01/01")
 
 
 incidence <- fread('output/incidence_t.csv') %>% 
@@ -38,15 +40,34 @@ incidence$index_time_to_start_date <- incidence$index_numeric - start_date_numer
 in1 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2, 
                                              Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                              quantile(index_time_to_start_date, 0.9))) + 
-                                 ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
-                                 sex, 
+               ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+               alcohol + 
+               obese_binary_flag + 
+               cancer + 
+               digestive_disorder + 
+               hiv_aids + 
+               kidney_disorder + 
+               respiratory_disorder + 
+               metabolic_disorder + 
+               sex + 
+               ethnicity + 
+               region + 
+               hhsize + 
+               work_status_new + CVD + 
+               musculoskeletal + 
+               neurological + 
+               mental_behavioural_disorder, 
                                data = incidence)
 
 
+#PROBLEMS  BUILDS GRID A COMBINATION OF EVERYTHINNG 
+# ARGUMNET TO TELLS IT THAT ALL OF THE NUISANCE = NON NUISENCE = exposed, index 
+#ref_grid()
 
 # estimated marginal means 
 in1_emmeans <- as.data.frame(emmeans(in1, 
                                      specs = ~index_time_to_start_date|exposed,
+                                     non.nuisance=c("exposed","index_time_to_start_date"),
                                      at= list(index_time_to_start_date=
                                                 min(incidence$index_time_to_start_date):max(incidence$index_time_to_start_date))))
 
@@ -56,5 +77,91 @@ plot <- ggplot(in1_emmeans, mapping = aes(x= index_time_to_start_date, y= emmean
   geom_point() 
 #plot
 ggsave("output/99_emmeans_incidence.jpg",plot)
+
+#Bayesian Information Criterion
+#bic<- BIC(in1)
+
+#check the BIC
+# MODEL WITH MORE DEGREES OF FREEDOM -> 3
+
+in2 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 3, 
+                                             Boundary.knots = c(quantile(index_time_to_start_date,0.1),
+                                                                quantile(index_time_to_start_date, 0.9))) + 
+               ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+               alcohol + 
+               obese_binary_flag + 
+               cancer + 
+               digestive_disorder + 
+               hiv_aids + 
+               kidney_disorder + 
+               respiratory_disorder + 
+               metabolic_disorder + 
+               sex + 
+               ethnicity + 
+               region + 
+               hhsize + 
+               work_status_new + CVD + 
+               musculoskeletal + 
+               neurological + 
+               mental_behavioural_disorder, 
+             data = incidence)
+
+in2_emmeans <- as.data.frame(emmeans(in2, 
+                                     specs = ~index_time_to_start_date|exposed,
+                                     non.nuisance=c("exposed","index_time_to_start_date"),
+                                     at= list(index_time_to_start_date=
+                                                min(incidence$index_time_to_start_date):max(incidence$index_time_to_start_date))))
+
+write_csv(in2_emmeans, 'output/99_emmeans_3df_incidence.csv')
+
+plot <- ggplot(in2_emmeans, mapping = aes(x= index_time_to_start_date, y= emmean,color=exposed)) +
+  geom_point() 
+#plot
+ggsave("output/99_emmeans_3df_incidence.jpg",plot)
+
+# MODEL WITH MORE DEGREES OF FREEDOM -> 4
+
+in3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 4, 
+                                             Boundary.knots = c(quantile(index_time_to_start_date,0.1),
+                                                                quantile(index_time_to_start_date, 0.9))) + 
+               ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+               alcohol + 
+               obese_binary_flag + 
+               cancer + 
+               digestive_disorder + 
+               hiv_aids + 
+               kidney_disorder + 
+               respiratory_disorder + 
+               metabolic_disorder + 
+               sex + 
+               ethnicity + 
+               region + 
+               hhsize + 
+               work_status_new + CVD + 
+               musculoskeletal + 
+               neurological + 
+               mental_behavioural_disorder, 
+             data = incidence)
+
+in3_emmeans <- as.data.frame(emmeans(in3, 
+                                     specs = ~index_time_to_start_date|exposed,
+                                     non.nuisance=c("exposed","index_time_to_start_date"),
+                                     at= list(index_time_to_start_date=
+                                                min(incidence$index_time_to_start_date):max(incidence$index_time_to_start_date))))
+
+write_csv(in3_emmeans, 'output/99_emmeans_4df_incidence.csv')
+
+plot <- ggplot(in3_emmeans, mapping = aes(x= index_time_to_start_date, y= emmean,color=exposed)) +
+  geom_point() 
+#plot
+ggsave("output/99_emmeans_4df_incidence.jpg",plot)
+
+
+#Bayesian Information Criterion for all models
+
+t<- as.data.frame(sapply(list(in1, in2, in3), BIC))
+
+write_csv(t, 'output/BIC_all_3models.cvs')
+
 
 

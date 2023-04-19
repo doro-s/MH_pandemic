@@ -173,3 +173,11 @@ actions:
                 d6: output/99_anova_waves_fully adjusted.csv
                 d7: output/99_anova_waves.csv
                 d8: output/99_coefficients_for_waves_incidence.csv
+
+    emmeans:
+        run: r:latest analysis/15_emmeans.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                d1: output/99_emmeans_incidence.csv
+                d2: output/99_emmeans_incidence.jpg

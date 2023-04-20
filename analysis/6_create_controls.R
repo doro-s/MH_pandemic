@@ -221,6 +221,11 @@ nrow(incidence_group)
 print('total size of post matched prevalence population')
 nrow(prevalence_group)
 
+print('total size of post matched incidence population exposed')
+incidence_group %>% filter(exposed== 1) %>% nrow()
+print('total size of post matched prevalence population exposed')
+prevalence_group %>% filter(exposed== 1) %>% nrow()
+
 
 # Save groups
 write_csv(incidence_group, 'output/incidence_group.csv')

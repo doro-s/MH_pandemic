@@ -73,7 +73,6 @@ visit_num  <- wide_to_long(cis_wide, 'visit_num', 'visit\\_num\\_\\d+')
 last_linkage_dt <- wide_to_long(cis_wide, 'last_linkage_dt', 'last\\_linkage\\_dt\\_\\d+')
 is_opted_out_of_nhs_data_share <- wide_to_long(cis_wide, 'is_opted_out_of_nhs_data_share', 'is\\_opted\\_out\\_of\\_nhs\\_data\\_share\\_\\d+')
 imd_decile_e <- wide_to_long(cis_wide, 'imd_decile_e', 'imd\\_decile\\_e\\_\\d+')
-imd_quartile_e <- wide_to_long(cis_wide, 'imd_quartile_e', 'imd\\_quartile\\_e\\_\\d+')
 rural_urban <- wide_to_long(cis_wide, 'rural_urban', 'rural\\_urban\\_\\d+')
 
 cis_long <- visit_date %>% 
@@ -82,17 +81,15 @@ cis_long <- visit_date %>%
   left_join(last_linkage_dt, by = join_keys) %>% 
   left_join(is_opted_out_of_nhs_data_share, by = join_keys) %>% 
   left_join(imd_decile_e, by = join_keys) %>% 
-  left_join(imd_quartile_e, by = join_keys) %>% 
   left_join(rural_urban, by = join_keys)
 
-rm(visit_date, result_mk, visit_num, last_linkage_dt, is_opted_out_of_nhs_data_share, imd_decile_e, imd_quartile_e, rural_urban)
+rm(visit_date, result_mk, visit_num, last_linkage_dt, is_opted_out_of_nhs_data_share, imd_decile_e, rural_urban)
 cis_wide <- remove_cols_string(cis_wide, 'visit_date')
 cis_wide <- remove_cols_string(cis_wide, 'result_mk')
 cis_wide <- remove_cols_string(cis_wide, 'visit_num')
 cis_wide <- remove_cols_string(cis_wide, 'last_linkage_dt')
 cis_wide <- remove_cols_string(cis_wide, 'is_opted_out_of_nhs_data_share')
 cis_wide <- remove_cols_string(cis_wide, 'imd_decile_e')
-cis_wide <- remove_cols_string(cis_wide, 'imd_quartile_e')
 cis_wide <- remove_cols_string(cis_wide, 'rural_urban')
 
 
@@ -282,20 +279,28 @@ cis_long <- cis_long %>%
 # Change IMD deciles to IMD quitiles 
 #currently commented out until we load them through a study definition
 
-#cis_long <- cis_long %>% 
-#  mutate(imd = 
-#           case_when(imd_decile_E == 1 | imd_decile_E == 2 ~ 1, 
-#                     imd_decile_E == 3 | imd_decile_E == 4 ~ 2,
-#                     imd_decile_E == 5 | imd_decile_E == 6 ~ 3,
-#                     imd_decile_E == 7 | imd_decile_E == 8 ~ 4,
-#                     imd_decile_E == 9 | imd_decile_E == 10 ~ 5,
-#                     TRUE ~ 'Unknown')) %>% select(-imd_decile_E, -imd_quartile_E)
+cis_long <- cis_long %>% 
+  mutate(imd = 
+           case_when(imd_decile_e == 1 | imd_decile_e == 2 ~ "IMD 1", 
+                     imd_decile_e == 3 | imd_decile_e == 4 ~ "IMD 2",
+                     imd_decile_e == 5 | imd_decile_e == 6 ~ "IMD 3",
+                     imd_decile_e == 7 | imd_decile_e == 8 ~ "IMD 4",
+                     imd_decile_e == 9 | imd_decile_e == 10 ~ "IMD 5",
+                     TRUE ~ "Unknown")) %>% 
+  mutate(rural_urban = case_when(rural_urban == 1 ~ "Major urban",
+                                 rural_urban == 1 ~ "Major urban",
+                                 rural_urban == 1 ~ "Major urban",
+                                 rural_urban == 1 ~ "Major urban",
+                                 TRUE ~ "Unknown/Invalid")) %>% 
+select(-imd_decile_e)
   
                    
 rm(cis_cols, cis_wide)
 gc()
 
 # temporary step - check if there are any non English patients
-#cis_long %>% count(gor9d)  # will remove this line
+cis_long %>% count(imd)  # will remove this line
+cis_long %>% count(rural_urban)  # will remove this line
+
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')

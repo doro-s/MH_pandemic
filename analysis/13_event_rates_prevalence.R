@@ -46,7 +46,9 @@ domains <- c("all",
              "work_status_new",
              "CVD",
              "musculoskeletal",
-             "neurological")
+             "neurological",
+            "imd",
+            "rural_urban")
 
 
 ### list exposures to loop over 

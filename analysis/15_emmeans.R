@@ -56,7 +56,9 @@ in1 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2,
                work_status_new + CVD + 
                musculoskeletal + 
                neurological + 
-               mental_behavioural_disorder, 
+               mental_behavioural_disorder +
+               imd + 
+               rural_urban, 
                                data = incidence)
 
 
@@ -103,7 +105,9 @@ in2 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 3,
                work_status_new + CVD + 
                musculoskeletal + 
                neurological + 
-               mental_behavioural_disorder, 
+               mental_behavioural_disorder +
+               imd + 
+               rural_urban, 
              data = incidence)
 
 in2_emmeans <- as.data.frame(emmeans(in2, 
@@ -140,7 +144,9 @@ in3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 4,
                work_status_new + CVD + 
                musculoskeletal + 
                neurological + 
-               mental_behavioural_disorder, 
+               mental_behavioural_disorder +
+               imd + 
+               rural_urban, 
              data = incidence)
 
 in3_emmeans <- as.data.frame(emmeans(in3, 
@@ -175,8 +181,8 @@ a1$df <- "2 DF"
 a2$df <- "3 DF"
 a3$df <- "4 DF"
 
-avova_table <- prevalence_cox_hz <- rbind(a1,a2,a3)
-write_csv(avova_table, 'output/different_degrees_of_freedom_avova_fully_adj.cvs')
+avova_table <- rbind(a1,a2,a3)
+write_csv(avova_table, 'output/different_degrees_of_freedom_avova_all_adjustments.cvs')
 
 rm(a1,a2,a3)
 

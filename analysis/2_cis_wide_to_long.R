@@ -288,9 +288,9 @@ cis_long <- cis_long %>%
                      imd_decile_e == 9 | imd_decile_e == 10 ~ "IMD 5",
                      TRUE ~ "Unknown")) %>% 
   mutate(rural_urban = case_when(rural_urban == 1 ~ "Major urban",
-                                 rural_urban == 1 ~ "Major urban",
-                                 rural_urban == 1 ~ "Major urban",
-                                 rural_urban == 1 ~ "Major urban",
+                                 rural_urban == 2 ~ "Urban city town",
+                                 rural_urban == 3 ~ "Rural town",
+                                 rural_urban == 4 ~ "Rural village",
                                  TRUE ~ "Unknown/Invalid")) %>% 
 select(-imd_decile_e)
   

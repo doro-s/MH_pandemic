@@ -165,14 +165,12 @@ actions:
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
-                d1: output/99_TEMPORARY_COX_INCIDENCE_ANOVA_sex_age.csv
-                d2: output/99_TEMPORARY_COX_INCIDENCE_ANOVA.csv
-                d3: output/99_TEMPORARY_COX_INCIDENCE_ANOVA_fully_adjusted.csv
-                d4: output/99_TEMPORARY_COX_PREV_ANOVA.csv
-                d5: output/99_anova_waves_sex_age.csv
-                d6: output/99_anova_waves_fully adjusted.csv
-                d7: output/99_anova_waves.csv
-                d8: output/99_coefficients_for_waves_incidence.csv
+                d1: output/99_coeff_exposed_spline_time_fulladj_incidence.csv
+                d2: output/99_anova_exposed_spline_time_interactions.csv
+                d3: output/99_coeff_exposed_spline_time_fulladj_prev.csv
+                d4: output/99_anova_exposed_spline_time_fulladj_prev.csv
+                d5: output/99_coefficients_for_waves_incidence.csv
+                d6: output/99_anova_waves_time_interaction.csv
 
     emmeans:
         run: r:latest analysis/15_emmeans.R
@@ -186,5 +184,5 @@ actions:
                 d5: output/99_emmeans_4df_incidence.csv
                 d6: output/99_emmeans_4df_incidence.jpg
                 d7: output/BIC_all_3models.cvs
-                d8: output/different_degrees_of_freedom_avova_fully_adj.cvs
+                d8: output/different_degrees_of_freedom_avova_all_adjustments.cvs
 

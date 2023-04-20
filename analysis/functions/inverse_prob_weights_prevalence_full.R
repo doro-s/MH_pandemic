@@ -20,7 +20,9 @@ inverse_prob_weights_prevalence <- function(data){
       work_status_new +
       CVD + 
       musculoskeletal + 
-      neurological, 
+      neurological +
+      imd +
+      rural_urban, 
     family = binomial,
     data = data)
   

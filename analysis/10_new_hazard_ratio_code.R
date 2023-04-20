@@ -68,7 +68,9 @@ vars <- c("exposed",
           "CVD",
           "musculoskeletal",
           "neurological",
-          "mental_behavioural_disorder")
+          "mental_behavioural_disorder",
+          "imd",
+          "rural_urban")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio

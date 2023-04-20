@@ -92,7 +92,9 @@ cat_vars <- c("alcohol",
               "region",
               "age_groups",
               "hhsize",
-              "work_status_new")
+              "work_status_new",
+              "imd",
+              "rural_urban")
 
 continuous_vars <- c('age')
 

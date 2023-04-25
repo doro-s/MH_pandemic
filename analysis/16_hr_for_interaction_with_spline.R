@@ -15,23 +15,6 @@ options(datatable.fread.datatable=FALSE)
 
 dat <- fread('output/incidence_t.csv')
 
-#check the data 
-print('checking exposed')
-dat %>% filter(exposed== 1) %>% nrow()
-dat %>% filter(exposed== 0) %>% nrow()
-dat %>% filter(is.na(exposed)) %>% nrow()
-
-print('checking mh_outcome')
-dat %>% filter(mh_outcome== 1) %>% nrow()
-dat %>% filter(mh_outcome== 0) %>% nrow()
-dat %>% filter(is.na(mh_outcome)) %>% nrow()
-
-print('checking t')
-min(dat$t) 
-max(dat$t)
-dat %>% filter(is.na(t)) %>% nrow()
-
-
 ### creating exposure, modifier and outcome variables
 ### for simplicity, I'm creating a binary outcome rather than a time-to-event outcome
 ### in this example, I'm exploring whether the relationship between gender (exposure) and
@@ -54,14 +37,9 @@ dat %>% filter(is.na(t)) %>% nrow()
 #  family = binomial,
 #  data = dat)
 
-mod_1 <- coxph(
-  Surv(t, mh_outcome) ~ exposed*ns(t,
-                                     df=2,
-                                     Boundary.knots=quantile(t, c(0.1,0.9))), data = dat)
-mod_1
-
 mod_cox <- coxph(
   Surv(t, mh_outcome) ~ exposed*ns(t, df = 2, Boundary.knots = c(quantile(t, 0.1), quantile(t, 0.9))) + 
+    age +
     alcohol + 
     obese_binary_flag + 
     cancer + 
@@ -70,16 +48,19 @@ mod_cox <- coxph(
     kidney_disorder + 
     respiratory_disorder + 
     metabolic_disorder + 
-    sex + ethnicity + 
-    region + hhsize + 
+    sex + 
+    ethnicity + 
+    region + 
+    hhsize + 
     work_status_new + 
-    CVD + musculoskeletal + 
+    CVD + 
+    musculoskeletal + 
     neurological + 
     mental_behavioural_disorder + 
     imd +
     rural_urban,
   data = dat)
-mod_cox
+
 ### extract coefficients from the fitted model
 coeffs <- coef(mod_cox)
 NROW(coeffs)
@@ -91,10 +72,6 @@ b1 <- coeffs[1]
 b4 <- coeffs[42]#42
 b5 <- coeffs[43]#43
 
-print("pick out the coefficients for the exposure main effect and the two modifier terms")
-b1
-b4
-b5
 ### derive the spline-transformed values of the modifier(t) variable (same as used in the model)
 spline_matrix <- as.data.frame(
   ns(dat$t,
@@ -105,23 +82,17 @@ spline_matrix <- as.data.frame(
 ### pick out each spline-transformed term
 s1 <- spline_matrix[,1]
 s2 <- spline_matrix[,2]
-print("s1 and s2")
-s1
-s2
+
 ### calculate change in the linear predictor
 lp_change <- b1 + b4*s1 + b5*s2
-print("lp_change")
-lp_change
 
 ### convert the change in the linear predictor to an odds ratio (you'll have a hazard ratio
 ### rather than an odds ratio)
 hr <- exp(lp_change)
-print("hr")
-hr
+
 ### extract variance-covariance matrix of the model
 mod_vcov <- as.data.frame(vcov(mod_cox))
-print("mod_vcov")
-mod_vcov
+
 ### drop the intercept from the vcov (you won't need to do this as no intercept)
 #mod_vcov <- mod_vcov[-1,-1]
 
@@ -130,38 +101,22 @@ var_b1 <- mod_vcov[1,1]
 var_b4 <- mod_vcov[4,4]
 var_b5 <- mod_vcov[5,5]
 
-print("var b1 b2 b3")
-var_b1
-var_b4
-var_b5
-
 ### extract pairs of covariances between the coefficients (i.e. off-diagonal elements)
 cov_b1_b4 <- mod_vcov[1,4]
 cov_b1_b5 <- mod_vcov[1,5]
 cov_b4_b5 <- mod_vcov[4,5]
 
-print("cov b1 b2 b3")
-cov_b1_b4
-cov_b1_b5
-cov_b4_b5
-
 ### calculate the variance of the change in the linear predictor
 lp_change_var <- var_b1 + (s1^2)*var_b4 + (s2^2)*var_b5 +
   2*s1*cov_b1_b4 + 2*s2*cov_b1_b5 + 2*s1*s2*cov_b4_b5
 
-print("lp_change_var")
-lp_change_var
 ### calculate the standard error of the change in the linear predictor
 lp_change_se <- sqrt(lp_change_var)
 
-print("lp_change_se")
-lp_change_se
 ### calculate 95% CI around the OR
 hr_lcl <- exp(lp_change - 1.96*lp_change_se)
 hr_ucl <- exp(lp_change + 1.96*lp_change_se)
 
-hr_lcl
-hr_ucl
 ### bring results together
 hr_df <- data.frame(
   t = dat$t,

@@ -56,7 +56,7 @@ dat %>% filter(is.na(t)) %>% nrow()
 
 
 mod_cox <- coxph(
-  Surv(mh_outcome) ~ exposed * ns(t,
+  Surv(t, mh_outcome) ~ exposed * ns(t,
                                      df=2,
                                      Boundary.knots=quantile(t, c(0.1,0.9))) + 
     cluster(patient_id) + 

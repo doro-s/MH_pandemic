@@ -54,9 +54,14 @@ dat %>% filter(is.na(t)) %>% nrow()
 #  family = binomial,
 #  data = dat)
 
+mod_1 <- coxph(
+  Surv(t, mh_outcome) ~ exposed*ns(t,
+                                     df=2,
+                                     Boundary.knots=quantile(t, c(0.1,0.9))), data = dat)
+mod_1
 
 mod_cox <- coxph(
-  Surv(t, mh_outcome) ~ exposed * ns(t,
+  Surv(t, mh_outcome) ~ exposed*ns(t,
                                      df=2,
                                      Boundary.knots=quantile(t, c(0.1,0.9))) + 
     cluster(patient_id) + 
@@ -78,7 +83,7 @@ mod_cox <- coxph(
     #imd + # imd does not run on dummy data but should run on real data 
     rural_urban,
   data = dat)
-
+mod_cox
 ### extract coefficients from the fitted model
 coeffs <- coef(mod_cox)
 NROW(coeffs)

@@ -70,8 +70,8 @@ NROW(coeffs)
 #coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[40]
-b5 <- coeffs[41]
+b4 <- coeffs[42]
+b5 <- coeffs[43]
 
 print("pick out the coefficients for the exposure main effect and the two modifier terms")
 b1

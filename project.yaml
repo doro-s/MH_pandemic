@@ -186,3 +186,11 @@ actions:
                 d7: output/BIC_all_3models.cvs
                 d8: output/different_degrees_of_freedom_avova_all_adjustments.cvs
 
+    hr_for_interaction_with_spline:
+        run: r:latest analysis/16_hr_for_interaction_with_spline.R
+        needs: [cumulative_incidence]
+        outputs:
+            moderately_sensitive:
+                d1: output/100_hazard_ratios_by_modifier_incidence.csv
+                d2: output/100_hazard_ratios_by_modifier_variable.jpg
+

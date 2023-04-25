@@ -62,7 +62,6 @@ mod_1
 
 mod_cox <- coxph(
   Surv(t, mh_outcome) ~ exposed*ns(t, df = 2, Boundary.knots = c(quantile(t, 0.1), quantile(t, 0.9))) + 
-    ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
     alcohol + 
     obese_binary_flag + 
     cancer + 
@@ -77,7 +76,7 @@ mod_cox <- coxph(
     CVD + musculoskeletal + 
     neurological + 
     mental_behavioural_disorder + 
-    #imd + # imd does not run on dummy data but should run on real data 
+    imd +
     rural_urban,
   data = dat)
 mod_cox

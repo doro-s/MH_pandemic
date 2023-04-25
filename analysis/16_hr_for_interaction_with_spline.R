@@ -64,14 +64,19 @@ mod_cox <- coxph(
 
 ### extract coefficients from the fitted model
 coeffs <- coef(mod_cox)
+NROW(coeffs)
 
 ### drop the intercept (you won't need to do this as no intercept in a Cox model)
-coeffs <- coeffs[-1]
+#coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
 b4 <- coeffs[40]
 b5 <- coeffs[41]
 
+print("pick out the coefficients for the exposure main effect and the two modifier terms")
+b1
+b4
+b5
 ### derive the spline-transformed values of the modifier(t) variable (same as used in the model)
 spline_matrix <- as.data.frame(
   ns(dat$t,
@@ -82,17 +87,23 @@ spline_matrix <- as.data.frame(
 ### pick out each spline-transformed term
 s1 <- spline_matrix[,1]
 s2 <- spline_matrix[,2]
-
+print("s1 and s2")
+s1
+s2
 ### calculate change in the linear predictor
 lp_change <- b1 + b4*s1 + b5*s2
+print("lp_change")
+lp_change
 
 ### convert the change in the linear predictor to an odds ratio (you'll have a hazard ratio
 ### rather than an odds ratio)
 hr <- exp(lp_change)
-
+print("hr")
+hr
 ### extract variance-covariance matrix of the model
 mod_vcov <- as.data.frame(vcov(mod_cox))
-
+print("mod_vcov")
+mod_vcov
 ### drop the intercept from the vcov (you won't need to do this as no intercept)
 #mod_vcov <- mod_vcov[-1,-1]
 
@@ -101,22 +112,38 @@ var_b1 <- mod_vcov[1,1]
 var_b4 <- mod_vcov[4,4]
 var_b5 <- mod_vcov[5,5]
 
+print("var b1 b2 b3")
+var_b1
+var_b4
+var_b5
+
 ### extract pairs of covariances between the coefficients (i.e. off-diagonal elements)
 cov_b1_b4 <- mod_vcov[1,4]
 cov_b1_b5 <- mod_vcov[1,5]
 cov_b4_b5 <- mod_vcov[4,5]
 
+print("cov b1 b2 b3")
+cov_b1_b4
+cov_b1_b5
+cov_b4_b5
+
 ### calculate the variance of the change in the linear predictor
 lp_change_var <- var_b1 + (s1^2)*var_b4 + (s2^2)*var_b5 +
   2*s1*cov_b1_b4 + 2*s2*cov_b1_b5 + 2*s1*s2*cov_b4_b5
 
+print("lp_change_var")
+lp_change_var
 ### calculate the standard error of the change in the linear predictor
 lp_change_se <- sqrt(lp_change_var)
 
+print("lp_change_se")
+lp_change_se
 ### calculate 95% CI around the OR
 hr_lcl <- exp(lp_change - 1.96*lp_change_se)
 hr_ucl <- exp(lp_change + 1.96*lp_change_se)
 
+hr_lcl
+hr_ucl
 ### bring results together
 hr_df <- data.frame(
   t = dat$t,

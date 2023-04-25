@@ -58,7 +58,7 @@ mod_cox <- coxph(
     CVD + musculoskeletal + 
     neurological + 
     mental_behavioural_disorder + 
-    imd + # imd does not run on dummy data but should run on real data 
+    #imd + # imd does not run on dummy data but should run on real data 
     rural_urban,
   data = dat)
 
@@ -69,8 +69,8 @@ coeffs <- coef(mod_cox)
 coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[41]
-b5 <- coeffs[42]
+b4 <- coeffs[40]
+b5 <- coeffs[41]
 
 ### derive the spline-transformed values of the modifier(t) variable (same as used in the model)
 spline_matrix <- as.data.frame(

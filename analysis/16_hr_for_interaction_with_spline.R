@@ -39,7 +39,7 @@ dat <- fread('output/incidence_t.csv')
 
 mod_cox <- coxph(
   Surv(t, mh_outcome) ~ exposed*ns(t, df = 2, Boundary.knots = c(quantile(t, 0.1), quantile(t, 0.9))) + 
-    age +
+    ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) +
     alcohol + 
     obese_binary_flag + 
     cancer + 
@@ -69,8 +69,8 @@ NROW(coeffs)
 #coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[42]#42
-b5 <- coeffs[43]#43
+b4 <- coeffs[45]
+b5 <- coeffs[46]
 
 ### derive the spline-transformed values of the modifier(t) variable (same as used in the model)
 spline_matrix <- as.data.frame(

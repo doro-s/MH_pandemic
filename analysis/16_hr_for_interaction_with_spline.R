@@ -15,6 +15,23 @@ options(datatable.fread.datatable=FALSE)
 
 dat <- fread('output/incidence_t.csv')
 
+#check the data 
+print('checking exposed')
+dat %>% filter(exposed== 1) %>% nrow()
+dat %>% filter(exposed== 0) %>% nrow()
+dat %>% filter(is.na(exposed)) %>% nrow()
+
+print('checking mh_outcome')
+dat %>% filter(mh_outcome== 1) %>% nrow()
+dat %>% filter(mh_outcome== 0) %>% nrow()
+dat %>% filter(is.na(mh_outcome)) %>% nrow()
+
+print('checking t')
+min(dat$t) 
+max(dat$t)
+dat %>% filter(is.na(t)) %>% nrow()
+
+
 ### creating exposure, modifier and outcome variables
 ### for simplicity, I'm creating a binary outcome rather than a time-to-event outcome
 ### in this example, I'm exploring whether the relationship between gender (exposure) and
@@ -39,7 +56,7 @@ dat <- fread('output/incidence_t.csv')
 
 
 mod_cox <- coxph(
-  Surv(t, mh_outcome) ~ exposed * ns(t,
+  Surv(mh_outcome) ~ exposed * ns(t,
                                      df=2,
                                      Boundary.knots=quantile(t, c(0.1,0.9))) + 
     cluster(patient_id) + 
@@ -70,8 +87,8 @@ NROW(coeffs)
 #coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[42]
-b5 <- coeffs[43]
+b4 <- coeffs[42]#42
+b5 <- coeffs[43]#43
 
 print("pick out the coefficients for the exposure main effect and the two modifier terms")
 b1

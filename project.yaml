@@ -85,8 +85,9 @@ actions:
         run: r:latest analysis/6_6_pre_post_match_testing.R
         needs: [derive_exposed, derive_controls,perform_matching]
         outputs: 
-            t1: output/dates_order_control.csv
-            t2: output/dates_order_exposed.csv
+            moderately_sensitive:
+                t1: output/dates_order_control.csv
+                t2: output/dates_order_exposed.csv
 
     adjust_matched_groups:
         run: r:latest analysis/7_adjust_groups.R

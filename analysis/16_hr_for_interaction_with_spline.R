@@ -21,7 +21,7 @@ dat <- fread('output/incidence_t.csv')
 ### diabetes (outcome) varies by continuous age (modifier)
 
 #dat$exposure <- ifelse(dat$exposed=="M", 1, 0) #don't need that as "exposed" is already binary
-#dat$modifier <- dat$t
+#dat$modifier <- dat$index_time_to_start_date
 #dat$outcome <- ifelse(!is.na(dat$mh_outcome) & dat$mh_outcome== 1, 1, 0)
 
 ### fit the model
@@ -36,10 +36,21 @@ dat <- fread('output/incidence_t.csv')
 #                          Boundary.knots=quantile(modifier, c(0.1,0.9))) ,
 #  family = binomial,
 #  data = dat)
+# Chnage index_dates to numeric
+start_date <- as.Date("2020/01/24") 
+start_date_numeric <- as.numeric(start_date) #this is converted into days
+
+dat$index_numeric <- as.numeric(dat$date_positive) 
+dat$index_time_to_start_date <- dat$index_numeric - start_date_numeric  
 
 mod_cox <- coxph(
-  Surv(t, mh_outcome) ~ exposed*ns(t, df = 2, Boundary.knots = c(quantile(t, 0.1), quantile(t, 0.9))) + 
-    age_groups + alcohol + 
+  Surv(t, mh_outcome) ~ exposed*ns(index_time_to_start_date, 
+                                   df = 2, 
+                                   Boundary.knots = c(quantile(index_time_to_start_date, 0.1), 
+                                                      quantile(index_time_to_start_date, 0.9))) + 
+    ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) +
+    cluster(patient_id) + 
+    alcohol + 
     obese_binary_flag + 
     cancer + 
     digestive_disorder + 
@@ -68,14 +79,14 @@ NROW(coeffs)
 #coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[48]
-b5 <- coeffs[49]
+b4 <- coeffs[45]
+b5 <- coeffs[46]
 
-### derive the spline-transformed values of the modifier(t) variable (same as used in the model)
+### derive the spline-transformed values of the modifier(index_time_to_start_date) variable (same as used in the model)
 spline_matrix <- as.data.frame(
-  ns(dat$t,
+  ns(dat$index_time_to_start_date,
      df=2,
-     Boundary.knots=quantile(dat$t, c(0.1,0.9)))
+     Boundary.knots=quantile(dat$index_time_to_start_date, c(0.1,0.9)))
 )
 
 ### pick out each spline-transformed term
@@ -118,7 +129,7 @@ hr_ucl <- exp(lp_change + 1.96*lp_change_se)
 
 ### bring results together
 hr_df <- data.frame(
-  t = dat$t,
+  index_time_to_start_date = dat$index_time_to_start_date,
   lp_change,
   lp_change_se,
   hr,
@@ -128,7 +139,7 @@ hr_df <- data.frame(
 write_csv(hr_df, 'output/100_hazard_ratios_by_modifier_incidence.csv')
 
 ### plots the odds ratio by the modifier variable
-p<- ggplot(data = hr_df, aes(x = t, y=hr)) +
+p<- ggplot(data = hr_df, aes(x = index_time_to_start_date, y=hr)) +
   geom_line(linewidth = 0.8 , colour="red") +
   geom_ribbon(aes(ymin=hr_lcl, ymax=hr_ucl), fill="red", colour=NA, alpha=0.2) +
   geom_hline(yintercept=1, linetype=2)

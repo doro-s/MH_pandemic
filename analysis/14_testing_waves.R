@@ -101,13 +101,15 @@ spline_m1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
 spline_m2 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                   Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                      quantile(index_time_to_start_date, 0.9))) + 
-                     sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))), 
+                     sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+                     cluster(patient_id), 
                    data = incidence)
 
 spline_m3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2, 
                                                    Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                       quantile(index_time_to_start_date, 0.9))) + 
                      ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
+                     cluster(patient_id) +
                      alcohol + 
                      obese_binary_flag + 
                      cancer + 
@@ -153,6 +155,14 @@ avova_table <- rbind(a_m1, a_m2, a_m3)
 # save anova table for all models
 write_csv(avova_table, 'output/99_anova_exposed_spline_time_interactions.csv')
 
+# schoenfeld residuals
+df_zph <- cox.zph(spline_m3)
+plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
+ggsave("output/spline_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
+  
+#save csv
+df_zph_table <-  cox.zph(spline_m3)$table 
+write.csv(df_zph_table,"output/spline_interaction_inc_full/_schoenfeld_res.csv",row.names = TRUE)
 
 
 #############################    PREVALENCE    #################################
@@ -162,6 +172,7 @@ spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
                                                                      quantile(index_time_to_start_date, 0.9))) + 
                      ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
                      alcohol + 
+                     cluster(patient_id) +
                      obese_binary_flag + 
                      cancer + 
                      digestive_disorder + 
@@ -189,7 +200,14 @@ a_spline_p1 <-tidy(Anova(spline_p1, row.names = TRUE), conf.int=TRUE,exponentiat
 
 write_csv(a_spline_p1, 'output/99_anova_exposed_spline_time_fulladj_prev.csv')
 
+# schoenfeld residuals
+df_zph <- cox.zph(spline_p1)
+plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
+ggsave("output/spline_interaction_prev_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
 
+#save csv
+df_zph_table <-  cox.zph(spline_p1)$table 
+write.csv(df_zph_table,"output/spline_interaction_prev_full/_schoenfeld_res.csv",row.names = TRUE)
 ###########################################################################
 # Test significance of interaction between WAVES & exposed variable
 ###########################################################################
@@ -209,6 +227,7 @@ m2 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
 m3 <- coxph(Surv(t,mh_outcome)~ exposed*waves + 
               ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + 
               alcohol + 
+              cluster(patient_id) +
               obese_binary_flag + 
               cancer + 
               digestive_disorder + 
@@ -225,7 +244,7 @@ m3 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
               musculoskeletal + 
               neurological + 
               mental_behavioural_disorder +
-              imd + 
+              #imd + 
               rural_urban, 
             data = incidence)
 
@@ -248,3 +267,12 @@ avova_table <- rbind(a_m1, a_m2, a_m3)
 # save anova table for all models
 write_csv(avova_table, 'output/99_anova_waves_time_interaction.csv')
 
+
+# schoenfeld residuals
+df_zph <- cox.zph(m3)
+plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
+ggsave("output/wave_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
+
+#save csv
+df_zph_table <-  cox.zph(m3)$table 
+write.csv(df_zph_table,"output/wave_interaction_inc_full/_schoenfeld_res.csv",row.names = TRUE)

@@ -91,7 +91,7 @@ summary(unmatched_records$date_positive)
 
 #print all dates in order
 print('index dates in the unmatched in order') 
-unmatched_records$date_positive
+dates_exposed<- data.frame(unmatched_records$date_positive)
 
 
 print('Count of index dates by year') 
@@ -143,7 +143,7 @@ summary(unmatched_records$date_positive)
 
 #print all dates in order
 print('index dates in the unmatched in order-control') 
-unmatched_records$date_positive
+dates_control<- data.frame(unmatched_records$date_positive)
 
 
 print('Count of index dates by year-control') 
@@ -153,6 +153,8 @@ print('Count of index dates by month and year-control')
 unmatched_records %>% group_by(year=year(visit_date), month=month(visit_date)) %>% count()
 
 
+write_csv(dates_control, 'output/dates_order_control.csv')
+write_csv(dates_exposed, 'output/dates_order_exposed.csv')
 
 
 

@@ -179,6 +179,12 @@ actions:
                 d4: output/99_anova_exposed_spline_time_fulladj_prev.csv
                 d5: output/99_coefficients_for_waves_incidence.csv
                 d6: output/99_anova_waves_time_interaction.csv
+                sc1: output/spline_interaction_inc_full_schoenfeld_res.csv 
+                sc2: output/spline_interaction_inc_full_schoenfeld_res.jpg
+                sc3: output/spline_interaction_prev_full_schoenfeld_res.jpg
+                sc4: output/spline_interaction_prev_full_schoenfeld_res.csv
+                sc5: output/wave_interaction_inc_full_schoenfeld_res.jpg
+                sc6: output/wave_interaction_inc_full_schoenfeld_res.csv 
 
     emmeans:
         run: r:latest analysis/15_emmeans.R

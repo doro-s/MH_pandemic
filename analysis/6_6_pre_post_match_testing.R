@@ -113,6 +113,15 @@ unmatched_records %>% group_by(year=year(date_positive)) %>% count()
 print('Count of index dates by month and year in the UNMATCHED GROUP') 
 unmatched_records %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
 
+
+
+#
+print('Count of index dates by year in the EXPOSED PRE MATCH - INC') 
+incidence_pre_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
+
+print('Count of index dates by year in the EXPOSED POST MATCH - INC') 
+incidencee_post_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
+
 ################################################################################
 ################################################################################
 ################################################################################
@@ -156,7 +165,7 @@ summary(unmatched_records$date_positive)
 
 #print all dates in order
 print('index dates in the unmatched in order-control') 
-dates_control<- data.frame(unmatched_records$visit_date) # THIS SHOULD BE VISIT DATE AS CONTROLS HAVE VISIT DATE NOT DATE POSITIVE
+dates_control<- data.frame(unmatched_records)  %>% select(visit_date, date_positive) # THIS SHOULD BE VISIT DATE AS CONTROLS HAVE VISIT DATE NOT DATE POSITIVE
 
 
 print('Count of index dates by year-control') 

@@ -275,4 +275,4 @@ ggsave("output/wave_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grobs 
 
 #save csv
 df_zph_table <-  cox.zph(m3)$table 
-write.csv(df_zph_table,"output/wave_interaction_inc_full/_schoenfeld_res.csv",row.names = TRUE)
+write.csv(df_zph_table,"output/wave_interaction_inc_full_schoenfeld_res.csv",row.names = TRUE)

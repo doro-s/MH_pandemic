@@ -79,8 +79,8 @@ NROW(coeffs)
 #coeffs <- coeffs[-1]
 ### pick out the coefficients for the exposure main effect and the two modifier terms
 b1 <- coeffs[1]
-b4 <- coeffs[45]
-b5 <- coeffs[46]
+b4 <- coeffs[46]
+b5 <- coeffs[47]
 
 ### derive the spline-transformed values of the modifier(index_time_to_start_date) variable (same as used in the model)
 spline_matrix <- as.data.frame(

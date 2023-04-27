@@ -74,8 +74,21 @@ incidencee_post_exposed <- fread('output/incidence_group.csv') %>%
 
 
 # now we want to  anti join to find unmatched records
-#incidence_pre_exposed
-#incidencee_post_exposed
+# number of rows 
+print('Number of PRE matched population - incidence')
+nrow(incidence_pre_exposed)
+
+print('Number of PRE matched population DISTINCT - incidence')
+n_distinct(incidence_pre_exposed$patient_id)
+
+
+print('Number of POST matched population - incidence')
+nrow(incidencee_post_exposed)
+
+print('Number of POST matched population DISTINCT - incidence')
+n_distinct(incidencee_post_exposed$patient_id)
+
+
 
 unmatched_records <- anti_join(incidence_pre_exposed, incidencee_post_exposed, by="patient_id") %>%
   arrange(date_positive)
@@ -84,21 +97,21 @@ unmatched_records <- anti_join(incidence_pre_exposed, incidencee_post_exposed, b
 print('Number of unmatched exposed population - incidence')
 nrow(unmatched_records)
 
-# dates - visit dates 
-print('Summary of the index date (date_positive) variable')
+# dates - index dates 
+print('Summary of the index date (date_positive) variable in the UNMATCHED GROUP')
 summary(unmatched_records$date_positive)
 
 
 #print all dates in order
-print('index dates in the unmatched in order') 
+print('index dates in the unmatched in order in the UNMATCHED GROUP') 
 dates_exposed<- data.frame(unmatched_records$date_positive)
 
 
-print('Count of index dates by year') 
-unmatched_records %>% group_by(year=year(visit_date)) %>% count()
+print('Count of index dates by year in the UNMATCHED GROUP') 
+unmatched_records %>% group_by(year=year(date_positive)) %>% count()
 
-print('Count of index dates by month and year') 
-unmatched_records %>% group_by(year=year(visit_date), month=month(visit_date)) %>% count()
+print('Count of index dates by month and year in the UNMATCHED GROUP') 
+unmatched_records %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
 
 ################################################################################
 ################################################################################
@@ -137,13 +150,13 @@ print('Number of unmatched control population - incidence')
 nrow(unmatched_records)
 
 # dates - visit dates 
-print('Summary of the index date (date_positive) variable-control')
+print('Summary of the index date (date_positive) variable-control in the UNMATCHED GROUP')
 summary(unmatched_records$date_positive)
 
 
 #print all dates in order
 print('index dates in the unmatched in order-control') 
-dates_control<- data.frame(unmatched_records$date_positive)
+dates_control<- data.frame(unmatched_records$visit_date) # THIS SHOULD BE VISIT DATE AS CONTROLS HAVE VISIT DATE NOT DATE POSITIVE
 
 
 print('Count of index dates by year-control') 

@@ -162,7 +162,7 @@ ggsave("output/spline_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grob
   
 #save csv
 df_zph_table <-  cox.zph(spline_m3)$table 
-write.csv(df_zph_table,"output/spline_interaction_inc_full/_schoenfeld_res.csv",row.names = TRUE)
+write.csv(df_zph_table,"output/spline_interaction_inc_full_schoenfeld_res.csv",row.names = TRUE)
 
 
 #############################    PREVALENCE    #################################
@@ -207,7 +207,7 @@ ggsave("output/spline_interaction_prev_full_schoenfeld_res.jpg", arrangeGrob(gro
 
 #save csv
 df_zph_table <-  cox.zph(spline_p1)$table 
-write.csv(df_zph_table,"output/spline_interaction_prev_full/_schoenfeld_res.csv",row.names = TRUE)
+write.csv(df_zph_table,"output/spline_interaction_prev_full_schoenfeld_res.csv",row.names = TRUE)
 ###########################################################################
 # Test significance of interaction between WAVES & exposed variable
 ###########################################################################

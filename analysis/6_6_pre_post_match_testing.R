@@ -89,7 +89,7 @@ print('Number of POST matched population DISTINCT - incidence')
 n_distinct(incidencee_post_exposed$patient_id)
 
 print('NEW - Number of POST matched population - incidence BY YEAR')
-incidencee_post_exposed %>% group_by(year=year(date_positive)) %>% count()
+incidencee_post_exposed %>% group_by(year=year(date_positive)) %>% count() %>% print(n=100)
 
 
 unmatched_records <- anti_join(incidence_pre_exposed, incidencee_post_exposed, by="patient_id") %>%
@@ -101,7 +101,7 @@ nrow(unmatched_records)
 
 # dates - index dates 
 print('Summary of the index date (date_positive) variable in the UNMATCHED GROUP')
-summary(unmatched_records$date_positive)
+summary(unmatched_records$date_positive) 
 
 
 #print all dates in order
@@ -110,19 +110,19 @@ dates_exposed<- data.frame(unmatched_records$date_positive)
 
 
 print('Count of index dates by year in the UNMATCHED GROUP') 
-unmatched_records %>% group_by(year=year(date_positive)) %>% count()
+unmatched_records %>% group_by(year=year(date_positive)) %>% count() %>% print(n=100)
 
 print('Count of index dates by month and year in the UNMATCHED GROUP') 
-unmatched_records %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
+unmatched_records %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count() %>% print(n=100)
 
 
 
 
 print('Count of index dates by year in the EXPOSED PRE MATCH - INC') 
-incidence_pre_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
+incidence_pre_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()  %>% print(n=100)
 
 print('Count of index dates by year in the EXPOSED POST MATCH - INC') 
-incidencee_post_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
+incidencee_post_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count() %>% print(n=100)
 
 ################################################################################
 ################################################################################
@@ -171,10 +171,10 @@ dates_control<- data.frame(unmatched_records)  %>% select(visit_date, date_posit
 
 
 print('Count of index dates by year-control') 
-unmatched_records %>% group_by(year=year(visit_date)) %>% count()
+unmatched_records %>% group_by(year=year(visit_date)) %>% count() %>% print(n=100)
 
 print('Count of index dates by month and year-control') 
-unmatched_records %>% group_by(year=year(visit_date), month=month(visit_date)) %>% count()
+unmatched_records %>% group_by(year=year(visit_date), month=month(visit_date)) %>% count() %>% print(n=100)
 
 
 write_csv(dates_control, 'output/dates_order_control.csv')

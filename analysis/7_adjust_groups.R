@@ -150,3 +150,23 @@ prevalence <- group_outcomes_history(prevalence)
 
 write_csv(incidence, 'output/adjusted_incidence_group.csv')
 write_csv(prevalence, 'output/adjusted_prevalence_group.csv')
+
+#it should be 6 per group as 1 exposed & 5 controls 
+
+incidence2 <- incidence %>% 
+  #create new cols for year and month
+  mutate(year = year(date_positive)) %>%
+  mutate(month = month(date_positive))%>%
+  group_by(group_id) %>% mutate(count = n()) %>% 
+  ungroup()%>% select(year,month,group_id,count) %>% print(n=1000)
+
+
+
+#mean_matches_by_month_and_year
+means <- incidence2 %>% 
+  group_by(year,month) %>%   
+  mutate(mean = mean(count)) %>% select(year,month,mean) 
+
+print('AVERAGE NUMBER OF MATCHED CONTROLS PER MONTH PER YEAR') 
+means %>% distinct(year, month, .keep_all = TRUE) %>% arrange(year, month) %>%
+  print(n=100)

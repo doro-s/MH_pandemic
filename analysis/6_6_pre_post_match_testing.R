@@ -88,6 +88,8 @@ nrow(incidencee_post_exposed)
 print('Number of POST matched population DISTINCT - incidence')
 n_distinct(incidencee_post_exposed$patient_id)
 
+print('NEW - Number of POST matched population - incidence BY YEAR')
+incidencee_post_exposed %>% group_by(year=year(date_positive)) %>% count()
 
 
 unmatched_records <- anti_join(incidence_pre_exposed, incidencee_post_exposed, by="patient_id") %>%
@@ -115,7 +117,7 @@ unmatched_records %>% group_by(year=year(date_positive), month=month(date_positi
 
 
 
-#
+
 print('Count of index dates by year in the EXPOSED PRE MATCH - INC') 
 incidence_pre_exposed %>% group_by(year=year(date_positive), month=month(date_positive)) %>% count()
 

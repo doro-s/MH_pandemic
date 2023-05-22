@@ -213,8 +213,8 @@ match_exposed_to_controls <- function(exposed, control, N){
 
 
 # Run matching
-incidence_group <- match_exposed_to_controls(incidence_exposed, incidence_control, 4)
-prevalence_group <- match_exposed_to_controls(prevalence_exposed, prevalence_control, 4)
+incidence_group <- match_exposed_to_controls(incidence_exposed, incidence_control, 3)
+prevalence_group <- match_exposed_to_controls(prevalence_exposed, prevalence_control, 3)
 
 print('total size of post matched incidence population')
 nrow(incidence_group)

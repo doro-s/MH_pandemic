@@ -174,7 +174,6 @@ actions:
             moderately_sensitive:
                 d1: output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.jpg
                 d2: output/99_COEFF_indextime_spline_interaction_INCIDENCE_full.csv
-                d22: output/99_COEFF_indextime_spline_interaction_INCIDENCE_no_min.csv
                 d3: output/99_ANOVA_indextime_spline_interaction_INCIDENCE.csv
                 d4: output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.csv
                 d5: output/99_SCH_RESIDUALS_indextime_spline_interaction_PREVALENCE.jpg

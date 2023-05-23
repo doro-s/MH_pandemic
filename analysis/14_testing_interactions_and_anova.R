@@ -101,7 +101,7 @@ spline_m3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df 
                      musculoskeletal + 
                      neurological + 
                      mental_behavioural_disorder +
-                     #imd + 
+                     imd + 
                      rural_urban, 
                    data = incidence)
 
@@ -160,7 +160,7 @@ spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
                      musculoskeletal + 
                      neurological + 
                      mental_behavioural_disorder +
-                     #imd + 
+                     imd + 
                      rural_urban, data = prevalence)
 
 

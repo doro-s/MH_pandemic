@@ -113,9 +113,8 @@ tidy_spline_m3 <-tidy(spline_m3, conf.int=TRUE,exponentiate = TRUE)
 
 tidy_spline_m1$model <- "unadj"
 tidy_spline_m2$model <- "sex & age"
-tidy_spline_m3$model <- "fully adjusted"
 
-incidence_spline_table <- rbind(tidy_spline_m1, tidy_spline_m2, tidy_spline_m3)
+incidence_spline_table <- rbind(tidy_spline_m1, tidy_spline_m2)
 
 
 # run ANOVA & save 
@@ -136,7 +135,8 @@ ggsave("output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.jpg", arr
 df_zph_table <-  cox.zph(spline_m3)$table 
 
 #save CSVs
-write_csv(incidence_spline_table, 'output/99_COEFF_indextime_spline_interaction_INCIDENCE.csv')
+write_csv(tidy_spline_m3, 'output/99_COEFF_indextime_spline_interaction_INCIDENCE_full.csv')
+write_csv(incidence_spline_table, 'output/99_COEFF_indextime_spline_interaction_INCIDENCE_no_min.csv')
 write_csv(avova_table, 'output/99_ANOVA_indextime_spline_interaction_INCIDENCE.csv')
 write.csv(df_zph_table,"output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.csv",row.names = TRUE)
 
@@ -165,7 +165,7 @@ spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
                      musculoskeletal + 
                      neurological + 
                      mental_behavioural_disorder +
-                     imd + 
+                     #imd + 
                      rural_urban, data = prevalence)
 
 

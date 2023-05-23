@@ -53,8 +53,8 @@ incidence_pre_exposed <- incidence %>%
 incidence_control <- incidence %>% 
   filter(exposed == 0)
 
-rm(exposed, control, population, incidence)
-gc()
+##rm(exposed, control, population, incidence)
+#gc()
 
 # now load post-matching data 
 
@@ -77,6 +77,7 @@ incidencee_post_exposed <- fread('output/incidence_group.csv') %>%
 # number of rows 
 print('Number of PRE matched population - incidence')
 nrow(incidence_pre_exposed)
+pre_inc <- nrow(incidence_pre_exposed)
 
 print('Number of PRE matched population DISTINCT - incidence')
 n_distinct(incidence_pre_exposed$patient_id)
@@ -84,6 +85,7 @@ n_distinct(incidence_pre_exposed$patient_id)
 
 print('Number of POST matched population - incidence')
 nrow(incidencee_post_exposed)
+post_inc <- nrow(incidencee_post_exposed)
 
 print('Number of POST matched population DISTINCT - incidence')
 n_distinct(incidencee_post_exposed$patient_id)
@@ -98,6 +100,10 @@ unmatched_records <- anti_join(incidence_pre_exposed, incidencee_post_exposed, b
 # number of rows 
 print('Number of unmatched exposed population - incidence')
 nrow(unmatched_records)
+unmatched_inc <- nrow(unmatched_records)
+
+my_data <- data.frame(pre_inc,post_inc,unmatched_inc)
+write_csv(my_data, 'output/matching_rates_incidence.csv')
 
 # dates - index dates 
 print('Summary of the index date (date_positive) variable in the UNMATCHED GROUP')
@@ -127,6 +133,52 @@ incidencee_post_exposed %>% group_by(year=year(date_positive), month=month(date_
 ################################################################################
 ################################################################################
 ################################################################################
+
+# Prevalence 
+prevalence <- population %>% 
+  mutate(mh_history = ifelse(cmd_history == 1 | cmd_history_hospital == 1 |
+                               smi_history == 1 | smi_history_hospital == 1 |
+                               other_mood_disorder_diagnosis_history == 1 | other_mood_disorder_hospital_history == 1 |
+                               self_harm_history == 1 | self_harm_history_hospital == 1, 1, 0)) %>% 
+  filter(mh_history == 1) %>% 
+  select(-mh_history)
+
+prevalence_pre_exposed <- prevalence %>% 
+  filter(exposed == 1) %>% select(patient_id, 
+                                  visit_date, 
+                                  date_positive, 
+                                  end_date, 
+                                  exposed,
+                                  result_mk,
+                                  visit_num,
+                                  last_linkage_dt,
+                                  is_opted_out_of_nhs_data_share)
+
+prevalence_control <- incidence %>% filter(exposed == 0)
+
+rm(exposed, control, population, prevalence)
+gc()
+
+# now load post-matching data 
+
+prevalence_post_exposed <- fread('output/prevalence_group.csv') %>% 
+  select(patient_id, visit_date, date_positive, end_date,exposed,group_id,result_mk,
+         visit_num,last_linkage_dt,is_opted_out_of_nhs_data_share) %>%
+  filter(exposed== 1)
+
+unmatched_records_prev <- anti_join(prevalence_pre_exposed, prevalence_post_exposed, by="patient_id") %>%
+  arrange(date_positive)
+
+
+pre_prev <- nrow(prevalence_pre_exposed)
+post_prev <- nrow(prevalence_post_exposed)
+unmatched_prev <- nrow(unmatched_records_prev)
+
+my_data <- data.frame(pre_prev,post_prev,unmatched_prev)
+write_csv(my_data, 'output/matching_rates_prevalence.csv')
+
+
+
 ################################################################################
 ################################################################################
 ################################################################################
@@ -177,8 +229,8 @@ print('Count of index dates by month and year-control')
 unmatched_records %>% group_by(year=year(visit_date), month=month(visit_date)) %>% count() %>% print(n=100)
 
 
-write_csv(dates_control, 'output/dates_order_control.csv')
-write_csv(dates_exposed, 'output/dates_order_exposed.csv')
+#write_csv(dates_control, 'output/dates_order_control.csv')
+#write_csv(dates_exposed, 'output/dates_order_exposed.csv')
 
 
 

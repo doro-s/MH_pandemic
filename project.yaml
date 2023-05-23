@@ -80,13 +80,13 @@ actions:
                 incidence: output/incidence_group.csv
                 prevalence: output/prevalence_group.csv
 
-    #testing_exposed_post_pre_matching:
-    #    run: r:latest analysis/6_6_pre_post_match_testing.R
-    #    needs: [derive_exposed, derive_controls,perform_matching]
-    #    outputs: 
-    #        moderately_sensitive:
-    #            t1: output/dates_order_control.csv
-    #            t2: output/dates_order_exposed.csv
+    testing_exposed_post_pre_matching:
+        run: r:latest analysis/6_6_pre_post_match_testing.R
+        needs: [derive_exposed, derive_controls,perform_matching]
+        outputs: 
+            moderately_sensitive:
+                t1: output/matching_rates_incidence.csv
+                t2: output/matching_rates_prevalence.csv
 
     adjust_matched_groups:
         run: r:latest analysis/7_adjust_groups.R

@@ -1,3 +1,8 @@
+###########################################################################
+#Purpose: Matching function - match exposed to the controls, one to many 
+#         without replacement.
+#         Matching is only based on visit date +/-14 days.
+###########################################################################
 library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
@@ -78,7 +83,7 @@ nrow(prevalence_exposed)
 
 ################################################################################
 #                         FUNCTION TO PERFORM MATCHING
-# One to many function (5) 
+# One to many function (3) 
 #
 ################################################################################
 

@@ -79,15 +79,14 @@ actions:
             highly_sensitive:
                 incidence: output/incidence_group.csv
                 prevalence: output/prevalence_group.csv
-                #exacerbated: output/exacerbated_group.csv
 
-    testing_exposed_post_pre_matching:
-        run: r:latest analysis/6_6_pre_post_match_testing.R
-        needs: [derive_exposed, derive_controls,perform_matching]
-        outputs: 
-            moderately_sensitive:
-                t1: output/dates_order_control.csv
-                t2: output/dates_order_exposed.csv
+    #testing_exposed_post_pre_matching:
+    #    run: r:latest analysis/6_6_pre_post_match_testing.R
+    #    needs: [derive_exposed, derive_controls,perform_matching]
+    #    outputs: 
+    #        moderately_sensitive:
+    #            t1: output/dates_order_control.csv
+    #            t2: output/dates_order_exposed.csv
 
     adjust_matched_groups:
         run: r:latest analysis/7_adjust_groups.R
@@ -168,43 +167,43 @@ actions:
             moderately_sensitive:
                 incidence_event_rates: output/event_counts_and_rates_prevalence.csv
 
-    temporary_test_effects_of_time:
-        run: r:latest analysis/14_testing_waves.R
+    testing_interactions_and_anova:
+        run: r:latest analysis/14_testing_interactions_and_anova.R
         needs: [cumulative_incidence]
         outputs:
             moderately_sensitive:
-                d1: output/99_coeff_exposed_spline_time_fulladj_incidence.csv
-                d2: output/99_anova_exposed_spline_time_interactions.csv
-                d3: output/99_coeff_exposed_spline_time_fulladj_prev.csv
-                d4: output/99_anova_exposed_spline_time_fulladj_prev.csv
-                d5: output/99_coefficients_for_waves_incidence.csv
-                d6: output/99_anova_waves_time_interaction.csv
-                sc1: output/spline_interaction_inc_full_schoenfeld_res.csv 
-                sc2: output/spline_interaction_inc_full_schoenfeld_res.jpg
-                sc3: output/spline_interaction_prev_full_schoenfeld_res.jpg
-                sc4: output/spline_interaction_prev_full_schoenfeld_res.csv
-                sc5: output/wave_interaction_inc_full_schoenfeld_res.jpg
-                sc6: output/wave_interaction_inc_full_schoenfeld_res.csv 
+                d1: output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.jpg
+                d2: output/99_COEFF_indextime_spline_interaction_INCIDENCE.csv
+                d3: output/99_ANOVA_indextime_spline_interaction_INCIDENCE.csv
+                d4: output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.csv
+                d5: output/99_SCH_RESIDUALS_indextime_spline_interaction_PREVALENCE.jpg
+                d6: output/99_SCH_RESIDUALS_indextime_spline_interaction_PREVALENCE.csv
+                sc1: output/99_COEFF_indextime_spline_interaction_PREVALENCE.csv
+                sc2: output/99_ANOVA_indextime_spline_interaction_PREVALENCE.csv
+                sc3: output/99_SCH_RESIDUALS_waves_interaction_INCIDENCE.jpg
+                sc4: output/99_ANOVA_waves_interaction_INCIDENCE.csv
+                sc5: output/99_COEFF_waves_interaction_INCIDENCE.csv
+                sc6: output/99_SCH_RESIDUALS_waves_interaction_INCIDENCE.csv
 
-    emmeans:
-        run: r:latest analysis/15_emmeans.R
-        needs: [cumulative_incidence]
-        outputs:
-            moderately_sensitive:
-                d1: output/99_emmeans_incidence.csv
-                d2: output/99_emmeans_incidence.jpg
-                d3: output/99_emmeans_3df_incidence.csv
-                d4: output/99_emmeans_3df_incidence.jpg
-                d5: output/99_emmeans_4df_incidence.csv
-                d6: output/99_emmeans_4df_incidence.jpg
-                d7: output/BIC_all_3models.cvs
-                d8: output/different_degrees_of_freedom_avova_all_adjustments.cvs
+    #emmeans:
+    #    run: r:latest analysis/15_emmeans.R
+    #    needs: [cumulative_incidence]
+    #    outputs:
+    #        moderately_sensitive:
+    #            d1: output/99_emmeans_incidence.csv
+    #            d2: output/99_emmeans_incidence.jpg
+    #            d3: output/99_emmeans_3df_incidence.csv
+    #            d4: output/99_emmeans_3df_incidence.jpg
+    #            d5: output/99_emmeans_4df_incidence.csv
+    #            d6: output/99_emmeans_4df_incidence.jpg
+    #            d7: output/BIC_all_3models.cvs
+    #            d8: output/different_degrees_of_freedom_avova_all_adjustments.cvs
 
-    hr_for_interaction_with_spline:
-        run: r:latest analysis/16_hr_for_interaction_with_spline.R
-        needs: [cumulative_incidence]
-        outputs:
-            moderately_sensitive:
-                d1: output/100_hazard_ratios_by_modifier_incidence.csv
-                d2: output/100_hazard_ratios_by_modifier_variable.jpg
+    #hr_for_interaction_with_spline:
+    #    run: r:latest analysis/16_hr_for_interaction_with_spline.R
+    #    needs: [cumulative_incidence]
+    #    outputs:
+    #        moderately_sensitive:
+    #            d1: output/100_hazard_ratios_by_modifier_incidence.csv
+    #            d2: output/100_hazard_ratios_by_modifier_variable.jpg
 

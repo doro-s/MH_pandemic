@@ -1,3 +1,7 @@
+###########################################################################
+#Purpose: Derive the exposed population for the incidence and prevalence 
+#         groups
+###########################################################################
 library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)

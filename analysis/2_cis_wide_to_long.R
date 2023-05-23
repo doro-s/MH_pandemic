@@ -1,3 +1,7 @@
+## ===============================================================
+# The aim of this code is to combine all study populations derived 
+#  through cohort extractor (into a wide format)
+## ===============================================================
 library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
@@ -5,12 +9,15 @@ options(datatable.fread.datatable=FALSE)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
+###########################################################################
+# Load data 
+###########################################################################
 cis_wide <- fread('output/input_cis_wide.csv')
 
 print('original wide data')
 nrow(cis_wide)
 
-# Remove anyone not in the CIS
+# Remove anyone not in the CIS, with invalid sex, outside England
 cis_wide <- cis_wide %>% 
   filter(!is.na(visit_date_0)) %>%
   filter(sex == 'M' | sex == 'F') %>%
@@ -19,7 +26,7 @@ cis_wide <- cis_wide %>%
 print('cis only wide data')
 nrow(cis_wide)
 
-
+# function to transform wide data format to long
 wide_to_long <- function(df_wide, col, regex){
   
   df_long <- cis_wide %>%
@@ -41,13 +48,14 @@ remove_cols_string <- function(df, string){
   return(df)
 }
 
+#select columns from CIS that don't need to be transformed
 cis_cols <- cis_wide %>% 
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
          ethnicity, gor9d, hhsize, work_status, work_status_v1)
 
-
+# number of 25 visits
 N <- 25
 for (i in 0:N){
   print(i)

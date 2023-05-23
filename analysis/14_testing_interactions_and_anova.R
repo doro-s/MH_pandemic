@@ -1,10 +1,14 @@
-# This code tests the interaction between time(time from strat date to index date)#
-# We use spline(time) to do that                                                  #
-#                     COX PROPORTIONAL HAZARD RATIO                               #
-#                                                                                 #
-# This is necessary as results from the Sch.Residuals showed that the             #
-#  assumption has not been met. first we calculate estimates using                #
-#  coxph( Surv()....then we test significance using Anova()                       #
+#Purpose:                                                                      #
+# 1.Testing interaction between spline('index time to start date')*exposed     #
+# 2.Create waves variables (categorical data) & test interaction between       #
+#   waves*exposed                                                              #
+# 3. Save ANOVA outputs for 1 & 2 for the Incidence & Prevalence (3 adj models)#
+#                     COX PROPORTIONAL HAZARD RATIO                            #
+#                                                                              #
+# This code is an additional check of our assumptions as results from the      #
+# Sch.Residuals showed that the assumption has not been met.                   #
+# - first we calculate estimates using coxph( Surv() then we test significance #
+#   using Anova()                                                              #
 
 library(tidyverse)
 library(data.table)
@@ -21,14 +25,7 @@ options(datatable.fread.datatable=FALSE)
 #setwd('../')
 
 ###########################################################################
-# Set study start date and chnage it to numeric 
-###########################################################################
-
-start_date <- as.Date("2020/01/24") 
-start_date_numeric <- as.numeric(start_date) #this is converted into days
-
-###########################################################################
-# Load data & create new variable for waves 
+# Load data & create new variable waves and its categories 
 ###########################################################################
 
 incidence <- fread('output/incidence_t.csv') %>% 
@@ -46,52 +43,30 @@ prevalence <- fread('output/prevalence_t.csv') %>%
                      index_date >="2021-05-17" & index_date <="2021-12-19" ~ "delta",
                      index_date >="2021-12-20" ~ "omnicron"))
 
-
-
-
-
 ###########################################################################
-# Summary check on dates - needed to check all dates are within range
+# Set start date, change it to numeric, create index_time_to_start_date
 ###########################################################################
 
-# Chnage index_dates to numeric
+start_date <- as.Date("2020/01/24") 
+start_date_numeric <- as.numeric(start_date) #this is converted into days
+
+# Change index_dates to numeric
+#incidence
 incidence$index_numeric <- as.numeric(incidence$date_positive) 
 incidence$index_time_to_start_date <- incidence$index_numeric - start_date_numeric  
 
-print('summary(incidence$index_date)')
-summary(incidence$index_date) 
-
-print('summary(incidence$index_numeric)')
-summary(incidence$index_numeric)
-
-print('summary(incidence$index_time_to_start_date - time from start date to index date)')
-summary(incidence$index_time_to_start_date)
-
-print('NAs number')
-incidence %>% filter(is.na(index_date)) %>% nrow()
-
+#prevalence
 prevalence$index_numeric <- as.numeric(prevalence$index_date) 
-prevalence$index_time_to_start_date <- prevalence$index_numeric - start_date_numeric  
+prevalence$index_time_to_start_date <- prevalence$index_numeric - start_date_numeric 
 
-
-print('summary(prevalence$index_date)')
-summary(prevalence$index_date) 
-
-
-print('summary(prevalence$index_numeric)')
-summary(prevalence$index_numeric)
-
-print('summary(prevalence$index_time_to_start_date)')
-summary(prevalence$index_time_to_start_date)
-
-print('NAs number')
-prevalence %>% filter(is.na(index_date)) %>% nrow()
 
 ###########################################################################
 # Test significance of interaction between time(spline) & exposed variable
 ###########################################################################
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # INCIDENCE 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 spline_m1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                   Boundary.knots = c(quantile(index_time_to_start_date,0.1),
@@ -136,12 +111,14 @@ tidy_spline_m1 <-tidy(spline_m1, conf.int=TRUE,exponentiate = TRUE)
 tidy_spline_m2 <-tidy(spline_m2, conf.int=TRUE,exponentiate = TRUE) 
 tidy_spline_m3 <-tidy(spline_m3, conf.int=TRUE,exponentiate = TRUE) 
 
-#write_csv(tidy_spline_m1, 'output/99_anova_exposed_spline_time_unadj_incidence.csv')
-#write_csv(tidy_spline_m2, 'output/99_anova_exposed_spline_time_sexage_incidence.csv')
-write_csv(tidy_spline_m3, 'output/99_coeff_exposed_spline_time_fulladj_incidence.csv')
+tidy_spline_m1$model <- "unadj"
+tidy_spline_m2$model <- "sex & age"
+tidy_spline_m3$model <- "fully adjusted"
+
+incidence_spline_table <- rbind(tidy_spline_m1, tidy_spline_m2, tidy_spline_m3)
 
 
-# run anova & save 
+# run ANOVA & save 
 a_m1 <-tidy(Anova(spline_m1, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
 a_m2 <-tidy(Anova(spline_m2, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
 a_m3 <-tidy(Anova(spline_m3, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
@@ -152,21 +129,21 @@ a_m3$model <- "fully adjusted"
 
 avova_table <- rbind(a_m1, a_m2, a_m3)
 
-# save anova table for all models
-write_csv(avova_table, 'output/99_anova_exposed_spline_time_interactions.csv')
-
 # schoenfeld residuals
 df_zph <- cox.zph(spline_m3)
 plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
-ggsave("output/spline_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
-  
-#save csv
+ggsave("output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.jpg", arrangeGrob(grobs = plot_zph))
 df_zph_table <-  cox.zph(spline_m3)$table 
-write.csv(df_zph_table,"output/spline_interaction_inc_full_schoenfeld_res.csv",row.names = TRUE)
+
+#save CSVs
+write_csv(incidence_spline_table, 'output/99_COEFF_indextime_spline_interaction_INCIDENCE.csv')
+write_csv(avova_table, 'output/99_ANOVA_indextime_spline_interaction_INCIDENCE.csv')
+write.csv(df_zph_table,"output/99_SCH_RESIDUALS_indextime_spline_interaction_INCIDENCE.csv",row.names = TRUE)
 
 
-#############################    PREVALENCE    #################################
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# PREVALENCE  
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df = 2, 
                                                   Boundary.knots = c(quantile(index_time_to_start_date,0.1),
                                                                      quantile(index_time_to_start_date, 0.9))) + 
@@ -193,30 +170,26 @@ spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
 
 
 tidy_spline_p1 <-tidy(spline_p1, conf.int=TRUE,exponentiate = TRUE) 
-write_csv(tidy_spline_p1, 'output/99_coeff_exposed_spline_time_fulladj_prev.csv')
 
 # anova
 a_spline_p1 <-tidy(Anova(spline_p1, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE) 
 
-write_csv(a_spline_p1, 'output/99_anova_exposed_spline_time_fulladj_prev.csv')
-
 # schoenfeld residuals
 df_zph <- cox.zph(spline_p1)
 plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
-ggsave("output/spline_interaction_prev_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
+ggsave("output/99_SCH_RESIDUALS_indextime_spline_interaction_PREVALENCE.jpg", arrangeGrob(grobs = plot_zph))
+df_zph_table <-  cox.zph(spline_p1)$table 
+
 
 #save csv
-df_zph_table <-  cox.zph(spline_p1)$table 
-write.csv(df_zph_table,"output/spline_interaction_prev_full_schoenfeld_res.csv",row.names = TRUE)
-###########################################################################
-# Test significance of interaction between WAVES & exposed variable
-###########################################################################
-# The above analysis showed only the incidence group to have a statistically
-#  significant relationship between time and exposed category. Therefore we 
-#  further test the effects of waves. This is done in a same way, first we 
-#  calculate estimates using coxph( Surv().... then we test significance using
-#  Anova()
+write.csv(df_zph_table,"output/99_SCH_RESIDUALS_indextime_spline_interaction_PREVALENCE.csv",row.names = TRUE)
+write_csv(tidy_spline_p1, 'output/99_COEFF_indextime_spline_interaction_PREVALENCE.csv')
+write_csv(a_spline_p1, 'output/99_ANOVA_indextime_spline_interaction_PREVALENCE.csv')
 
+
+###########################################################################
+# This is just an extra Test significance of interaction between WAVES & exposed variable
+###########################################################################
 m1 <- coxph(Surv(t,mh_outcome)~ exposed*waves, data = incidence)
 
 m2 <- coxph(Surv(t,mh_outcome)~ exposed*waves + 
@@ -244,14 +217,12 @@ m3 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
               musculoskeletal + 
               neurological + 
               mental_behavioural_disorder +
-              #imd + 
+              imd + 
               rural_urban, 
             data = incidence)
 
 # save cox models of interaction - only save fully adjusted for coeff.
 m3_tidy <-tidy(m3, conf.int=TRUE,exponentiate = TRUE) 
-
-write_csv(m3_tidy, 'output/99_coefficients_for_waves_incidence.csv')
 
 # run anova & save 
 a_m1 <-tidy(Anova(m1, row.names = TRUE), conf.int=TRUE,exponentiate = TRUE)
@@ -264,15 +235,14 @@ a_m3$model <- "fully adjusted"
 
 avova_table <- rbind(a_m1, a_m2, a_m3)
 
-# save anova table for all models
-write_csv(avova_table, 'output/99_anova_waves_time_interaction.csv')
-
-
 # schoenfeld residuals
 df_zph <- cox.zph(m3)
 plot_zph = ggcoxzph(df_zph, var = c("exposed"), font.main = 12)
-ggsave("output/wave_interaction_inc_full_schoenfeld_res.jpg", arrangeGrob(grobs = plot_zph))
+ggsave("output/99_SCH_RESIDUALS_waves_interaction_INCIDENCE.jpg", arrangeGrob(grobs = plot_zph))
 
 #save csv
 df_zph_table <-  cox.zph(m3)$table 
-write.csv(df_zph_table,"output/wave_interaction_inc_full_schoenfeld_res.csv",row.names = TRUE)
+
+write_csv(avova_table, 'output/99_ANOVA_waves_interaction_INCIDENCE.csv')
+write_csv(m3_tidy, 'output/99_COEFF_waves_interaction_INCIDENCE.csv')
+write.csv(df_zph_table,"output/99_SCH_RESIDUALS_waves_interaction_INCIDENCE.csv",row.names = TRUE)

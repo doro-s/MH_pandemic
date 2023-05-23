@@ -1,7 +1,12 @@
+## ===========================================================
+# The aim of this code is to combine all study populations derived 
+#  through cohort extractor (into a wide format)
+## ===========================================================
 library(tidyverse)
 library(data.table)
 options(datatable.fread.datatable=FALSE)
 
+# set working directory - only needed when running remotely
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 

@@ -331,22 +331,5 @@ count_vaccines <- cis_long %>% select(patient_id,
                                       TRUE ~0)) %>% 
   ungroup() %>% 
   distinct(patient_id, covid_vaccine, .keep_all = TRUE) %>%
-  arrange(covid_vaccine_v1) %>%
+  arrange(desc(covid_vaccine_v1)) %>%
   print(n=1000)
-
-
-
-
-
-
-
-
-print('number of people that have more than vaccine') 
-count_vaccines %>% count(count) %>% print(n=1000) # will remove this line
-
-
-
-
-
-
-

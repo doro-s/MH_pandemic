@@ -53,7 +53,7 @@ cis_cols <- cis_wide %>%
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
-         ethnicity, gor9d, hhsize, work_status, work_status_v1, self_isolating_v1)
+         ethnicity, gor9d, hhsize, work_status, work_status_v1)#, self_isolating_v1)
 
 # number of 25 visits
 N <- 25
@@ -299,10 +299,10 @@ cis_long <- cis_long %>%
                                  rural_urban == 3 ~ "Rural town",
                                  rural_urban == 4 ~ "Rural village",
                                  TRUE ~ "Unknown/Invalid")) %>% 
-  mutate(self_isolating_v1 = 
-           case_when(self_isolating_v1=="Yes, forother reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
-                     self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
-                     TRUE ~ "Unknown/Invalid")) %>%
+  #mutate(self_isolating_v1 = 
+           #case_when(self_isolating_v1=="Yes, forother reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
+                     #self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
+                     #TRUE ~ "Unknown/Invalid")) %>%
   
 select(-imd_decile_e)
 

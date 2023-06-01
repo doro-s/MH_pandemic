@@ -280,6 +280,23 @@ def get_work_status_v1(name):
             }
         )}
 
+def get_self_isolating_v1(name):
+    return{
+        name: patients.with_an_ons_cis_record(
+            returning ='self_isolating_v1',
+            between=[start_date, end_date],
+            find_last_match_in_period=True,
+            date_format='YYYY-MM-DD',
+            date_filter_column='visit_date',
+            return_expectations={
+                "category": {"ratios":{"No": 0.25,
+                                       "Yes, you have/have had symptoms": 0.25,
+                                       "Yes, someone you live with had symptoms": 0.25,
+                                       "Yes, forother reasons (e.g. going into hospital, quarantining)": 0.25}},
+                "incidence": 1,
+            }
+        )}
+
 def get_age(name, date):
     return{
         name: patients.age_as_of(
@@ -315,6 +332,8 @@ def cis_earliest_positive(start_date, n):
             # get work_status and work_status_v1
             variables.update(get_work_status('work_status'))
             variables.update(get_work_status_v1('work_status_v1'))
+            #get self_isolating
+            variables.update(get_self_isolating_v1('self_isolating_v1'))
 
         else:
             # get nth visit date

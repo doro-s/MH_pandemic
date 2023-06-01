@@ -70,7 +70,8 @@ vars <- c("exposed",
           "neurological",
           "mental_behavioural_disorder",
           "imd",
-          "rural_urban")
+          "rural_urban",
+          "self_isolating_v1")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio

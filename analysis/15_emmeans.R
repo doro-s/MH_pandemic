@@ -58,7 +58,8 @@ in1 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2,
                neurological + 
                mental_behavioural_disorder +
                imd + 
-               rural_urban, 
+               rural_urban + 
+               self_isolating_v1, 
                                data = incidence)
 
 
@@ -107,7 +108,8 @@ in2 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 3,
                neurological + 
                mental_behavioural_disorder +
                imd + 
-               rural_urban, 
+               rural_urban + 
+               self_isolating_v1, 
              data = incidence)
 
 in2_emmeans <- as.data.frame(emmeans(in2, 
@@ -146,7 +148,8 @@ in3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 4,
                neurological + 
                mental_behavioural_disorder +
                imd + 
-               rural_urban, 
+               rural_urban + 
+               self_isolating_v1, 
              data = incidence)
 
 in3_emmeans <- as.data.frame(emmeans(in3, 

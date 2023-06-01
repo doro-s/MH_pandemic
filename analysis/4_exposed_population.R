@@ -126,7 +126,6 @@ exposed <- exposed %>%
          -result_combined,
          -covid_hes, 
          -covid_tt, 
-         -covid_vaccine,
          -date_of_death)
 
 print('Size of exposed population')

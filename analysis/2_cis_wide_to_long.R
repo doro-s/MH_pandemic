@@ -53,7 +53,7 @@ cis_cols <- cis_wide %>%
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
-         ethnicity, gor9d, hhsize, work_status, work_status_v1)
+         ethnicity, gor9d, hhsize, work_status, work_status_v1, self_isolating_v1)
 
 # number of 25 visits
 N <- 25
@@ -284,8 +284,7 @@ cis_long <- cis_long %>%
   select(-work_status,
          -work_status_v1)
 
-# Change IMD deciles to IMD quitiles 
-#currently commented out until we load them through a study definition
+# Change IMD deciles to IMD quitiles, rename rural/urban & rename self-isolating
 
 cis_long <- cis_long %>% 
   mutate(imd = 
@@ -300,9 +299,13 @@ cis_long <- cis_long %>%
                                  rural_urban == 3 ~ "Rural town",
                                  rural_urban == 4 ~ "Rural village",
                                  TRUE ~ "Unknown/Invalid")) %>% 
-select(-imd_decile_e)
+  mutate(self_isolating_v1 = 
+           case_when(self_isolating_v1=="Yes, forother reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
+                     self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
+                     TRUE ~ "Unknown/Invalid")) %>%
   
-                   
+select(-imd_decile_e)
+
 rm(cis_cols, cis_wide)
 gc()
 
@@ -312,3 +315,30 @@ cis_long %>% count(rural_urban)  # will remove this line
 
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')
+
+##################################################################################
+##################################################################################
+# Covid vaccine checks
+# Questions 
+
+#1. in the current format do we just get the latest covid vaccine per person?
+#2. Are there more than 1 dates for the covid_vaccine variable?
+
+count_vaccines <- cis_long %>% 
+  mutate(covid_vaccine_v1 = if_else(is.na(covid_vaccine),0,1)) %>%
+  group_by(patient_id) %>% 
+  mutate(count = sum(covid_vaccine_v1)) %>% 
+  ungroup()%>% select(patient_id,count) %>% print(n=1000)
+
+
+
+
+print('number of people that have more than vaccine') 
+count_vaccines %>% count(count) %>% print(n=1000) # will remove this line
+
+
+
+
+
+
+

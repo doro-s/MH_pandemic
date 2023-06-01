@@ -94,7 +94,8 @@ cat_vars <- c("alcohol",
               "hhsize",
               "work_status_new",
               "imd",
-              "rural_urban")
+              "rural_urban",
+              "self_isolating_v1")
 
 continuous_vars <- c('age')
 

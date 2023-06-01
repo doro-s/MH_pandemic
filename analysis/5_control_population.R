@@ -220,7 +220,7 @@ cis <- cis %>%
   left_join(cis_dates, by = 'patient_id') %>% 
   select(-date_of_death, -first_pos_swab, -first_pos_blood,
          -result_combined, -covid_hes, -covid_tt,
-         -covid_vaccine, -eos_date, -visit_date_one_year)
+         -eos_date, -visit_date_one_year)
 
 print('Size of control population')
 nrow(cis)

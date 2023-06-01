@@ -22,7 +22,8 @@ inverse_prob_weights_incidence <- function(data){
       musculoskeletal +
       neurological +
       imd +
-      rural_urban,
+      rural_urban +
+      self_isolating_v1,
     family = binomial,
     data = data)
   

@@ -68,7 +68,8 @@ mod_cox <- coxph(
     neurological + 
     mental_behavioural_disorder + 
     imd +
-    rural_urban,
+    rural_urban + 
+    self_isolating_v1,
   data = dat)
 
 ### extract coefficients from the fitted model

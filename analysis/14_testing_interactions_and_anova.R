@@ -102,7 +102,8 @@ spline_m3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df 
                      neurological + 
                      mental_behavioural_disorder +
                      imd + 
-                     rural_urban, 
+                     rural_urban + 
+                     self_isolating_v1, 
                    data = incidence)
 
 
@@ -161,7 +162,8 @@ spline_p1 <- coxph(Surv(t,mh_outcome)~ exposed*ns(index_time_to_start_date, df =
                      neurological + 
                      mental_behavioural_disorder +
                      imd + 
-                     rural_urban, data = prevalence)
+                     rural_urban + 
+                     self_isolating_v1, data = prevalence)
 
 
 tidy_spline_p1 <-tidy(spline_p1, conf.int=TRUE,exponentiate = TRUE) 
@@ -213,7 +215,8 @@ m3 <- coxph(Surv(t,mh_outcome)~ exposed*waves +
               neurological + 
               mental_behavioural_disorder +
               imd + 
-              rural_urban, 
+              rural_urban + 
+              self_isolating_v1, 
             data = incidence)
 
 # save cox models of interaction - only save fully adjusted for coeff.

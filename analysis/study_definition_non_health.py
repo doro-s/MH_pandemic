@@ -376,6 +376,78 @@ study = StudyDefinition(
         "rate": "uniform",
         "incidence": 0.99
     },
+##########################################################################
+# Get covid information, 1st, 2nd, boosters
+##########################################################################
+# 1st covid vaccine 
+covid_vacc_date = patients.with_tpp_vaccination_record(
+        target_disease_matches="SARS-2 CORONAVIRUS",
+        on_or_after="2020-12-08",  #first administered vaccine in UK
+        find_first_match_in_period=True,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        return_expectations={
+            "date": {
+                "earliest": "2020-12-08",  #first administered vaccine in UK
+                "latest": end_date,
+            },
+            "incidence": 0.8,
+        },
+    ),
+
+# 2nd covid vaccine - varies depending on the cohort
+# - high risk should have a gap of 8 weeks (or 56 days)
+# - everyone else should have a gap of 12 weeks (or 84 days)
+# We will therefore use 7 weeks (to accommodate both cohorts and allow
+# for early vaccination).
+covid_vacc_second_dose_date = patients.with_tpp_vaccination_record(
+        target_disease_matches="SARS-2 CORONAVIRUS",
+        on_or_after="covid_vacc_date + 49 days",
+        find_first_match_in_period= True,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        return_expectations={
+            "date": {
+                "earliest": "2021-01-26",  # 7 weeks after 08/12/2020 
+                "latest": end_date,
+            },
+            "incidence": 0.8,
+        },
+    ),
+
+# BOOSTER - 3rd covid vaccine
+covid_vacc_third_dose_date = patients.with_tpp_vaccination_record(
+        target_disease_matches="SARS-2 CORONAVIRUS",
+        on_or_after="covid_vacc_second_dose_date + 49 days",
+        find_first_match_in_period = True,
+        returning = "date",
+        date_format ="YYYY-MM-DD",
+        return_expectations={
+            "date": {
+                "earliest": "2021-03-16",  # 7 weeks after 2021-01-26 (14 weeks after 08/12/2020)
+                "latest": end_date,
+            },
+            "incidence": 0.15,
+        },
+    ),
+
+# BOOSTER - 4th covid vaccine
+covid_vacc_fourth_dose_date = patients.with_tpp_vaccination_record(
+        target_disease_matches="SARS-2 CORONAVIRUS",
+        on_or_after="covid_vacc_third_dose_date + 49 days",
+        find_first_match_in_period = True,
+        returning = "date",
+        date_format ="YYYY-MM-DD",
+        return_expectations={
+            "date": {
+                "earliest": "2021-05-04",  # 7 weeks after 2021-03-16 (21 weeks after 08/12/2020)
+                "latest": end_date,
+            },
+            "incidence": 0.1,
+        },
+    ),
+##########################################################################
+##########################################################################
 
     # Return visit level CIS data
     **cis_earliest_positive(start_date=start_date, n=n_visits)

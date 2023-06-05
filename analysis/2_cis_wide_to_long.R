@@ -53,7 +53,11 @@ cis_cols <- cis_wide %>%
   select(patient_id, date_of_death, sex, 
          first_pos_swab, first_pos_blood, 
          covid_hes, covid_tt, covid_vaccine,
-         ethnicity, gor9d, hhsize, work_status, work_status_v1)#, self_isolating_v1)
+         ethnicity, gor9d, hhsize, work_status, work_status_v1, 
+         covid_vacc_date,
+         covid_vacc_second_dose_date,
+         covid_vacc_third_dose_date,
+         covid_vacc_fourth_dose_date)#, self_isolating_v1)
 
 # number of 25 visits
 N <- 25
@@ -323,13 +327,22 @@ write_csv(cis_long, 'output/input_cis_long.csv')
 
 #1. in the current format do we just get the latest covid vaccine per person?
 #2. Are there more than 1 dates for the covid_vaccine variable?
+#
+#count_vaccines <- cis_long %>% select(patient_id, 
+#                                      covid_vaccine) %>%
+#  group_by(patient_id, covid_vaccine)%>%
+#  mutate(covid_vaccine_v1 = case_when(!is.na(covid_vaccine) ~ 1, 
+#                                      TRUE ~0)) %>% 
+#  ungroup() %>% 
+#  distinct(patient_id, covid_vaccine, .keep_all = TRUE) %>%
+#  arrange(desc(covid_vaccine_v1)) %>%
+#  print(n=1000)
+# CHECKS ON THE NEW 4 COVID VARIABLES 
 
-count_vaccines <- cis_long %>% select(patient_id, 
-                                      covid_vaccine) %>%
-  group_by(patient_id, covid_vaccine)%>%
-  mutate(covid_vaccine_v1 = case_when(!is.na(covid_vaccine) ~ 1, 
-                                      TRUE ~0)) %>% 
-  ungroup() %>% 
-  distinct(patient_id, covid_vaccine, .keep_all = TRUE) %>%
-  arrange(desc(covid_vaccine_v1)) %>%
-  print(n=1000)
+
+cis_long %>% select(patient_id,
+                    covid_vacc_date,
+                    covid_vacc_second_dose_date,
+                    covid_vacc_third_dose_date,
+                    covid_vacc_fourth_dose_date) %>% filter(!is.na(covid_vacc_date)) %>% print(n=2000)
+

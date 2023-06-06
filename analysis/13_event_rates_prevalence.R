@@ -12,20 +12,6 @@ dat <- fread('output/prevalence_t.csv')
 ### add a constant to obtain results not broken down (i.e. all participants)
 dat$all <- "all"
 
-### change age into age groups so that there's fewer categories(domains) to loop through
-
-#dat <- dat %>% 
-#  mutate(
-#    #create categories
-#    age_groups = case_when(
-#      age >= 16 & age <= 24 ~ "16 to 24",
-#      age >= 25 & age <= 34 ~ "25 to 34",
-#      age >= 35 & age <= 49 ~ "35 to 49",
-#      age >= 50 & age <= 69 ~ "50 to 69",
-#      age >= 70 ~ "70 and over"))
-
-
-
 ### list domains to loop over
 domains <- c("all",
              "age_groups",
@@ -49,7 +35,8 @@ domains <- c("all",
              "neurological",
             "imd",
             "rural_urban",
-            "self_isolating_v1")
+            "self_isolating_v1",
+            "vaccination_status")
 
 
 ### list exposures to loop over 

@@ -57,7 +57,7 @@ cis_cols <- cis_wide %>%
          covid_vacc_date,
          covid_vacc_second_dose_date,
          covid_vacc_third_dose_date,
-         covid_vacc_fourth_dose_date)#, self_isolating_v1)
+         covid_vacc_fourth_dose_date, self_isolating_v1)
 
 # number of 25 visits
 N <- 25
@@ -303,10 +303,10 @@ cis_long <- cis_long %>%
                                  rural_urban == 3 ~ "Rural town",
                                  rural_urban == 4 ~ "Rural village",
                                  TRUE ~ "Unknown/Invalid")) %>% 
-  #mutate(self_isolating_v1 = 
-           #case_when(self_isolating_v1=="Yes, forother reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
-                     #self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
-                     #TRUE ~ "Unknown/Invalid")) %>%
+  mutate(self_isolating_v1 = 
+           case_when(self_isolating_v1=="Yes, forother reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
+                     self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
+                     TRUE ~ "Unknown/Invalid")) %>%
   
 select(-imd_decile_e)
 
@@ -319,30 +319,3 @@ cis_long %>% count(rural_urban)  # will remove this line
 
 # Save out
 write_csv(cis_long, 'output/input_cis_long.csv')
-
-##################################################################################
-##################################################################################
-# Covid vaccine checks
-# Questions 
-
-#1. in the current format do we just get the latest covid vaccine per person?
-#2. Are there more than 1 dates for the covid_vaccine variable?
-#
-#count_vaccines <- cis_long %>% select(patient_id, 
-#                                      covid_vaccine) %>%
-#  group_by(patient_id, covid_vaccine)%>%
-#  mutate(covid_vaccine_v1 = case_when(!is.na(covid_vaccine) ~ 1, 
-#                                      TRUE ~0)) %>% 
-#  ungroup() %>% 
-#  distinct(patient_id, covid_vaccine, .keep_all = TRUE) %>%
-#  arrange(desc(covid_vaccine_v1)) %>%
-#  print(n=1000)
-# CHECKS ON THE NEW 4 COVID VARIABLES 
-
-
-cis_long %>% select(patient_id,
-                    covid_vacc_date,
-                    covid_vacc_second_dose_date,
-                    covid_vacc_third_dose_date,
-                    covid_vacc_fourth_dose_date) %>% filter(!is.na(covid_vacc_date)) %>% print(n=2000)
-

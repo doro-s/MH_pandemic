@@ -5,15 +5,43 @@ options(datatable.fread.datatable=FALSE)
 # setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # setwd('../')
 
+#Load functions and data
+# Need to read in matched person level data
+# Only need to consider participants characteristics at the index date
+# 100% of cases and 0% controls should have result_mk == 1
+
 source('analysis/cov_dist_cat.R')
 source('analysis/cov_dist_cont.R')
+source('analysis/functions/covid_vaccination_status_variable.R')
+
 
 incidence <- fread('output/adjusted_incidence_group.csv')
 prevalence <- fread('output/adjusted_prevalence_group.csv')
 
-# Need to read in matched person level data
-# Only need to consider participants characteristics at the index date
-# 100% of cases and 0% controls should have result_mk == 1
+###############################################################################
+#                 Create index_date
+# index date for the exposed should be the date_positive (earliest date of 
+#   positive covid tests from CIS, HES or T&T)
+#
+# index date for the control should be visit_date (of the matched exposed as
+#  we choose people who haven't been infected 14+ or - of visit date)
+###############################################################################
+
+incidence <- incidence %>%
+  mutate(index_date = ifelse(exposed == 1, date_positive, visit_date)) %>%
+  mutate(index_date = as.IDate(index_date))
+
+prevalence <- prevalence %>%
+  mutate(index_date = ifelse(exposed == 1, date_positive, visit_date))%>%
+  mutate(index_date = as.IDate(index_date))
+
+
+# Apply the covid_vaccination status function ################################
+
+incidence <- covid_vaccine_function(data = incidence)
+
+prevalence <- covid_vaccine_function(data = prevalence)
+
 
 # Create bmi category variable
 create_bmi_categories <- function(df){
@@ -95,7 +123,8 @@ cat_vars <- c("alcohol",
               "work_status_new",
               "imd",
               "rural_urban",
-              "self_isolating_v1")
+              "self_isolating_v1",
+              "vaccination_status")
 
 continuous_vars <- c('age')
 
@@ -157,7 +186,3 @@ prevalence_bmi <- function_get_bmi_descriptives(prevalence)
 
 #write_csv(incidence_bmi, 'output/incidence_cont_bmi_stats.csv')
 #write_csv(prevalence_bmi, 'output/prevalence_cont_bmi_stats.csv')
-
-#abs_std_diff <- abs((mu1 - mu0) / sqrt((var1 + var0) / 2))
-
-# Poisson.test - to see rate with CIs

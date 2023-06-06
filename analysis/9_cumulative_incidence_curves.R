@@ -14,6 +14,8 @@ eos_date <- as.IDate('2022-10-19')
 incidence <- fread('output/adjusted_incidence_group.csv')
 prevalence <- fread('output/adjusted_prevalence_group.csv')
 
+source('analysis/functions/covid_vaccination_status_variable.R')
+
 ###############################################################################
 #                 Create new variable with index_date
 # index date for the exposed should be the date_positive (earliest date of 
@@ -30,6 +32,11 @@ incidence <- incidence %>%
 prevalence <- prevalence %>%
   mutate(index_date = ifelse(exposed == 1, date_positive, visit_date))%>%
   mutate(index_date = as.IDate(index_date))
+
+# Apply the covid_vaccination status function ################################
+
+incidence <- covid_vaccine_function(data = incidence)
+prevalence <- covid_vaccine_function(data = prevalence)
 
 
 # Derive t for outcomes

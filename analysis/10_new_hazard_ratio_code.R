@@ -10,7 +10,7 @@
 library(tidyverse)
 library(data.table)
 library(ggfortify)
-library(here)
+#library(here)
 library(survival)
 library(survminer)
 library(broom)
@@ -34,19 +34,13 @@ prevalence <- fread('output/prevalence_t.csv')
 # Load functions 
 ###########################################################################
 
-source(here("analysis","functions","inverse_prob_weights_incidence_full.R"))
-source(here("analysis","functions","inverse_prob_weights_min.R"))
-source(here("analysis","functions","inverse_prob_weights_prevalence_full.R"))
-source(here("analysis","functions","schoenfeld_residuals_function.R"))
-source(here("analysis","functions","fit_cox_model_fully_adjusted.R"))
-source(here("analysis","functions","cumulative_incidence_graph_function.R"))
+source('analysis/functions/inverse_prob_weights_incidence_full.R')
+source('analysis/functions/inverse_prob_weights_min.R')
+source('analysis/functions/inverse_prob_weights_prevalence_full.R')
+source('analysis/functions/schoenfeld_residuals_function.R')
+source('analysis/functions/fit_cox_model_fully_adjusted.R')
+source('analysis/functions/cumulative_incidence_graph_function.R')
 
-#source("analysis/functions/inverse_prob_weights_incidence_full.R")
-#source("analysis/functions/inverse_prob_weights_min.R")
-#source("analysis/functions/inverse_prob_weights_prevalence_full.R")
-#source("analysis/functions/schoenfeld_residuals_function.R")
-#source("analysis/functions/fit_cox_model_fully_adjusted.R")
-#source("analysis/functions/cumulative_incidence_graph_function.R")
 
 # List variables for incidence and prevalence models
 vars <- c("exposed",
@@ -71,7 +65,8 @@ vars <- c("exposed",
           "mental_behavioural_disorder",
           "imd",
           "rural_urban",
-          "self_isolating_v1")
+          "self_isolating_v1",
+          "vaccination_status")
 
 ###########################################################################
 # Run Cox Proportional Hazard Ratio

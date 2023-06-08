@@ -303,14 +303,13 @@ cis_long <- cis_long %>%
                                  rural_urban == 3 ~ "Rural town",
                                  rural_urban == 4 ~ "Rural village",
                                  TRUE ~ "Unknown/Invalid")) %>% 
-  #mutate(self_isolating_v1 = 
-           #case_when(self_isolating_v1== "Yes, for other reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
-                     #self_isolating_v1== "Yes, you have/have had symptoms" | 
-                       #self_isolating_v1=="No" | 
-                       #self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
-                     #TRUE ~ "Unknown/Invalid")) %>%
+  mutate(self_isolating = 
+           case_when(self_isolating_v1 == "Yes, for other reasons (e.g. going into hospital, quarantining)" ~ "Isolating",
+                     
+                     self_isolating_v1== "Yes, you have/have had symptoms" | self_isolating_v1=="No" | self_isolating_v1=="Yes, someone you live with had symptoms" ~ "Not isolating",
+                     TRUE ~ "Unknown/Invalid")) %>%
   
-select(-imd_decile_e)
+  select(-imd_decile_e)
 
 rm(cis_cols, cis_wide)
 gc()
@@ -319,6 +318,7 @@ gc()
 cis_long %>% count(imd)  # will remove this line
 cis_long %>% count(rural_urban)  # will remove this line
 cis_long %>% count(self_isolating_v1)  # will remove this line
+cis_long %>% count(self_isolating)  # will remove this line
 
 
 # Save out

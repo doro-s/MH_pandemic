@@ -35,7 +35,7 @@ domains <- c("all",
              "neurological",
              "imd",
              "rural_urban",
-             "self_isolating_v1",
+             "self_isolating",
              "vaccination_status")
 
                          

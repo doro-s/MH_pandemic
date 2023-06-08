@@ -59,7 +59,7 @@ in1 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 2,
                mental_behavioural_disorder +
                imd + 
                rural_urban + 
-               self_isolating_v1 +
+               self_isolating +
                vaccination_status, 
                                data = incidence)
 
@@ -110,7 +110,7 @@ in2 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 3,
                mental_behavioural_disorder +
                imd + 
                rural_urban + 
-               self_isolating_v1 +
+               self_isolating +
                vaccination_status, 
              data = incidence)
 
@@ -151,7 +151,7 @@ in3 <- coxph(Surv(t,mh_outcome) ~ exposed*ns(index_time_to_start_date, df = 4,
                mental_behavioural_disorder +
                imd + 
                rural_urban + 
-               self_isolating_v1 +
+               self_isolating +
                vaccination_status, 
              data = incidence)
 

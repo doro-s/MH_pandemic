@@ -123,7 +123,7 @@ cat_vars <- c("alcohol",
               "work_status_new",
               "imd",
               "rural_urban",
-              "self_isolating_v1",
+              "self_isolating",
               "vaccination_status")
 
 continuous_vars <- c('age')

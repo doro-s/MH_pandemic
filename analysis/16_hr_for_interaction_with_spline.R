@@ -69,7 +69,7 @@ mod_cox <- coxph(
     mental_behavioural_disorder + 
     imd +
     rural_urban + 
-    self_isolating_v1 +
+    self_isolating +
     vaccination_status,
   data = dat)
 

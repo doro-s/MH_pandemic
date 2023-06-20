@@ -78,23 +78,23 @@ vars <- c("exposed",
 
 unadj_incidence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id), 
                          data = incidence)
-
+unadj_incidence
 min_adj_inc <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id), 
                      data = incidence)
-
+min_adj_inc
 inc_model <- fit_cox_model(incidence, vars = vars)
-
+inc_model
 
 ## Prevalence models
 
 unadj_prevalence <- coxph(Surv(t, mh_outcome) ~ exposed + cluster(patient_id),
                           data = prevalence)
-
+unadj_prevalence
 min_adj_prev <- coxph(Surv(t, mh_outcome) ~ exposed + sex + ns(age, df = 2, Boundary.knots = c(quantile(age,0.1), quantile(age, 0.9))) + cluster(patient_id),
                       data = prevalence)
-
+min_adj_prev
 prev_model <- fit_cox_model(prevalence, vars = vars)
-
+prev_model
 
 ## Function to tidy tables and save outputs into opensafely friendly format e.g. csv file
 
@@ -133,13 +133,13 @@ incidence_min_with_weights <- inverse_prob_weights_min(incidence)
 
 # incidence - full adj
 incidence_full_with_weights <-inverse_prob_weights_incidence(incidence)
-
+incidence_full_with_weights
 # prevalence - min adj
 prevalence_min_with_weights <- inverse_prob_weights_min(prevalence)
 
 # prevalence - full adj
 prevalence_full_with_weights <-inverse_prob_weights_prevalence(prevalence)
-
+prevalence_full_with_weights
 
 ###########################################################################
 #    Plot survival fit models-unadjusted models don't need Cox.P.HR

@@ -1,9 +1,6 @@
 from cohortextractor import (
     StudyDefinition,
-    codelist,
     codelist_from_csv,
-    combine_codelists,
-    filter_codes_by_category,
     patients
 )
 
@@ -16,6 +13,10 @@ n_visits = 25
 n_years_back = 5
 
 def get_visit_date(name, col, date):
+    """
+    This function should return first match/event in the study period, returning column name for
+    patients with a record on the Covid Infection Survey. 
+    """   
     return {name : patients.with_an_ons_cis_record(
             returning=col,
             on_or_after=date,
@@ -25,6 +26,11 @@ def get_visit_date(name, col, date):
             )}
 
 def get_alcohol(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for alcohol. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/opensafely-hazardous-alcohol-drinking.csv',
@@ -40,6 +46,11 @@ def get_alcohol(name, date):
     )}
 
 def get_obesity(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for obesity. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-obese-bmi-30.csv',
@@ -55,6 +66,10 @@ def get_obesity(name, date):
     )}
 
 def get_bmi(name, date):
+    """
+    This function returns most recent BMI and a column name to identfy a patient. 
+    It looks back 5 years and returns most recent.
+    """
     return {name : patients.most_recent_bmi(
         between=[max(f'{date} - {n_years_back} years', '2016-01-01'), date],
         return_expectations={
@@ -64,6 +79,11 @@ def get_bmi(name, date):
     )}
 
 def get_cancer(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for cancer. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/user-jkua-cancer.csv',
@@ -79,6 +99,11 @@ def get_cancer(name, date):
     )}
 
 def get_CVD_ctv3(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for CVD (ctv3). It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """ 
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-cardiovascular-disorders.csv',
@@ -94,6 +119,11 @@ def get_CVD_ctv3(name, date):
     )}
 
 def get_CVD_snomed(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for CVD (snomed). It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """ 
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/nhsd-primary-care-domain-refsets-angina_cod.csv',
@@ -109,6 +139,11 @@ def get_CVD_snomed(name, date):
     )}
 
 def get_digestive_disorder(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for digestive disorder. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-digestive-disorders.csv',
@@ -124,6 +159,11 @@ def get_digestive_disorder(name, date):
     )}
 
 def get_hiv_aids(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for HIV. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/opensafely-hiv-snomed.csv',
@@ -139,6 +179,11 @@ def get_hiv_aids(name, date):
     )}
 
 def get_metabolic_disorder(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for metabolic disorder. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-metabolic-disorders.csv',
@@ -154,6 +199,11 @@ def get_metabolic_disorder(name, date):
     )}
 
 def get_musculoskeletal_ctv3(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for musculoskeletal disorder (ctv3). It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-musculoskeletal-disorders.csv',
@@ -169,6 +219,11 @@ def get_musculoskeletal_ctv3(name, date):
     )}
 
 def get_musculoskeletal_snomed(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for musculoskeletal disorder (snomed). It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/nhsd-primary-care-domain-refsets-osteo_cod.csv',
@@ -184,6 +239,11 @@ def get_musculoskeletal_snomed(name, date):
     )}
 
 def get_neurological_ctv3(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for neurological disorder (ctv3). It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/opensafely-multiple-sclerosis.csv',
@@ -199,6 +259,11 @@ def get_neurological_ctv3(name, date):
     )}
 
 def get_neurological_snomed(name, date):
+    """
+    This function returns binary flag and a col name for a patient who has a clinical 
+    record for neurological disorder (snomed). It looks at the last match (most recent) 
+    match in the reporting period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-neurological-disorders.csv',
@@ -214,6 +279,11 @@ def get_neurological_snomed(name, date):
     )}
 
 def get_kidney_disorder(name, date):
+    """
+    This function returns binary flag and a col name for a patients who have a clinical 
+    record for kidney disorder. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-chronic-kidney-disease-stages-3-5.csv',
@@ -229,6 +299,11 @@ def get_kidney_disorder(name, date):
     )}
 
 def get_respiratory_disorder(name, date):
+    """
+    This function returns binary flag and a col name for a patients who have a clinical 
+    record for respiratory disorder. It looks at the last match (most recent) match in the reporting 
+    period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-respiratory-disorders.csv',
@@ -244,6 +319,11 @@ def get_respiratory_disorder(name, date):
     )}
 
 def get_mental_behavioural_disorder(name, date):
+    """
+    This function returns binary flag and a col name for a patients who have a clinical 
+    record for mental and behavioural disorder. It looks at the last match (most recent) 
+    match in the reporting period or in the previous 5 years.  
+    """
     return {name : patients.with_these_clinical_events(
         codelist=codelist_from_csv(
             'codelists/ons-mental-and-behavioural-disorders.csv',
@@ -295,7 +375,9 @@ def cis_earliest_positive(start_date, n):
     
 
 study = StudyDefinition(
-    
+
+#filter the study population so that we only get people who are in Covid Infection Survey
+#  
     population=patients.satisfying(
         'in_cis',
         in_cis = patients.with_an_ons_cis_record(

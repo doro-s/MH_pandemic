@@ -121,8 +121,8 @@ cat_vars <- c("alcohol",
               "age_groups",
               "hhsize",
               "work_status_new",
-              "imd",
-              "rural_urban",
+              #"imd",
+              #"rural_urban",
               "self_isolating",
               "vaccination_status")
 

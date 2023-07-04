@@ -157,8 +157,8 @@ cis_dates <- cis_dates %>%
 # if last_linkage_date is NA then place a really high date, if it's not NA keep that date
 cis_dates <- cis_dates %>%
   mutate(min_pos_result_comb = ifelse(is.na(min_pos_result_comb), as.IDate('2100-01-01'), min_pos_result_comb)) %>%
-  mutate(min_pos_result_comb = ifelse(min_pos_result_comb > visit_date_one_year, as.IDate('2100-01-01'), min_pos_result_comb)) %>%
-  mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
+  mutate(min_pos_result_comb = ifelse(min_pos_result_comb > visit_date_one_year, as.IDate('2100-01-01'), min_pos_result_comb)) #%>%
+ # mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
 
 ################################################################################
 # Derive end of study date
@@ -176,7 +176,7 @@ eos_dates <- cis %>%
   filter(visit_date_one_year == max(visit_date_one_year)) %>%
   filter(row_id == max(row_id)) %>% 
   ungroup() %>% 
-  select(patient_id, eos_date, visit_date_one_year,last_linkage_dt)
+  select(patient_id, eos_date, visit_date_one_year)#,last_linkage_dt)
 
 # Read in latest deaths file and join to eos_dates
 dod <- cis %>%
@@ -192,13 +192,13 @@ dod <- dod %>%
 
 eos_dates <- eos_dates %>%
   left_join(dod, by = 'patient_id') %>%
-  mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death)) %>%
-  mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
+  mutate(date_of_death = ifelse(is.na(date_of_death), as.IDate('2100-01-01'), date_of_death)) #%>%
+ # mutate(last_linkage_dt = ifelse(is.na(last_linkage_dt), as.IDate('2100-01-01'), last_linkage_dt))
 
 # Get minimum date of eos, max(visit) + 365, dod, (earliest evidence of covid infection)
 eos_dates <- eos_dates %>%
   mutate(end_date = pmin(eos_date, visit_date_one_year)) %>%
-  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
+#  mutate(end_date = pmin(end_date, last_linkage_dt)) %>%
   mutate(end_date = pmin(end_date, date_of_death)) %>%
   select(-eos_date, -visit_date_one_year, -date_of_death)
 

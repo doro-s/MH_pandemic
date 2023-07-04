@@ -23,7 +23,7 @@ non_health <- fread('output/input_non_health.csv')
 
 combined <- non_health %>% 
   left_join(mh, by = 'patient_id') %>%
-  left_join(non_mh, by = 'patient_id') %>%
-  left_join(cis_new, by = 'patient_id')
+  left_join(non_mh, by = 'patient_id') #%>%
+  #left_join(cis_new, by = 'patient_id')
 
 write_csv(combined, 'output/input_cis_wide.csv')

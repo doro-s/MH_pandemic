@@ -21,8 +21,8 @@ inverse_prob_weights_prevalence <- function(data){
       CVD + 
       musculoskeletal + 
       neurological +
-      imd +
-      rural_urban +
+      #imd +
+      #rural_urban +
       self_isolating +
       vaccination_status, 
     family = binomial,

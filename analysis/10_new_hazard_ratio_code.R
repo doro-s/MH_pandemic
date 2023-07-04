@@ -10,7 +10,6 @@
 library(tidyverse)
 library(data.table)
 library(ggfortify)
-#library(here)
 library(survival)
 library(survminer)
 library(broom)
@@ -63,8 +62,8 @@ vars <- c("exposed",
           "musculoskeletal",
           "neurological",
           "mental_behavioural_disorder",
-          "imd",
-          "rural_urban",
+          #"imd",
+          #"rural_urban",
           "self_isolating",
           "vaccination_status")
 

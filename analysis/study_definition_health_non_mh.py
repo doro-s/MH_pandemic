@@ -16,6 +16,8 @@ def get_visit_date(name, col, date):
     """
     This function should return first match/event in the study period, returning column name for
     patients with a record on the Covid Infection Survey. 
+    We should get a new column for each visit date up to 25 visits. 
+    Our output from this code & this variable should be columns -> visit_date_0, visit_date_1, visit_date_2, .....
     """   
     return {name : patients.with_an_ons_cis_record(
             returning=col,
@@ -27,7 +29,7 @@ def get_visit_date(name, col, date):
 
 def get_alcohol(name, date):
     """
-    This function returns binary flag and a col name for a patient who has a clinical 
+    This function returns binary flag and a col name for a patients who have a clinical 
     record for alcohol. It looks at the last match (most recent) match in the reporting 
     period or in the previous 5 years.  
     """

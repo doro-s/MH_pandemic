@@ -15,6 +15,12 @@ n_years_back = 5
 
 
 def get_visit_date(name, col, date):
+    """
+    This function should return first match/event in the study period, returning column name for
+    patients with a record on the Covid Infection Survey. 
+    We should get a new column for each visit date up to 25 visits. 
+    Our output from this code & this variable should be -> visit_date_0, visit_date_1, visit_date_2, .....
+    """   
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
@@ -24,20 +30,27 @@ def get_visit_date(name, col, date):
             date_filter_column='visit_date'
             )}
 
-def get_visit_number(name, col, date):
-    return {
-        name : patients.with_an_ons_cis_record(
-            returning=col,
-            on_or_after=date,
-            find_first_match_in_period=True,
-            date_filter_column='visit_date',
-            return_expectations={
-                'category': {'ratios': {0: 0.95,
-                                        1: 0.05}}
-                }
-            )}
+#get_visit_number is not being used in this code (MOVED)
+#def get_visit_number(name, col, date):
+#    return {
+#        name : patients.with_an_ons_cis_record(
+#            returning=col,
+#            on_or_after=date,
+#            find_first_match_in_period=True,
+#            date_filter_column='visit_date',
+#            return_expectations={
+#                'category': {'ratios': {0: 0.95,
+#                                        1: 0.05}}
+#                }
+#            )}
 
 def get_result_mk(name, col, date):
+    """
+    This code should return covid infection results from each visit.
+    It should return first match in period based on the visit date. 
+    We should get a new column for each visit date for the results, as 
+    such we can expect columns as result_mk_0, result_mk_1, result_mk_2, .....
+    """ 
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
@@ -52,6 +65,9 @@ def get_result_mk(name, col, date):
             )}
 
 def get_result_combined(name, col, date):
+    """
+    Exactly the same as get_result_mk but this looks at the combined results. 
+    """ 
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
@@ -68,6 +84,10 @@ def get_result_combined(name, col, date):
 
 def get_first_swab_date(name, col):
     # User reported
+    """
+    This code returns 1 column with col name. We should get date of the first
+    positive covid swab reported by the user (this should be within the study period).
+    """ 
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
@@ -82,6 +102,10 @@ def get_first_swab_date(name, col):
 
 def get_first_blood_date(name, col):
     # User reported
+    """
+    This code returns 1 column with col name. We should get date of the first
+    positive covid blood test reported by the user (this should be within the study period).
+    """ 
     return {
         name : patients.with_an_ons_cis_record(
             returning=col,
@@ -95,6 +119,11 @@ def get_first_blood_date(name, col):
         )}
 
 def get_tt_positive(name):
+    """
+    This code returns a date and a column name for patients with a clinical
+    codes/diagnosis of covid from across primary care records. 
+    It looks at the first date in the reporting period.  
+    """ 
     return{
         name : patients.with_test_result_in_sgss(
             pathogen='SARS-CoV-2',
@@ -109,6 +138,10 @@ def get_tt_positive(name):
         )}
 
 def get_hes_admission(name):
+    """
+    This code returns a date and a column name for patients with a hospital admission due to covid. 
+    It looks at the first date in the reporting period.  
+    """ 
     return{
         name : patients.admitted_to_hospital(
             between=[start_date, end_date],
@@ -126,6 +159,9 @@ def get_hes_admission(name):
         )}
 
 def get_date_of_death(name):
+# loads date of death for each patient (if applicable), if someone
+# died durign the reporting period the date is included in the table
+# otherwise it stays empty
     return{
         name : patients.died_from_any_cause(
             between=[start_date, end_date],
@@ -137,6 +173,9 @@ def get_date_of_death(name):
         )}
 
 def get_covid_vaccine(name):
+    ''' This is needed to look at people's antibodies. 
+    This code loads information on vaccinations for each patient. It looks for
+    first date in the reporting period.'''
     return{
         name : patients.with_tpp_vaccination_record(
             target_disease_matches="SARS-2 CORONAVIRUS",
@@ -149,33 +188,37 @@ def get_covid_vaccine(name):
             }
         )}
 
-def get_last_linkage_date(name, col):
-    return{
-        name : patients.with_an_ons_cis_record(
-            returning=col,
-            between=[start_date, end_date],
-            find_last_match_in_period=True,
-            date_format='YYYY-MM-DD',
-            date_filter_column='visit_date',
-            return_expectations={
-                
-            }
-        )}
+#def get_last_linkage_date(name, col):
+#    return{
+#        name : patients.with_an_ons_cis_record(
+#            returning=col,
+#            between=[start_date, end_date],
+#            find_last_match_in_period=True,
+#            date_format='YYYY-MM-DD',
+#            date_filter_column='visit_date',
+#            return_expectations={
+#                
+#            }
+#        )}
 
-def get_nhs_data_share(name, col):
-    return{
-        name : patients.with_an_ons_cis_record(
-            returning=col,
-            between=[start_date, end_date],
-            find_last_match_in_period=True,
-            date_format='YYYY-MM-DD',
-            date_filter_column='visit_date',
-            return_expectations={
-                'category': {'ratios': {0: 0.98, 1: 0.02}}
-            }
-        )}
+#def get_nhs_data_share(name, col):
+#    return{
+#        name : patients.with_an_ons_cis_record(
+#            returning=col,
+#            between=[start_date, end_date],
+#            find_last_match_in_period=True,
+#            date_format='YYYY-MM-DD',
+#            date_filter_column='visit_date',
+#            return_expectations={
+#                'category': {'ratios': {0: 0.98, 1: 0.02}}
+#            }
+#        )}
 
 def get_ethnicity(name):
+    ''' This code returns information on patinent's ethnicity from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name : patients.with_an_ons_cis_record(
             returning='ethnicity',
@@ -191,6 +234,10 @@ def get_ethnicity(name):
         )}
 
 def get_sex(name):
+    ''' This code returns information on patinent's sex. It looks for 
+    the last match found in the reporting period (latest). It should return 1
+    col name. 
+    '''
     return{
         name : patients.sex(
             return_expectations={
@@ -200,6 +247,10 @@ def get_sex(name):
         )}
 
 def get_region(name):
+    ''' This code returns information on patinent's region from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name : patients.with_an_ons_cis_record(
             returning='gor9d',
@@ -222,6 +273,10 @@ def get_region(name):
         )}
 
 def get_hhsize(name):
+    ''' This code returns information on patinent's household size from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name: patients.with_an_ons_cis_record(
             returning ='hhsize',
@@ -240,6 +295,10 @@ def get_hhsize(name):
         )}
 
 def get_work_status(name):
+    ''' This code returns information on patinent's workstatus from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name: patients.with_an_ons_cis_record(
             returning ='work_status',
@@ -258,6 +317,10 @@ def get_work_status(name):
         )}
 
 def get_work_status_v1(name):
+    ''' This code returns information on patinent's workstatus V1 from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name: patients.with_an_ons_cis_record(
             returning ='work_status_v1',
@@ -281,6 +344,10 @@ def get_work_status_v1(name):
         )}
 
 def get_self_isolating_v1(name):
+    ''' This code returns information on patinent's self-isolation status from the 
+    Covid Infection Survey. It looks for the last match found in the 
+    reporting period (latest). It should return 1 col name. 
+    '''
     return{
         name: patients.with_an_ons_cis_record(
             returning ='self_isolating_v1',
@@ -298,6 +365,10 @@ def get_self_isolating_v1(name):
         )}
 
 def get_age(name, date):
+    ''' This code returns information on patinent's age. 
+    It should return col name based on the visit date, hence
+    we should age multiple columns e.g. age_0, age_1, age_2, ......
+    '''
     return{
         name: patients.age_as_of(
             reference_date=date,
@@ -379,6 +450,9 @@ study = StudyDefinition(
 ##########################################################################
 # Get covid information, 1st, 2nd, boosters
 ##########################################################################
+# The codes below should return the earliest date of a covid vaccine from 
+# the primary care records from the date of the first administered vaccine in the UK.
+# We should get a col name with a corresponding date.  
 # 1st covid vaccine 
 covid_vacc_date = patients.with_tpp_vaccination_record(
         target_disease_matches="SARS-2 CORONAVIRUS",
